@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
+  m_Name: Alleyfloor_top1
+  m_EditorClassIdentifier: 
+  m_AnimatedSprites:
+  - {fileID: 21300000, guid: 69caee736f9f4b94fb35fd1154412fe5, type: 3}
+  - {fileID: 21300000, guid: ad99010bc6a75654a9a46c92813eda35, type: 3}
+  - {fileID: 21300000, guid: ee538a5fcbf4a49419b4eb0261328ae1, type: 3}
+  - {fileID: 21300000, guid: 907d538b9b75439429072541a5678d59, type: 3}
+  - {fileID: 21300000, guid: f2040512ec5c9b34fa4bbb35f2f0b19f, type: 3}
+  - {fileID: 21300000, guid: 5f574d3af9253c8478d3814e75de30e2, type: 3}
+  - {fileID: 21300000, guid: a4f0c8e043dd8c246a5c78a8174e9181, type: 3}
+  - {fileID: 21300000, guid: beaa39e86b034f44fb304be3a45f6b9d, type: 3}
+  - {fileID: 21300000, guid: 91711c0ed06e13143a81f2a218e4403e, type: 3}
+  - {fileID: 21300000, guid: a4c0f8aad98ea154cb4059b9192c97ed, type: 3}
+  m_MinSpeed: 15
+  m_MaxSpeed: 15
+  m_AnimationStartTime: 0
+  m_AnimationStartFrame: 0
+  m_TileColliderType: 0
+  m_TileAnimationFlags: 0
