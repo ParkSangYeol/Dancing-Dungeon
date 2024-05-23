@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 627be64a4ee2e44ff973f40b30e28529
+guid: 43c96b54745244e4c82a9efece8f78d9
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -196,8 +196,8 @@ TextureImporter:
   assetBundleVariant: 
 AssetOrigin:
   serializedVersion: 1
-  productId: 266333
-  packageName: 2D Modern Pack - SPUM Premium Addon Pack
-  packageVersion: 1.0
+  productId: 192747
+  packageName: 2D Retro Heroes - SPUM Premium Addon Pack
+  packageVersion: 1.0.3
   assetPath: Assets/SPUM/SPUM_Sprites/Items/3_Pant/Foot_4.png
-  uploadId: 615664
+  uploadId: 519394

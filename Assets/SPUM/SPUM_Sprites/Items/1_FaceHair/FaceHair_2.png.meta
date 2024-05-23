@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a117e22d75a33438a97692784ba1bfc0
+guid: bf396ee22a706a24dba8f20538815062
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -128,8 +128,8 @@ TextureImporter:
   assetBundleVariant: 
 AssetOrigin:
   serializedVersion: 1
-  productId: 266333
-  packageName: 2D Modern Pack - SPUM Premium Addon Pack
-  packageVersion: 1.0
+  productId: 197211
+  packageName: 2D Monster ORC - SPUM Premium Addon Pack
+  packageVersion: 1.0.4
   assetPath: Assets/SPUM/SPUM_Sprites/Items/1_FaceHair/FaceHair_2.png
-  uploadId: 615664
+  uploadId: 519391

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c4a479d0fe432417ba20383974a5f9ca
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 4890085278179872738
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 192747
+  packageName: 2D Retro Heroes - SPUM Premium Addon Pack
+  packageVersion: 1.0.3
+  assetPath: Assets/SPUM/Sample/Scene/SampleSettings.lighting
+  uploadId: 519394

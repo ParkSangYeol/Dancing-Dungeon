@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 12bc3c9fce1e448d389fddbf4034bbf5
+guid: effc43f162b3b4c1c88c091c360bffcf
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -128,8 +128,8 @@ TextureImporter:
   assetBundleVariant: 
 AssetOrigin:
   serializedVersion: 1
-  productId: 266333
-  packageName: 2D Modern Pack - SPUM Premium Addon Pack
-  packageVersion: 1.0
+  productId: 192747
+  packageName: 2D Retro Heroes - SPUM Premium Addon Pack
+  packageVersion: 1.0.3
   assetPath: Assets/SPUM/SPUM_Sprites/Items/6_Weapons/Sword_2.png
-  uploadId: 615664
+  uploadId: 519394

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a2c7e4610fac1473cbce8c8e829552b0
+guid: 55bcacee5fd41654190caeb4abc46562
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -128,8 +128,8 @@ TextureImporter:
   assetBundleVariant: 
 AssetOrigin:
   serializedVersion: 1
-  productId: 266333
-  packageName: 2D Modern Pack - SPUM Premium Addon Pack
-  packageVersion: 1.0
+  productId: 197211
+  packageName: 2D Monster ORC - SPUM Premium Addon Pack
+  packageVersion: 1.0.4
   assetPath: Assets/SPUM/SPUM_Sprites/Items/7_Back/Back_3.png
-  uploadId: 615664
+  uploadId: 519391

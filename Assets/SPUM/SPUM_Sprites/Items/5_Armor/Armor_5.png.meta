@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 90443371f67f74e24a9326f585b51c01
+guid: 2c072a1f01222464daaf6f79cefe54e3
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -159,8 +159,8 @@ TextureImporter:
   assetBundleVariant: 
 AssetOrigin:
   serializedVersion: 1
-  productId: 266333
-  packageName: 2D Modern Pack - SPUM Premium Addon Pack
-  packageVersion: 1.0
+  productId: 192747
+  packageName: 2D Retro Heroes - SPUM Premium Addon Pack
+  packageVersion: 1.0.3
   assetPath: Assets/SPUM/SPUM_Sprites/Items/5_Armor/Armor_5.png
-  uploadId: 615664
+  uploadId: 519394
