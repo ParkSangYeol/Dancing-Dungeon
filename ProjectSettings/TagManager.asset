@@ -41,8 +41,11 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Road
+  - name: Road1
     uniqueID: 901594045
+    locked: 0
+  - name: Road2
+    uniqueID: 589270699
     locked: 0
   - name: Building1
     uniqueID: 2673901081
