@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
+  m_Name: CafeFlapBlueLeft
+  m_EditorClassIdentifier: 
+  m_AnimatedSprites:
+  - {fileID: 21300000, guid: 59014d84d9eac484c8417434f5e6bba8, type: 3}
+  - {fileID: 21300000, guid: 28ec0366a6b8adb4b8299325457f6edb, type: 3}
+  - {fileID: 21300000, guid: 745ca73aae4617642a57467d42a0b940, type: 3}
+  - {fileID: 21300000, guid: cc2a370752663384c841399b078cdcb2, type: 3}
+  - {fileID: 21300000, guid: be9cc54764a5aab479453798c7bbb849, type: 3}
+  - {fileID: 21300000, guid: 5f08e1abb5b8bbc4fbda253bc065b9dc, type: 3}
+  - {fileID: 21300000, guid: a5ca390e6c17cf44790c107b65d0158f, type: 3}
+  - {fileID: 21300000, guid: 7a76690880a450045a8f0ed6b4798cb0, type: 3}
+  - {fileID: 21300000, guid: adc41c8332b01e443aafcbf71a7f1757, type: 3}
+  - {fileID: 21300000, guid: b9184ef1864234d488fbc03969f9b893, type: 3}
+  - {fileID: 21300000, guid: 512aec44330a21e4ab824dbfcbdfe75a, type: 3}
+  - {fileID: 21300000, guid: 1ac3d7590f9e2c941aab25437299abdf, type: 3}
+  - {fileID: 21300000, guid: 11eef57528b27ff48a9baff7a31fba53, type: 3}
+  - {fileID: 21300000, guid: 22985dc89483c284eae6dc43d8768264, type: 3}
+  - {fileID: 21300000, guid: c17b6f177d0b7924095c5daa26588c5e, type: 3}
+  m_MinSpeed: 5
+  m_MaxSpeed: 5
+  m_AnimationStartTime: 0
+  m_AnimationStartFrame: 0
+  m_TileColliderType: 0
+  m_TileAnimationFlags: 0

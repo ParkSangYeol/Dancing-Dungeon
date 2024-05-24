@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
+  m_Name: ForegroundWiresLeft_c1
+  m_EditorClassIdentifier: 
+  m_AnimatedSprites:
+  - {fileID: 21300000, guid: 964fea96c0a601d4d8b0bb5010c48fb2, type: 3}
+  - {fileID: 21300000, guid: ef7db6b756b7fb848a08d61a07bd472d, type: 3}
+  - {fileID: 21300000, guid: 4b7cbff44f0d4434295fb46e5b409716, type: 3}
+  - {fileID: 21300000, guid: bd6d1fd7eafb1bb40b83a1d17fe495cd, type: 3}
+  - {fileID: 21300000, guid: 23b815a2134ecba4db5bc0b99a36e41c, type: 3}
+  - {fileID: 21300000, guid: a39addde845309549ba59107b5131ea6, type: 3}
+  - {fileID: 21300000, guid: e62743976e077f84ca38f0132e7c8961, type: 3}
+  - {fileID: 21300000, guid: cfd25881b7e1f2741b5a5d666549163a, type: 3}
+  - {fileID: 21300000, guid: 29f0da8dd6435f548b17cb6dac9afa75, type: 3}
+  - {fileID: 21300000, guid: 6cd8df141287ad14a80387947e15b721, type: 3}
+  - {fileID: 21300000, guid: a4b5e9faeed0bc842a6d7d366bc7390e, type: 3}
+  - {fileID: 21300000, guid: 441cedfa7aa320449ad06a8d13b9ac92, type: 3}
+  - {fileID: 21300000, guid: 2fc4c048694ed0f4b83f0143c1de8a88, type: 3}
+  - {fileID: 21300000, guid: 80f24f2d042124c4ebc67480040f8d32, type: 3}
+  - {fileID: 21300000, guid: 27328977bfbcd46439e4f07879fcda61, type: 3}
+  m_MinSpeed: 15
+  m_MaxSpeed: 15
+  m_AnimationStartTime: 0
+  m_AnimationStartFrame: 0
+  m_TileColliderType: 0
+  m_TileAnimationFlags: 0
