@@ -75,7 +75,7 @@ public class UiManager : MonoBehaviour
 
     public void NextScene()
     {
-        SceneManager.LoadScene("NoteSystemDev");
+        SceneManager.LoadScene("NoteSystemDev2");
         AudioClip battleBgm = Resources.Load<AudioClip>("BattleBgm");
          if (battleBgm != null)
         {

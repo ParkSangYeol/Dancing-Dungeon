@@ -11,9 +11,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Dev/GD/MainScene/MainScene.unity
     guid: 7affccb7dc0c66a48aadfa02979b101d
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Dev/GD/NoteSystemDev.unity
     guid: 701e79146c10bda459206aa03ea46190
+  - enabled: 1
+    path: Assets/Scenes/Dev/GD/NoteSystemDev2.unity
+    guid: 5dcb93a0851fecd449e827834987c986
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
