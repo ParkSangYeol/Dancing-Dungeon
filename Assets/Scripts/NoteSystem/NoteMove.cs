@@ -30,26 +30,27 @@ public class NoteMove : MonoBehaviour
         }
     } 
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
+    // void OnTriggerEnter2D(Collider2D other)
+    // {
 
-         if ((other.gameObject.tag == "LeftNote" && this.tag == "RightNote") ||  //서로 부딫힐때
-            (other.gameObject.tag == "RightNote" && this.tag == "LeftNote"))
-        {
-            gameObject.SetActive(false);
-            other.gameObject.SetActive(false);
-            gameManager.DeregisterNoteTiming(this);
-            gameManager.DeregisterNoteTiming(other.gameObject.GetComponent<NoteMove>());
+    //      if ((other.gameObject.tag == "LeftNote" && this.tag == "RightNote") ||  //서로 부딫힐때
+    //         (other.gameObject.tag == "RightNote" && this.tag == "LeftNote"))
+    //     {
+    //         gameManager.DeregisterNoteTiming(this);
+    //         gameManager.DeregisterNoteTiming(other.gameObject.GetComponent<NoteMove>());
+    //         gameObject.SetActive(false);
+    //         other.gameObject.SetActive(false);
+        
             
-        }
-        if (other.CompareTag("LeftPerfect") || other.CompareTag("LeftGreat") || other.CompareTag("LeftBad") ||
-            other.CompareTag("RightPerfect") || other.CompareTag("RightGreat") || other.CompareTag("RightBad"))
-        {
-            gameManager.RegisterNoteTiming(this, other.tag);
-        }
+    //     }
+    //     if (other.CompareTag("LeftPerfect") || other.CompareTag("LeftGreat") || other.CompareTag("LeftBad") ||
+    //         other.CompareTag("RightPerfect") || other.CompareTag("RightGreat") || other.CompareTag("RightBad"))
+    //     {
+    //         gameManager.RegisterNoteTiming(this, other.tag);
+    //     }
        
         
-    }
+    // }
 
     void OnTriggerExit2D(Collider2D other)
     {
@@ -60,6 +61,17 @@ public class NoteMove : MonoBehaviour
         }
         
     }
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if ((other.gameObject.tag == "LeftNote" && this.tag == "RightNote") ||  //서로 부딫힐때
+            (other.gameObject.tag == "RightNote" && this.tag == "LeftNote"))
+        {
+            gameObject.SetActive(false);
+            other.gameObject.SetActive(false);
+    
+        }
+    }
+    
 
     void OnCollisionEnter2D(Collision2D collision)
     {
