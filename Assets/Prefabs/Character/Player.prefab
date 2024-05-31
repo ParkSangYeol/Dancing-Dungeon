@@ -369,8 +369,8 @@ SortingGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 557735396588215556}
   m_Enabled: 1
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1865092107
+  m_SortingLayer: 7
   m_SortingOrder: 5
   m_SortAtRoot: 0
 --- !u!95 &720206860261028473
@@ -2553,7 +2553,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInput: {fileID: 903269088719631507}
   animator: {fileID: 720206860261028473}
-  spumPrefabs: {fileID: 0}
+  playerCharacterData: {fileID: 11400000, guid: b9f34df0334345947a4c169c688365bc, type: 2}
+  defaultWeapon: {fileID: 11400000, guid: faa2cf08f72b1fc47973b6065e356832, type: 2}
+  OnPlayerDead:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &903269088719631507
 MonoBehaviour:
   m_ObjectHideFlags: 0
