@@ -14,7 +14,6 @@ namespace  CombatScene.Player
         private PlayerInput playerInput;
         [SerializeField]
         private Animator animator;
-        
 
         [Title("Data")] 
         [InfoBox("character data는 반드시 추가해야합니다!", InfoMessageType.Error, "IsCharacterDataNotSetup")]
@@ -97,6 +96,28 @@ namespace  CombatScene.Player
             }
         }
 
+        public void MovePlayer(Vector2 moveVal)
+        {
+            // TODO 박제에 맞춰 눌렀는지 확인
+            // if ()
+            {
+                // 이동
+                if (moveVal.x == 1 || moveVal.x == -1 || moveVal.y == 1 || moveVal.y == -1)
+                {
+                    if (Mathf.Abs(moveVal.x) == 1)
+                    {
+                        transform.localScale = new Vector3(-Mathf.Sign(moveVal.x), 1, 1);
+                    } 
+                    // 키보드를 하나만 입력. 실제 이동 구현
+                    StartCoroutine(MoveTo(moveVal * ConstVariables.tileSize, 0.4f));
+                }
+                else
+                {
+                    // 두 개의 키를 동시에 입력
+                    Debug.Log(GetType().Name + ": 두 개의 키를 동시에 눌렀습니다.");
+                }
+            }
+        }
         /// <summary>
         /// 특정한 타겟으로 플레이어를 일정시간동안 이동시키는 코루틴
         /// </summary>
@@ -159,8 +180,9 @@ namespace  CombatScene.Player
 
         private void SetEvents()
         {
+#if TEST_MOVE_WITHOUT_NOTE
             moveAction.started += MovePlayer;
-            
+#endif
             OnPlayerDead.AddListener(() =>
             {
                 animator.SetTrigger("Dead");

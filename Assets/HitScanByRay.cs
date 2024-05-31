@@ -1,51 +1,96 @@
+using System.Collections;
+using Sirenix.OdinInspector;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 public class HitScanByRay : MonoBehaviour
 {
-    void Start()
+    [InfoBox("Player 게임 오브젝트를 넣어주세요!", InfoMessageType.Error, "IsPlayerInputNotSet")]
+    [SerializeField] 
+    private PlayerInput playerInput;
+
+    private InputAction moveAction;
+
+    public UnityEvent<Vector2> OnPressedKey;
+    private string currentHit = "";
+    
+    
+    void Awake()
     {
+        if (playerInput == null) {
+            Debug.LogError("PlayerInput을 설정하지 않았습니다.");
+            return;
+        }
         
+        moveAction = playerInput.actions["Move"];
+        moveAction.started += CheckNote;
     }
 
     void Update()
     {
         Debug.DrawRay(transform.position, Vector2.left * 1000, Color.green, 2.0f);
         Debug.DrawRay(transform.position, Vector2.right * 1000, Color.red, 2.0f);
-
-        CheckNote();
     }
 
-    void CheckNote()
+    private void OnEnable()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            RaycastHit2D lefthit = Physics2D.Raycast(transform.position, Vector2.left, Mathf.Infinity);
-            RaycastHit2D righthit = Physics2D.Raycast(transform.position, Vector2.right, Mathf.Infinity);
+        moveAction.Enable();
+    }
 
-            if (lefthit.collider != null && righthit.collider != null) 
+    private void OnDisable()
+    {
+        moveAction.Disable();
+    }
+
+    void CheckNote(InputAction.CallbackContext context)
+    {
+        Vector2 moveDir = context.ReadValue<Vector2>();
+
+        RaycastHit2D lefthit = Physics2D.Raycast(transform.position, Vector2.left, Mathf.Infinity);
+        RaycastHit2D righthit = Physics2D.Raycast(transform.position, Vector2.right, Mathf.Infinity);
+        
+        if (lefthit.collider != null && righthit.collider != null) 
+        {
+            if (lefthit.collider.tag == "LeftNote" && righthit.collider.tag == "RightNote")
             {
-                if (lefthit.collider.tag == "LeftNote" && righthit.collider.tag == "RightNote")
+                float left_x = lefthit.collider.transform.position.x;
+                float right_x = righthit.collider.transform.position.x;
+                float xDifference = right_x - left_x;
+                //Debug.Log("Left X : "+left_x+" Right X : " + right_x+" Difference" +xDifference);
+                
+                if(xDifference>0 && xDifference<=200)
                 {
-                    float left_x = lefthit.collider.transform.position.x;
-                    float right_x = righthit.collider.transform.position.x;
-                    float xDifference = right_x - left_x;
-                   
-                    if(xDifference>0 && xDifference<=200)
-                    {
-                        Debug.Log("Perfect");
-                    }
-                    else if(xDifference>200 && xDifference<=500)
-                    {
-                        Debug.Log("Great");
-                    }
-                    else if(xDifference>500 && xDifference<1000)
-                    {
-                        Debug.Log("Bad");
-                    }
-                  
+                    currentHit="Perfect";
+                    OnPressedKey.Invoke(moveDir);
                 }
+                else if(xDifference>200 && xDifference<=500)
+                {
+                   currentHit = "Great";
+                   OnPressedKey.Invoke(moveDir);
+                }
+                else if(xDifference>500 && xDifference<1000)
+                {
+                    currentHit = "Bad";
+                    
+                }
+                else
+                {
+                    currentHit="Miss";
+                    
+                }
+                Debug.Log(currentHit);
+                
             }
         }
     }
+
+    #region Odin 
+
+    private bool IsPlayerInputNotSet() {
+        return playerInput == null;
+    }
+
+    #endregion
 }
