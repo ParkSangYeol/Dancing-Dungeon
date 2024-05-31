@@ -10,11 +10,15 @@ public class HitScanByRay : MonoBehaviour
     [InfoBox("Player 게임 오브젝트를 넣어주세요!", InfoMessageType.Error, "IsPlayerInputNotSet")]
     [SerializeField] 
     private PlayerInput playerInput;
-
     private InputAction moveAction;
+    [InfoBox("UiParticle 게임 오브젝트를 넣어주세요!", InfoMessageType.Error, "UiParticleSystem NotSet")]
+    [SerializeField] 
+    private NoteParticleSystem noteParticleSystem;
+    
 
     public UnityEvent<Vector2> OnPressedKey;
-    private string currentHit = "";
+    public UnityEvent<string> OnTimingHit;
+    private string currentHit = "Miss";
     
     
     void Awake()
@@ -23,9 +27,14 @@ public class HitScanByRay : MonoBehaviour
             Debug.LogError("PlayerInput을 설정하지 않았습니다.");
             return;
         }
+        if (noteParticleSystem == null) {
+            Debug.LogError("UIParticleManager를 설정하지 않았습니다.");
+            return;
+        }
         
         moveAction = playerInput.actions["Move"];
         moveAction.started += CheckNote;
+        OnTimingHit.AddListener(noteParticleSystem.PlayParticle);
     }
 
     void Update()
@@ -81,6 +90,7 @@ public class HitScanByRay : MonoBehaviour
                     
                 }
                 Debug.Log(currentHit);
+                OnTimingHit.Invoke(currentHit);
                 
             }
         }
