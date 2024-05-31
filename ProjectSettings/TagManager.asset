@@ -3,7 +3,19 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - LeftNote
+  - RightNote
+  - Perfect
+  - Great
+  - Bad
+  - RightPerfect
+  - LeftPerfect
+  - RightGreat
+  - LeftGreat
+  - RightBad
+  - LeftBad
+  - DeleteZone
   layers:
   - Default
   - TransparentFX
@@ -11,7 +23,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - NoteHit
   - 
   - 
   - 
