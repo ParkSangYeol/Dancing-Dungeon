@@ -3997,6 +3997,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combatManager: {fileID: 0}
   animator: {fileID: 0}
+  unitRoot: {fileID: 4799138903739954941}
+  characterData: {fileID: 11400000, guid: 16a4da5a7da6bce44abca63c5b3515d4, type: 2}
+  defaultWeapon: {fileID: 11400000, guid: faa2cf08f72b1fc47973b6065e356832, type: 2}
+  OnEnemyDead:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &9117921895101837780
 GameObject:
   m_ObjectHideFlags: 0

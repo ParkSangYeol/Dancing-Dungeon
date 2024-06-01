@@ -10,40 +10,39 @@ namespace  CombatScene.Player
     public class PlayerController : MonoBehaviour
     {
         #region Variables
-        
+
         [Title("Components")]
         [InfoBox("components의 경우 따로 설정하지 않으면 GetComponent를 호출합니다.", InfoMessageType.Info)]
-        [SerializeField] 
+        [SerializeField]
         private PlayerInput playerInput;
-        [SerializeField]
-        private Animator animator;
-        [InfoBox("GameManager의 MapHandler를 추가해주세요!", InfoMessageType.Error, "IsMapHandlerNotSetup")]
-        [SerializeField]
+
+        [SerializeField] private Animator animator;
+
+        [InfoBox("GameManager의 MapHandler를 추가해주세요!", InfoMessageType.Error, "IsMapHandlerNotSetup")] [SerializeField]
         private MapHandler mapHandler;
+
         [InfoBox("GameManager의 CombatManager를 추가해주세요!", InfoMessageType.Error, "IsCombatManagerNotSetup")]
-        [SerializeField] 
-        private CombatManager combatManager;
-        [InfoBox("자식 컴포넌트의 UnityRoot를 추가해주세요.", InfoMessageType.Info)]
         [SerializeField]
+        private CombatManager combatManager;
+
+        [InfoBox("자식 컴포넌트의 UnityRoot를 추가해주세요.", InfoMessageType.Info)] [SerializeField]
         private Transform unitRoot;
 
 
-        [Title("Data")] 
+        [Title("Data")]
         [InfoBox("character data는 반드시 추가해야합니다!", InfoMessageType.Error, "IsCharacterDataNotSetup")]
         [SerializeField]
         private PlayerCharacterScriptableObject playerCharacterData;
-        [InfoBox("default weapon은 반드시 추가해야합니다!", InfoMessageType.Error, "IsDefaultWeaponDataNotSetup")]
-        [SerializeField]
+
+        [InfoBox("default weapon은 반드시 추가해야합니다!", InfoMessageType.Error, "IsDefaultWeaponDataNotSetup")] [SerializeField]
         private WeaponScriptableObject defaultWeapon;
 
-        [Title("Events")] 
-        public UnityEvent OnPlayerDead;
-        
-        [Title("Variables")]
-        private InputAction moveAction;
+        [Title("Events")] public UnityEvent OnPlayerDead;
+
+        [Title("Variables")] private InputAction moveAction;
 
         [ShowInInspector]
-        public int hp
+        public float hp
         {
             get => _hp;
             set
@@ -55,18 +54,28 @@ namespace  CombatScene.Player
                 }
             }
         }
-        private int _hp;
-        
+
+        private float _hp;
+
         [ShowInInspector]
-        public float power { get => _power; set => _power = value < 0 ? 0 : value; }
+        public float power
+        {
+            get => _power;
+            set => _power = value < 0 ? 0 : value;
+        }
+
         private float _power;
-        
+
         [ShowInInspector]
-        public float shield { get => _shield; set => _shield = value < 0 ? 0 : value; }
+        public float shield
+        {
+            get => _shield;
+            set => _shield = value < 0 ? 0 : value;
+        }
+
         private float _shield;
-        
-        [ShowInInspector]
-        private WeaponScriptableObject equipWeapon;
+
+        [ShowInInspector] private WeaponScriptableObject equipWeapon;
 
         #endregion
 
@@ -95,8 +104,8 @@ namespace  CombatScene.Player
         }
 
         #endregion
-        
-        
+
+
         private void MovePlayerForTest(InputAction.CallbackContext context)
         {
             // 이동
@@ -151,7 +160,7 @@ namespace  CombatScene.Player
                 Debug.Log(GetType().Name + ": 두 개의 키를 동시에 눌렀습니다.");
             }
         }
-        
+
         /// <summary>
         /// 특정한 타겟으로 플레이어를 일정시간동안 이동시키는 코루틴
         /// </summary>
@@ -173,10 +182,39 @@ namespace  CombatScene.Player
                 time += Time.deltaTime;
                 yield return null;
             }
+
             transform.position = targetPos;
         }
 
-        #region Init
+        #region About Combat
+
+        public void Attacked(float damage)
+        {
+            hp -= Mathf.Max(1, damage - shield);
+            if (hp > 0)
+            {
+                // 캐릭터가 아직 생존 중.
+                // animator.SetTrigger("Hit");
+            }
+        }
+
+        public WeaponScriptableObject GetEquippedWeapon()
+        {
+            return equipWeapon;
+        }
+        
+        public void Attack()
+        {
+            animator.SetTrigger("Attack");    
+        }
+
+        public float GetPower()
+        {
+            return equipWeapon.power + playerCharacterData.defaultPower;
+        }
+    #endregion
+
+    #region Init
 
         private void SetComponents()
         {

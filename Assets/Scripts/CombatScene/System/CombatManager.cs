@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using CombatScene.Enemy;
+using CombatScene.Player;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -11,8 +12,11 @@ namespace CombatScene
         [SerializeField]
         private MapHandler mapHandler;
 
+        [InfoBox("플레이어를 넣어주세요!", InfoMessageType.Error, "IsPlayerNotSetup")]
+        [SerializeField]
+        private PlayerController player;
         private Vector2 playerPosition;
-        private Dictionary<Vector2, EnemyController> enemies;
+        private Dictionary<Vector2, EnemyController> enemies = new Dictionary<Vector2, EnemyController>();
         
         private void Awake()
         {
@@ -21,7 +25,13 @@ namespace CombatScene
                 mapHandler = GetComponent<MapHandler>();
             }
 
-            enemies = new Dictionary<Vector2, EnemyController>();
+            if (player == null)
+            {
+                Debug.LogError("플레이어 오브젝트가 추가되지 않았습니다!");
+                return;
+            }
+
+            playerPosition = player.transform.position;
         }
 
         public void MovePlayer(Vector2 targetPosition)
@@ -53,7 +63,6 @@ namespace CombatScene
                 enemies.Remove(enemyPosition);
                 enemies.Add(targetPosition, enemy);
             }
-            Debug.Log("enemy position: " + targetPosition);
         }
 
         public void AddEnemy(Vector2 position, EnemyController enemy)
@@ -61,11 +70,25 @@ namespace CombatScene
             enemies.Add(position, enemy);
             mapHandler.SetMapObject(position, ObjectType.Enemy);
         }
+
+        private void PlayerBehavior()
+        {
+                
+        }
         
         private void EnemyBehavior(Vector2 targetPosition, Vector2 enemyPosition)
         {
-                // TODO 공격 가능 여부 체크
+            EnemyController enemy = enemies[enemyPosition];
+            if (enemy.CanAttack(playerPosition))
+            {
+                // 플레이어 공격
+                enemy.Attack();
+                player.Attacked(enemy.GetPower());
+            }
+            else
+            {
                 MoveEnemy(targetPosition, enemyPosition);
+            }
         }
 
         public void SearchTiles()
@@ -191,5 +214,13 @@ namespace CombatScene
 
         #endregion
 
+        #region Odin
+
+        private bool IsPlayerNotSetup()
+        {
+            return player == null;
+        }
+
+        #endregion
     }
 }
