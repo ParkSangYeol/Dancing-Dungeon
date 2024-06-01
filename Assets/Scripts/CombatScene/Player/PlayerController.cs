@@ -37,9 +37,11 @@ namespace  CombatScene.Player
         [InfoBox("default weapon은 반드시 추가해야합니다!", InfoMessageType.Error, "IsDefaultWeaponDataNotSetup")] [SerializeField]
         private WeaponScriptableObject defaultWeapon;
 
-        [Title("Events")] public UnityEvent OnPlayerDead;
+        [Title("Events")] 
+        public UnityEvent OnPlayerDead;
 
-        [Title("Variables")] private InputAction moveAction;
+        [Title("Variables")] 
+        private InputAction moveAction;
 
         [ShowInInspector]
         public float hp
@@ -112,7 +114,6 @@ namespace  CombatScene.Player
             Vector2 moveVal = context.ReadValue<Vector2>();
             if (moveVal.x == 1 || moveVal.x == -1)
             {
-                unitRoot.localScale = new Vector3(-Mathf.Sign(moveVal.x), 1, 1);
                 if (mapHandler.GetPoint((Vector2)transform.position + moveVal).Equals(ObjectType.Load))
                 {
                     // 목표 타일이 도로인 경우 이동
@@ -139,11 +140,15 @@ namespace  CombatScene.Player
             // 이동
             if (moveVal.x == 1 || moveVal.x == -1)
             {
-                unitRoot.localScale = new Vector3(-Mathf.Sign(moveVal.x), 1, 1);
                 if (mapHandler.GetPoint((Vector2)transform.position + moveVal).Equals(ObjectType.Load))
                 {
                     // 목표 타일이 도로인 경우 이동
                     StartCoroutine(MoveTo(moveVal * ConstVariables.tileSizeX, 0.4f));
+                    combatManager.MovePlayer((Vector2)transform.position + moveVal);
+                }
+                else
+                {
+                    combatManager.MovePlayer((Vector2)transform.position);
                 }
             }
             else if (moveVal.y == 1 || moveVal.y == -1)
@@ -152,6 +157,11 @@ namespace  CombatScene.Player
                 {
                     // 목표 타일이 도로인 경우 이동
                     StartCoroutine(MoveTo(moveVal * ConstVariables.tileSizeY, 0.4f));
+                    combatManager.MovePlayer((Vector2)transform.position + moveVal);
+                }
+                else
+                {
+                    combatManager.MovePlayer((Vector2)transform.position);
                 }
             }
             else
@@ -174,7 +184,6 @@ namespace  CombatScene.Player
             // 이동
             Vector2 startPos = transform.position;
             Vector2 targetPos = (Vector2)transform.position + addPos;
-            combatManager.MovePlayer(targetPos);
             float time = 0;
             while (duration > time)
             {
@@ -186,6 +195,14 @@ namespace  CombatScene.Player
             transform.position = targetPos;
         }
 
+        public void LookAt(Vector2 watchVec)
+        {
+            if (watchVec.x != 0)
+            {
+                unitRoot.localScale = new Vector3(-Mathf.Sign(watchVec.x), 1, 1);
+            }
+        }
+        
         #region About Combat
 
         public void Attacked(float damage)
@@ -214,94 +231,91 @@ namespace  CombatScene.Player
         }
     #endregion
 
-    #region Init
+        #region Init
 
-        private void SetComponents()
-        {
-            // set Player Input
-            if (playerInput == null)
+            private void SetComponents()
             {
-                playerInput = GetComponent<PlayerInput>();
+                // set Player Input
+                if (playerInput == null)
+                {
+                    playerInput = GetComponent<PlayerInput>();
+                }
+
+                if (animator == null)
+                {
+                    animator = transform.GetChild(0).GetComponent<Animator>();
+                }
             }
 
-            if (animator == null)
+            private void SetVariables()
             {
-                animator = transform.GetChild(0).GetComponent<Animator>();
+                // 컨트롤러 내부 변수 설정
+                if (playerCharacterData == null)
+                {
+                    Debug.LogError(gameObject.name + ": PlayerCharacterData가 없습니다!");
+                }
+                if (defaultWeapon == null)
+                {
+                    Debug.LogError(gameObject.name + ": 기본 무기가 없습니다!");
+                }
+                
+                this.hp = playerCharacterData.hp;
+                this.power = playerCharacterData.defaultPower;
+                this.shield = playerCharacterData.shield;
+                this.equipWeapon = defaultWeapon;
+                
+                moveAction = playerInput.actions["Move"];
             }
-        }
 
-        private void SetVariables()
-        {
-            // 컨트롤러 내부 변수 설정
-            if (playerCharacterData == null)
-            {
-                Debug.LogError(gameObject.name + ": PlayerCharacterData가 없습니다!");
+            private void SetEvents()
+            {            
+                OnPlayerDead.AddListener(() =>
+                {
+                    animator.SetTrigger("Dead");
+                });
             }
-            if (defaultWeapon == null)
+
+            private void SetExternalComponent()
             {
-                Debug.LogError(gameObject.name + ": 기본 무기가 없습니다!");
+                if (unitRoot == null)
+                {
+                    unitRoot = transform.GetChild(0);
+                }
+
+                if (mapHandler == null)
+                {
+                    mapHandler = transform.Find("GameManager").GetComponent<MapHandler>();
+                }
+                if (combatManager == null)
+                {
+                    combatManager = transform.Find("GameManager").GetComponent<CombatManager>();
+                }
             }
             
-            this.hp = playerCharacterData.hp;
-            this.power = playerCharacterData.defaultPower;
-            this.shield = playerCharacterData.shield;
-            this.equipWeapon = defaultWeapon;
-            
-            moveAction = playerInput.actions["Move"];
-            
-        }
-
-        private void SetEvents()
-        {            moveAction.started += MovePlayerForTest;
-
-#if TEST_MOVE_WITHOUT_NOTE
-#endif
-            OnPlayerDead.AddListener(() =>
-            {
-                animator.SetTrigger("Dead");
-            });
-        }
-
-        private void SetExternalComponent()
-        {
-            if (unitRoot == null)
-            {
-                unitRoot = transform.GetChild(0);
-            }
-
-            if (mapHandler == null)
-            {
-                mapHandler = transform.Find("GameManager").GetComponent<MapHandler>();
-            }
-            if (combatManager == null)
-            {
-                combatManager = transform.Find("GameManager").GetComponent<CombatManager>();
-            }
-        }
-        
-        #endregion
+            #endregion
 
         #region Odin
 
-        private bool IsCharacterDataNotSetup()
-        {
-            return playerCharacterData == null;
-        }
+            private bool IsCharacterDataNotSetup()
+            {
+                return playerCharacterData == null;
+            }
 
-        private bool IsDefaultWeaponDataNotSetup()
-        {
-            return defaultWeapon == null;
-        }
+            private bool IsDefaultWeaponDataNotSetup()
+            {
+                return defaultWeapon == null;
+            }
+            
+            private bool IsMapHandlerNotSetup()
+            {
+                return mapHandler == null;
+            }
+            
+            private bool IsCombatManagerNotSetup()
+            {
+                return combatManager == null;
+            }
+            #endregion
         
-        private bool IsMapHandlerNotSetup()
-        {
-            return mapHandler == null;
-        }
-        
-        private bool IsCombatManagerNotSetup()
-        {
-            return combatManager == null;
-        }
-        #endregion
     }
 }

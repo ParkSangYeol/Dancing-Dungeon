@@ -187,6 +187,12 @@ namespace CombatScene
             Vector2 relativePoint = point - startPosition;
             int idxX = (int)((relativePoint.x + ConstVariables.tileSizeX/2) / ConstVariables.tileSizeX);
             int idxY = (int)((relativePoint.y + ConstVariables.tileSizeY/2) / ConstVariables.tileSizeY);
+
+            if (mapData[idxX, idxY].Equals(type))
+            {
+                return false;
+            }
+            
             mapData[idxX, idxY] = type;
 
             return true;
