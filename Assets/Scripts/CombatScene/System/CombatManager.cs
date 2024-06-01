@@ -1,14 +1,51 @@
+//#define TEST_MOVE_WITHOUT_NOTE
 using System;
 using System.Collections.Generic;
 using CombatScene.Enemy;
 using CombatScene.Player;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace CombatScene
 {
     public class CombatManager : MonoBehaviour
     {
+        #region About Test
+        #if TEST_MOVE_WITHOUT_NOTE
+        
+        [SerializeField]
+        private PlayerInput playerInput;
+        
+        [Title("Variables")] 
+        private InputAction moveAction;
+        
+        private void PlayerBehavior(InputAction.CallbackContext context)
+        {
+            Vector2 inputVec = context.ReadValue<Vector2>();
+            if (!(inputVec.x == 0 && Mathf.Abs(inputVec.y) == 1) && !(inputVec.y == 0 && Mathf.Abs(inputVec.x) == 1))
+            {  
+                // 잘못된 입력값
+                Debug.LogError("입력된 값이 잘못되었습니다. 입력된 값: " + inputVec);
+                return;
+            }
+            player.LookAt(inputVec);
+            
+            if (!TryPlayerAttackAble(inputVec))
+            {
+                // 공격 대상 없음
+                player.MovePlayer(inputVec);
+            }
+            else
+            {
+                // 공격 성공
+                SearchTiles();
+            }
+        }
+        
+        #endif
+        #endregion
+        
         [SerializeField]
         private MapHandler mapHandler;
 
@@ -30,6 +67,11 @@ namespace CombatScene
                 Debug.LogError("플레이어 오브젝트가 추가되지 않았습니다!");
                 return;
             }
+            
+#if TEST_MOVE_WITHOUT_NOTE
+            moveAction = playerInput.actions["Move"];
+            moveAction.started += PlayerBehavior;
+#endif
 
             playerPosition = player.transform.position;
         }
@@ -40,8 +82,8 @@ namespace CombatScene
             {
                 mapHandler.SetMapObject(playerPosition, ObjectType.Load);
                 playerPosition = targetPosition;
-                SearchTiles();
             }
+            SearchTiles();
         }
         
         public void MoveEnemy(Vector2 targetPosition, Vector2 enemyPosition)
@@ -71,9 +113,27 @@ namespace CombatScene
             mapHandler.SetMapObject(position, ObjectType.Enemy);
         }
 
-        private void PlayerBehavior()
+        private void PlayerBehavior(Vector2 inputVec)
         {
-                
+            if (!(inputVec.x == 0 && Mathf.Abs(inputVec.y) == 1) && !(inputVec.y == 0 && Mathf.Abs(inputVec.x) == 1))
+            {  
+                // 잘못된 입력값
+                Debug.LogError("입력된 값이 잘못되었습니다. 입력된 값: " + inputVec);
+                return;
+            }
+            
+            player.LookAt(inputVec);
+            
+            if (!TryPlayerAttackAble(inputVec))
+            {
+                // 공격 대상 없음
+                player.MovePlayer(inputVec);
+            }
+            else
+            {
+                // 공격 성공
+                SearchTiles();
+            }
         }
         
         private void EnemyBehavior(Vector2 targetPosition, Vector2 enemyPosition)
@@ -91,6 +151,69 @@ namespace CombatScene
             }
         }
 
+        /// <summary>
+        /// 플레이어의 입력 방향에 적이 있으면 공격을 시도함.
+        /// </summary>
+        /// <param name="inputVec">플레이어의 입력 방향. 반드시 x, y 둘 중 하나만 절대값이 1이여야 함</param>
+        /// <returns>적을 공격한 경우 true, 공격하지 못한경우 false 반환</returns>
+        private bool TryPlayerAttackAble(Vector2 inputVec)
+        {
+            bool ret = false;
+            WeaponScriptableObject weapon = player.GetEquippedWeapon();
+            switch (weapon.attackDirection)
+            {
+                case AttackDirection.DIR_4:
+                    for (int i = 1; i <= weapon.range; i++)
+                    {
+                        EnemyController enemy;
+                        if (enemies.TryGetValue(playerPosition + inputVec * i, out enemy))
+                        {
+                            ret = true;
+                            enemy.Attacked(player.GetPower());
+                            if (!weapon.isSplash)
+                            {
+                                break;
+                            }
+                        }
+                    }
+                    break;
+                case AttackDirection.DIR_8:
+                    for (int i = 1; i <= weapon.range; i++)
+                    {
+                        for (int j = -i; j <= i; j++)
+                        {
+                            EnemyController enemy;
+                            Vector2 targetPos = playerPosition + inputVec * i;
+                            if (inputVec.x != 0)
+                            {
+                                targetPos.y += j;
+                            }
+                            else if (inputVec.y != 0)
+                            {
+                                targetPos.x += j;
+                            } 
+                            if (enemies.TryGetValue(targetPos, out enemy))
+                            {
+                                ret = true;
+                                enemy.Attacked(player.GetPower());
+                                if (!weapon.isSplash)
+                                {
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    break;
+            }
+
+            if (ret)
+            {
+                player.Attack();
+            }
+
+            return ret;
+        }
+        
         public void SearchTiles()
         {
             dpClass dp = new dpClass(ConstVariables.maxDetactRange, playerPosition);
