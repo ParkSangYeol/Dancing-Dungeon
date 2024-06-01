@@ -17,12 +17,16 @@ namespace  CombatScene.Player
         private PlayerInput playerInput;
         [SerializeField]
         private Animator animator;
-        [InfoBox("GameManager의 Map Handler를 추가해주세요!", InfoMessageType.Error, "IsMapHandlerNotSetup")]
+        [InfoBox("GameManager의 MapHandler를 추가해주세요!", InfoMessageType.Error, "IsMapHandlerNotSetup")]
         [SerializeField]
         private MapHandler mapHandler;
+        [InfoBox("GameManager의 CombatManager를 추가해주세요!", InfoMessageType.Error, "IsCombatManagerNotSetup")]
+        [SerializeField] 
+        private CombatManager combatManager;
         [InfoBox("자식 컴포넌트의 UnityRoot를 추가해주세요.", InfoMessageType.Info)]
         [SerializeField]
         private Transform unitRoot;
+
 
         [Title("Data")] 
         [InfoBox("character data는 반드시 추가해야합니다!", InfoMessageType.Error, "IsCharacterDataNotSetup")]
@@ -147,6 +151,7 @@ namespace  CombatScene.Player
                 Debug.Log(GetType().Name + ": 두 개의 키를 동시에 눌렀습니다.");
             }
         }
+        
         /// <summary>
         /// 특정한 타겟으로 플레이어를 일정시간동안 이동시키는 코루틴
         /// </summary>
@@ -160,6 +165,7 @@ namespace  CombatScene.Player
             // 이동
             Vector2 startPos = transform.position;
             Vector2 targetPos = (Vector2)transform.position + addPos;
+            combatManager.MovePlayer(targetPos);
             float time = 0;
             while (duration > time)
             {
@@ -182,7 +188,7 @@ namespace  CombatScene.Player
 
             if (animator == null)
             {
-                animator = GetComponent<Animator>();
+                animator = transform.GetChild(0).GetComponent<Animator>();
             }
         }
 
@@ -223,7 +229,16 @@ namespace  CombatScene.Player
             if (unitRoot == null)
             {
                 unitRoot = transform.GetChild(0);
-            }    
+            }
+
+            if (mapHandler == null)
+            {
+                mapHandler = transform.Find("GameManager").GetComponent<MapHandler>();
+            }
+            if (combatManager == null)
+            {
+                combatManager = transform.Find("GameManager").GetComponent<CombatManager>();
+            }
         }
         
         #endregion
@@ -242,7 +257,12 @@ namespace  CombatScene.Player
         
         private bool IsMapHandlerNotSetup()
         {
-            return defaultWeapon == null;
+            return mapHandler == null;
+        }
+        
+        private bool IsCombatManagerNotSetup()
+        {
+            return combatManager == null;
         }
         #endregion
     }

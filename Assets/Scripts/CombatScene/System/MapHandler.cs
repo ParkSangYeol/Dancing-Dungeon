@@ -130,7 +130,21 @@ namespace CombatScene
                 return result;
             }
         }
+        
+        /// <summary>
+        /// worldPosition x, y가 맵 내부에 있는지 확인하는 함수
+        /// </summary>
+        /// <param name="x">world position x</param>
+        /// <param name="y">world position y</param>
+        /// <returns>true if x,y inside map</returns>
+        public bool IsInsideMap(int x, int y)
+        {
+            int idxX = (int)(((x - startPosition.x + ConstVariables.tileSizeX/2)) / ConstVariables.tileSizeX);
+            int idxY = (int)(((y - startPosition.y + ConstVariables.tileSizeY/2)) / ConstVariables.tileSizeY);
 
+            return idxX is >= 0 and < ConstVariables.mapWidth && idxY is >= 0 and < ConstVariables.mapHeight;
+        }
+        
         /// <summary>
         /// x, y의 맵 정보를 가져오는 함수
         /// </summary>
@@ -147,7 +161,7 @@ namespace CombatScene
         /// <summary>
         /// Vector2의 맵 정보를 가져오는 함수
         /// </summary>
-        /// <param name="point"> 가져올 맵 정보의 좌표</param>
+        /// <param name="point"> 가져올 맵 정보의 World Position 좌표</param>
         /// <returns>해당하는 타일의 ObjectType</returns>
         public ObjectType GetPoint(Vector2 point)
         {
@@ -155,6 +169,27 @@ namespace CombatScene
             int idxX = (int)((relativePoint.x + ConstVariables.tileSizeX/2) / ConstVariables.tileSizeX);
             int idxY = (int)((relativePoint.y + ConstVariables.tileSizeY/2) / ConstVariables.tileSizeY);
             return mapData[idxX , idxY];
+        }
+        
+        /// <summary>
+        /// Block 타일을 제외한 타일의 오브젝트 값을 지정한 type으로 변경하는 함수
+        /// </summary>
+        /// <param name="point">변경할 타일의 WorldPosition</param>
+        /// <param name="type">설정할 타일의 오브젝트 값</param>
+        /// <returns> 성공 여부 반환</returns>
+        public bool SetMapObject(Vector2 point, ObjectType type)
+        {
+            if (type.Equals(ObjectType.Block))
+            {
+                // Block 타일은 변경 불가
+                return false;
+            }
+            Vector2 relativePoint = point - startPosition;
+            int idxX = (int)((relativePoint.x + ConstVariables.tileSizeX/2) / ConstVariables.tileSizeX);
+            int idxY = (int)((relativePoint.y + ConstVariables.tileSizeY/2) / ConstVariables.tileSizeY);
+            mapData[idxX, idxY] = type;
+
+            return true;
         }
 
         #region Odin
