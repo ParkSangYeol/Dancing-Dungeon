@@ -57,34 +57,43 @@ public class EnemySpawnSystem : MonoBehaviour
     void SpawnEnemy()
     {
         Vector2 playerPosition = combatManager.playerPosition;
-        Vector2 spawnPosition = Vector2.zero;
+        int maxAttempts = 10; // 최대 시도 횟수 설정
+        int attempts = 0; // 현재 시도 횟수
 
-        // 스폰 위치 결정
-        bool validSpawn = false;
-        while (!validSpawn)
+        
+        
+
+        while (attempts < maxAttempts)
         {
-            spawnPosition = playerPosition + new Vector2(GetRandomValue(range), GetRandomValue(range));
+
+            int spawnX = (int)playerPosition.x + GetRandomValue(range);
+            int spawnY = (int)playerPosition.y+GetRandomValue(range);
+            ;
+            
+            Vector2 spawnPosition = new Vector2(spawnX, spawnY);
+
+
             if (CheckSpawn(spawnPosition))
             {
-                
-                validSpawn = true;
-                break;
+                if (currentPoolIndex < enemyPool.Count)
+                {
+                    GameObject enemy = enemyPool[currentPoolIndex];
+                    enemy.SetActive(true);
+                    enemy.GetComponent<RectTransform>().anchoredPosition = spawnPosition;
+                    currentPoolIndex = (currentPoolIndex + 1) % enemyPool.Count;
+                    return; // 적 스폰 성공 시 함수 종료
+                }
             }
+
+            attempts++; // 시도 횟수 증가
         }
 
-        // 적 활성화 및 위치 설정
-        if (currentPoolIndex < enemyPool.Count)
-        {
-            GameObject enemy = enemyPool[currentPoolIndex];
-            enemy.SetActive(true);
-            enemy.GetComponent<RectTransform>().anchoredPosition = spawnPosition;
-            currentPoolIndex = (currentPoolIndex + 1) % enemyPool.Count;
-        }
+        // 최대 시도 횟수를 초과하면 스폰 포기
+        Debug.Log("Failed to find a valid spawn position after " + maxAttempts + " attempts.");
     }
 
     bool CheckSpawn(Vector2 spawnPosition)
     {
-        // 스폰 지점이 플레이어이거나 장애물인 경우
         return mapHandler.GetPoint(spawnPosition) == ObjectType.Load;
     }
 

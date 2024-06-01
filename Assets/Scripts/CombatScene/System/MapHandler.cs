@@ -162,12 +162,14 @@ namespace CombatScene
         /// Vector2의 맵 정보를 가져오는 함수
         /// </summary>
         /// <param name="point"> 가져올 맵 정보의 World Position 좌표</param>
-        /// <returns>해당하는 타일의 ObjectType</returns>
+        /// <returns>해당하는 타일의 ObjectType. 영역 벗어날 시 Block return</returns>
         public ObjectType GetPoint(Vector2 point)
         {
             Vector2 relativePoint = point - startPosition;
             int idxX = (int)((relativePoint.x + ConstVariables.tileSizeX/2) / ConstVariables.tileSizeX);
             int idxY = (int)((relativePoint.y + ConstVariables.tileSizeY/2) / ConstVariables.tileSizeY);
+            if (idxX >= ConstVariables.mapWidth || idxY >= ConstVariables.mapHeight)
+                return ObjectType.Block;
             return mapData[idxX , idxY];
         }
         
