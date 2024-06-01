@@ -73,6 +73,7 @@ public class HitScanByRay : MonoBehaviour
                 {
                     currentHit="Perfect";
                     OnPressedKey.Invoke(moveDir);
+                    UiManager.instance.PlayPerfetcSound();
                     lefthit.collider.gameObject.SetActive(false);
                     righthit.collider.gameObject.SetActive(false);
                 }
@@ -80,16 +81,19 @@ public class HitScanByRay : MonoBehaviour
                 {
                    currentHit = "Great";
                    OnPressedKey.Invoke(moveDir);
+                   UiManager.instance.PlayGreatSound();
                    lefthit.collider.gameObject.SetActive(false);
                    righthit.collider.gameObject.SetActive(false);
                 }
                 else if(xDifference>600 && xDifference<=900)
                 {
                     currentHit = "Bad";
+                    UiManager.instance.PlayBadSound();
                 }
                 else if(xDifference>900)
                 {
                     currentHit = "Miss";
+                    UiManager.instance.PlayMissSound();
                 }
                 
                 Debug.Log(currentHit);

@@ -5,14 +5,16 @@ using System.Collections.Generic;
 
 public class UiManager : MonoBehaviour
 {
-    private static UiManager instance;
+    public static UiManager instance { get; private set; } // Instance 프로퍼티 추가;
     private GameObject optionPanel;
     private GameObject mainPanel;
     private AudioSource audioSource;
+    private AudioSource particleSoundSource;
     private Slider volumeSlider; // 슬라이더 UI
 
     // Battle BGM clips
     private List<AudioClip> battleBgms;
+    private List<AudioClip> particleSounds;
     private int currentBgmIndex;
     private bool isBattleScene;
 
@@ -39,6 +41,7 @@ public class UiManager : MonoBehaviour
             Debug.Log("존재");
         }
         audioSource = gameObject.AddComponent<AudioSource>();
+        particleSoundSource = gameObject.AddComponent<AudioSource>();
         AudioClip bgmClip = Resources.Load<AudioClip>("MainBgm"); 
         if (bgmClip != null)
         {
@@ -58,6 +61,14 @@ public class UiManager : MonoBehaviour
             Resources.Load<AudioClip>("BattleBgm2"),
             
         };
+        particleSounds = new List<AudioClip>
+        {
+            Resources.Load<AudioClip>("PerfectTiming"),
+            Resources.Load<AudioClip>("GreatTiming"),
+            Resources.Load<AudioClip>("BadTiming"),
+            Resources.Load<AudioClip>("MissTiming"),
+        };
+        Debug.Log("Particle sounds size"+ particleSounds.Count);
 
         currentBgmIndex = -1;
         isBattleScene = false;
@@ -105,7 +116,9 @@ public class UiManager : MonoBehaviour
 
     public void SetVolume(float volume)
     {
-        audioSource.volume = volume;
+        particleSoundSource.volume = volume * 1.5f; // 파티클 사운드 볼륨을 좀 더 크게 조정
+        audioSource.volume = volume * 0.5f; // BGM 볼륨 조정
+        
     }
 
     private void PlayRandomBgm()
@@ -122,5 +135,21 @@ public class UiManager : MonoBehaviour
         audioSource.clip = battleBgms[currentBgmIndex];
         audioSource.loop = false; // 개별 곡은 루프하지 않음
         audioSource.Play();
+    }
+    public void PlayPerfetcSound()
+    {
+       particleSoundSource.PlayOneShot(particleSounds[0]);
+    }
+    public void PlayGreatSound()
+    {
+        particleSoundSource.PlayOneShot(particleSounds[1]);
+    }
+    public void PlayBadSound()
+    {
+        particleSoundSource.PlayOneShot(particleSounds[2]);
+    }
+    public void PlayMissSound()
+    {
+        particleSoundSource.PlayOneShot(particleSounds[3]);
     }
 }
