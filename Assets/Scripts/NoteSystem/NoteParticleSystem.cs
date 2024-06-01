@@ -29,7 +29,10 @@ public class NoteParticleSystem : MonoBehaviour
                 case "BadParticle":
                     particleSystems["Bad"] = ps;
                     break;
-                // 필요한 조건을 추가합니다.
+                case "MissParticle":
+                particleSystems["Miss"] = ps;
+                break;
+                
                 default:
                     Debug.Log($"Unknown particle system name: {ps.name}");
                     break;
@@ -48,7 +51,7 @@ public class NoteParticleSystem : MonoBehaviour
     }
     public void PlayParticle(string timing)
     {
-       Debug.Log(timing);
+       
        if (particleSystems.ContainsKey(timing))
         {
             

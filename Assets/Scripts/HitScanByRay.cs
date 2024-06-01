@@ -18,7 +18,7 @@ public class HitScanByRay : MonoBehaviour
 
     public UnityEvent<Vector2> OnPressedKey;
     public UnityEvent<string> OnTimingHit;
-    private string currentHit = "Miss";
+    private string currentHit = "";
     
     
     void Awake()
@@ -73,22 +73,25 @@ public class HitScanByRay : MonoBehaviour
                 {
                     currentHit="Perfect";
                     OnPressedKey.Invoke(moveDir);
+                    lefthit.collider.gameObject.SetActive(false);
+                    righthit.collider.gameObject.SetActive(false);
                 }
-                else if(xDifference>200 && xDifference<=500)
+                else if(xDifference>200 && xDifference<=600)
                 {
                    currentHit = "Great";
                    OnPressedKey.Invoke(moveDir);
+                   lefthit.collider.gameObject.SetActive(false);
+                   righthit.collider.gameObject.SetActive(false);
                 }
-                else if(xDifference>500 && xDifference<1000)
+                else if(xDifference>600 && xDifference<=900)
                 {
                     currentHit = "Bad";
-                    
                 }
-                else
+                else if(xDifference>900)
                 {
-                    currentHit="Miss";
-                    
+                    currentHit = "Miss";
                 }
+                
                 Debug.Log(currentHit);
                 OnTimingHit.Invoke(currentHit);
                 
