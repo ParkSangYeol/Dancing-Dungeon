@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 
 public class NoteSystem : MonoBehaviour
@@ -11,6 +12,7 @@ public class NoteSystem : MonoBehaviour
     public Transform rightSpawn;
     private List<GameObject> notePool; // 노트 풀
     private int nextIndex = 0; //노트들을 관리하기 위한 인덱스 변수
+    private int allNote=0;
   
     
     void Start()
@@ -36,11 +38,16 @@ public class NoteSystem : MonoBehaviour
         leftNote.tag="LeftNote";
         GameObject rightNote = GetPooledNote();
         rightNote.tag="RightNote";
+        allNote++;
         leftNote.transform.SetParent(leftSpawn);
         rightNote.transform.SetParent(rightSpawn);
         leftNote.transform.position = leftSpawn.transform.position; 
         rightNote.transform.position = rightSpawn.transform.position;
         leftNote.SetActive(true);
         rightNote.SetActive(true);
+    }
+    public int GetAllNote()
+    {
+        return allNote;
     }
 }

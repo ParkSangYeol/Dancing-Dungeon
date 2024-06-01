@@ -58,6 +58,7 @@ public class NoteMove : MonoBehaviour
         if (other.gameObject.tag == "LeftNote" && this.tag == "RightNote")
         {
             gameManager.StartCoroutineFromManager(WaitForInputCoroutine());
+            UiManager.instance.SetCombo(0,"Miss");
             gameObject.SetActive(false);
             other.gameObject.SetActive(false);
             
@@ -84,7 +85,7 @@ public class NoteMove : MonoBehaviour
 
         // if (isWaitingForInput)
         // {
-        //     OnMiss.Invoke("Miss");
+        //     UiManager.instance.SetCombo(0);
         // } // 부딫히고나서 delaya시간안에 입력이 없다면 미스
 
         isWaitingForInput = false;

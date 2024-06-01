@@ -14,6 +14,7 @@ public class HitScanByRay : MonoBehaviour
     [InfoBox("UiParticle 게임 오브젝트를 넣어주세요!", InfoMessageType.Error, "UiParticleSystem NotSet")]
     [SerializeField] 
     private NoteParticleSystem noteParticleSystem;
+    private int combo=0;
     
 
     public UnityEvent<Vector2> OnPressedKey;
@@ -73,9 +74,11 @@ public class HitScanByRay : MonoBehaviour
                 {
                     currentHit="Perfect";
                     OnPressedKey.Invoke(moveDir);
-                    UiManager.instance.PlayPerfetcSound();
+                    UiManager.instance.PlayPerfectSound();
                     lefthit.collider.gameObject.SetActive(false);
                     righthit.collider.gameObject.SetActive(false);
+                    combo+=1;
+                    UiManager.instance.SetCombo(combo,currentHit);
                 }
                 else if(xDifference>200 && xDifference<=600)
                 {
@@ -84,16 +87,22 @@ public class HitScanByRay : MonoBehaviour
                    UiManager.instance.PlayGreatSound();
                    lefthit.collider.gameObject.SetActive(false);
                    righthit.collider.gameObject.SetActive(false);
+                   combo+=1;
+                   UiManager.instance.SetCombo(combo,currentHit);
                 }
                 else if(xDifference>600 && xDifference<=900)
                 {
                     currentHit = "Bad";
                     UiManager.instance.PlayBadSound();
+                    combo=0;
+                    UiManager.instance.SetCombo(combo,currentHit);
                 }
                 else if(xDifference>900)
                 {
                     currentHit = "Miss";
                     UiManager.instance.PlayMissSound();
+                    combo=0;
+                    UiManager.instance.SetCombo(combo,currentHit);
                 }
                 
                 Debug.Log(currentHit);
@@ -101,6 +110,10 @@ public class HitScanByRay : MonoBehaviour
                 
             }
         }
+    }
+    public int GetCombo()
+    {
+        return combo;
     }
 
     #region Odin 
