@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -8,12 +9,20 @@ namespace  CombatScene.Player
 {
     public class PlayerController : MonoBehaviour
     {
+        #region Variables
+        
         [Title("Components")]
         [InfoBox("components의 경우 따로 설정하지 않으면 GetComponent를 호출합니다.", InfoMessageType.Info)]
         [SerializeField] 
         private PlayerInput playerInput;
         [SerializeField]
         private Animator animator;
+        [InfoBox("GameManager의 Map Handler를 추가해주세요!", InfoMessageType.Error, "IsMapHandlerNotSetup")]
+        [SerializeField]
+        private MapHandler mapHandler;
+        [InfoBox("자식 컴포넌트의 UnityRoot를 추가해주세요.", InfoMessageType.Info)]
+        [SerializeField]
+        private Transform unitRoot;
 
         [Title("Data")] 
         [InfoBox("character data는 반드시 추가해야합니다!", InfoMessageType.Error, "IsCharacterDataNotSetup")]
@@ -54,12 +63,21 @@ namespace  CombatScene.Player
         
         [ShowInInspector]
         private WeaponScriptableObject equipWeapon;
-        
+
+        #endregion
+
+        #region EventMethods
+
         void Awake()
         {
             SetComponents();
             SetVariables();
             SetEvents();
+        }
+
+        private void Start()
+        {
+            SetExternalComponent();
         }
 
         private void OnEnable()
@@ -71,51 +89,62 @@ namespace  CombatScene.Player
         {
             moveAction.Disable();
         }
+
+        #endregion
         
-        private void MovePlayer(InputAction.CallbackContext context)
+        
+        private void MovePlayerForTest(InputAction.CallbackContext context)
         {
-            // TODO 박제에 맞춰 눌렀는지 확인
-            // if ()
+            // 이동
+            Vector2 moveVal = context.ReadValue<Vector2>();
+            if (moveVal.x == 1 || moveVal.x == -1)
             {
-                // 이동
-                Vector2 moveVal = context.ReadValue<Vector2>();
-                if (moveVal.x == 1 || moveVal.x == -1 || moveVal.y == 1 || moveVal.y == -1)
+                unitRoot.localScale = new Vector3(-Mathf.Sign(moveVal.x), 1, 1);
+                if (mapHandler.GetPoint((Vector2)transform.position + moveVal).Equals(ObjectType.Load))
                 {
-                    if (Mathf.Abs(moveVal.x) == 1)
-                    {
-                        transform.localScale = new Vector3(-Mathf.Sign(moveVal.x), 1, 1);
-                    } 
-                    // 키보드를 하나만 입력. 실제 이동 구현
-                    StartCoroutine(MoveTo(moveVal * ConstVariables.tileSize, 0.4f));
+                    // 목표 타일이 도로인 경우 이동
+                    StartCoroutine(MoveTo(moveVal * ConstVariables.tileSizeX, 0.4f));
                 }
-                else
+            }
+            else if (moveVal.y == 1 || moveVal.y == -1)
+            {
+                if (mapHandler.GetPoint((Vector2)transform.position + moveVal).Equals(ObjectType.Load))
                 {
-                    // 두 개의 키를 동시에 입력
-                    Debug.Log(GetType().Name + ": 두 개의 키를 동시에 눌렀습니다.");
+                    // 목표 타일이 도로인 경우 이동
+                    StartCoroutine(MoveTo(moveVal * ConstVariables.tileSizeY, 0.4f));
                 }
+            }
+            else
+            {
+                // 두 개의 키를 동시에 입력
+                Debug.Log(GetType().Name + ": 두 개의 키를 동시에 눌렀습니다.");
             }
         }
 
         public void MovePlayer(Vector2 moveVal)
         {
-            // TODO 박제에 맞춰 눌렀는지 확인
-            // if ()
+            // 이동
+            if (moveVal.x == 1 || moveVal.x == -1)
             {
-                // 이동
-                if (moveVal.x == 1 || moveVal.x == -1 || moveVal.y == 1 || moveVal.y == -1)
+                unitRoot.localScale = new Vector3(-Mathf.Sign(moveVal.x), 1, 1);
+                if (mapHandler.GetPoint((Vector2)transform.position + moveVal).Equals(ObjectType.Load))
                 {
-                    if (Mathf.Abs(moveVal.x) == 1)
-                    {
-                        transform.localScale = new Vector3(-Mathf.Sign(moveVal.x), 1, 1);
-                    } 
-                    // 키보드를 하나만 입력. 실제 이동 구현
-                    StartCoroutine(MoveTo(moveVal * ConstVariables.tileSize, 0.4f));
+                    // 목표 타일이 도로인 경우 이동
+                    StartCoroutine(MoveTo(moveVal * ConstVariables.tileSizeX, 0.4f));
                 }
-                else
+            }
+            else if (moveVal.y == 1 || moveVal.y == -1)
+            {
+                if (mapHandler.GetPoint((Vector2)transform.position + moveVal).Equals(ObjectType.Load))
                 {
-                    // 두 개의 키를 동시에 입력
-                    Debug.Log(GetType().Name + ": 두 개의 키를 동시에 눌렀습니다.");
+                    // 목표 타일이 도로인 경우 이동
+                    StartCoroutine(MoveTo(moveVal * ConstVariables.tileSizeY, 0.4f));
                 }
+            }
+            else
+            {
+                // 두 개의 키를 동시에 입력
+                Debug.Log(GetType().Name + ": 두 개의 키를 동시에 눌렀습니다.");
             }
         }
         /// <summary>
@@ -179,14 +208,22 @@ namespace  CombatScene.Player
         }
 
         private void SetEvents()
-        {
+        {            moveAction.started += MovePlayerForTest;
+
 #if TEST_MOVE_WITHOUT_NOTE
-            moveAction.started += MovePlayer;
 #endif
             OnPlayerDead.AddListener(() =>
             {
                 animator.SetTrigger("Dead");
             });
+        }
+
+        private void SetExternalComponent()
+        {
+            if (unitRoot == null)
+            {
+                unitRoot = transform.GetChild(0);
+            }    
         }
         
         #endregion
@@ -199,6 +236,11 @@ namespace  CombatScene.Player
         }
 
         private bool IsDefaultWeaponDataNotSetup()
+        {
+            return defaultWeapon == null;
+        }
+        
+        private bool IsMapHandlerNotSetup()
         {
             return defaultWeapon == null;
         }
