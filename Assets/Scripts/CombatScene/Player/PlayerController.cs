@@ -117,7 +117,7 @@ namespace  CombatScene.Player
                 if (mapHandler.GetPoint((Vector2)transform.position + moveVal).Equals(ObjectType.Load))
                 {
                     // 목표 타일이 도로인 경우 이동
-                    StartCoroutine(MoveTo(moveVal * ConstVariables.tileSizeX, 0.4f));
+                    StartCoroutine(MoveTo(moveVal * ConstVariables.tileSizeX, 0.25f));
                 }
             }
             else if (moveVal.y == 1 || moveVal.y == -1)
@@ -125,7 +125,7 @@ namespace  CombatScene.Player
                 if (mapHandler.GetPoint((Vector2)transform.position + moveVal).Equals(ObjectType.Load))
                 {
                     // 목표 타일이 도로인 경우 이동
-                    StartCoroutine(MoveTo(moveVal * ConstVariables.tileSizeY, 0.4f));
+                    StartCoroutine(MoveTo(moveVal * ConstVariables.tileSizeY, 0.25f));
                 }
             }
             else
@@ -143,7 +143,7 @@ namespace  CombatScene.Player
                 if (mapHandler.GetPoint((Vector2)transform.position + moveVal).Equals(ObjectType.Load))
                 {
                     // 목표 타일이 도로인 경우 이동
-                    StartCoroutine(MoveTo(moveVal * ConstVariables.tileSizeX, 0.4f));
+                    StartCoroutine(MoveTo(moveVal * ConstVariables.tileSizeX, 0.25f));
                     combatManager.MovePlayer((Vector2)transform.position + moveVal);
                 }
                 else
@@ -156,7 +156,7 @@ namespace  CombatScene.Player
                 if (mapHandler.GetPoint((Vector2)transform.position + moveVal).Equals(ObjectType.Load))
                 {
                     // 목표 타일이 도로인 경우 이동
-                    StartCoroutine(MoveTo(moveVal * ConstVariables.tileSizeY, 0.4f));
+                    StartCoroutine(MoveTo(moveVal * ConstVariables.tileSizeY, 0.25f));
                     combatManager.MovePlayer((Vector2)transform.position + moveVal);
                 }
                 else
