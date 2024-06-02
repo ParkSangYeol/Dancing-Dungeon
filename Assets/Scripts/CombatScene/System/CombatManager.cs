@@ -1,4 +1,4 @@
-//#define TEST_MOVE_WITHOUT_NOTE
+#define TEST_MOVE_WITHOUT_NOTE
 using System;
 using System.Collections.Generic;
 using CombatScene.Enemy;
@@ -14,10 +14,9 @@ namespace CombatScene
         #region About Test
         #if TEST_MOVE_WITHOUT_NOTE
         
+        [Title("Test Variables")]
         [SerializeField]
         private PlayerInput playerInput;
-        
-        [Title("Variables")] 
         private InputAction moveAction;
         
         private void PlayerBehavior(InputAction.CallbackContext context)
@@ -46,6 +45,7 @@ namespace CombatScene
         #endif
         #endregion
         
+        [Title("Components")]
         [SerializeField]
         private MapHandler mapHandler;
 
@@ -69,6 +69,10 @@ namespace CombatScene
             }
             
 #if TEST_MOVE_WITHOUT_NOTE
+            if (playerInput == null)
+            {
+                playerInput = player.GetComponent<PlayerInput>();
+            }
             moveAction = playerInput.actions["Move"];
             moveAction.started += PlayerBehavior;
 #endif
