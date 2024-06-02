@@ -47,37 +47,37 @@ public class NoteMove : MonoBehaviour
     {
         if (transform.tag == "LeftNote")
         {
-            transform.localPosition += Vector3.right * Time.deltaTime * speed;
+            transform.localPosition += Vector3.right * (Time.deltaTime * speed);
         }
         else if (transform.tag == "RightNote")
         {
-            transform.localPosition += Vector3.left * Time.deltaTime * speed;
+            transform.localPosition += Vector3.left * (Time.deltaTime * speed);
         }
     }
    
     void OnTriggerExit2D(Collider2D other)
     {
-         if (other.gameObject.tag == "LeftNote" && this.tag == "RightNote")
+         if (other.gameObject.CompareTag("LeftNote") && this.CompareTag("RightNote") || (other.gameObject.CompareTag("RightNote") && this.CompareTag("LeftNote")))
         {
-            // if (gameObject.activeInHierarchy && other.gameObject.activeInHierarchy)
-            // {
-            //     StartCoroutine(WaitSetActive(other));
-            // }
-            gameObject.SetActive(false);
-            other.gameObject.SetActive(false);
+            if (gameObject.activeInHierarchy && other.gameObject.activeInHierarchy) 
+            {
+                  StartCoroutine(WaitSetActive());
+            }
+            
         }
     }
-   IEnumerator WaitSetActive(Collider2D otherObject)
+   IEnumerator WaitSetActive()
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.10f);
         if (gameObject.activeInHierarchy)
         {
             gameObject.SetActive(false);
+            if (this.gameObject.CompareTag("LeftNote"))
+            {
+                OnMiss.Invoke("Miss");
+            }
         }
-        if (otherObject != null && otherObject.gameObject.activeInHierarchy)
-        {
-            otherObject.gameObject.SetActive(false);
-        }
+        
     }
    
 

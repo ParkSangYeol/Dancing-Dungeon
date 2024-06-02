@@ -58,30 +58,30 @@ public class HitScanByRay : MonoBehaviour
     {
         Vector2 moveDir = context.ReadValue<Vector2>();
 
-        RaycastHit2D lefthit = Physics2D.Raycast(transform.position, Vector2.left, Mathf.Infinity);
-        RaycastHit2D righthit = Physics2D.Raycast(transform.position, Vector2.right, Mathf.Infinity);
+        RaycastHit2D lefthit = Physics2D.Raycast(transform.position + Vector3.right * 300, Vector2.left, Mathf.Infinity, 1 << LayerMask.NameToLayer("LeftNote"));
+        RaycastHit2D righthit = Physics2D.Raycast(transform.position + Vector3.left * 300, Vector2.right, Mathf.Infinity, 1 << LayerMask.NameToLayer("RightNote"));
         
         if (lefthit.collider != null && righthit.collider != null) 
         {
-            if (lefthit.collider.tag == "LeftNote" && righthit.collider.tag == "RightNote")
+            if ((lefthit.collider.CompareTag("LeftNote") && righthit.collider.CompareTag("RightNote") )|| (lefthit.collider.CompareTag("RightNote") && righthit.collider.CompareTag("LeftNote")))
             {
                 float left_x = lefthit.collider.transform.position.x;
                 float right_x = righthit.collider.transform.position.x;
                 float xDifference = right_x - left_x;
                 
                 
-                if(xDifference>=0 && xDifference<=200  || (1820 <right_x&&right_x<2200 && left_x<1300))
+                if(xDifference>=-200 && xDifference<=200)  //|| /*(1820 <right_x&&right_x<2200 && left_x<1300))*/
                 {
                     Debug.Log("Perfect : Left X : "+left_x+" Right X : " + right_x+" Difference" +xDifference);
+                    lefthit.collider.gameObject.SetActive(false);
+                    righthit.collider.gameObject.SetActive(false);
                     currentHit="Perfect";
                     OnPressedKey.Invoke(moveDir);
                     UiManager.instance.PlayPerfectSound();
-                    lefthit.collider.gameObject.SetActive(false);
-                    righthit.collider.gameObject.SetActive(false);
                     combo+=1;
                     UiManager.instance.SetCombo(combo,currentHit);
                 }
-                else if(xDifference>200 && xDifference<=600)
+                else if((xDifference>200 && xDifference<=600) || (xDifference < -200 && xDifference >= -600))
                 {
                    currentHit = "Great";
                    OnPressedKey.Invoke(moveDir);// 플레이어 이동
