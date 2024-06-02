@@ -41,6 +41,7 @@ public class NoteMove : MonoBehaviour
         MoveNode();
     }
 
+
     private void MoveNode()
     {
         if (transform.tag == "LeftNote")
@@ -52,47 +53,34 @@ public class NoteMove : MonoBehaviour
             transform.localPosition += Vector3.left * Time.deltaTime * speed;
         }
     }
-
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.tag == "LeftNote" && this.tag == "RightNote")
+         if (other.gameObject.tag == "LeftNote" && this.tag == "RightNote")
         {
-            gameManager.StartCoroutineFromManager(WaitForInputCoroutine());
-            UiManager.instance.SetCombo(0,"Miss");
+            // if (gameObject.activeInHierarchy && other.gameObject.activeInHierarchy)
+            // {
+            //     StartCoroutine(WaitSetActive(other));
+            // }
             gameObject.SetActive(false);
             other.gameObject.SetActive(false);
-            
         }
     }
-
-    private IEnumerator WaitForInputCoroutine()
+   IEnumerator WaitSetActive(Collider2D otherObject)
     {
-        isWaitingForInput = true;
-        float timer = 0f;
-
-        while (timer < delay)
+        yield return new WaitForSeconds(0.3f);
+        if (gameObject.activeInHierarchy)
         {
-            if (moveAction.triggered)
-            {
-                
-                isWaitingForInput = false;
-                yield break;
-            }
-
-            timer += Time.deltaTime;
-            yield return null;
+            gameObject.SetActive(false);
         }
-
-        // if (isWaitingForInput)
-        // {
-        //     UiManager.instance.SetCombo(0);
-        // } // 부딫히고나서 delaya시간안에 입력이 없다면 미스
-
-        isWaitingForInput = false;
+        if (otherObject != null && otherObject.gameObject.activeInHierarchy)
+        {
+            otherObject.gameObject.SetActive(false);
+        }
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        // Add any collision logic here if needed
-    }
+    
+
+    
+
+    
 }

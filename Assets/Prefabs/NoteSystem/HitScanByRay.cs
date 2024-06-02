@@ -68,9 +68,9 @@ public class HitScanByRay : MonoBehaviour
                 float left_x = lefthit.collider.transform.position.x;
                 float right_x = righthit.collider.transform.position.x;
                 float xDifference = right_x - left_x;
-                //Debug.Log("Left X : "+left_x+" Right X : " + right_x+" Difference" +xDifference);
+                Debug.Log("Left X : "+left_x+" Right X : " + right_x+" Difference" +xDifference);
                 
-                if(xDifference>0 && xDifference<=200)
+                if(xDifference>=0 && xDifference<=200 )
                 {
                     currentHit="Perfect";
                     OnPressedKey.Invoke(moveDir);
@@ -83,10 +83,10 @@ public class HitScanByRay : MonoBehaviour
                 else if(xDifference>200 && xDifference<=600)
                 {
                    currentHit = "Great";
-                   OnPressedKey.Invoke(moveDir);
-                   UiManager.instance.PlayGreatSound();
-                   lefthit.collider.gameObject.SetActive(false);
-                   righthit.collider.gameObject.SetActive(false);
+                   OnPressedKey.Invoke(moveDir);// 플레이어 이동
+                   UiManager.instance.PlayGreatSound();//효과음 발동
+                   lefthit.collider.gameObject.SetActive(false);//노트 비활성화
+                   righthit.collider.gameObject.SetActive(false);//노트 비활성화
                    combo+=1;
                    UiManager.instance.SetCombo(combo,currentHit);
                 }

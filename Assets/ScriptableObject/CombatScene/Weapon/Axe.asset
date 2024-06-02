@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 506b092065d862243a59ef240314a9a3, type: 3}
-  m_Name: Unarmed
+  m_Name: Axe
   m_EditorClassIdentifier: 
-  thumbnail: {fileID: 21300000, guid: ca35444026b6c8b4da70f53d5971cea2, type: 3}
-  name: "\uB9E8\uC8FC\uBA39"
-  range: 1
-  power: 1
+  thumbnail: {fileID: 21300000, guid: 2dfe88497e9659a4496b1e4ad4930776, type: 3}
+  name: "\uB9C8\uC774\uD06C"
+  range: 2
+  power: 2
   attackDirection: 1
   isSplash: 0
