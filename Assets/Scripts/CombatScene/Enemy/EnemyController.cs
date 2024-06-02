@@ -77,7 +77,7 @@ namespace CombatScene.Enemy
             {
                 unitRoot.localScale = new Vector3(Mathf.Sign(moveVec.x), 1, 1);
             }
-            StartCoroutine(MoveTo(targetPosition, 0.4f));
+            StartCoroutine(MoveTo(targetPosition, 0.25f));
         }
         
         /// <summary>
