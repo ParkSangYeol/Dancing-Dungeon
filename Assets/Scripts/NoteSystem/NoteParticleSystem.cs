@@ -63,10 +63,7 @@ public class NoteParticleSystem : MonoBehaviour
             
             particleSystems[timing].Play();
         }
-        else
-        {
-            Debug.Log($"Invalid condition: {timing}");
-        }
+        
     }
     
 }

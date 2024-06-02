@@ -68,10 +68,11 @@ public class HitScanByRay : MonoBehaviour
                 float left_x = lefthit.collider.transform.position.x;
                 float right_x = righthit.collider.transform.position.x;
                 float xDifference = right_x - left_x;
-                Debug.Log("Left X : "+left_x+" Right X : " + right_x+" Difference" +xDifference);
                 
-                if(xDifference>=0 && xDifference<=200 )
+                
+                if(xDifference>=0 && xDifference<=200  || (1820 <right_x&&right_x<2200 && left_x<1300))
                 {
+                    Debug.Log("Perfect : Left X : "+left_x+" Right X : " + right_x+" Difference" +xDifference);
                     currentHit="Perfect";
                     OnPressedKey.Invoke(moveDir);
                     UiManager.instance.PlayPerfectSound();
@@ -90,15 +91,16 @@ public class HitScanByRay : MonoBehaviour
                    combo+=1;
                    UiManager.instance.SetCombo(combo,currentHit);
                 }
-                else if(xDifference>600 && xDifference<=900)
+                else if(xDifference>600 && xDifference<=1300)
                 {
                     currentHit = "Bad";
                     UiManager.instance.PlayBadSound();
                     combo=0;
                     UiManager.instance.SetCombo(combo,currentHit);
                 }
-                else if(xDifference>900)
+                else if(xDifference>1300)
                 {
+                    Debug.Log("Miss : Left X : "+left_x+" Right X : " + right_x+" Difference" +xDifference);
                     currentHit = "Miss";
                     UiManager.instance.PlayMissSound();
                     combo=0;

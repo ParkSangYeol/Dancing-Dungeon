@@ -54,6 +54,7 @@ namespace CombatScene
         private PlayerController player;
         public Vector2 playerPosition;
         private Dictionary<Vector2, EnemyController> enemies = new Dictionary<Vector2, EnemyController>();
+        private HitScanByRay hitScanByRay;
         
         private void Awake()
         {

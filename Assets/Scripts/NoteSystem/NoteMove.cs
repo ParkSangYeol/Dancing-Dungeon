@@ -1,4 +1,5 @@
 using System.Collections;
+using CombatScene;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
@@ -53,6 +54,7 @@ public class NoteMove : MonoBehaviour
             transform.localPosition += Vector3.left * Time.deltaTime * speed;
         }
     }
+   
     void OnTriggerExit2D(Collider2D other)
     {
          if (other.gameObject.tag == "LeftNote" && this.tag == "RightNote")
@@ -77,6 +79,7 @@ public class NoteMove : MonoBehaviour
             otherObject.gameObject.SetActive(false);
         }
     }
+   
 
     
 

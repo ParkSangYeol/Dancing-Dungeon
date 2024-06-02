@@ -96,7 +96,7 @@ public class UiManager : MonoBehaviour
             Debug.LogError("Volume slider is missing");
         }
 
-        FindPlayerAndHpPanel();
+        FindObjectinCombat();
     }
 
     void Update()
@@ -105,7 +105,7 @@ public class UiManager : MonoBehaviour
         {
             if (player == null || hpPanel == null)
             {
-                FindPlayerAndHpPanel();
+                FindObjectinCombat();
             }
 
             if (hpPanel != null && player != null)
@@ -123,7 +123,7 @@ public class UiManager : MonoBehaviour
         }
     }
 
-    private void FindPlayerAndHpPanel()
+    private void FindObjectinCombat()
     {
         if (player == null)
         {
