@@ -18,6 +18,8 @@ namespace CombatScene
         public int power;
         public AttackDirection attackDirection;
         public bool isSplash;
+        [AssetsOnly]
+        public ParticleSystem VFX;
     }
 
     public enum AttackDirection
