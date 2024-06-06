@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 506b092065d862243a59ef240314a9a3, type: 3}
   m_Name: Unarmed
   m_EditorClassIdentifier: 
-  thumbnail: {fileID: 21300000, guid: ca35444026b6c8b4da70f53d5971cea2, type: 3}
-  name: "\uB9E8\uC8FC\uBA39"
+  thumbnail: {fileID: 2554473656886179314, guid: d24756e433435b249be5737019648d69, type: 3}
+  weaponSprite: {fileID: 0}
+  name: "\uB9E8\uC190"
   range: 1
-  power: 1
+  power: 0
   attackDirection: 1
   isSplash: 0
