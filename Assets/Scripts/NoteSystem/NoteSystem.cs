@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using CombatScene;
 using UnityEngine;
 
 public class NoteSystem : MonoBehaviour
@@ -6,11 +8,15 @@ public class NoteSystem : MonoBehaviour
     [SerializeField]
     public GameObject notePrefeb; // 노트를 사용할 프리펩
     public int poolSize = 10; // 풀 몇개를 관리하는 것인지
+
+    [SerializeField] 
+    private CombatManager combatManager;
     
     public Transform leftSpawn;
     public Transform rightSpawn;
     private List<GameObject> notePool; // 노트 풀
     private int nextIndex = 0; //노트들을 관리하기 위한 인덱스 변수
+    private int allNote=0;
   
     
     void Start()
@@ -20,6 +26,8 @@ public class NoteSystem : MonoBehaviour
         for (int i = 0; i < poolSize; i++)// 내가 원하는 사이즈 만큼
         {
             GameObject note = Instantiate(notePrefeb);// 생성한 후 active false 해준다 
+            note.GetComponent<NoteMove>().OnMiss.AddListener((str) => combatManager.SearchTiles());
+            
             note.SetActive(false);
             notePool.Add(note);
         }
@@ -34,13 +42,20 @@ public class NoteSystem : MonoBehaviour
     {
         GameObject leftNote = GetPooledNote();
         leftNote.tag="LeftNote";
+        leftNote.layer = LayerMask.NameToLayer("LeftNote");
         GameObject rightNote = GetPooledNote();
         rightNote.tag="RightNote";
+        rightNote.layer = LayerMask.NameToLayer("RightNote");
+        allNote++;
         leftNote.transform.SetParent(leftSpawn);
         rightNote.transform.SetParent(rightSpawn);
         leftNote.transform.position = leftSpawn.transform.position; 
         rightNote.transform.position = rightSpawn.transform.position;
         leftNote.SetActive(true);
         rightNote.SetActive(true);
+    }
+    public int GetAllNote()
+    {
+        return allNote;
     }
 }

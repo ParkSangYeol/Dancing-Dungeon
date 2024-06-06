@@ -69,6 +69,7 @@ namespace CombatScene.Enemy
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
+            combatManager = FindAnyObjectByType<CombatManager>();
             SetComponent();
             SetVariables();
             SetExternalComponent();
@@ -165,6 +166,7 @@ namespace CombatScene.Enemy
             // 애니메이션에서 이벤트로 호출
             Destroy(this.gameObject);
         }
+        
 
         #endregion
         
