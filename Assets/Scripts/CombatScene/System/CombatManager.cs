@@ -1,4 +1,4 @@
-#define TEST_MOVE_WITHOUT_NOTE
+//#define TEST_MOVE_WITHOUT_NOTE
 using System;
 using System.Collections.Generic;
 using CombatScene.Enemy;
@@ -52,8 +52,9 @@ namespace CombatScene
         [InfoBox("플레이어를 넣어주세요!", InfoMessageType.Error, "IsPlayerNotSetup")]
         [SerializeField]
         private PlayerController player;
-        private Vector2 playerPosition;
+        public Vector2 playerPosition;
         private Dictionary<Vector2, EnemyController> enemies = new Dictionary<Vector2, EnemyController>();
+        private HitScanByRay hitScanByRay;
         
         private void Awake()
         {
@@ -117,7 +118,7 @@ namespace CombatScene
             mapHandler.SetMapObject(position, ObjectType.Enemy);
         }
 
-        private void PlayerBehavior(Vector2 inputVec)
+        public void PlayerBehavior(Vector2 inputVec)
         {
             if (!(inputVec.x == 0 && Mathf.Abs(inputVec.y) == 1) && !(inputVec.y == 0 && Mathf.Abs(inputVec.x) == 1))
             {  
@@ -179,6 +180,7 @@ namespace CombatScene
                                 break;
                             }
                         }
+                        Debug.Log("Enemy: " + enemy);
                     }
                     break;
                 case AttackDirection.DIR_8:
@@ -214,6 +216,7 @@ namespace CombatScene
             {
                 player.Attack();
             }
+            Debug.Log("Return Value: " + ret);
 
             return ret;
         }
