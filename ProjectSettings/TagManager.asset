@@ -71,6 +71,9 @@ TagManager:
   - name: Env2
     uniqueID: 980893537
     locked: 0
+  - name: Item
+    uniqueID: 3310255271
+    locked: 0
   - name: Character
     uniqueID: 1865092107
     locked: 0

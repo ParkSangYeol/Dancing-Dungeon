@@ -8,6 +8,7 @@ using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Random = UnityEngine.Random;
 
 namespace CombatScene
 {
@@ -52,6 +53,8 @@ namespace CombatScene
         private MapHandler mapHandler;
         [SerializeField]
         private ParticleManager particleManager;
+        [SerializeField]
+        private ItemManager itemManager;
         
         [InfoBox("플레이어를 넣어주세요!", InfoMessageType.Error, "IsPlayerNotSetup")]
         [SerializeField]
@@ -62,6 +65,7 @@ namespace CombatScene
 
         private Camera mainCamera;
         private Sequence cameraTween;
+
         
         private void Awake()
         {
@@ -74,7 +78,11 @@ namespace CombatScene
             {
                 particleManager = GetComponent<ParticleManager>();
             }
-            
+
+            if (itemManager == null)
+            {
+                itemManager = GetComponent<ItemManager>();
+            }
             if (player == null)
             {
                 Debug.LogError("플레이어 오브젝트가 추가되지 않았습니다!");
@@ -109,6 +117,41 @@ namespace CombatScene
 
         public void MovePlayer(Vector2 targetPosition)
         {
+            // 아이템 획득 확인
+            ItemInstance dropItem;
+            if (itemManager.GetDroppedItem(targetPosition, out dropItem))
+            {
+                switch (dropItem.itemScriptableObject.itemType)
+                {
+                    case ItemType.HEAL:
+                        player.hp += dropItem.itemScriptableObject.value;
+                        break;
+                    case ItemType.POWER_UP:
+                        player.power += dropItem.itemScriptableObject.value;
+                        break;
+                    case ItemType.SHIELD:
+                        player.shield += dropItem.itemScriptableObject.value;
+                        break;
+                    case ItemType.WEAPON:
+                    {
+                        WeaponScriptableObject equippedWeapon = player.GetEquippedWeapon();
+                        if (equippedWeapon != player.defaultWeapon)
+                        {
+                            // 기존에 무기를 장착 중
+                            // 장착중인 무기를 바닥에 드랍.
+                            itemManager.PlaceItem(playerPosition, itemManager.GetWeaponItem(equippedWeapon));
+                        }
+                        // 새로운 무기를 획득
+                        player.EquipWeapon(dropItem.itemScriptableObject.weaponScriptableObject);
+                        break;
+                    }
+                    case ItemType.SPECIAL_WEAPON:
+                        break;
+                }
+                
+                Destroy(dropItem.gameObject);
+            }
+            
             if (mapHandler.SetMapObject(targetPosition, ObjectType.Player))
             {
                 mapHandler.SetMapObject(playerPosition, ObjectType.Load);
@@ -142,8 +185,25 @@ namespace CombatScene
         {
             enemies.Add(position, enemy);
             mapHandler.SetMapObject(position, ObjectType.Enemy);
+            
+            enemy.OnEnemyDead.AddListener((enemyTransform) =>
+            {
+                // 랜덤한 아이템을 드랍하도록 설정.
+                float random = Random.Range(0, 1);
+                if (random < 0.2f)
+                {
+                    itemManager.SpawnRandomItem(enemyTransform.position);
+                }
+            });
+            
+            enemy.OnEnemyDead.AddListener((enemyTransform) =>
+            {
+                mapHandler.SetMapObject(enemyTransform.position, ObjectType.Load);
+                enemies.Remove(enemyTransform.position);
+            });
         }
 
+        
         public void PlayerBehavior(Vector2 inputVec)
         {
             if (!(inputVec.x == 0 && Mathf.Abs(inputVec.y) == 1) && !(inputVec.y == 0 && Mathf.Abs(inputVec.x) == 1))

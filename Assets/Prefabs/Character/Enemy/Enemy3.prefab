@@ -3656,6 +3656,7 @@ GameObject:
   - component: {fileID: 5973627664566980447}
   - component: {fileID: 54453614884259949}
   - component: {fileID: 6187096519367625363}
+  - component: {fileID: 8663335744430981283}
   m_Layer: 0
   m_Name: UnitRoot
   m_TagString: Untagged
@@ -3689,7 +3690,7 @@ SortingGroup:
   m_GameObject: {fileID: 8893951336696860373}
   m_Enabled: 1
   m_SortingLayerID: 1865092107
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 5
   m_SortAtRoot: 0
 --- !u!95 &6187096519367625363
@@ -3714,6 +3715,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8663335744430981283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8893951336696860373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcce96c4f393aa3469670e9d2642e549, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8948264679328711039
 GameObject:
   m_ObjectHideFlags: 0
@@ -3857,6 +3870,7 @@ MonoBehaviour:
   combatManager: {fileID: 0}
   animator: {fileID: 0}
   unitRoot: {fileID: 5973627664566980447}
+  weaponSpriteRenderer: {fileID: 0}
   characterData: {fileID: 11400000, guid: 535194c03c06a1142bb5e565e283eb5d, type: 2}
   defaultWeapon: {fileID: 11400000, guid: 8e03f9f0ffc9981499df1cfbd1434244, type: 2}
   OnEnemyDead:
