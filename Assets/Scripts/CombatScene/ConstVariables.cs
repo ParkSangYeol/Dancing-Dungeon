@@ -9,6 +9,7 @@ namespace CombatScene
         public const float tileSizeY = 1f;
         public const int mapHeight = 100;
         public const int mapWidth = 100;
+        public const float CharacterHeight = 0.5f;
 
         public const int maxDetactRange = 5;
         public static readonly int[] dX = { 0, 1, 0, -1 };

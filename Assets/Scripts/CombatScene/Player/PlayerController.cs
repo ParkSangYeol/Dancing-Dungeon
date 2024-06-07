@@ -26,8 +26,7 @@ namespace  CombatScene.Player
         private CombatManager combatManager;
 
         [InfoBox("자식 컴포넌트의 UnityRoot를 추가해주세요.", InfoMessageType.Info)] 
-        [SerializeField]
-        private Transform unitRoot;
+        public Transform unitRoot;
         
         [InfoBox("\"UnitRoot/Root/BodySet/P_Body/ArmSet/ArmR/P_RArm/P_Weapon/R_Weapon\"을 넣어주세요.", InfoMessageType.Info)] 
         [SerializeField] 

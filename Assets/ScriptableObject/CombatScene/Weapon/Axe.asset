@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: Axe
   m_EditorClassIdentifier: 
   thumbnail: {fileID: 21300000, guid: 2dfe88497e9659a4496b1e4ad4930776, type: 3}
+  weaponSprite: {fileID: 0}
   name: "\uB9C8\uC774\uD06C"
   range: 2
   power: 2
   attackDirection: 1
-  isSplash: 0
+  isSplash: 1
+  VFX: {fileID: 198605777990419100, guid: ed6b8128683f4094f92b7a556760b26b, type: 3}
