@@ -16,9 +16,12 @@ namespace CombatScene.Enemy
         [SerializeField]
         private Animator animator;
         [InfoBox("자식 컴포넌트의 UnityRoot를 추가해주세요.", InfoMessageType.Info)]
-        [SerializeField]
-        private Transform unitRoot;
+        public Transform unitRoot;
         
+        [InfoBox("\"UnitRoot/Root/BodySet/P_Body/ArmSet/ArmR/P_RArm/P_Weapon/R_Weapon\"을 넣어주세요.", InfoMessageType.Info)] 
+        [SerializeField] 
+        private SpriteRenderer weaponSpriteRenderer;
+
         [Title("Data")] 
         [InfoBox("character data는 반드시 추가해야합니다!", InfoMessageType.Error, "IsCharacterDataNotSetup")]
         [SerializeField]
@@ -68,6 +71,7 @@ namespace CombatScene.Enemy
             combatManager = FindAnyObjectByType<CombatManager>();
             SetComponent();
             SetVariables();
+            SetExternalComponent();
         }
 
         public void MoveCharacter(Vector2 targetPosition)
@@ -116,6 +120,17 @@ namespace CombatScene.Enemy
             Debug.Log(gameObject.name + "'s hp is " + hp);
         }
 
+        public void EquipWeapon(WeaponScriptableObject weapon)
+        {
+            if (weapon == null)
+            {
+                return;
+            }
+
+            equipWeapon = weapon;
+            weaponSpriteRenderer.sprite = equipWeapon.weaponSprite;
+        }
+
         public bool CanAttack(Vector2 targetPos)
         {
             Vector2 distanceVec = new Vector2(Mathf.Abs(targetPos.x - transform.position.x), Mathf.Abs(targetPos.y - transform.position.y)); 
@@ -143,6 +158,11 @@ namespace CombatScene.Enemy
         public void Attack()
         {
             animator.SetTrigger("Attack");    
+        }
+        
+        public WeaponScriptableObject GetEquippedWeapon()
+        {
+            return equipWeapon;
         }
         
         public void DestroyCharacter()
@@ -187,6 +207,19 @@ namespace CombatScene.Enemy
             this.equipWeapon = defaultWeapon;
         }
 
+        private void SetExternalComponent()
+        {
+            if (unitRoot == null)
+            {
+                unitRoot = transform.GetChild(0);
+            }
+            
+            if (weaponSpriteRenderer == null)
+            {
+                weaponSpriteRenderer = transform.Find("UnitRoot/Root/BodySet/P_Body/ArmSet/ArmR/P_RArm/P_Weapon/R_Weapon").GetComponent<SpriteRenderer>();
+            } 
+            weaponSpriteRenderer.sprite = equipWeapon.weaponSprite;
+        }
         #endregion
 
         #region Odin

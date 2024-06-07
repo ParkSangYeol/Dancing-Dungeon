@@ -25,8 +25,12 @@ namespace  CombatScene.Player
         [SerializeField]
         private CombatManager combatManager;
 
-        [InfoBox("자식 컴포넌트의 UnityRoot를 추가해주세요.", InfoMessageType.Info)] [SerializeField]
-        private Transform unitRoot;
+        [InfoBox("자식 컴포넌트의 UnityRoot를 추가해주세요.", InfoMessageType.Info)] 
+        public Transform unitRoot;
+        
+        [InfoBox("\"UnitRoot/Root/BodySet/P_Body/ArmSet/ArmR/P_RArm/P_Weapon/R_Weapon\"을 넣어주세요.", InfoMessageType.Info)] 
+        [SerializeField] 
+        private SpriteRenderer weaponSpriteRenderer;
 
 
         [Title("Data")]
@@ -102,7 +106,7 @@ namespace  CombatScene.Player
 
         private void OnDisable()
         {
-            moveAction.Disable();
+            // moveAction.Disable();
         }
 
         #endregion
@@ -148,6 +152,7 @@ namespace  CombatScene.Player
                 }
                 else
                 {
+                    StartCoroutine(BlockTo(moveVal * ConstVariables.tileSizeX * 0.2f, 0.25f));
                     combatManager.MovePlayer((Vector2)transform.position);
                 }
             }
@@ -161,6 +166,7 @@ namespace  CombatScene.Player
                 }
                 else
                 {
+                    StartCoroutine(BlockTo(moveVal * ConstVariables.tileSizeY * 0.2f, 0.25f));
                     combatManager.MovePlayer((Vector2)transform.position);
                 }
             }
@@ -195,6 +201,27 @@ namespace  CombatScene.Player
             transform.position = targetPos;
         }
 
+        IEnumerator BlockTo(Vector2 addPos, float duration)
+        {
+            Vector3 defaultPos = transform.position;
+            float dur = duration / 3;
+            yield return StartCoroutine(MoveTo(addPos, dur));
+            // 플레이어 이동 애니메이션 재생
+            animator.SetTrigger("Sit");
+            // 이동
+            Vector2 startPos = (Vector2)transform.position + addPos;
+            Vector2 targetPos = defaultPos;
+            dur *= 2;
+            float time = 0;
+            while (dur > time)
+            {
+                transform.position = Vector2.Lerp(startPos, targetPos, time / dur);
+                time += Time.deltaTime;
+                yield return null;
+            }
+
+            transform.position = defaultPos;
+        }
         public void LookAt(Vector2 watchVec)
         {
             if (watchVec.x != 0)
@@ -203,7 +230,7 @@ namespace  CombatScene.Player
             }
         }
         
-        #region About Combat
+    #region About Combat
 
         public void Attacked(float damage)
         {
@@ -215,6 +242,17 @@ namespace  CombatScene.Player
             }
         }
 
+        public void EquipWeapon(WeaponScriptableObject weapon)
+        {
+            if (weapon == null)
+            {
+                return;
+            }
+
+            equipWeapon = weapon;
+            weaponSpriteRenderer.sprite = equipWeapon.weaponSprite;
+        }
+        
         public WeaponScriptableObject GetEquippedWeapon()
         {
             return equipWeapon;
@@ -231,70 +269,77 @@ namespace  CombatScene.Player
         }
     #endregion
 
-        #region Init
+    #region Init
 
-            private void SetComponents()
+        private void SetComponents()
+        {
+            // set Player Input
+            if (playerInput == null)
             {
-                // set Player Input
-                if (playerInput == null)
-                {
-                    playerInput = GetComponent<PlayerInput>();
-                }
-
-                if (animator == null)
-                {
-                    animator = transform.GetChild(0).GetComponent<Animator>();
-                }
+                playerInput = GetComponent<PlayerInput>();
             }
 
-            private void SetVariables()
+            if (animator == null)
             {
-                // 컨트롤러 내부 변수 설정
-                if (playerCharacterData == null)
-                {
-                    Debug.LogError(gameObject.name + ": PlayerCharacterData가 없습니다!");
-                }
-                if (defaultWeapon == null)
-                {
-                    Debug.LogError(gameObject.name + ": 기본 무기가 없습니다!");
-                }
-                
-                this.hp = playerCharacterData.hp;
-                this.power = playerCharacterData.defaultPower;
-                this.shield = playerCharacterData.shield;
-                this.equipWeapon = defaultWeapon;
-                
-                moveAction = playerInput.actions["Move"];
-            }
-
-            private void SetEvents()
-            {            
-                OnPlayerDead.AddListener(() =>
-                {
-                    animator.SetTrigger("Dead");
-                });
-            }
-
-            private void SetExternalComponent()
-            {
-                if (unitRoot == null)
-                {
-                    unitRoot = transform.GetChild(0);
-                }
-
-                if (mapHandler == null)
-                {
-                    mapHandler = transform.Find("GameManager").GetComponent<MapHandler>();
-                }
-                if (combatManager == null)
-                {
-                    combatManager = transform.Find("GameManager").GetComponent<CombatManager>();
-                }
+                animator = transform.GetChild(0).GetComponent<Animator>();
             }
             
-            #endregion
+        }
 
-        #region Odin
+        private void SetVariables()
+        {
+            // 컨트롤러 내부 변수 설정
+            if (playerCharacterData == null)
+            {
+                Debug.LogError(gameObject.name + ": PlayerCharacterData가 없습니다!");
+            }
+            if (defaultWeapon == null)
+            {
+                Debug.LogError(gameObject.name + ": 기본 무기가 없습니다!");
+            }
+            
+            this.hp = playerCharacterData.hp;
+            this.power = playerCharacterData.defaultPower;
+            this.shield = playerCharacterData.shield;
+            this.equipWeapon = defaultWeapon;
+            
+            moveAction = playerInput.actions["Move"];
+        }
+
+        private void SetEvents()
+        {            
+            OnPlayerDead.AddListener(() =>
+            {
+                animator.SetTrigger("Dead");
+            });
+        }
+
+        private void SetExternalComponent()
+        {
+            if (unitRoot == null)
+            {
+                unitRoot = transform.GetChild(0);
+            }
+            
+            if (weaponSpriteRenderer == null)
+            {
+                weaponSpriteRenderer = transform.Find("UnitRoot/Root/BodySet/P_Body/ArmSet/ArmR/P_RArm/P_Weapon/R_Weapon").GetComponent<SpriteRenderer>();
+            } 
+            weaponSpriteRenderer.sprite = equipWeapon.weaponSprite;
+
+            if (mapHandler == null)
+            {
+                mapHandler = GameObject.Find("GameManager").GetComponent<MapHandler>();
+            }
+            if (combatManager == null)
+            {
+                combatManager = GameObject.Find("GameManager").GetComponent<CombatManager>();
+            }
+        }
+    
+    #endregion
+
+    #region Odin
 
             private bool IsCharacterDataNotSetup()
             {
@@ -315,7 +360,8 @@ namespace  CombatScene.Player
             {
                 return combatManager == null;
             }
-            #endregion
+            
+    #endregion
         
     }
 }

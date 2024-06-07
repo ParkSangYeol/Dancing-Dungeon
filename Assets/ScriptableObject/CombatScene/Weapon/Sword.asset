@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: Sword
   m_EditorClassIdentifier: 
   thumbnail: {fileID: 21300000, guid: effc43f162b3b4c1c88c091c360bffcf, type: 3}
+  weaponSprite: {fileID: 0}
   name: "\uAC80"
   range: 1
   power: 2
   attackDirection: 1
   isSplash: 0
+  VFX: {fileID: 19872524, guid: 4889039938a567444827eafcfbc2b267, type: 3}
