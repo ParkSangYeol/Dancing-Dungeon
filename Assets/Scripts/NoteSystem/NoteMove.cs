@@ -72,10 +72,11 @@ public class NoteMove : MonoBehaviour
         if (gameObject.activeInHierarchy)
         {
             gameObject.SetActive(false);
-            if (this.gameObject.CompareTag("LeftNote"))
-            {
-                OnMiss.Invoke("Miss");
-            }
+            // if (this.gameObject.CompareTag("LeftNote"))
+            // {
+            //     OnMiss.Invoke("Miss");
+            //     UiManager.instance.SetCombo(0,"Miss");
+            // }
         }
         
     }

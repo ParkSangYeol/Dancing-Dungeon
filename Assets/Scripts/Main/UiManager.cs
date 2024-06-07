@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using CombatScene.Player;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor.UI;
 
 public class UiManager : MonoBehaviour
 {
@@ -83,7 +84,7 @@ public class UiManager : MonoBehaviour
 
     void Start()
     {
-        FindObjectinCombat();
+        
     }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
@@ -91,28 +92,27 @@ public class UiManager : MonoBehaviour
         {
             // 메인 씬이 로드되었을 때 FindInMainScene 메서드를 호출합니다.
             FindInMainScene();
-            
+        }
+        else if(scene.name =="NoteSystemDev2")
+        {
+            FindObjectinCombat();
         }
         
     }
     void Update()
     {
-        if (SceneManager.GetActiveScene().name == "NoteSystemDev2")
+        if(SceneManager.GetActiveScene().name=="NoteSystemDev2")
         {
-            if (player == null || hpPanel == null)
-            {
-                FindObjectinCombat();
-            }
-
-            if (hpPanel != null && player != null)
-            {
-                SetHpUi();
-            }
             if(player.GetComponent<PlayerController>().hp <=0 || Input.GetKeyDown(KeyCode.Q))
             {
                 GameOverPanel.SetActive(true);
             }
+            else
+            {
+                SetHpUi();
+            }
         }
+        
         if (isBattleScene && !audioSource.isPlaying)
         {
             PlayRandomBgm();
@@ -122,45 +122,36 @@ public class UiManager : MonoBehaviour
 
     private void FindObjectinCombat()
     {
-        if (player == null)
+       
+        player= GameObject.Find("Player");
+        if (player != null)
         {
-            player = GameObject.Find("Player");
-            if (player != null)
-            {
-                Debug.Log("Player found");
-            }
-            else
-            {
-                Debug.LogError("Player not found");
-            }
+            Debug.Log("Player found");
         }
+        else
+        {
+            Debug.LogError("Player not found");
+        }
+        
 
-        if (hpPanel == null)
+        
+        hpPanel = GameObject.Find("Canvas/HpPanel");
+        if(hpPanel)
         {
-            hpPanel = GameObject.Find("Canvas/HpPanel");
-            if (hpPanel != null)
-            {
-                Debug.Log("HpPanel found");
-            }
-            else
-            {
-                Debug.LogError("HpPanel not found");
-            }
+            Debug.Log("패널 찾음");
         }
-        if(comboPanel ==null)
+        
+        
+        comboPanel = GameObject.Find("Canvas/ComboPanel");
+        if (comboPanel != null)
         {
-            comboPanel = GameObject.Find("Canvas/ComboPanel");
-            if (comboPanel != null)
-            {
-                Debug.Log("ComboPanel found");
-            }
-            else
-            {
-                Debug.LogError("ComboPanel not found");
-            }
+            Debug.Log("ComboPanel found");
         }
-        if(GameOverPanel ==null)
+        else
         {
+            Debug.LogError("ComboPanel not found");
+        }
+    
             GameOverPanel = GameObject.Find("Canvas/GameOverPanel");
             if (GameOverPanel != null)
             {
@@ -169,19 +160,14 @@ public class UiManager : MonoBehaviour
                 GameOverPanel.SetActive(false);
                 Debug.Log("GameOverPanel found");
             }
-            else
-            {
-                Debug.LogError("GameOverPanel not found");
-            }
-        }
+            
     }
+    
     void SetAllChildrenActive(GameObject parent, bool isActive)
     {
         foreach (Transform child in parent.transform)
         {
             child.gameObject.SetActive(isActive);
-            Debug.Log(child.name);
-            // 자식의 자식들까지도 재귀적으로 활성화 시킵니다.
             SetAllChildrenActive(child.gameObject, isActive);
         }
     }
@@ -189,6 +175,7 @@ public class UiManager : MonoBehaviour
     {
         GameObject canvas = GameObject.Find("Canvas");
         SetAllChildrenActive(canvas,true);
+        volumeSlider = GameObject.Find("Canvas/OptionPannel/Sound/VolumeSlider").GetComponent<Slider>();
         startButton = GameObject.Find("Canvas/MainPannel/Start").GetComponent<Button>();
         optionButton = GameObject.Find("Canvas/MainPannel/Options").GetComponent<Button>();
         backButton =GameObject.Find("Canvas/OptionPannel/Back/BackButton").GetComponent<Button>();
@@ -197,6 +184,8 @@ public class UiManager : MonoBehaviour
         startButton.onClick.AddListener(NextScene);
         optionButton.onClick.AddListener(VisibleOptionPanel);
         backButton.onClick.AddListener(VisibleMainPanel);
+        volumeSlider.onValueChanged.AddListener(SetVolume);
+        
         
         mainPanel.SetActive(true);
         optionPanel.SetActive(false);
@@ -221,7 +210,7 @@ public class UiManager : MonoBehaviour
             SceneManager.LoadScene("NoteSystemDev2");
             isBattleScene = true;
             PlayRandomBgm();
-            FindObjectinCombat();
+            
             
             
         }
@@ -230,7 +219,7 @@ public class UiManager : MonoBehaviour
              SceneManager.LoadScene("MainScene");
              isBattleScene=false;
              PlayBgm(bgmClip);
-             FindInMainScene();
+             
         }
     }
 
