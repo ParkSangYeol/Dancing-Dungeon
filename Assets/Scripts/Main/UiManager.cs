@@ -17,13 +17,20 @@ public class UiManager : MonoBehaviour
     private AudioSource audioSource;
     private AudioSource particleSoundSource;
     private Slider volumeSlider;
+    private Button startButton;
+    private Button optionButton;
+    private Button finishButton;
+    private Button backButton;
 
     private List<AudioClip> battleBgms;
     private List<AudioClip> particleSounds;
+    private AudioClip bgmClip;
     private int currentBgmIndex;
     private bool isBattleScene;
     private GameObject player;
     private int combo;
+    
+    
     private int maxCombo=0;
     private int perfectCombo=0;
     private int greatCombo=0;
@@ -36,30 +43,19 @@ public class UiManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
         {
             Destroy(gameObject);
             return;
         }
-
-        optionPanel = GameObject.Find("Canvas/OptionPannel");
-        mainPanel = GameObject.Find("Canvas/MainPannel");
-        volumeSlider = GameObject.Find("Canvas/OptionPannel/Sound/VolumeSlider").GetComponent<Slider>();
-        if (optionPanel != null && mainPanel != null && volumeSlider != null)
-        {
-            optionPanel.SetActive(false);
-            mainPanel.SetActive(true);
-            Debug.Log("Panels and slider exist");
-        }
         audioSource = gameObject.AddComponent<AudioSource>();
         particleSoundSource = gameObject.AddComponent<AudioSource>();
-        AudioClip bgmClip = Resources.Load<AudioClip>("MainBgm");
+        bgmClip = Resources.Load<AudioClip>("MainBgm");
         if (bgmClip != null)
         {
-            audioSource.clip = bgmClip;
-            audioSource.loop = true;
-            audioSource.Play();
+            PlayBgm(bgmClip);
         }
         else
         {
@@ -82,23 +78,23 @@ public class UiManager : MonoBehaviour
 
         currentBgmIndex = -1;
         isBattleScene = false;
+        FindInMainScene();
     }
 
     void Start()
     {
-        if (volumeSlider != null)
-        {
-            volumeSlider.value = audioSource.volume;
-            volumeSlider.onValueChanged.AddListener(SetVolume);
-        }
-        else
-        {
-            Debug.LogError("Volume slider is missing");
-        }
-
         FindObjectinCombat();
     }
-
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+       if (scene.name == "MainScene")
+        {
+            // 메인 씬이 로드되었을 때 FindInMainScene 메서드를 호출합니다.
+            FindInMainScene();
+            
+        }
+        
+    }
     void Update()
     {
         if (SceneManager.GetActiveScene().name == "NoteSystemDev2")
@@ -121,6 +117,7 @@ public class UiManager : MonoBehaviour
         {
             PlayRandomBgm();
         }
+       
     }
 
     private void FindObjectinCombat()
@@ -167,6 +164,8 @@ public class UiManager : MonoBehaviour
             GameOverPanel = GameObject.Find("Canvas/GameOverPanel");
             if (GameOverPanel != null)
             {
+                finishButton = GameObject.Find("MenuButton").GetComponent<Button>();
+                finishButton.onClick.AddListener(NextScene);
                 GameOverPanel.SetActive(false);
                 Debug.Log("GameOverPanel found");
             }
@@ -175,6 +174,32 @@ public class UiManager : MonoBehaviour
                 Debug.LogError("GameOverPanel not found");
             }
         }
+    }
+    void SetAllChildrenActive(GameObject parent, bool isActive)
+    {
+        foreach (Transform child in parent.transform)
+        {
+            child.gameObject.SetActive(isActive);
+            Debug.Log(child.name);
+            // 자식의 자식들까지도 재귀적으로 활성화 시킵니다.
+            SetAllChildrenActive(child.gameObject, isActive);
+        }
+    }
+    public void FindInMainScene()
+    {
+        GameObject canvas = GameObject.Find("Canvas");
+        SetAllChildrenActive(canvas,true);
+        startButton = GameObject.Find("Canvas/MainPannel/Start").GetComponent<Button>();
+        optionButton = GameObject.Find("Canvas/MainPannel/Options").GetComponent<Button>();
+        backButton =GameObject.Find("Canvas/OptionPannel/Back/BackButton").GetComponent<Button>();
+        optionPanel = GameObject.Find("Canvas/OptionPannel");
+        mainPanel = GameObject.Find("Canvas/MainPannel");
+        startButton.onClick.AddListener(NextScene);
+        optionButton.onClick.AddListener(VisibleOptionPanel);
+        backButton.onClick.AddListener(VisibleMainPanel);
+        
+        mainPanel.SetActive(true);
+        optionPanel.SetActive(false);
     }
 
     public void VisibleOptionPanel()
@@ -191,15 +216,34 @@ public class UiManager : MonoBehaviour
 
     public void NextScene()
     {
-        SceneManager.LoadScene("NoteSystemDev2");
-        isBattleScene = true;
-        PlayRandomBgm();
+        if(SceneManager.GetActiveScene().name=="MainScene")
+        {
+            SceneManager.LoadScene("NoteSystemDev2");
+            isBattleScene = true;
+            PlayRandomBgm();
+            FindObjectinCombat();
+            
+            
+        }
+        else if(SceneManager.GetActiveScene().name == "NoteSystemDev2")
+        {
+             SceneManager.LoadScene("MainScene");
+             isBattleScene=false;
+             PlayBgm(bgmClip);
+             FindInMainScene();
+        }
     }
 
     public void SetVolume(float volume)
     {
         particleSoundSource.volume = volume * 1.5f;
         audioSource.volume = volume * 0.5f;
+    }
+    public void PlayBgm(AudioClip bgm)
+    {
+        audioSource.clip = bgm;
+        audioSource.loop = true;
+        audioSource.Play();
     }
 
     private void PlayRandomBgm()
@@ -294,7 +338,7 @@ public class UiManager : MonoBehaviour
     {
         get { return missCombo; }
     }
-    
+   
     
 
 }

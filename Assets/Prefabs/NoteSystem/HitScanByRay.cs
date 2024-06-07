@@ -70,7 +70,7 @@ public class HitScanByRay : MonoBehaviour
                 float xDifference = right_x - left_x;
                 
                 
-                if(xDifference>=-200 && xDifference<=200)  //|| /*(1820 <right_x&&right_x<2200 && left_x<1300))*/
+                if(xDifference>=-200 && xDifference<=200)  
                 {
                     Debug.Log("Perfect : Left X : "+left_x+" Right X : " + right_x+" Difference" +xDifference);
                     lefthit.collider.gameObject.SetActive(false);
@@ -78,6 +78,7 @@ public class HitScanByRay : MonoBehaviour
                     currentHit="Perfect";
                     OnPressedKey.Invoke(moveDir);
                     UiManager.instance.PlayPerfectSound();
+    
                     combo+=1;
                     UiManager.instance.SetCombo(combo,currentHit);
                 }
