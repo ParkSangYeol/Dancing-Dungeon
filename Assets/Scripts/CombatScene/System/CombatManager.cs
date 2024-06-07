@@ -169,27 +169,30 @@ namespace CombatScene
         
         private void EnemyBehavior(Vector2 targetPosition, Vector2 enemyPosition)
         {
-            EnemyController enemy = enemies[enemyPosition];
-            if (enemy.CanAttack(playerPosition))
+            EnemyController enemy;
+            if (enemies.TryGetValue(enemyPosition, out enemy))
             {
-                // 플레이어 공격
-                enemy.Attack();
-                WeaponScriptableObject enemyEquipWeapon = enemy.GetEquippedWeapon();
-                Vector2 enemyLook = targetPosition - enemyPosition;
-                if (enemyEquipWeapon.isSplash)
+                if (enemy.CanAttack(playerPosition))
                 {
-                    particleManager.PlayParticle(enemyEquipWeapon.name, enemy.unitRoot.position + new Vector3(0,ConstVariables.CharacterHeight, 0), enemyLook);
+                    // 플레이어 공격
+                    enemy.Attack();
+                    WeaponScriptableObject enemyEquipWeapon = enemy.GetEquippedWeapon();
+                    Vector2 enemyLook = targetPosition - enemyPosition;
+                    if (enemyEquipWeapon.isSplash)
+                    {
+                        particleManager.PlayParticle(enemyEquipWeapon.name, enemy.unitRoot.position + new Vector3(0,ConstVariables.CharacterHeight, 0), enemyLook);
+                    }
+                    else
+                    {
+                        particleManager.PlayParticle(enemyEquipWeapon.name, player.unitRoot.position + new Vector3(0,ConstVariables.CharacterHeight, 0), enemyLook);
+                    }
+                    player.Attacked(enemy.GetPower());
+                    cameraTween.Restart();
                 }
                 else
                 {
-                    particleManager.PlayParticle(enemyEquipWeapon.name, player.unitRoot.position + new Vector3(0,ConstVariables.CharacterHeight, 0), enemyLook);
+                    MoveEnemy(targetPosition, enemyPosition);
                 }
-                player.Attacked(enemy.GetPower());
-                cameraTween.Restart();
-            }
-            else
-            {
-                MoveEnemy(targetPosition, enemyPosition);
             }
         }
 
@@ -220,7 +223,6 @@ namespace CombatScene
                                 break;
                             }
                         }
-                        Debug.Log("Enemy: " + enemy);
                     }
                     break;
                 case AttackDirection.DIR_8:
@@ -266,7 +268,6 @@ namespace CombatScene
                     particleManager.PlayParticle(playerEquipWeapon.name, attackTarget.unitRoot.position + new Vector3(0,ConstVariables.CharacterHeight, 0), inputVec);
                 }
             }
-            Debug.Log("Return Value: " + ret);
 
             return ret;
         }
@@ -291,7 +292,7 @@ namespace CombatScene
                     int nX = (int)tileInfo.position.x + ConstVariables.dX[i];
                     int nY = (int)tileInfo.position.y + ConstVariables.dY[i];
 
-                    if (dp[nX, nY] <= tileInfo.depth + 1)
+                    if (dp[nX, nY] < tileInfo.depth + 1)
                     {
                         continue;
                     }
@@ -317,6 +318,11 @@ namespace CombatScene
                                     dp[nX, nY] = tileInfo.depth + 1;
                                     EnemyBehavior(new Vector2((int)tileInfo.position.x, (int)tileInfo.position.y), new Vector2(nX, nY));
                                     queue.Enqueue(new TileInfo(new Vector2(nX, nY), tileInfo.depth + 1));
+                                }
+                                else if (dp[nX, nY] == tileInfo.depth + 1)
+                                {
+                                    Debug.Log(nX + ", " + nY + " is enemy and depth is " + tileInfo.depth + 1);
+                                    EnemyBehavior(new Vector2((int)tileInfo.position.x, (int)tileInfo.position.y), new Vector2(nX, nY));
                                 }
                                 break;
                         }
