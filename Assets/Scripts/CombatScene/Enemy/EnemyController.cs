@@ -16,8 +16,7 @@ namespace CombatScene.Enemy
         [SerializeField]
         private Animator animator;
         [InfoBox("자식 컴포넌트의 UnityRoot를 추가해주세요.", InfoMessageType.Info)]
-        [SerializeField]
-        private Transform unitRoot;
+        public Transform unitRoot;
         
         [InfoBox("\"UnitRoot/Root/BodySet/P_Body/ArmSet/ArmR/P_RArm/P_Weapon/R_Weapon\"을 넣어주세요.", InfoMessageType.Info)] 
         [SerializeField] 
@@ -159,6 +158,11 @@ namespace CombatScene.Enemy
         public void Attack()
         {
             animator.SetTrigger("Attack");    
+        }
+        
+        public WeaponScriptableObject GetEquippedWeapon()
+        {
+            return equipWeapon;
         }
         
         public void DestroyCharacter()

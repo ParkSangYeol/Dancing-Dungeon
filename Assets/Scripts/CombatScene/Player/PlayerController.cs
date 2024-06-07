@@ -26,8 +26,7 @@ namespace  CombatScene.Player
         private CombatManager combatManager;
 
         [InfoBox("자식 컴포넌트의 UnityRoot를 추가해주세요.", InfoMessageType.Info)] 
-        [SerializeField]
-        private Transform unitRoot;
+        public Transform unitRoot;
         
         [InfoBox("\"UnitRoot/Root/BodySet/P_Body/ArmSet/ArmR/P_RArm/P_Weapon/R_Weapon\"을 넣어주세요.", InfoMessageType.Info)] 
         [SerializeField] 
@@ -153,6 +152,7 @@ namespace  CombatScene.Player
                 }
                 else
                 {
+                    StartCoroutine(BlockTo(moveVal * ConstVariables.tileSizeX * 0.2f, 0.25f));
                     combatManager.MovePlayer((Vector2)transform.position);
                 }
             }
@@ -166,6 +166,7 @@ namespace  CombatScene.Player
                 }
                 else
                 {
+                    StartCoroutine(BlockTo(moveVal * ConstVariables.tileSizeY * 0.2f, 0.25f));
                     combatManager.MovePlayer((Vector2)transform.position);
                 }
             }
@@ -200,6 +201,27 @@ namespace  CombatScene.Player
             transform.position = targetPos;
         }
 
+        IEnumerator BlockTo(Vector2 addPos, float duration)
+        {
+            Vector3 defaultPos = transform.position;
+            float dur = duration / 3;
+            yield return StartCoroutine(MoveTo(addPos, dur));
+            // 플레이어 이동 애니메이션 재생
+            animator.SetTrigger("Sit");
+            // 이동
+            Vector2 startPos = (Vector2)transform.position + addPos;
+            Vector2 targetPos = defaultPos;
+            dur *= 2;
+            float time = 0;
+            while (dur > time)
+            {
+                transform.position = Vector2.Lerp(startPos, targetPos, time / dur);
+                time += Time.deltaTime;
+                yield return null;
+            }
+
+            transform.position = defaultPos;
+        }
         public void LookAt(Vector2 watchVec)
         {
             if (watchVec.x != 0)

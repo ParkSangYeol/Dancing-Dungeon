@@ -1,8 +1,10 @@
-//#define TEST_MOVE_WITHOUT_NOTE
+#define TEST_MOVE_WITHOUT_NOTE
 using System;
 using System.Collections.Generic;
 using CombatScene.Enemy;
 using CombatScene.Player;
+using CombatScene.System.Particle;
+using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -48,13 +50,18 @@ namespace CombatScene
         [Title("Components")]
         [SerializeField]
         private MapHandler mapHandler;
-
+        [SerializeField]
+        private ParticleManager particleManager;
+        
         [InfoBox("플레이어를 넣어주세요!", InfoMessageType.Error, "IsPlayerNotSetup")]
         [SerializeField]
         private PlayerController player;
         public Vector2 playerPosition;
         private Dictionary<Vector2, EnemyController> enemies = new Dictionary<Vector2, EnemyController>();
         private HitScanByRay hitScanByRay;
+
+        private Camera mainCamera;
+        private Sequence cameraTween;
         
         private void Awake()
         {
@@ -62,7 +69,12 @@ namespace CombatScene
             {
                 mapHandler = GetComponent<MapHandler>();
             }
-
+            
+            if (particleManager == null)
+            {
+                particleManager = GetComponent<ParticleManager>();
+            }
+            
             if (player == null)
             {
                 Debug.LogError("플레이어 오브젝트가 추가되지 않았습니다!");
@@ -79,6 +91,20 @@ namespace CombatScene
 #endif
 
             playerPosition = player.transform.position;
+        }
+
+        private void Start()
+        {
+            DOTween.Init();
+            mainCamera = Camera.main;
+            float cameraSize = Camera.main.orthographicSize;
+            
+            cameraTween = DOTween.Sequence();
+            cameraTween.Append(mainCamera.DOOrthoSize( cameraSize - 0.2f, 0.1f));
+            cameraTween.Join(mainCamera.DOShakePosition(0.1f, 10f));
+            cameraTween.Append(mainCamera.DOOrthoSize(cameraSize, 0.1f));
+            cameraTween.SetAutoKill(false);
+            cameraTween.Pause();
         }
 
         public void MovePlayer(Vector2 targetPosition)
@@ -148,7 +174,18 @@ namespace CombatScene
             {
                 // 플레이어 공격
                 enemy.Attack();
+                WeaponScriptableObject enemyEquipWeapon = enemy.GetEquippedWeapon();
+                Vector2 enemyLook = targetPosition - enemyPosition;
+                if (enemyEquipWeapon.isSplash)
+                {
+                    particleManager.PlayParticle(enemyEquipWeapon.name, enemy.unitRoot.position + new Vector3(0,ConstVariables.CharacterHeight, 0), enemyLook);
+                }
+                else
+                {
+                    particleManager.PlayParticle(enemyEquipWeapon.name, player.unitRoot.position + new Vector3(0,ConstVariables.CharacterHeight, 0), enemyLook);
+                }
                 player.Attacked(enemy.GetPower());
+                cameraTween.Restart();
             }
             else
             {
@@ -165,6 +202,8 @@ namespace CombatScene
         {
             bool ret = false;
             WeaponScriptableObject weapon = player.GetEquippedWeapon();
+            EnemyController attackTarget = null;
+            
             switch (weapon.attackDirection)
             {
                 case AttackDirection.DIR_4:
@@ -175,6 +214,7 @@ namespace CombatScene
                         {
                             ret = true;
                             enemy.Attacked(player.GetPower());
+                            attackTarget = enemy;
                             if (!weapon.isSplash)
                             {
                                 break;
@@ -202,6 +242,7 @@ namespace CombatScene
                             {
                                 ret = true;
                                 enemy.Attacked(player.GetPower());
+                                attackTarget = enemy;
                                 if (!weapon.isSplash)
                                 {
                                     break;
@@ -215,6 +256,15 @@ namespace CombatScene
             if (ret)
             {
                 player.Attack();
+                WeaponScriptableObject playerEquipWeapon = player.GetEquippedWeapon();
+                if (playerEquipWeapon.isSplash)
+                {
+                    particleManager.PlayParticle(playerEquipWeapon.name, player.unitRoot.position + new Vector3(0,ConstVariables.CharacterHeight, 0), inputVec);
+                }
+                else if (attackTarget != null)
+                {
+                    particleManager.PlayParticle(playerEquipWeapon.name, attackTarget.unitRoot.position + new Vector3(0,ConstVariables.CharacterHeight, 0), inputVec);
+                }
             }
             Debug.Log("Return Value: " + ret);
 

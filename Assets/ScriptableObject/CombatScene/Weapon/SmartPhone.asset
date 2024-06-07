@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: SmartPhone
   m_EditorClassIdentifier: 
   thumbnail: {fileID: 21300000, guid: ca35444026b6c8b4da70f53d5971cea2, type: 3}
+  weaponSprite: {fileID: 0}
   name: "\uC2A4\uB9C8\uD2B8\uD3F0"
   range: 1
   power: 1
   attackDirection: 0
   isSplash: 0
+  VFX: {fileID: 198497614769362178, guid: 5a70dc33683fcf74f8d0ba2b47175f42, type: 3}
