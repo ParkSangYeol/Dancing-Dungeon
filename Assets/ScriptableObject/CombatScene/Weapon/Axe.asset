@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Axe
   m_EditorClassIdentifier: 
   thumbnail: {fileID: 21300000, guid: 2dfe88497e9659a4496b1e4ad4930776, type: 3}
-  weaponSprite: {fileID: 0}
+  weaponSprite: {fileID: 21300000, guid: 2dfe88497e9659a4496b1e4ad4930776, type: 3}
   name: "\uB9C8\uC774\uD06C"
   range: 2
   power: 2

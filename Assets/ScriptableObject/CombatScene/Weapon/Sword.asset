@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sword
   m_EditorClassIdentifier: 
   thumbnail: {fileID: 21300000, guid: effc43f162b3b4c1c88c091c360bffcf, type: 3}
-  weaponSprite: {fileID: 0}
+  weaponSprite: {fileID: 21300000, guid: effc43f162b3b4c1c88c091c360bffcf, type: 3}
   name: "\uAC80"
   range: 1
   power: 2

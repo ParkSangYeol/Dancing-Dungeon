@@ -32,7 +32,7 @@ namespace CombatScene.Enemy
             
         
         [Title("Events")] 
-        public UnityEvent OnEnemyDead;
+        public UnityEvent<Transform> OnEnemyDead;
         
         [Title("Variables")]
 
@@ -45,7 +45,7 @@ namespace CombatScene.Enemy
                 _hp = value;
                 if (_hp < 0)
                 {
-                    OnEnemyDead.Invoke();
+                    OnEnemyDead.Invoke(this.transform);
                 }
             }
         }
@@ -71,6 +71,7 @@ namespace CombatScene.Enemy
             combatManager = FindAnyObjectByType<CombatManager>();
             SetComponent();
             SetVariables();
+            SetEvent();
             SetExternalComponent();
         }
 
@@ -165,12 +166,6 @@ namespace CombatScene.Enemy
             return equipWeapon;
         }
         
-        public void DestroyCharacter()
-        {
-            // 애니메이션에서 이벤트로 호출
-            Destroy(this.gameObject);
-        }
-        
 
         #endregion
         
@@ -207,6 +202,13 @@ namespace CombatScene.Enemy
             this.equipWeapon = defaultWeapon;
         }
 
+        private void SetEvent()
+        {
+            OnEnemyDead.AddListener((enemyTransform) =>
+            {
+                animator.SetTrigger("Dead");
+            });
+        }
         private void SetExternalComponent()
         {
             if (unitRoot == null)

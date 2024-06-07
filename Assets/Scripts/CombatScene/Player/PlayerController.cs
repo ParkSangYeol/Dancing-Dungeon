@@ -39,7 +39,7 @@ namespace  CombatScene.Player
         private PlayerCharacterScriptableObject playerCharacterData;
 
         [InfoBox("default weapon은 반드시 추가해야합니다!", InfoMessageType.Error, "IsDefaultWeaponDataNotSetup")] [SerializeField]
-        private WeaponScriptableObject defaultWeapon;
+        public WeaponScriptableObject defaultWeapon;
 
         [Title("Events")] 
         public UnityEvent OnPlayerDead;
@@ -267,6 +267,7 @@ namespace  CombatScene.Player
         {
             return equipWeapon.power + playerCharacterData.defaultPower;
         }
+
     #endregion
 
     #region Init
