@@ -16,14 +16,17 @@ public class PieChart : MonoBehaviour
     public TextMeshProUGUI badText;
     public TextMeshProUGUI missText;
 
+     
     // 각 결과를 나타내는 값
     private int perfectCount;
     private int greatCount;
     private int badCount;
     private int missCount;
 
+    [SerializeField]private CombatSceneUIManager combatSceneUIManager;
     void Start()
     {
+    
     }
 
     private void OnEnable()
@@ -33,10 +36,10 @@ public class PieChart : MonoBehaviour
 
     private void ShowPieChart()
     {
-        perfectCount = UiManager.instance.PerfectCombo;
-        greatCount = UiManager.instance.GreatCombo;
-        badCount = UiManager.instance.BadCombo;
-        missCount = UiManager.instance.MissCombo;
+        perfectCount = combatSceneUIManager.GetPerfectCombo;
+        greatCount = combatSceneUIManager.GetGreatCombo;
+        badCount = combatSceneUIManager.GetBadCombo;
+        missCount = combatSceneUIManager.GetMissCombo;
         float total = perfectCount + greatCount + badCount + missCount;
 
         if (total == 0)

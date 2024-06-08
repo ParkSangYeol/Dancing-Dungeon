@@ -7,6 +7,32 @@ public class NoteParticleSystem : MonoBehaviour
 {
     
     private Dictionary<string, ParticleSystem> particleSystems;
+    private List<AudioClip> battleBgms;
+    Dictionary<string, AudioClip> particleSounds;
+    private AudioSource battleBgmsource;
+    private AudioSource particlSource;
+    private void Awake() {
+    particleSounds = new Dictionary<string, AudioClip>
+    {
+        { "Perfect", Resources.Load<AudioClip>("PerfectTiming") },
+        { "Great", Resources.Load<AudioClip>("GreatTiming") },
+        { "Bad", Resources.Load<AudioClip>("BadTiming") },
+        { "Miss", Resources.Load<AudioClip>("MissTiming") }
+    };
+        battleBgms = new List<AudioClip>
+        {
+            Resources.Load<AudioClip>("BattleBgm"),
+            Resources.Load<AudioClip>("BattleBgm2"),
+        };
+        battleBgmsource = gameObject.AddComponent<AudioSource>();
+        particlSource = gameObject.AddComponent<AudioSource>();
+        battleBgmsource.volume = PlayerPrefs.GetFloat("AllVolume");
+        particlSource.volume = PlayerPrefs.GetFloat("AllVolume");
+    }
+        
+        
+    
+   
     void Start()
     {
         var particleSystemArray = GetComponentsInChildren<ParticleSystem>(true);
@@ -60,10 +86,14 @@ public class NoteParticleSystem : MonoBehaviour
                 ps.Stop();
             }
 
-            
+            Debug.Log(timing);
             particleSystems[timing].Play();
+            Debug.Log(particleSystems[timing].name);
+            particlSource.PlayOneShot(particleSounds[timing]);
+            
         }
         
     }
+    
     
 }

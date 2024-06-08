@@ -15,6 +15,7 @@ public class HitScanByRay : MonoBehaviour
     [SerializeField] 
     private NoteParticleSystem noteParticleSystem;
     private int combo=0;
+    [SerializeField] CombatSceneUIManager combatSceneUIManager;
     
 
     public UnityEvent<Vector2> OnPressedKey;
@@ -32,10 +33,21 @@ public class HitScanByRay : MonoBehaviour
             Debug.LogError("UIParticleManager를 설정하지 않았습니다.");
             return;
         }
-        
         moveAction = playerInput.actions["Move"];
         moveAction.started += CheckNote;
-        OnTimingHit.AddListener(noteParticleSystem.PlayParticle);
+        if (OnTimingHit != null && noteParticleSystem != null)
+        {
+            OnTimingHit.AddListener(noteParticleSystem.PlayParticle);
+        }
+        else
+        {
+            Debug.LogWarning("OnTimingHit or NoteParticleSystem is not set or has been destroyed.");
+        }
+
+        
+    }
+    private void Start() {
+       
     }
 
     void Update()
@@ -46,25 +58,63 @@ public class HitScanByRay : MonoBehaviour
 
     private void OnEnable()
     {
-        moveAction.Enable();
-    }
+        if (playerInput != null)
+        {
+            moveAction = playerInput.actions["Move"];
+            if (moveAction != null)
+            {
+                moveAction.started += CheckNote;
+                moveAction.Enable();
+            }
+            else
+            {
+                Debug.LogWarning("Move action is not found in PlayerInput.");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("PlayerInput is not set.");
+        }
+}
+
 
     private void OnDisable()
     {
-        moveAction.Disable();
+        if (moveAction != null)
+        {
+            moveAction.Disable();
+        }
+        OnTimingHit.RemoveAllListeners();
     }
 
-    void CheckNote(InputAction.CallbackContext context)
+  void CheckNote(InputAction.CallbackContext context)
+{
+    // 현재 게임 오브젝트가 유효한지 확인
+    if (this == null || !gameObject.activeInHierarchy)
     {
-        Vector2 moveDir = context.ReadValue<Vector2>();
+        Debug.LogWarning("HitScanByRay is not active or has been destroyed.");
+        return;
+    }
 
-        RaycastHit2D lefthit = Physics2D.Raycast(transform.position + Vector3.right * 300, Vector2.left, Mathf.Infinity, 1 << LayerMask.NameToLayer("LeftNote"));
-        RaycastHit2D righthit = Physics2D.Raycast(transform.position + Vector3.left * 300, Vector2.right, Mathf.Infinity, 1 << LayerMask.NameToLayer("RightNote"));
-        
-        if (lefthit.collider != null && righthit.collider != null) 
+    Vector2 moveDir = context.ReadValue<Vector2>();
+
+    RaycastHit2D lefthit = Physics2D.Raycast(transform.position + Vector3.right * 300, Vector2.left, Mathf.Infinity, 1 << LayerMask.NameToLayer("LeftNote"));
+    RaycastHit2D righthit = Physics2D.Raycast(transform.position + Vector3.left * 300, Vector2.right, Mathf.Infinity, 1 << LayerMask.NameToLayer("RightNote"));
+
+    // 레이캐스트 충돌체 확인
+    if (lefthit.collider == null && righthit.collider == null) return;
+    if (lefthit.collider != null && righthit.collider != null) 
+    {
+        if ((lefthit.collider.CompareTag("LeftNote") && righthit.collider.CompareTag("RightNote") ) || 
+            (lefthit.collider.CompareTag("RightNote") && righthit.collider.CompareTag("LeftNote")))
         {
-            if ((lefthit.collider.CompareTag("LeftNote") && righthit.collider.CompareTag("RightNote") )|| (lefthit.collider.CompareTag("RightNote") && righthit.collider.CompareTag("LeftNote")))
+            float left_x = lefthit.collider.transform.position.x;
+            float right_x = righthit.collider.transform.position.x;
+            float xDifference = right_x - left_x;
+                
+            if(xDifference >= -200 && xDifference <= 200)
             {
+<<<<<<< Updated upstream
                 float left_x = lefthit.collider.transform.position.x;
                 float right_x = righthit.collider.transform.position.x;
                 float xDifference = right_x - left_x;
@@ -111,9 +161,48 @@ public class HitScanByRay : MonoBehaviour
                 Debug.Log(currentHit);
                 OnTimingHit.Invoke(currentHit);
                 
+=======
+                Debug.Log("Perfect : Left X : " + left_x + " Right X : " + right_x + " Difference " + xDifference);
+                OnTimingHit?.Invoke(currentHit);
+                lefthit.collider.gameObject.SetActive(false);
+                righthit.collider.gameObject.SetActive(false);
+                currentHit = "Perfect";
+                OnPressedKey?.Invoke(moveDir);
+                combo += 1;
+                combatSceneUIManager.SetCombo(combo, currentHit);
+>>>>>>> Stashed changes
             }
+            else if ((xDifference > 200 && xDifference <= 600) || (xDifference < -200 && xDifference >= -600))
+            {
+                currentHit = "Great";
+                OnTimingHit?.Invoke(currentHit);
+                OnPressedKey?.Invoke(moveDir);
+                lefthit.collider.gameObject.SetActive(false);
+                righthit.collider.gameObject.SetActive(false);
+                combo += 1;
+                combatSceneUIManager.SetCombo(combo, currentHit);
+            }
+            else if (xDifference > 600 && xDifference <= 1300)
+            {
+                OnTimingHit?.Invoke(currentHit);
+                currentHit = "Bad";
+                combo = 0;
+                combatSceneUIManager.SetCombo(combo, currentHit);
+            }
+            else if (xDifference > 1300)
+            {
+                OnTimingHit?.Invoke(currentHit);
+                Debug.Log("Miss : Left X : " + left_x + " Right X : " + right_x + " Difference " + xDifference);
+                currentHit = "Miss";
+                combo = 0;
+                combatSceneUIManager.SetCombo(combo, currentHit);
+            }
+                
+            Debug.Log(currentHit);
         }
     }
+}
+
     public int GetCombo()
     {
         return combo;
