@@ -1,9 +1,15 @@
 using System.Collections.Generic;
-using CombatScene;
 using CombatScene.Player;
+using Microsoft.Unity.VisualStudio.Editor;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
+using Image = UnityEngine.UI.Image;
+using CombatScene;
+using Unity.VisualScripting;
+
 
 public class CombatSceneUIManager : MonoBehaviour
 {
@@ -16,6 +22,15 @@ public class CombatSceneUIManager : MonoBehaviour
     private int currentBgmIndex;
     [SerializeField]private GameObject player;
     public string nextScene;
+    [SerializeField]private GameObject weaponPannel;
+
+
+    private Image weaponimage;
+    private TextMeshProUGUI powerText;
+    private TextMeshProUGUI weaponName;
+    private TextMeshProUGUI range;
+    private TextMeshProUGUI splashText;
+
 
     private int combo=0;
     private int maxCombo=0;
@@ -39,6 +54,13 @@ public class CombatSceneUIManager : MonoBehaviour
             Resources.Load<AudioClip>("BattleBgm2"),
         };
         overPannel.SetActive(false);
+        weaponimage=weaponPannel.transform.Find("WeaponImage").GetComponent<Image>();
+        powerText=weaponPannel.transform.Find("Power").GetComponent<TextMeshProUGUI>();
+        range = weaponPannel.transform.Find("Range").GetComponent<TextMeshProUGUI>();
+        weaponName= weaponPannel.transform.Find("WeaponName").GetComponent<TextMeshProUGUI>();
+        splashText =weaponPannel.transform.Find("Splash").GetComponent<TextMeshProUGUI>();
+        SetWeapon(player.GetComponent<PlayerController>().GetEquippedWeapon());
+        
     }
 
     // Update is called once per frame
@@ -134,6 +156,22 @@ public class CombatSceneUIManager : MonoBehaviour
     public void GoMain()
     {
         SceneManager.LoadScene(nextScene);
+    }
+    public void SetWeapon(WeaponScriptableObject weaponScriptableObject)
+    {
+        weaponimage.sprite=weaponScriptableObject.thumbnail;
+        powerText.text = "Power : " + weaponScriptableObject.power;
+        weaponName.text ="Weapon : "+weaponScriptableObject.name;
+        range.text ="Range : "+ weaponScriptableObject.range;
+        if(weaponScriptableObject.isSplash)
+        {
+            splashText.text ="다중공격";
+        }
+        else
+        {
+            splashText.text="단일 공격";
+        }
+        
     }
     
 }

@@ -68,7 +68,7 @@ public class EnemySpawnSystem : MonoBehaviour
 
             int spawnX = (int)playerPosition.x + GetRandomValue(range);
             int spawnY = (int)playerPosition.y+GetRandomValue(range);
-            ;
+            
             
             Vector2 spawnPosition = new Vector2(spawnX, spawnY);
 
@@ -82,6 +82,10 @@ public class EnemySpawnSystem : MonoBehaviour
                     enemy.GetComponent<RectTransform>().anchoredPosition = spawnPosition;
                     currentPoolIndex = (currentPoolIndex + 1) % enemyPool.Count;
                     return; // 적 스폰 성공 시 함수 종료
+                }
+                else
+                {
+                    return;
                 }
             }
 
@@ -101,5 +105,9 @@ public class EnemySpawnSystem : MonoBehaviour
     {
         int randomValue = Random.Range(0, 2); // 0 또는 1을 반환
         return (randomValue == 0) ? -range : range; // 0이면 -range, 1이면 range 반환
+    }
+    void ReturnEnemyToPool(GameObject enemy)
+    {
+         enemy.SetActive(false);
     }
 }

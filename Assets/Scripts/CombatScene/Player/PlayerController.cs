@@ -24,6 +24,9 @@ namespace  CombatScene.Player
         [InfoBox("GameManager의 CombatManager를 추가해주세요!", InfoMessageType.Error, "IsCombatManagerNotSetup")]
         [SerializeField]
         private CombatManager combatManager;
+        [InfoBox("GameManager의 CombatManager를 추가해주세요!", InfoMessageType.Error, "IsCombatManagerNotSetup")]
+        [SerializeField]
+        private CombatSceneUIManager combatSceneUIManager;
 
         [InfoBox("자식 컴포넌트의 UnityRoot를 추가해주세요.", InfoMessageType.Info)] 
         public Transform unitRoot;
@@ -251,6 +254,8 @@ namespace  CombatScene.Player
 
             equipWeapon = weapon;
             weaponSpriteRenderer.sprite = equipWeapon.weaponSprite;
+            combatSceneUIManager.SetWeapon(weapon);
+            
         }
         
         public WeaponScriptableObject GetEquippedWeapon()

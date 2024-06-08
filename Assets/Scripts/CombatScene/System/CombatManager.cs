@@ -1,4 +1,4 @@
-#define TEST_MOVE_WITHOUT_NOTE
+//#define TEST_MOVE_WITHOUT_NOTE
 using System;
 using System.Collections.Generic;
 using CombatScene.Enemy;
