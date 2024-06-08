@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 506b092065d862243a59ef240314a9a3, type: 3}
-  m_Name: Unarmed
+  m_Name: Broom
   m_EditorClassIdentifier: 
-  thumbnail: {fileID: 2554473656886179314, guid: d24756e433435b249be5737019648d69, type: 3}
-  weaponSprite: {fileID: 0}
-  name: "\uB9E8\uC190"
+  thumbnail: {fileID: 21300000, guid: 7801a064f32cfec4f890ad53e4adaef6, type: 3}
+  weaponSprite: {fileID: 21300000, guid: 7801a064f32cfec4f890ad53e4adaef6, type: 3}
+  name: "\uBE57\uC790\uB8E8"
   range: 1
-  power: 0
+  power: 1
   attackDirection: 1
   isSplash: 0
-  VFX: {fileID: 19834362, guid: 5bf2d5976d852ed4498de3bc1560c2c4, type: 3}
+  VFX: {fileID: 19882722, guid: bdd863b78369dec439957ed5ae73f6d2, type: 3}

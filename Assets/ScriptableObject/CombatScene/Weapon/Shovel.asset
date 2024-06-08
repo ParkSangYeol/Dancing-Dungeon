@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 506b092065d862243a59ef240314a9a3, type: 3}
-  m_Name: Axe
+  m_Name: Shovel
   m_EditorClassIdentifier: 
-  thumbnail: {fileID: 21300000, guid: 2dfe88497e9659a4496b1e4ad4930776, type: 3}
-  weaponSprite: {fileID: 21300000, guid: 2dfe88497e9659a4496b1e4ad4930776, type: 3}
-  name: "\uB9C8\uC774\uD06C"
-  range: 2
-  power: 2
+  thumbnail: {fileID: 21300000, guid: 025d688f2c478f041aa17baa58c6719a, type: 3}
+  weaponSprite: {fileID: 21300000, guid: 025d688f2c478f041aa17baa58c6719a, type: 3}
+  name: "\uB208\uC0BD"
+  range: 1
+  power: 1
   attackDirection: 1
-  isSplash: 1
-  VFX: {fileID: 198605777990419100, guid: ed6b8128683f4094f92b7a556760b26b, type: 3}
+  isSplash: 0
+  VFX: {fileID: 198820429938409348, guid: 84929031d8e1715478c3cd076bf4de74, type: 3}

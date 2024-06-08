@@ -19,4 +19,4 @@ MonoBehaviour:
   power: 2
   attackDirection: 1
   isSplash: 0
-  VFX: {fileID: 19872524, guid: 4889039938a567444827eafcfbc2b267, type: 3}
+  VFX: {fileID: 19872524, guid: 024209c16f024cc42a9e8252a9cc71d7, type: 3}

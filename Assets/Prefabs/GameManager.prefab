@@ -89,6 +89,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: faa2cf08f72b1fc47973b6065e356832, type: 2}
   - {fileID: 11400000, guid: 5291e03fce16c5348b8a6de1068cc605, type: 2}
   - {fileID: 11400000, guid: 1eaecf4a1fd488940bedee6bee5868b5, type: 2}
+  - {fileID: 11400000, guid: f2a40e60b332ad644be9068deb10e5b8, type: 2}
+  - {fileID: 11400000, guid: bfce4f394e8ced743acbee1b0606b283, type: 2}
+  - {fileID: 11400000, guid: 4b91932d719e6f74988cd22d2a2b4b3c, type: 2}
+  - {fileID: 11400000, guid: e5e022242be28c545b0830205f09ef90, type: 2}
+  - {fileID: 11400000, guid: d79a7738103c6344d947a7ba1f88071b, type: 2}
   poolPosition: {x: -1000, y: -1000, z: 0}
 --- !u!114 &303837332041483112
 MonoBehaviour:

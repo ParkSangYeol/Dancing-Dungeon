@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c7f00f6befcfd74bb3c950bf5b78d75, type: 3}
-  m_Name: WeaponAxe
+  m_Name: WeaponPan
   m_EditorClassIdentifier: 
   itemType: 3
   value: 10
-  weaponScriptableObject: {fileID: 11400000, guid: 8e03f9f0ffc9981499df1cfbd1434244, type: 2}
-  prefab: {fileID: 128748679248521783, guid: 00f6fb3a2e1af774596887ba2adc7c6e, type: 3}
+  weaponScriptableObject: {fileID: 11400000, guid: 692e5b5364f024642b3c6f94c0d4f392, type: 2}
+  prefab: {fileID: 128748679248521783, guid: d326686d3e753be47ab0f4dbe9a2cec8, type: 3}
   probability: 10
