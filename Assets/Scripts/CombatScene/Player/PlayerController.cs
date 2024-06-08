@@ -240,6 +240,7 @@ namespace  CombatScene.Player
             hp -= Mathf.Max(1, damage - shield);
             if (hp > 0)
             {
+                
                 // 캐릭터가 아직 생존 중.
                 // animator.SetTrigger("Hit");
             }

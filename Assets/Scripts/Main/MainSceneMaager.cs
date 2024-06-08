@@ -24,6 +24,10 @@ public class MainSceneMaager : MonoBehaviour
         {
             slider.value = PlayerPrefs.GetFloat("AllVolume");
         }
+        else
+        {
+            slider.value = 0.8f;
+        }
         mainPannel.SetActive(true);
         optionPannel.SetActive(false);
         loadBgm();

@@ -27,7 +27,12 @@ public class EnemySpawnSystem : MonoBehaviour
     void Start()
     {
         enemyPool = new List<GameObject>();
+        if (combatManager == null)
+        {
+            combatManager = GameObject.Find("GameManager").GetComponent<CombatManager>();
+        }
         InstantiateEnemy();
+         
     }
 
     void Update()
@@ -42,6 +47,7 @@ public class EnemySpawnSystem : MonoBehaviour
 
     void InstantiateEnemy()
     {
+
         // 풀에 프리팹 등록
         for (int i = 0; i < poolSize; i++)
         {
@@ -50,6 +56,7 @@ public class EnemySpawnSystem : MonoBehaviour
                 GameObject enemy = Instantiate(enemyPrefab);
                 enemy.SetActive(false);
                 enemyPool.Add(enemy);
+                
             }
         }
     }
@@ -72,7 +79,7 @@ public class EnemySpawnSystem : MonoBehaviour
             
             Vector2 spawnPosition = new Vector2(spawnX, spawnY);
 
-
+            Debug.Log(spawnPosition);
             if (CheckSpawn(spawnPosition))
             {
                 if (currentPoolIndex < enemyPool.Count)
@@ -80,19 +87,19 @@ public class EnemySpawnSystem : MonoBehaviour
                     GameObject enemy = enemyPool[currentPoolIndex];
                     enemy.SetActive(true);
                     enemy.GetComponent<RectTransform>().anchoredPosition = spawnPosition;
+                    EnemyController enemyManager = enemy.GetComponent<EnemyController>();
+                    enemyManager.SetCombatManager(combatManager);
+                    enemyManager .AddEnemyToSpawn();
+                    enemy.GetComponent<EnemyController>().SetVariables();
                     currentPoolIndex = (currentPoolIndex + 1) % enemyPool.Count;
-                    return; // 적 스폰 성공 시 함수 종료
-                }
-                else
-                {
-                    return;
+                    return; 
                 }
             }
 
-            attempts++; // 시도 횟수 증가
+            
         }
 
-        // 최대 시도 횟수를 초과하면 스폰 포기
+       
         Debug.Log("Failed to find a valid spawn position after " + maxAttempts + " attempts.");
     }
 
@@ -105,9 +112,5 @@ public class EnemySpawnSystem : MonoBehaviour
     {
         int randomValue = Random.Range(0, 2); // 0 또는 1을 반환
         return (randomValue == 0) ? -range : range; // 0이면 -range, 1이면 range 반환
-    }
-    void ReturnEnemyToPool(GameObject enemy)
-    {
-         enemy.SetActive(false);
     }
 }

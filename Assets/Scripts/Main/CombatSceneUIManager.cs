@@ -23,6 +23,7 @@ public class CombatSceneUIManager : MonoBehaviour
     [SerializeField]private GameObject player;
     public string nextScene;
     [SerializeField]private GameObject weaponPannel;
+    [SerializeField]private GameObject shieldPannel;
 
 
     private Image weaponimage;
@@ -60,19 +61,22 @@ public class CombatSceneUIManager : MonoBehaviour
         weaponName= weaponPannel.transform.Find("WeaponName").GetComponent<TextMeshProUGUI>();
         splashText =weaponPannel.transform.Find("Splash").GetComponent<TextMeshProUGUI>();
         SetWeapon(player.GetComponent<PlayerController>().GetEquippedWeapon());
+        SetShield();
+        SetHpUi();
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (hpPannel!= null && player != null)
-        {
-            SetHpUi();
-        }
+        SetHpUi();
+        SetShield();
         if(player.GetComponent<PlayerController>().hp <=0 || Input.GetKeyDown(KeyCode.Q))
         {
+        
             overPannel.SetActive(true);
+            Time.timeScale=0;
+            
         }
         if(!combatAudioSource.isPlaying)
         {
@@ -112,6 +116,10 @@ public class CombatSceneUIManager : MonoBehaviour
             }
         }
     }
+    public void SetShield()
+    {
+        shieldPannel.GetComponentInChildren<TextMeshProUGUI>().text = player.GetComponent<PlayerController>().shield.ToString();
+    }
     public void SetCombo(int com,string timing)
     {
         combo = com;
@@ -131,6 +139,7 @@ public class CombatSceneUIManager : MonoBehaviour
         }
         else if(timing == "Miss")
         {
+            combo=0;
             missCombo++;
         }
     }
@@ -159,8 +168,12 @@ public class CombatSceneUIManager : MonoBehaviour
     }
     public void SetWeapon(WeaponScriptableObject weaponScriptableObject)
     {
+        if(weaponScriptableObject==null)
+        {
+            weaponScriptableObject= player.GetComponent<PlayerController>().GetEquippedWeapon();
+        }
         weaponimage.sprite=weaponScriptableObject.thumbnail;
-        powerText.text = "Power : " + weaponScriptableObject.power;
+        powerText.text = "Power : " + weaponScriptableObject.power + " + "+player.GetComponent<PlayerController>().GetPower();
         weaponName.text ="Weapon : "+weaponScriptableObject.name;
         range.text ="Range : "+ weaponScriptableObject.range;
         if(weaponScriptableObject.isSplash)

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace CombatScene
 {
@@ -9,6 +10,9 @@ namespace CombatScene
         
         [SerializeField] 
         private ItemListScriptableObject itemLists;
+        [SerializeField]
+        private CombatSceneUIManager combatSceneUIManager;
+                
         
         public void PlaceItem(Vector2 placePosition, ItemScriptableObject itemScriptableObject)
         {
@@ -39,6 +43,7 @@ namespace CombatScene
 
         public ItemScriptableObject GetWeaponItem(WeaponScriptableObject weaponScriptableObject)
         {
+            
             return itemLists.GetWeaponItem(weaponScriptableObject);
         }
 

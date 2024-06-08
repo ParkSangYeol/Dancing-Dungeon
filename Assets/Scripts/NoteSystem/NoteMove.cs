@@ -13,15 +13,17 @@ public class NoteMove : MonoBehaviour
     public UnityEvent<string> OnMiss;
     private NoteParticleSystem noteParticleSystem;
     public float delay = 0.3f;
+    private CombatSceneUIManager combatSceneUIManager;
 
     private bool isWaitingForInput = false;
     private PlayerInput playerInput;
     private InputAction moveAction;
+    private int miss =0;
 
     void Start()
     {
-        gameManager = RhythmGameManager.Instance;
-
+        
+        combatSceneUIManager=GameObject.Find("CombatUiManager").GetComponent<CombatSceneUIManager>();
         noteParticleSystem = GameObject.Find("Canvas/UIParticle").GetComponent<NoteParticleSystem>();
         if (noteParticleSystem != null)
         {
@@ -75,6 +77,7 @@ public class NoteMove : MonoBehaviour
             if (this.gameObject.CompareTag("LeftNote"))
             {
                 OnMiss.Invoke("Miss");
+                combatSceneUIManager.SetCombo(miss,"Miss");
             }
         }
         
