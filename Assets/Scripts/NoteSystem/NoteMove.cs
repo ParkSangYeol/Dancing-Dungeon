@@ -70,21 +70,14 @@ public class NoteMove : MonoBehaviour
         yield return new WaitForSeconds(0.10f);
         if (gameObject.activeInHierarchy)
         {
-<<<<<<< Updated upstream
-            gameObject.SetActive(false);
-            // if (this.gameObject.CompareTag("LeftNote"))
-            // {
-            //     OnMiss.Invoke("Miss");
-            //     UiManager.instance.SetCombo(0,"Miss");
-            // }
-=======
+
             if (this.gameObject.CompareTag("LeftNote"))
             {
                 OnMiss.Invoke("Miss");
             }
             gameObject.SetActive(false);
             
->>>>>>> Stashed changes
+
         }
         
     }

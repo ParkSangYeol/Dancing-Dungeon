@@ -114,54 +114,7 @@ public class HitScanByRay : MonoBehaviour
                 
             if(xDifference >= -200 && xDifference <= 200)
             {
-<<<<<<< Updated upstream
-                float left_x = lefthit.collider.transform.position.x;
-                float right_x = righthit.collider.transform.position.x;
-                float xDifference = right_x - left_x;
-                
-                
-                if(xDifference>=-200 && xDifference<=200)  
-                {
-                    Debug.Log("Perfect : Left X : "+left_x+" Right X : " + right_x+" Difference" +xDifference);
-                    lefthit.collider.gameObject.SetActive(false);
-                    righthit.collider.gameObject.SetActive(false);
-                    currentHit="Perfect";
-                    OnPressedKey.Invoke(moveDir);
-                    UiManager.instance.PlayPerfectSound();
-    
-                    combo+=1;
-                    UiManager.instance.SetCombo(combo,currentHit);
-                }
-                else if((xDifference>200 && xDifference<=600) || (xDifference < -200 && xDifference >= -600))
-                {
-                   currentHit = "Great";
-                   OnPressedKey.Invoke(moveDir);// 플레이어 이동
-                   UiManager.instance.PlayGreatSound();//효과음 발동
-                   lefthit.collider.gameObject.SetActive(false);//노트 비활성화
-                   righthit.collider.gameObject.SetActive(false);//노트 비활성화
-                   combo+=1;
-                   UiManager.instance.SetCombo(combo,currentHit);
-                }
-                else if(xDifference>600 && xDifference<=1300)
-                {
-                    currentHit = "Bad";
-                    UiManager.instance.PlayBadSound();
-                    combo=0;
-                    UiManager.instance.SetCombo(combo,currentHit);
-                }
-                else if(xDifference>1300)
-                {
-                    Debug.Log("Miss : Left X : "+left_x+" Right X : " + right_x+" Difference" +xDifference);
-                    currentHit = "Miss";
-                    UiManager.instance.PlayMissSound();
-                    combo=0;
-                    UiManager.instance.SetCombo(combo,currentHit);
-                }
-                
-                Debug.Log(currentHit);
-                OnTimingHit.Invoke(currentHit);
-                
-=======
+
                 Debug.Log("Perfect : Left X : " + left_x + " Right X : " + right_x + " Difference " + xDifference);
                 OnTimingHit?.Invoke(currentHit);
                 lefthit.collider.gameObject.SetActive(false);
@@ -170,7 +123,7 @@ public class HitScanByRay : MonoBehaviour
                 OnPressedKey?.Invoke(moveDir);
                 combo += 1;
                 combatSceneUIManager.SetCombo(combo, currentHit);
->>>>>>> Stashed changes
+
             }
             else if ((xDifference > 200 && xDifference <= 600) || (xDifference < -200 && xDifference >= -600))
             {
