@@ -16,6 +16,7 @@ TagManager:
   - RightBad
   - LeftBad
   - DeleteZone
+  - StreetLamps
   layers:
   - Default
   - TransparentFX
