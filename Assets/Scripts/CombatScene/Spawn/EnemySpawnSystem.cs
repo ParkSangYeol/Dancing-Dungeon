@@ -27,7 +27,12 @@ public class EnemySpawnSystem : MonoBehaviour
     void Start()
     {
         enemyPool = new List<GameObject>();
+        if (combatManager == null)
+        {
+            combatManager = GameObject.Find("GameManager").GetComponent<CombatManager>();
+        }
         InstantiateEnemy();
+         
     }
 
     void Update()
@@ -42,6 +47,7 @@ public class EnemySpawnSystem : MonoBehaviour
 
     void InstantiateEnemy()
     {
+
         // 풀에 프리팹 등록
         for (int i = 0; i < poolSize; i++)
         {
@@ -50,6 +56,7 @@ public class EnemySpawnSystem : MonoBehaviour
                 GameObject enemy = Instantiate(enemyPrefab);
                 enemy.SetActive(false);
                 enemyPool.Add(enemy);
+                
             }
         }
     }
@@ -68,11 +75,11 @@ public class EnemySpawnSystem : MonoBehaviour
 
             int spawnX = (int)playerPosition.x + GetRandomValue(range);
             int spawnY = (int)playerPosition.y+GetRandomValue(range);
-            ;
+            
             
             Vector2 spawnPosition = new Vector2(spawnX, spawnY);
 
-
+            Debug.Log(spawnPosition);
             if (CheckSpawn(spawnPosition))
             {
                 if (currentPoolIndex < enemyPool.Count)
@@ -80,15 +87,19 @@ public class EnemySpawnSystem : MonoBehaviour
                     GameObject enemy = enemyPool[currentPoolIndex];
                     enemy.SetActive(true);
                     enemy.GetComponent<RectTransform>().anchoredPosition = spawnPosition;
+                    EnemyController enemyManager = enemy.GetComponent<EnemyController>();
+                    enemyManager.SetCombatManager(combatManager);
+                    enemyManager .AddEnemyToSpawn();
+                    enemy.GetComponent<EnemyController>().SetVariables();
                     currentPoolIndex = (currentPoolIndex + 1) % enemyPool.Count;
-                    return; // 적 스폰 성공 시 함수 종료
+                    return; 
                 }
             }
 
-            attempts++; // 시도 횟수 증가
+            
         }
 
-        // 최대 시도 횟수를 초과하면 스폰 포기
+       
         Debug.Log("Failed to find a valid spawn position after " + maxAttempts + " attempts.");
     }
 

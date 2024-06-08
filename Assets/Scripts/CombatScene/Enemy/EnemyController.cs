@@ -29,6 +29,7 @@ namespace CombatScene.Enemy
         [InfoBox("default weapon은 반드시 추가해야합니다!", InfoMessageType.Error, "IsDefaultWeaponDataNotSetup")]
         [SerializeField]
         private WeaponScriptableObject defaultWeapon;
+        [InfoBox("WeaponScriptableObject은 반드시 추가해야합니다!", InfoMessageType.Error, "WeaponScriptableObject")]
             
         
         [Title("Events")] 
@@ -46,6 +47,7 @@ namespace CombatScene.Enemy
                 if (_hp < 0)
                 {
                     OnEnemyDead.Invoke(this.transform);
+                    
                 }
             }
         }
@@ -109,6 +111,11 @@ namespace CombatScene.Enemy
         }
 
         #region About Combat
+        public void AddEnemyToSpawn()
+        {
+
+            combatManager.AddEnemy(transform.position,this);
+        }
         
         public void Attacked(float damage)
         {
@@ -119,6 +126,7 @@ namespace CombatScene.Enemy
                 // animator.SetTrigger("Hit");
             }
             Debug.Log(gameObject.name + "'s hp is " + hp);
+           
         }
 
         public void EquipWeapon(WeaponScriptableObject weapon)
@@ -175,17 +183,22 @@ namespace CombatScene.Enemy
         {
             if (combatManager == null)
             {
-                combatManager = transform.Find("GameManager").GetComponent<CombatManager>();
+                combatManager = GameObject.Find("GameManager").GetComponent<CombatManager>();
             }
-            combatManager.AddEnemy(transform.position, this);
+            
+            //combatManager.AddEnemy(transform.position, this);
             
             if (animator == null)
             {
                 animator = transform.GetChild(0).GetComponent<Animator>();
             }
         }
+        public void SetCombatManager(CombatManager combatmanager)
+        {
+            this.combatManager=combatmanager;
+        }
 
-        private void SetVariables()
+        public void SetVariables()
         {
             if (characterData == null)
             {
@@ -207,6 +220,7 @@ namespace CombatScene.Enemy
             OnEnemyDead.AddListener((enemyTransform) =>
             {
                 animator.SetTrigger("Dead");
+                _hp=hp;
             });
         }
         private void SetExternalComponent()
@@ -242,5 +256,6 @@ namespace CombatScene.Enemy
         }
         
         #endregion
+        
     }
 }

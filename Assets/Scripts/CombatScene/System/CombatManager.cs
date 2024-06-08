@@ -1,4 +1,4 @@
-#define TEST_MOVE_WITHOUT_NOTE
+//#define TEST_MOVE_WITHOUT_NOTE
 using System;
 using System.Collections.Generic;
 using CombatScene.Enemy;
@@ -21,6 +21,7 @@ namespace CombatScene
         [SerializeField]
         private PlayerInput playerInput;
         private InputAction moveAction;
+       
         
         private void PlayerBehavior(InputAction.CallbackContext context)
         {
@@ -55,7 +56,9 @@ namespace CombatScene
         private ParticleManager particleManager;
         [SerializeField]
         private ItemManager itemManager;
-        
+        [InfoBox("CombatSceneUIManager 넣어주세요!", InfoMessageType.Error, "CombatSceneUIManagerNotSetup")]
+        [SerializeField] 
+        private CombatSceneUIManager combatSceneUIManager;
         [InfoBox("플레이어를 넣어주세요!", InfoMessageType.Error, "IsPlayerNotSetup")]
         [SerializeField]
         private PlayerController player;
@@ -125,12 +128,15 @@ namespace CombatScene
                 {
                     case ItemType.HEAL:
                         player.hp += dropItem.itemScriptableObject.value;
+                        
                         break;
                     case ItemType.POWER_UP:
                         player.power += dropItem.itemScriptableObject.value;
+                        
                         break;
                     case ItemType.SHIELD:
                         player.shield += dropItem.itemScriptableObject.value;
+                        
                         break;
                     case ItemType.WEAPON:
                     {
@@ -183,7 +189,10 @@ namespace CombatScene
 
         public void AddEnemy(Vector2 position, EnemyController enemy)
         {
-            enemies.Add(position, enemy);
+            if(!enemies.TryAdd(position, enemy))
+            {
+                return;
+            }
             mapHandler.SetMapObject(position, ObjectType.Enemy);
             
             enemy.OnEnemyDead.AddListener((enemyTransform) =>

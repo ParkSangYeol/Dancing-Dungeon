@@ -12,7 +12,7 @@ namespace CombatScene.Player
 
         [Title("캐릭터 정보")] 
         public string name;
-        [Range(10, 20)]
+        [Range(10, 1000)]
         public int hp;
         [Range(1, 3)]
         public float defaultPower;

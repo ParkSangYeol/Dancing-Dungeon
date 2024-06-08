@@ -4009,7 +4009,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   combatManager: {fileID: 0}
-  animator: {fileID: 0}
+  animator: {fileID: 2777716492069531356}
   unitRoot: {fileID: 4799138903739954941}
   weaponSpriteRenderer: {fileID: 0}
   characterData: {fileID: 11400000, guid: 16a4da5a7da6bce44abca63c5b3515d4, type: 2}

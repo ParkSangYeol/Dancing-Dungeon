@@ -4016,7 +4016,19 @@ MonoBehaviour:
   defaultWeapon: {fileID: 11400000, guid: faa2cf08f72b1fc47973b6065e356832, type: 2}
   OnEnemyDead:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &9117921895101837780
 GameObject:
   m_ObjectHideFlags: 0
