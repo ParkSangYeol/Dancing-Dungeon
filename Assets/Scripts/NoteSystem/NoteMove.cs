@@ -57,7 +57,7 @@ public class NoteMove : MonoBehaviour
         }
     }
    
-    void OnTriggerExit2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
          if (other.gameObject.CompareTag("LeftNote") && this.CompareTag("RightNote") || (other.gameObject.CompareTag("RightNote") && this.CompareTag("LeftNote")))
         {

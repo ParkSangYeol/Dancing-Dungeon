@@ -164,6 +164,7 @@ public class CombatSceneUIManager : MonoBehaviour
     }
     public void GoMain()
     {
+        
         SceneManager.LoadScene(nextScene);
     }
     public void SetWeapon(WeaponScriptableObject weaponScriptableObject)

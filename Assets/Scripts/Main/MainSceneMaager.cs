@@ -20,6 +20,7 @@ public class MainSceneMaager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        Time.timeScale=1;
         if(PlayerPrefs.HasKey("AllVolume"))
         {
             slider.value = PlayerPrefs.GetFloat("AllVolume");
