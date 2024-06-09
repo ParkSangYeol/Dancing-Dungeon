@@ -69,5 +69,9 @@ public class MainSceneMaager : MonoBehaviour
         PlayerPrefs.SetFloat("AllVolume",slider.value);
         PlayerPrefs.Save();
     }
+    public void ExitGame()
+    {
+        UnityEditor.EditorApplication.isPlaying = false;
+    }
 
 }

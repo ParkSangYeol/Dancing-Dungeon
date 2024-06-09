@@ -11,6 +11,7 @@ public class NoteParticleSystem : MonoBehaviour
     Dictionary<string, AudioClip> particleSounds;
     private AudioSource battleBgmsource;
     private AudioSource particlSource;
+    [SerializeField] CombatSceneUIManager combatSceneUIManager;
     private void Awake() {
     particleSounds = new Dictionary<string, AudioClip>
     {
@@ -77,6 +78,7 @@ public class NoteParticleSystem : MonoBehaviour
     }
     public void PlayParticle(string timing)
     {
+       
        
        if (particleSystems.ContainsKey(timing))
         {

@@ -120,28 +120,38 @@ public class CombatSceneUIManager : MonoBehaviour
     {
         shieldPannel.GetComponentInChildren<TextMeshProUGUI>().text = player.GetComponent<PlayerController>().shield.ToString();
     }
-    public void SetCombo(int com,string timing)
+    public void SetCombo(int com, string timing)
     {
-        combo = com;
-        comboPannel.GetComponentInChildren<TextMeshProUGUI>().text="Combo : "+combo;
-        maxCombo = Mathf.Max(maxCombo,combo);
-        if(timing =="Perfect")
+ 
+        int previousCombo = combo;
+
+        if (timing == "Miss")
         {
-            perfectCombo++;
-        }
-        else if(timing =="Great")
-        {
-            greatCombo++;
-        }
-        else if(timing == "Bad")
-        {
-            badCombo++;
-        }
-        else if(timing == "Miss")
-        {
-            combo=0;
+            combo = 0; // Miss 발생 시 콤보 초기화
             missCombo++;
+            Debug.Log("Combo Reset to 0 due to Miss");
         }
+        else
+        {
+            combo = com; // 다른 경우에 콤보 업데이트
+            maxCombo = Mathf.Max(maxCombo, combo);
+
+            if (timing == "Perfect")
+            {
+                perfectCombo++;
+            }
+            else if (timing == "Great")
+            {
+                greatCombo++;
+            }
+            else if (timing == "Bad")
+            {
+                badCombo++;
+            }
+        }
+
+        // 콤보 패널 업데이트
+        comboPannel.GetComponentInChildren<TextMeshProUGUI>().text = "Combo : " + combo;
     }
      public int GetPerfectCombo
     {
@@ -174,7 +184,7 @@ public class CombatSceneUIManager : MonoBehaviour
             weaponScriptableObject= player.GetComponent<PlayerController>().GetEquippedWeapon();
         }
         weaponimage.sprite=weaponScriptableObject.thumbnail;
-        powerText.text = "Power : " + weaponScriptableObject.power + " + "+player.GetComponent<PlayerController>().GetPower();
+        powerText.text = "Power : " + weaponScriptableObject.power;
         weaponName.text ="Weapon : "+weaponScriptableObject.name;
         range.text ="Range : "+ weaponScriptableObject.range;
         if(weaponScriptableObject.isSplash)
