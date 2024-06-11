@@ -14,7 +14,6 @@ public class HitScanByRay : MonoBehaviour
     [InfoBox("UiParticle 게임 오브젝트를 넣어주세요!", InfoMessageType.Error, "UiParticleSystem NotSet")]
     [SerializeField] 
     private NoteParticleSystem noteParticleSystem;
-    private int combo=0;
     [SerializeField] CombatSceneUIManager combatSceneUIManager;
     
 
@@ -121,8 +120,7 @@ public class HitScanByRay : MonoBehaviour
                 righthit.collider.gameObject.SetActive(false);
                 currentHit = "Perfect";
                 OnPressedKey?.Invoke(moveDir);
-                combo += 1;
-                combatSceneUIManager.SetCombo(combo, currentHit);
+                combatSceneUIManager.SetCombo(currentHit);
 
             }
             else if ((xDifference > 200 && xDifference <= 600) || (xDifference < -200 && xDifference >= -600))
@@ -132,23 +130,22 @@ public class HitScanByRay : MonoBehaviour
                 OnPressedKey?.Invoke(moveDir);
                 lefthit.collider.gameObject.SetActive(false);
                 righthit.collider.gameObject.SetActive(false);
-                combo += 1;
-                combatSceneUIManager.SetCombo(combo, currentHit);
+               
+                combatSceneUIManager.SetCombo(currentHit);
             }
             else if (xDifference > 600 && xDifference <= 1300)
             {
                 OnTimingHit?.Invoke(currentHit);
                 currentHit = "Bad";
-                combo = 0;
-                combatSceneUIManager.SetCombo(combo, currentHit);
+                
+                combatSceneUIManager.SetCombo(currentHit);
             }
             else if (xDifference > 1300)
             {
                 OnTimingHit?.Invoke(currentHit);
                 Debug.Log("Miss : Left X : " + left_x + " Right X : " + right_x + " Difference " + xDifference);
                 currentHit = "Miss";
-                combo = 0;
-                combatSceneUIManager.SetCombo(combo, currentHit);
+                combatSceneUIManager.SetCombo(currentHit);
             }
                 
             Debug.Log(currentHit);
@@ -156,10 +153,6 @@ public class HitScanByRay : MonoBehaviour
     }
 }
 
-    public int GetCombo()
-    {
-        return combo;
-    }
 
     #region Odin 
 

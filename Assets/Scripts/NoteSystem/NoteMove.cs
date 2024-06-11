@@ -68,19 +68,24 @@ public class NoteMove : MonoBehaviour
             
         }
     }
-   IEnumerator WaitSetActive()
+    IEnumerator WaitSetActive()
     {
         yield return new WaitForSeconds(0.10f);
+
         if (gameObject.activeInHierarchy)
-        {
+        {   
+            HandleMiss();
             gameObject.SetActive(false);
-            if (this.gameObject.CompareTag("LeftNote"))
-            {
-                OnMiss.Invoke("Miss");
-                combatSceneUIManager.SetCombo(miss,"Miss");
-            }
+
+            // miss 발생 시 콤보를 0으로 설정하고 이벤트 호출
+            
         }
-        
+    }
+
+    private void HandleMiss()
+    {
+        OnMiss.Invoke("Miss"); // miss 발생 시 이벤트 호출
+        combatSceneUIManager.SetCombo("Miss");
     }
    
 

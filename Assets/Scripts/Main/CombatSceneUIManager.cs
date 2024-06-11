@@ -120,10 +120,9 @@ public class CombatSceneUIManager : MonoBehaviour
     {
         shieldPannel.GetComponentInChildren<TextMeshProUGUI>().text = player.GetComponent<PlayerController>().shield.ToString();
     }
-    public void SetCombo(int com, string timing)
+    public void SetCombo(string timing)
     {
  
-        int previousCombo = combo;
 
         if (timing == "Miss")
         {
@@ -133,7 +132,7 @@ public class CombatSceneUIManager : MonoBehaviour
         }
         else
         {
-            combo = com; // 다른 경우에 콤보 업데이트
+            combo++; // 다른 경우에 콤보 업데이트
             maxCombo = Mathf.Max(maxCombo, combo);
 
             if (timing == "Perfect")
@@ -184,7 +183,7 @@ public class CombatSceneUIManager : MonoBehaviour
             weaponScriptableObject= player.GetComponent<PlayerController>().GetEquippedWeapon();
         }
         weaponimage.sprite=weaponScriptableObject.thumbnail;
-        powerText.text = "Power : " + weaponScriptableObject.power;
+        powerText.text = "Power : " + weaponScriptableObject.power+" + "+player.GetComponent<PlayerController>().GetPower();
         weaponName.text ="Weapon : "+weaponScriptableObject.name;
         range.text ="Range : "+ weaponScriptableObject.range;
         if(weaponScriptableObject.isSplash)

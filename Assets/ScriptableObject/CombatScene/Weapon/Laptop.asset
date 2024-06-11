@@ -17,6 +17,6 @@ MonoBehaviour:
   name: "\uB178\uD2B8\uBD81"
   range: 1
   power: 1
-  attackDirection: 1
+  attackDirection: 0
   isSplash: 0
   VFX: {fileID: 198930719547079570, guid: a5a56a9099a6a3d4eae66ad2ee693db8, type: 3}

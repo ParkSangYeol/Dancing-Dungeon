@@ -7,7 +7,6 @@ namespace CombatScene.Enemy
         
         public void DestroyCharacter()
         {
-            // 애니메이션에서 이벤트로 호출
             StopAllCoroutines();
             gameObject.transform.parent.gameObject.SetActive(false);
         }

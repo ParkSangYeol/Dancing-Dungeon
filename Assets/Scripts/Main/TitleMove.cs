@@ -17,7 +17,7 @@ public class TitleMove : MonoBehaviour
         Vector2 initialPosition = title.anchoredPosition;
 
         // 화면 상단에서 살짝 튕기는 위치 계산
-        Vector2 bouncePosition = new Vector2(initialPosition.x, initialPosition.y + 200);
+        Vector2 bouncePosition = new Vector2(initialPosition.x, initialPosition.y + 500);
 
         // 목표 위치 설정
         Vector2 targetPosition = new Vector2(initialPosition.x, initialPosition.y);

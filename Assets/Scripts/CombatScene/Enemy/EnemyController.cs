@@ -72,19 +72,23 @@ namespace CombatScene.Enemy
         {
             combatManager = FindAnyObjectByType<CombatManager>();
             SetComponent();
-            SetVariables();
+            //SetVariables(); // 스폰할때마다 해주는 것으로 해결, 시간이 지남에 따라 적군이 강해지도록 하기위함.
             SetEvent();
             SetExternalComponent();
+            Debug.Log("Enemy Power : " + this._power);
         }
 
         public void MoveCharacter(Vector2 targetPosition)
         {
-            Vector2 moveVec = transform.position - (Vector3)targetPosition;
-            if (Mathf.Abs(moveVec.x) != 0)
+            if(_hp>0)
             {
-                unitRoot.localScale = new Vector3(Mathf.Sign(moveVec.x), 1, 1);
+                Vector2 moveVec = transform.position - (Vector3)targetPosition;
+                if (Mathf.Abs(moveVec.x) != 0)
+                {
+                    unitRoot.localScale = new Vector3(Mathf.Sign(moveVec.x), 1, 1);
+                }
+                StartCoroutine(MoveTo(targetPosition, 0.25f));
             }
-            StartCoroutine(MoveTo(targetPosition, 0.25f));
         }
         
         /// <summary>
@@ -214,7 +218,14 @@ namespace CombatScene.Enemy
             this.shield = characterData.shield;
             this.equipWeapon = defaultWeapon;
         }
-
+        public void SetVariabePowerup(int upCapcity)// 스폰때마다 일정 조건마다 강해지도록함.
+        {
+            this.hp = characterData.hp+upCapcity+upCapcity;
+            this.power = characterData.defaultPower+upCapcity;
+            this.shield = characterData.shield+upCapcity;
+            this.equipWeapon = defaultWeapon;
+            
+        }
         private void SetEvent()
         {
             OnEnemyDead.AddListener((enemyTransform) =>
