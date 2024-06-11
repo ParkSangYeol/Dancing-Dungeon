@@ -22,7 +22,7 @@ public class TextButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExit
         }
     }
 
-    // 마우스가 버튼에 들어왔을 때 호출되는 메서드
+   
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (buttonText != null)
@@ -31,7 +31,7 @@ public class TextButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExit
         }
     }
 
-    // 마우스가 버튼에서 나갔을 때 호출되는 메서드
+    
     public void OnPointerExit(PointerEventData eventData)
     {
         if (buttonText != null)

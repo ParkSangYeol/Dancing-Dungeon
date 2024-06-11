@@ -31,6 +31,7 @@ public class CombatSceneUIManager : MonoBehaviour
     private TextMeshProUGUI weaponName;
     private TextMeshProUGUI range;
     private TextMeshProUGUI splashText;
+    private TextMeshProUGUI directionText;
 
 
     private int combo=0;
@@ -60,6 +61,7 @@ public class CombatSceneUIManager : MonoBehaviour
         range = weaponPannel.transform.Find("Range").GetComponent<TextMeshProUGUI>();
         weaponName= weaponPannel.transform.Find("WeaponName").GetComponent<TextMeshProUGUI>();
         splashText =weaponPannel.transform.Find("Splash").GetComponent<TextMeshProUGUI>();
+        directionText =weaponPannel.transform.Find("Direction").GetComponent<TextMeshProUGUI>();
         SetWeapon(player.GetComponent<PlayerController>().GetEquippedWeapon());
         SetShield();
         SetHpUi();
@@ -194,6 +196,22 @@ public class CombatSceneUIManager : MonoBehaviour
         {
             splashText.text="단일 공격";
         }
+        switch(weaponScriptableObject.attackDirection)
+        {
+            case AttackDirection.DIR_8:
+                directionText.text = "8방향";
+                break;
+            case AttackDirection.DIR_4:
+                directionText.text = "4방향";
+                break;
+            default:
+                directionText.text = "에러";
+                break;
+
+        }
+
+        
+        
         
     }
     
