@@ -47,10 +47,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dae9393599d500479a6f46a42571ded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerInput: {fileID: 0}
   mapHandler: {fileID: 8773557150969571933}
   particleManager: {fileID: 3930489484063137679}
   itemManager: {fileID: 303837332041483112}
+  combatSceneUIManager: {fileID: 0}
   player: {fileID: 0}
   playerPosition: {x: 0, y: 0}
 --- !u!114 &8773557150969571933
@@ -95,6 +95,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e5e022242be28c545b0830205f09ef90, type: 2}
   - {fileID: 11400000, guid: d79a7738103c6344d947a7ba1f88071b, type: 2}
   poolPosition: {x: -1000, y: -1000, z: 0}
+  normalAtkSound: {fileID: 8300000, guid: f0bda0fb28e55094da8c606b16ebe906, type: 3}
+  criticalAtkSound: {fileID: 8300000, guid: c1f5a50d7df1fa64b819a6ac10ddb54b, type: 3}
 --- !u!114 &303837332041483112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108,3 +110,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemLists: {fileID: 11400000, guid: ff1ddfc41ea2deb459eb86e9e14ffc2f, type: 2}
+  combatSceneUIManager: {fileID: 0}

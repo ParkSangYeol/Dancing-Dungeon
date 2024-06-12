@@ -1,20 +1,37 @@
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace CombatScene.System.Particle
 {
     public class CombatParticle : MonoBehaviour
     {
-        private ParticleSystem particleSystem;
-        public ParticleManager particlePoolManager;
+        public ParticleSystem particleSystem { get; private set; }
 
-        private void Start()
+        public AudioSource audioSource { get; private set; }
+
+        public CombatParticlePool combatParticlePool;
+
+        public bool isSave;
+
+        private void Awake()
         {
             particleSystem = GetComponent<ParticleSystem>();
+            audioSource = GetComponent<AudioSource>();
         }
-
-        private void OnParticleSystemStopped()
+        
+        private void ReturnParticleSystem()
         {
-            particlePoolManager.ReturnToPool(particleSystem);
+            combatParticlePool.ReturnToPool(this);
+        }
+        
+        public void PlaySFX(AudioClip audioClip)
+        {
+            if (audioSource == null) 
+                return;
+            audioSource.pitch = Random.Range(0.8f, 1.2f);
+            audioSource.PlayOneShot(audioClip);
+            Invoke("ReturnParticleSystem", particleSystem.main.duration);
         }
     }
 

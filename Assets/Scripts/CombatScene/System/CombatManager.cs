@@ -34,7 +34,7 @@ namespace CombatScene
             }
             player.LookAt(inputVec);
             
-            if (!TryPlayerAttackAble(inputVec))
+            if (!TryPlayerAttackAble(inputVec, true))
             {
                 // 공격 대상 없음
                 player.MovePlayer(inputVec);
@@ -213,7 +213,7 @@ namespace CombatScene
         }
 
         
-        public void PlayerBehavior(Vector2 inputVec)
+        public void PlayerBehavior(Vector2 inputVec/*, string hitResult = "normal"*/)
         {
             if (!(inputVec.x == 0 && Mathf.Abs(inputVec.y) == 1) && !(inputVec.y == 0 && Mathf.Abs(inputVec.x) == 1))
             {  
@@ -223,8 +223,9 @@ namespace CombatScene
             }
             
             player.LookAt(inputVec);
-            
-            if (!TryPlayerAttackAble(inputVec))
+            bool isCrit = false; // bool isCrit = hitResult.Equals("Perfect");
+                
+            if (!TryPlayerAttackAble(inputVec, isCrit))
             {
                 // 공격 대상 없음
                 player.MovePlayer(inputVec);
@@ -247,14 +248,8 @@ namespace CombatScene
                     enemy.Attack();
                     WeaponScriptableObject enemyEquipWeapon = enemy.GetEquippedWeapon();
                     Vector2 enemyLook = targetPosition - enemyPosition;
-                    if (enemyEquipWeapon.isSplash)
-                    {
-                        particleManager.PlayParticle(enemyEquipWeapon.name, enemy.unitRoot.position + new Vector3(0,ConstVariables.CharacterHeight, 0), enemyLook);
-                    }
-                    else
-                    {
-                        particleManager.PlayParticle(enemyEquipWeapon.name, player.unitRoot.position + new Vector3(0,ConstVariables.CharacterHeight, 0), enemyLook);
-                    }
+                    
+                    particleManager.PlayParticle(enemyEquipWeapon.name, player.unitRoot.position + new Vector3(0,ConstVariables.CharacterHeight, 0), false);
                     player.Attacked(enemy.GetPower());
                     cameraTween.Restart();
                 }
@@ -270,11 +265,12 @@ namespace CombatScene
         /// </summary>
         /// <param name="inputVec">플레이어의 입력 방향. 반드시 x, y 둘 중 하나만 절대값이 1이여야 함</param>
         /// <returns>적을 공격한 경우 true, 공격하지 못한경우 false 반환</returns>
-        private bool TryPlayerAttackAble(Vector2 inputVec)
+        private bool TryPlayerAttackAble(Vector2 inputVec, bool isCrit)
         {
             bool ret = false;
             WeaponScriptableObject weapon = player.GetEquippedWeapon();
             EnemyController attackTarget = null;
+            WeaponScriptableObject playerEquipWeapon = player.GetEquippedWeapon();
             
             switch (weapon.attackDirection)
             {
@@ -291,6 +287,7 @@ namespace CombatScene
                             {
                                 break;
                             }
+                            particleManager.PlayParticle(playerEquipWeapon.name,  enemy.unitRoot.position + new Vector3(0,ConstVariables.CharacterHeight, 0), isCrit);
                         }
                     }
                     break;
@@ -318,6 +315,7 @@ namespace CombatScene
                                 {
                                     break;
                                 }
+                                particleManager.PlayParticle(playerEquipWeapon.name,  enemy.unitRoot.position + new Vector3(0,ConstVariables.CharacterHeight, 0), isCrit);
                             }
                         }
                     }
@@ -327,14 +325,12 @@ namespace CombatScene
             if (ret)
             {
                 player.Attack();
-                WeaponScriptableObject playerEquipWeapon = player.GetEquippedWeapon();
                 if (playerEquipWeapon.isSplash)
                 {
-                    particleManager.PlayParticle(playerEquipWeapon.name, player.unitRoot.position + new Vector3(0,ConstVariables.CharacterHeight, 0), inputVec);
                 }
                 else if (attackTarget != null)
                 {
-                    particleManager.PlayParticle(playerEquipWeapon.name, attackTarget.unitRoot.position + new Vector3(0,ConstVariables.CharacterHeight, 0), inputVec);
+                    particleManager.PlayParticle(playerEquipWeapon.name, attackTarget.unitRoot.position + new Vector3(0,ConstVariables.CharacterHeight, 0), isCrit);
                 }
             }
 

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Coffee.UIExtensions;
+using Sirenix.OdinInspector;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -8,28 +9,27 @@ namespace CombatScene.System.Particle
 {
     public class ParticleManager : MonoBehaviour
     {
-        private Dictionary<string, ParticleSystem> particlePools = new Dictionary<string, ParticleSystem>();
+        private Dictionary<string, CombatParticlePool> particlePools = new Dictionary<string, CombatParticlePool>();
 
         [SerializeField] 
         private List<WeaponScriptableObject> weaponList;
 
         [SerializeField] 
         private Vector3 poolPosition;
+
+        [SerializeField] 
+        [AssetsOnly] 
+        private AudioClip normalAtkSound;
+        [SerializeField] 
+        [AssetsOnly] 
+        private AudioClip criticalAtkSound;
         
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
             foreach (var weapon in weaponList)
             {
-                ParticleSystem particleSystem = Instantiate(weapon.VFX, transform);
-                particleSystem.GetComponent<Renderer>().sortingLayerName = "UpOfCharacter";
-                particleSystem.transform.position = poolPosition;
-                particleSystem.gameObject.layer = LayerMask.NameToLayer("CombatVFX");
-                particleSystem.gameObject.SetActive(false);
-
-                CombatParticle combatParticle = particleSystem.AddComponent<CombatParticle>();
-                combatParticle.particlePoolManager = this;
-                particlePools.Add(weapon.name, particleSystem);
+                particlePools.Add(weapon.name ,new CombatParticlePool(weapon.VFX, poolPosition, this, 3));
             }
         }
 
@@ -38,26 +38,35 @@ namespace CombatScene.System.Particle
         /// </summary>
         /// <param name="weaponName">생성할 파티클의 무기 이름</param>
         /// <param name="spawnPosition">파티클을 생성할 위치</param>
-        /// <param name="rotation">플레이어의 입력 방향</param>
-        public void PlayParticle(string weaponName, Vector3 spawnPosition, Vector2 inputVec)
+        /// <param name="isCrit">크리티컬 여부</param>
+        public void PlayParticle(string weaponName, Vector3 spawnPosition, bool isCrit = false)
         {
-            Debug.Log("Start Play Particle");
-            ParticleSystem particleSystem;
-            if (particlePools.TryGetValue(weaponName, out particleSystem))
+            CombatParticlePool combatParticlePool;
+            if (particlePools.TryGetValue(weaponName, out combatParticlePool))
             {
-                Debug.Log("Find Particle + " + particleSystem);
-                particleSystem.transform.position = spawnPosition;
-                particleSystem.gameObject.SetActive(true);
-                particleSystem.Play();
+                CombatParticle combatParticle = combatParticlePool.GetCombatParticle();
+                combatParticle.transform.position = spawnPosition;
+                combatParticle.gameObject.SetActive(true);
+                combatParticle.particleSystem.Play();
+                if (isCrit)
+                {
+                    combatParticle.PlaySFX(criticalAtkSound);
+                }
+                else
+                {
+                    combatParticle.PlaySFX(normalAtkSound);
+                }
             }
         }
 
-        public void ReturnToPool(ParticleSystem particleSystem)
+        public ParticleSystem InstantiateParticle(ParticleSystem VFX)
         {
-            Debug.Log("Return To Pool " + particleSystem);
-            particleSystem.gameObject.SetActive(false);
-            particleSystem.transform.position = poolPosition;
-            particleSystem.Stop();
-        } 
+            return Instantiate(VFX, transform);
+        }
+        
+        public void DestroyParticle(GameObject particle)
+        {
+            Destroy(particle);
+        }
     }
 }
