@@ -1,8 +1,5 @@
-using System;
 using System.Collections.Generic;
-using Coffee.UIExtensions;
 using Sirenix.OdinInspector;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace CombatScene.System.Particle
@@ -13,6 +10,11 @@ namespace CombatScene.System.Particle
 
         [SerializeField] 
         private List<WeaponScriptableObject> weaponList;
+        
+        [SerializeField]
+        [AssetsOnly]
+        private ParticleSystem itemParticlePrefab;
+        private ItemParticle itemParticle;
 
         [SerializeField] 
         private Vector3 poolPosition;
@@ -23,6 +25,9 @@ namespace CombatScene.System.Particle
         [SerializeField] 
         [AssetsOnly] 
         private AudioClip criticalAtkSound;
+        [SerializeField] 
+        [AssetsOnly] 
+        private AudioClip itemInteractSound;
         
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
@@ -31,6 +36,8 @@ namespace CombatScene.System.Particle
             {
                 particlePools.Add(weapon.name ,new CombatParticlePool(weapon.VFX, poolPosition, this, 3));
             }
+
+            SetItemParticle();
         }
 
         /// <summary>
@@ -59,9 +66,25 @@ namespace CombatScene.System.Particle
             }
         }
 
+        public void PlayItemInteractParticle(Vector3 targetPosition)
+        {
+            itemParticle.transform.position = targetPosition;
+            itemParticle.gameObject.SetActive(true);
+            itemParticle.PlayParticle();
+        }
+
         public ParticleSystem InstantiateParticle(ParticleSystem VFX)
         {
             return Instantiate(VFX, transform);
+        }
+
+        public void SetItemParticle()
+        {
+            ParticleSystem particle = InstantiateParticle(itemParticlePrefab);
+            particle.gameObject.SetActive(false);
+            particle.transform.position = poolPosition;
+            itemParticle = particle.GetComponent<ItemParticle>();
+            itemParticle.audioSource.clip = itemInteractSound;
         }
         
         public void DestroyParticle(GameObject particle)
