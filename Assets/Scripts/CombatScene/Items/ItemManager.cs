@@ -1,4 +1,7 @@
+using System;
 using System.Collections.Generic;
+using CombatScene.System.Particle;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -12,8 +15,18 @@ namespace CombatScene
         private ItemListScriptableObject itemLists;
         [SerializeField]
         private CombatSceneUIManager combatSceneUIManager;
-                
-        
+        [SerializeField]
+        [InfoBox("ParticleManager를 추가해주세요!", InfoMessageType.Error, "IsParticleManagerSetUp")]
+        private ParticleManager particleManager;
+
+        private void Start()
+        {
+            if (particleManager == null)
+            {
+                particleManager = GameObject.Find("GameManager").GetComponent<ParticleManager>();
+            }
+        }
+
         public void PlaceItem(Vector2 placePosition, ItemScriptableObject itemScriptableObject)
         {
             if (droppedItems.ContainsKey(placePosition))
@@ -36,6 +49,7 @@ namespace CombatScene
             {
                 droppedItems.Remove(position);
                 combatSceneUIManager.SetWeapon(null);
+                particleManager.PlayItemInteractParticle(position);
                 return true;
             }
 
@@ -53,6 +67,15 @@ namespace CombatScene
             ItemScriptableObject dropItem = itemLists.GetRandomItem();
             PlaceItem(placePosition, dropItem);
         }
+
+        #region Odin
+
+        private bool IsParticleManagerSetUp()
+        {
+            return particleManager == null;
+        }
+
+        #endregion
     }
     
 }

@@ -18,5 +18,7 @@ namespace CombatScene.Player
         public float defaultPower;
         [Range(0, 2)]
         public float shield;
+        [AssetsOnly]
+        public AudioClip moveToBlockSFX;
     }
 }

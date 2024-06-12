@@ -17,3 +17,4 @@ MonoBehaviour:
   hp: 895
   defaultPower: 2
   shield: 1
+  moveToBlockSFX: {fileID: 8300000, guid: 3bba5ea733c4fb044a8722aae20b6586, type: 3}

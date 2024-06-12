@@ -1,3 +1,4 @@
+//#define TEST_MOVE_WITHOUT_NOTE
 using System.Collections;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -72,7 +73,9 @@ namespace CombatScene.Enemy
         {
             combatManager = FindAnyObjectByType<CombatManager>();
             SetComponent();
-            //SetVariables(); // 스폰할때마다 해주는 것으로 해결, 시간이 지남에 따라 적군이 강해지도록 하기위함.
+#if TEST_MOVE_WITHOUT_NOTE
+            SetVariables(); // 스폰할때마다 해주는 것으로 해결, 시간이 지남에 따라 적군이 강해지도록 하기위함.
+#endif
             SetEvent();
             SetExternalComponent();
             Debug.Log("Enemy Power : " + this._power);
@@ -190,7 +193,9 @@ namespace CombatScene.Enemy
                 combatManager = GameObject.Find("GameManager").GetComponent<CombatManager>();
             }
             
-            //combatManager.AddEnemy(transform.position, this);
+#if TEST_MOVE_WITHOUT_NOTE
+            combatManager.AddEnemy(transform.position, this);
+#endif
             
             if (animator == null)
             {

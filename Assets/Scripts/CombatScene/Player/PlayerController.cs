@@ -4,6 +4,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using Random = UnityEngine.Random;
 
 namespace  CombatScene.Player
 {
@@ -15,8 +16,10 @@ namespace  CombatScene.Player
         [InfoBox("components의 경우 따로 설정하지 않으면 GetComponent를 호출합니다.", InfoMessageType.Info)]
         [SerializeField]
         private PlayerInput playerInput;
-
-        [SerializeField] private Animator animator;
+        [SerializeField]
+        private AudioSource audioSource;
+        [SerializeField] 
+        private Animator animator;
 
         [InfoBox("GameManager의 MapHandler를 추가해주세요!", InfoMessageType.Error, "IsMapHandlerNotSetup")] [SerializeField]
         private MapHandler mapHandler;
@@ -28,7 +31,7 @@ namespace  CombatScene.Player
         [SerializeField]
         private CombatSceneUIManager combatSceneUIManager;
 
-        [InfoBox("자식 컴포넌트의 UnityRoot를 추가해주세요.", InfoMessageType.Info)] 
+        [InfoBox("자식 컴포넌트의 UnityRoot를 추가해주세요.", InfoMessageType.Info, "IsUnitRootNotSetup")] 
         public Transform unitRoot;
         
         [InfoBox("\"UnitRoot/Root/BodySet/P_Body/ArmSet/ArmR/P_RArm/P_Weapon/R_Weapon\"을 넣어주세요.", InfoMessageType.Info)] 
@@ -206,6 +209,9 @@ namespace  CombatScene.Player
 
         IEnumerator BlockTo(Vector2 addPos, float duration)
         {
+            audioSource.pitch = Random.Range(0.8f, 1.2f);
+            audioSource.PlayOneShot(playerCharacterData.moveToBlockSFX);
+            
             Vector3 defaultPos = transform.position;
             float dur = duration / 3;
             yield return StartCoroutine(MoveTo(addPos, dur));
@@ -290,7 +296,11 @@ namespace  CombatScene.Player
             {
                 animator = transform.GetChild(0).GetComponent<Animator>();
             }
-            
+
+            if (audioSource == null)
+            {
+                audioSource = GetComponent<AudioSource>();
+            }
         }
 
         private void SetVariables()
@@ -367,7 +377,11 @@ namespace  CombatScene.Player
             {
                 return combatManager == null;
             }
-            
+
+            private bool IsUnitRootNotSetup()
+            {
+                return unitRoot == null;
+            }
     #endregion
         
     }
