@@ -251,7 +251,10 @@ namespace CombatScene
                     
                     particleManager.PlayParticle(enemyEquipWeapon.name, player.unitRoot.position + new Vector3(0,ConstVariables.CharacterHeight, 0), false);
                     player.Attacked(enemy.GetPower());
-                    cameraTween.Restart();
+                    if (!cameraTween.IsPlaying())
+                    {
+                        cameraTween.Restart();
+                    }
                 }
                 else
                 {
