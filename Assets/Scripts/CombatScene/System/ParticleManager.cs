@@ -68,6 +68,8 @@ namespace CombatScene.System.Particle
 
         public void PlayItemInteractParticle(Vector3 targetPosition)
         {
+            targetPosition.x += ConstVariables.tileSizeX / 2;
+            targetPosition.y += ConstVariables.tileSizeY / 2;
             itemParticle.transform.position = targetPosition;
             itemParticle.gameObject.SetActive(true);
             itemParticle.PlayParticle();
