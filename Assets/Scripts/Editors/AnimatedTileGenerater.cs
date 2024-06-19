@@ -11,7 +11,7 @@ public class AnimatedTileGenerator : MonoBehaviour
 
     [FolderPath]
     public string saveFolderPath;
-    
+#if UNITY_EDITOR
     [Button]
     public void GenerateAnimatedTiles()
     {
@@ -42,4 +42,5 @@ public class AnimatedTileGenerator : MonoBehaviour
 
         Debug.Log("AnimatedTile 생성 완료!");
     }
+#endif
 }

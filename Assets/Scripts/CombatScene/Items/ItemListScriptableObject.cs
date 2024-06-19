@@ -52,6 +52,7 @@ namespace CombatScene
             }
         }
 
+#if UNITY_EDITOR
         [Button]
         public void GetItemLists()
         {
@@ -79,5 +80,6 @@ namespace CombatScene
                 }
             }
         }
+#endif
     }
 }

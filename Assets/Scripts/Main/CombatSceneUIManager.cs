@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using CombatScene.Player;
-using Microsoft.Unity.VisualStudio.Editor;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

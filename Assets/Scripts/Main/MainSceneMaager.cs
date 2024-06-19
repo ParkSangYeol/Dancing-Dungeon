@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -77,7 +76,11 @@ public class MainSceneMaager : MonoBehaviour
     }
     public void ExitGame()
     {
+#if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
     }
      private IEnumerator FadeIn()
     {
