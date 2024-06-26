@@ -52,7 +52,7 @@ public class CombatSceneUIManager : MonoBehaviour
         battleBgms = new List<AudioClip>
         {
             Resources.Load<AudioClip>("BattleBgm"),
-            Resources.Load<AudioClip>("BattleBgm2"),
+            
         };
         overPannel.SetActive(false);
         weaponimage=weaponPannel.transform.Find("WeaponImage").GetComponent<Image>();
@@ -81,7 +81,7 @@ public class CombatSceneUIManager : MonoBehaviour
         }
         if(!combatAudioSource.isPlaying)
         {
-            PlayRandomBgm();
+            PlayBgmOneShot();
         }
         
     }
@@ -99,6 +99,13 @@ public class CombatSceneUIManager : MonoBehaviour
         combatAudioSource.clip = battleBgms[currentBgmIndex];
         combatAudioSource.loop = false;
         combatAudioSource.Play();
+    }
+    private void PlayBgmOneShot()
+    {
+        combatAudioSource.clip=battleBgms[0];
+        combatAudioSource.loop = false;
+        combatAudioSource.Play();
+
     }
     
     public void SetHpUi()
@@ -129,7 +136,7 @@ public class CombatSceneUIManager : MonoBehaviour
         {
             combo = 0; // Miss 발생 시 콤보 초기화
             missCombo++;
-            Debug.Log("Combo Reset to 0 due to Miss");
+            //Debug.Log("Combo Reset to 0 due to Miss");
         }
         else
         {

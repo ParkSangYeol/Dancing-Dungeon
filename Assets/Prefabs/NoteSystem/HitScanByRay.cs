@@ -51,8 +51,7 @@ public class HitScanByRay : MonoBehaviour
 
     void Update()
     {
-        Debug.DrawRay(transform.position, Vector2.left * 1000, Color.green, 2.0f);
-        Debug.DrawRay(transform.position, Vector2.right * 1000, Color.red, 2.0f);
+        
     }
 
     private void OnEnable()
@@ -113,13 +112,12 @@ public class HitScanByRay : MonoBehaviour
                 
             if(xDifference >= -200 && xDifference <= 200)
             {
-
+                currentHit = "Perfect";
                 Debug.Log("Perfect : Left X : " + left_x + " Right X : " + right_x + " Difference " + xDifference);
                 OnTimingHit?.Invoke(currentHit);
+                OnPressedKey?.Invoke(moveDir);
                 lefthit.collider.gameObject.SetActive(false);
                 righthit.collider.gameObject.SetActive(false);
-                currentHit = "Perfect";
-                OnPressedKey?.Invoke(moveDir);
                 combatSceneUIManager.SetCombo(currentHit);
 
             }
@@ -148,7 +146,7 @@ public class HitScanByRay : MonoBehaviour
                 combatSceneUIManager.SetCombo(currentHit);
             }
                 
-            Debug.Log(currentHit);
+            
         }
     }
 }
