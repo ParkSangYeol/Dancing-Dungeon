@@ -132,6 +132,7 @@ namespace CombatScene
                         break;
                     case ItemType.POWER_UP:
                         player.power += dropItem.itemScriptableObject.value;
+                        combatSceneUIManager.SetWeapon(null);
                         
                         break;
                     case ItemType.SHIELD:

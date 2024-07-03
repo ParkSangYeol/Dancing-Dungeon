@@ -23,6 +23,7 @@ public class CombatSceneUIManager : MonoBehaviour
     public string nextScene;
     [SerializeField]private GameObject weaponPannel;
     [SerializeField]private GameObject shieldPannel;
+    [SerializeField]private HitScanByRay hitScanByRay;
 
 
     private Image weaponimage;
@@ -136,7 +137,7 @@ public class CombatSceneUIManager : MonoBehaviour
         {
             combo = 0; // Miss 발생 시 콤보 초기화
             missCombo++;
-            //Debug.Log("Combo Reset to 0 due to Miss");
+            hitScanByRay.HappenMiss();
         }
         else
         {
@@ -191,7 +192,7 @@ public class CombatSceneUIManager : MonoBehaviour
             weaponScriptableObject= player.GetComponent<PlayerController>().GetEquippedWeapon();
         }
         weaponimage.sprite=weaponScriptableObject.thumbnail;
-        powerText.text = "Power : " + weaponScriptableObject.power+" + "+player.GetComponent<PlayerController>().GetPower();
+        powerText.text = "Power : " + weaponScriptableObject.power+" + "+player.GetComponent<PlayerController>().GetPlayerPower();
         weaponName.text ="Weapon : "+weaponScriptableObject.name;
         range.text ="Range : "+ weaponScriptableObject.range;
         if(weaponScriptableObject.isSplash)

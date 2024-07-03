@@ -279,6 +279,10 @@ namespace  CombatScene.Player
         {
             return equipWeapon.power + playerCharacterData.defaultPower;
         }
+        public float GetPlayerPower()
+        {
+            return _power;
+        }
 
     #endregion
 
