@@ -6,9 +6,11 @@ using CombatScene.Player;
 using CombatScene.System.Particle;
 using DG.Tweening;
 using Sirenix.OdinInspector;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
+using Sequence = DG.Tweening.Sequence;
 
 namespace CombatScene
 {
@@ -167,14 +169,14 @@ namespace CombatScene
             SearchTiles();
         }
         
-        public void MoveEnemy(Vector2 targetPosition, Vector2 enemyPosition)
+        public bool MoveEnemy(Vector2 targetPosition, Vector2 enemyPosition)
         {
             ObjectType tileObject = mapHandler.GetPoint(targetPosition);
             
             if (tileObject.Equals(ObjectType.Player) || tileObject.Equals(ObjectType.Enemy))
             {
                 // 플레이어나 적 위치로는 이동 불가
-                return;
+                return false;
             }
             
             if (mapHandler.SetMapObject(targetPosition, ObjectType.Enemy))
@@ -185,7 +187,10 @@ namespace CombatScene
                 
                 enemies.Remove(enemyPosition);
                 enemies.Add(targetPosition, enemy);
+                return true;
             }
+            
+            return false;
         }
 
         public void AddEnemy(Vector2 position, EnemyController enemy)
@@ -238,7 +243,7 @@ namespace CombatScene
             }
         }
         
-        private void EnemyBehavior(Vector2 targetPosition, Vector2 enemyPosition)
+        private bool EnemyBehavior(Vector2 targetPosition, Vector2 enemyPosition, out bool isAttack)
         {
             EnemyController enemy;
             if (enemies.TryGetValue(enemyPosition, out enemy))
@@ -256,12 +261,22 @@ namespace CombatScene
                     {
                         cameraTween.Restart();
                     }
+
+                    isAttack = true;
+                    return false;
                 }
                 else
                 {
-                    MoveEnemy(targetPosition, enemyPosition);
+                    if (MoveEnemy(targetPosition, enemyPosition))
+                    {
+                        isAttack = false;
+                        return true;
+                    }
                 }
             }
+            Debug.LogError("There is no Enemy in position : " + enemyPosition);
+            isAttack = false;
+            return false;
         }
 
         /// <summary>
@@ -384,14 +399,23 @@ namespace CombatScene
                             case ObjectType.Enemy:
                                 if (dp[nX, nY] > tileInfo.depth + 1)
                                 {
-                                    dp[nX, nY] = tileInfo.depth + 1;
-                                    EnemyBehavior(new Vector2((int)tileInfo.position.x, (int)tileInfo.position.y), new Vector2(nX, nY));
-                                    queue.Enqueue(new TileInfo(new Vector2(nX, nY), tileInfo.depth + 1));
+                                    bool isAttack;
+                                    if (EnemyBehavior(new Vector2((int)tileInfo.position.x, (int)tileInfo.position.y),
+                                            new Vector2(nX, nY), out isAttack))
+                                    {
+                                        dp[nX, nY] = tileInfo.depth + 1;
+                                        queue.Enqueue(new TileInfo(new Vector2(nX, nY), tileInfo.depth + 1));
+                                    }
+                                    else if (isAttack)
+                                    {
+                                        dp[nX, nY] = tileInfo.depth + 1;
+                                    }
                                 }
                                 else if (dp[nX, nY] == tileInfo.depth + 1)
                                 {
+                                    bool isAttack;
                                     Debug.Log(nX + ", " + nY + " is enemy and depth is " + tileInfo.depth + 1);
-                                    EnemyBehavior(new Vector2((int)tileInfo.position.x, (int)tileInfo.position.y), new Vector2(nX, nY));
+                                    EnemyBehavior(new Vector2((int)tileInfo.position.x, (int)tileInfo.position.y), new Vector2(nX, nY), out isAttack);
                                 }
                                 break;
                         }
