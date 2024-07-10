@@ -18,7 +18,8 @@ public class NoteMove : MonoBehaviour
     private bool isWaitingForInput = false;
     private PlayerInput playerInput;
     private InputAction moveAction;
-    private int miss =0;
+    public float disableDuration;
+   
 
     void Start()
     {
@@ -74,11 +75,13 @@ public class NoteMove : MonoBehaviour
 
         if (gameObject.activeInHierarchy)
         {   
-            HandleMiss();
+            if(this.tag=="LeftNote")
+            {
+                HandleMiss();
+            }
             gameObject.SetActive(false);
-
-            // miss 발생 시 콤보를 0으로 설정하고 이벤트 호출
             
+
         }
     }
 
@@ -87,7 +90,17 @@ public class NoteMove : MonoBehaviour
         OnMiss.Invoke("Miss"); // miss 발생 시 이벤트 호출
         combatSceneUIManager.SetCombo("Miss");
     }
-   
+    
+    private IEnumerator DisableInputCoroutine()
+    {
+        if (playerInput != null)
+        {
+            playerInput.enabled = false;
+            yield return new WaitForSeconds(disableDuration);
+            playerInput.enabled = true;
+            gameObject.SetActive(false);
+        }
+    }
 
     
 

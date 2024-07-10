@@ -107,6 +107,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   delay: 0.1
+  disableDuration: 0
 --- !u!61 &405257541693317800
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -48,7 +48,6 @@ namespace CombatScene
             if (droppedItems.TryGetValue(position, out itemInstance))
             {
                 droppedItems.Remove(position);
-                combatSceneUIManager.SetWeapon(null);
                 particleManager.PlayItemInteractParticle(position);
                 return true;
             }

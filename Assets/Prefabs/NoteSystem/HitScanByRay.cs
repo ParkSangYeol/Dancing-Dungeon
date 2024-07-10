@@ -4,6 +4,7 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using NUnit.Framework.Constraints;
 
 public class HitScanByRay : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class HitScanByRay : MonoBehaviour
     [SerializeField] 
     private NoteParticleSystem noteParticleSystem;
     [SerializeField] CombatSceneUIManager combatSceneUIManager;
+    private bool missHapppen = false;
     
 
     public UnityEvent<Vector2> OnPressedKey;
@@ -51,8 +53,7 @@ public class HitScanByRay : MonoBehaviour
 
     void Update()
     {
-        Debug.DrawRay(transform.position, Vector2.left * 1000, Color.green, 2.0f);
-        Debug.DrawRay(transform.position, Vector2.right * 1000, Color.red, 2.0f);
+        
     }
 
     private void OnEnable()
@@ -88,67 +89,69 @@ public class HitScanByRay : MonoBehaviour
 
   void CheckNote(InputAction.CallbackContext context)
 {
-    // 현재 게임 오브젝트가 유효한지 확인
-    if (this == null || !gameObject.activeInHierarchy)
+    if(missHapppen==false)
     {
-        Debug.LogWarning("HitScanByRay is not active or has been destroyed.");
-        return;
-    }
-
-    Vector2 moveDir = context.ReadValue<Vector2>();
-
-    RaycastHit2D lefthit = Physics2D.Raycast(transform.position + Vector3.right * 300, Vector2.left, Mathf.Infinity, 1 << LayerMask.NameToLayer("LeftNote"));
-    RaycastHit2D righthit = Physics2D.Raycast(transform.position + Vector3.left * 300, Vector2.right, Mathf.Infinity, 1 << LayerMask.NameToLayer("RightNote"));
-
-    // 레이캐스트 충돌체 확인
-    if (lefthit.collider == null && righthit.collider == null) return;
-    if (lefthit.collider != null && righthit.collider != null) 
-    {
-        if ((lefthit.collider.CompareTag("LeftNote") && righthit.collider.CompareTag("RightNote") ) || 
-            (lefthit.collider.CompareTag("RightNote") && righthit.collider.CompareTag("LeftNote")))
+        // 현재 게임 오브젝트가 유효한지 확인
+        if (this == null || !gameObject.activeInHierarchy)
         {
-            float left_x = lefthit.collider.transform.position.x;
-            float right_x = righthit.collider.transform.position.x;
-            float xDifference = right_x - left_x;
-                
-            if(xDifference >= -200 && xDifference <= 200)
-            {
+            Debug.LogWarning("HitScanByRay is not active or has been destroyed.");
+            return;
+        }
 
-                Debug.Log("Perfect : Left X : " + left_x + " Right X : " + right_x + " Difference " + xDifference);
-                OnTimingHit?.Invoke(currentHit);
-                lefthit.collider.gameObject.SetActive(false);
-                righthit.collider.gameObject.SetActive(false);
-                currentHit = "Perfect";
-                OnPressedKey?.Invoke(moveDir);
-                combatSceneUIManager.SetCombo(currentHit);
+        Vector2 moveDir = context.ReadValue<Vector2>();
 
-            }
-            else if ((xDifference > 200 && xDifference <= 600) || (xDifference < -200 && xDifference >= -600))
+        RaycastHit2D lefthit = Physics2D.Raycast(transform.position + Vector3.right * 300, Vector2.left, Mathf.Infinity, 1 << LayerMask.NameToLayer("LeftNote"));
+        RaycastHit2D righthit = Physics2D.Raycast(transform.position + Vector3.left * 300, Vector2.right, Mathf.Infinity, 1 << LayerMask.NameToLayer("RightNote"));
+
+        // 레이캐스트 충돌체 확인
+        if (lefthit.collider == null && righthit.collider == null) return;
+        if (lefthit.collider != null && righthit.collider != null) 
+        {
+            if ((lefthit.collider.CompareTag("LeftNote") && righthit.collider.CompareTag("RightNote") ) || 
+                (lefthit.collider.CompareTag("RightNote") && righthit.collider.CompareTag("LeftNote")))
             {
-                currentHit = "Great";
-                OnTimingHit?.Invoke(currentHit);
-                OnPressedKey?.Invoke(moveDir);
-                lefthit.collider.gameObject.SetActive(false);
-                righthit.collider.gameObject.SetActive(false);
-               
-                combatSceneUIManager.SetCombo(currentHit);
-            }
-            else if (xDifference > 600 && xDifference <= 1300)
-            {
-                OnTimingHit?.Invoke(currentHit);
-                currentHit = "Bad";
+                float left_x = lefthit.collider.transform.position.x;
+                float right_x = righthit.collider.transform.position.x;
+                float xDifference = right_x - left_x;
+                    
+                if(xDifference >= -200 && xDifference <= 200)
+                {
+                    currentHit = "Perfect";
+                    Debug.Log("Perfect : Left X : " + left_x + " Right X : " + right_x + " Difference " + xDifference);
+                    OnTimingHit?.Invoke(currentHit);
+                    OnPressedKey?.Invoke(moveDir);
+                    lefthit.collider.gameObject.SetActive(false);
+                    righthit.collider.gameObject.SetActive(false);
+                    combatSceneUIManager.SetCombo(currentHit);
+
+                }
+                else if ((xDifference > 200 && xDifference <= 600) || (xDifference < -200 && xDifference >= -600))
+                {
+                    currentHit = "Great";
+                    OnTimingHit?.Invoke(currentHit);
+                    OnPressedKey?.Invoke(moveDir);
+                    lefthit.collider.gameObject.SetActive(false);
+                    righthit.collider.gameObject.SetActive(false);
                 
-                combatSceneUIManager.SetCombo(currentHit);
-            }
-            else if (xDifference > 1300)
-            {
-                OnTimingHit?.Invoke(currentHit);
-                Debug.Log("Miss : Left X : " + left_x + " Right X : " + right_x + " Difference " + xDifference);
-                currentHit = "Miss";
-                combatSceneUIManager.SetCombo(currentHit);
-            }
+                    combatSceneUIManager.SetCombo(currentHit);
+                }
+                else if (xDifference > 600 && xDifference <= 1300)
+                {
+                    OnTimingHit?.Invoke(currentHit);
+                    currentHit = "Bad";
+                    
+                    combatSceneUIManager.SetCombo(currentHit);
+                }
+                else if (xDifference > 1300)
+                {
+                    OnTimingHit?.Invoke(currentHit);
+                    Debug.Log("Miss : Left X : " + left_x + " Right X : " + right_x + " Difference " + xDifference);
+                    currentHit = "Miss";
+                    combatSceneUIManager.SetCombo(currentHit);
+                }
+                    
                 
-            Debug.Log(currentHit);
+            }
         }
     }
 }
@@ -158,6 +161,17 @@ public class HitScanByRay : MonoBehaviour
 
     private bool IsPlayerInputNotSet() {
         return playerInput == null;
+    }
+    public void HappenMiss()
+    {
+        StartCoroutine(WaitMiss());
+    }
+    IEnumerator WaitMiss()
+    {
+        missHapppen=true;
+        yield return new WaitForSeconds(0.3f);
+        Debug.Log("쿄루틴 실행됨");
+        missHapppen=false;
     }
 
     #endregion

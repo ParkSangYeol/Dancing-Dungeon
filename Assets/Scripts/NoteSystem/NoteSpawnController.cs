@@ -1,30 +1,44 @@
-using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class NoteSpawnController : MonoBehaviour
 {
     public NoteSystem noteSystem;
+    public AudioSource musicSource; // 다른 곳에서 재생되는 오디오 소스
     public double bpm;
-    private double currentTime=0d;
     private double interval;
+    private double nextNoteTime;
+    private double songStartTime;
+    private bool musicStarted = false;
 
     void Start()
     {
-        interval = 60d/bpm;
-    }
-    void Update() {
-        currentTime+=Time.deltaTime;
-        SpawnNotes();
-        
+        interval = 60d / bpm;
     }
 
-    public void  SpawnNotes()
+    void Update()
     {
-        if(currentTime>interval)
+        if (!musicStarted && musicSource.isPlaying)
         {
-            currentTime-=60d/bpm;
-            noteSystem.SpawnNote();
+            // 음악이 재생되기 시작한 시점을 기록
+            songStartTime = AudioSettings.dspTime;
+            nextNoteTime = songStartTime + interval;
+            musicStarted = true;
+        }
+
+        if (musicStarted)
+        {
+            double currentTime = AudioSettings.dspTime;
+            if (currentTime >= nextNoteTime)
+            {
+                noteSystem.SpawnNote();
+                nextNoteTime += interval;
+            }
+
+            // 음악이 중지되었는지 확인
+            if (!musicSource.isPlaying)
+            {
+                musicStarted = false;
+            }
         }
     }
 }
