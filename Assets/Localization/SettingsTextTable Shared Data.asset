@@ -13,8 +13,40 @@ MonoBehaviour:
   m_Name: SettingsTextTable Shared Data
   m_EditorClassIdentifier: 
   m_TableCollectionName: SettingsTextTable
-  m_TableCollectionNameGuidString: 00000000000000000000000000000000
-  m_Entries: []
+  m_TableCollectionNameGuidString: 71402fe91d1f0e249bcd44278395eba6
+  m_Entries:
+  - m_Id: 6891556864
+    m_Key: GameName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8791576576
+    m_Key: GameStart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10490269696
+    m_Key: Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 94372155392
+    m_Key: Exit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 129197461504
+    m_Key: Sound
+    m_Metadata:
+      m_Items: []
+  - m_Id: 132439658496
+    m_Key: Language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1467637616640
+    m_Key: GameOver
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1587070423040
+    m_Key: GoToMenu
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

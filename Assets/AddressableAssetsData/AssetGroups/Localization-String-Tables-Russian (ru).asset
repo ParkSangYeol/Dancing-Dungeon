@@ -16,7 +16,13 @@ MonoBehaviour:
   m_GUID: b43123616fffade4dab06b3a890078c3
   m_SerializeEntries:
   - m_GUID: c5f422b459c0f464890561177e3b54b4
-    m_Address: TextLocalizationTable_ru
+    m_Address: WeaponTextLocalizationTable_ru
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ru
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2dd345845991239408209d37b7680016
+    m_Address: SettingsTextTable_ru
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-ru

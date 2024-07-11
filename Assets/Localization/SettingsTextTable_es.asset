@@ -17,7 +17,39 @@ MonoBehaviour:
   m_SharedData: {fileID: 11400000, guid: 71402fe91d1f0e249bcd44278395eba6, type: 2}
   m_Metadata:
     m_Items: []
-  m_TableData: []
+  m_TableData:
+  - m_Id: 6891556864
+    m_Localized: "H\xE9roe del Ritmo"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8791576576
+    m_Localized: Iniciar juego
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10490269696
+    m_Localized: "Configuraci\xF3n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 94372155392
+    m_Localized: Salir
+    m_Metadata:
+      m_Items: []
+  - m_Id: 129197461504
+    m_Localized: Sonido
+    m_Metadata:
+      m_Items: []
+  - m_Id: 132439658496
+    m_Localized: Idioma (Language)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1467637616640
+    m_Localized: Fin del juego
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1587070423040
+    m_Localized: "Ir al men\xFA"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -16,7 +16,13 @@ MonoBehaviour:
   m_GUID: 38724dfb2b6737a4ba1d323a45dbcdb7
   m_SerializeEntries:
   - m_GUID: 371df950a878c0b4da474c255f3d0e11
-    m_Address: TextLocalizationTable_ko
+    m_Address: WeaponTextLocalizationTable_ko
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ko
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 558a2205f63198045b84222baa79b2b1
+    m_Address: SettingsTextTable_ko
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-ko

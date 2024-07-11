@@ -70,6 +70,18 @@ MonoBehaviour:
     m_Localized: "Ataque a objetivo \xFAnico"
     m_Metadata:
       m_Items: []
+  - m_Id: 21393828007936
+    m_Localized: Arma
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21395669307392
+    m_Localized: Alcance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21435389366272
+    m_Localized: Poder de ataque
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

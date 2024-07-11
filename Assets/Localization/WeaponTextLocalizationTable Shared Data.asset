@@ -16,7 +16,9 @@ MonoBehaviour:
   m_TableCollectionNameGuidString: 51358918d28271842b0ce72142507d1e
   m_Entries:
   - m_Id: 3992902225920
-    m_Key: Board
+    m_Key: 'Shovel
+
+'
     m_Metadata:
       m_Items: []
   - m_Id: 5544891174912
@@ -65,6 +67,18 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 7788789288960
     m_Key: SplashAttack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21393828007936
+    m_Key: Weapon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21395669307392
+    m_Key: Range
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21435389366272
+    m_Key: Power
     m_Metadata:
       m_Items: []
   m_Metadata:
