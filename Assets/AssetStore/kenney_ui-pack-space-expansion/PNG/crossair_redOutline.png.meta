@@ -145,7 +145,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      crossair_redOutline_0: -5648702517852029633
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

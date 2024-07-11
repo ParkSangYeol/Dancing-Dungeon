@@ -145,7 +145,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      uipackSpace_sheet_0: -8064986394201839719
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -145,7 +145,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      metalPanel_plate_0: -6314769342140586392
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

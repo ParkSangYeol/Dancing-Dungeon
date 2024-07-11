@@ -145,7 +145,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      glassPanel_cornerTR_0: 2918131460867512472
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
