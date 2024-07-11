@@ -15,5 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Dev/GD/NoteSystemDev2.unity
     guid: 5dcb93a0851fecd449e827834987c986
   m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: a0e587d14c6ee6044a5863a71da8fe9b, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+    com.unity.localization.settings: {fileID: 11400000, guid: 24145948b16cd2a409b09274790e5061, type: 2}
   m_UseUCBPForAssetBundles: 0
