@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
+  m_Name: Banner
+  m_EditorClassIdentifier: 
+  m_AnimatedSprites:
+  - {fileID: 21300000, guid: 9e91455077876b94d9cfbbd03a260ee1, type: 3}
+  - {fileID: 21300000, guid: 013e8e28b43f38a4ea97141e0a424f44, type: 3}
+  - {fileID: 21300000, guid: 9f476fdae80122e4c94d50f262c0f3ea, type: 3}
+  - {fileID: 21300000, guid: 4846e30cab1d87440a098ccc83019e74, type: 3}
+  - {fileID: 21300000, guid: 1f066816ddb9d274eb8fc1997689645c, type: 3}
+  - {fileID: 21300000, guid: d64b4656f4bbcc74d8bf67565b68abc7, type: 3}
+  - {fileID: 21300000, guid: 5f21b6de0efd3bc43a8505750f723821, type: 3}
+  - {fileID: 21300000, guid: 2e3fac691db678442b2b84ebdd77a9c0, type: 3}
+  - {fileID: 21300000, guid: b4fac8573e5e4f1408784f2cef941731, type: 3}
+  - {fileID: 21300000, guid: 5bdcc39f75b5bb0458b7d7c74f837870, type: 3}
+  - {fileID: 21300000, guid: a144be1733d2c9d49a47a2483d9ae9ac, type: 3}
+  - {fileID: 21300000, guid: c25e22f605c8f854886229999de9b753, type: 3}
+  m_MinSpeed: 1
+  m_MaxSpeed: 1
+  m_AnimationStartTime: 0
+  m_AnimationStartFrame: 0
+  m_TileColliderType: 0
+  m_TileAnimationFlags: 0
