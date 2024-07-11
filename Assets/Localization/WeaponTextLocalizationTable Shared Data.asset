@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: WeaponTextLocalizationTable Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: WeaponTextLocalizationTable
+  m_TableCollectionNameGuidString: 51358918d28271842b0ce72142507d1e
+  m_Entries:
+  - m_Id: 3992902225920
+    m_Key: Board
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5544891174912
+    m_Key: Broom
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5546787000320
+    m_Key: Laptop
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5548724768768
+    m_Key: Mic
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5553166536704
+    m_Key: Pan
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5555758616576
+    m_Key: Shovel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5557474086912
+    m_Key: SmartPhone
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5651984338944
+    m_Key: Surf
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5653267795968
+    m_Key: Sword
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5680417525760
+    m_Key: Unarmed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7786058797056
+    m_Key: Direction
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7787325476864
+    m_Key: SingleAttack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7788789288960
+    m_Key: SplashAttack
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 7118349583254815037
+  references:
+    version: 2
+    RefIds:
+    - rid: 7118349583254815037
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1720694433652

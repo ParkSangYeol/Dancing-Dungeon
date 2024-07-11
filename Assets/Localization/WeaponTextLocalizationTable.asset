@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5be51871efa6c3e4eae1703925c8f5ac, type: 3}
+  m_Name: WeaponTextLocalizationTable
+  m_EditorClassIdentifier: 
+  m_SharedTableData: {fileID: 11400000, guid: 51358918d28271842b0ce72142507d1e, type: 2}
+  m_Tables:
+  - {fileID: 11400000, guid: d20b58517c6d8fd489e83446f7458632, type: 2}
+  - {fileID: 11400000, guid: b47bc8cde4e769846aca65e52faffa16, type: 2}
+  - {fileID: 11400000, guid: fcc7095c1ee1668459a381bea024bacb, type: 2}
+  - {fileID: 11400000, guid: 2632b82caa89e65428af83d8a035e2b6, type: 2}
+  - {fileID: 11400000, guid: 371df950a878c0b4da474c255f3d0e11, type: 2}
+  - {fileID: 11400000, guid: c5f422b459c0f464890561177e3b54b4, type: 2}
+  - {fileID: 11400000, guid: f02182cd86132e440bc1ee02bbf15177, type: 2}
+  m_Extensions: []
+  m_Group: String Table
+  references:
+    version: 2
+    RefIds: []
