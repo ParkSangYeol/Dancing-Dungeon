@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
+  m_Name: Cat
+  m_EditorClassIdentifier: 
+  m_AnimatedSprites:
+  - {fileID: 21300000, guid: 1095088d33a8b294faae629fc4da72f1, type: 3}
+  - {fileID: 21300000, guid: c0e7e1546ea176648bf9d2d0940cee62, type: 3}
+  - {fileID: 21300000, guid: 8548019ab35168c41a47d17fc41fd028, type: 3}
+  - {fileID: 21300000, guid: f75a3d6f03a64794ba8545987a004e56, type: 3}
+  - {fileID: 21300000, guid: af2271ff4cf62fd41bffce26ce0c20c4, type: 3}
+  - {fileID: 21300000, guid: e4995e71a8b6cbf41acd0aa1ac6700ef, type: 3}
+  - {fileID: 21300000, guid: 582652b4438be2e4bbcfd4af69e36b9a, type: 3}
+  - {fileID: 21300000, guid: 5f31f7befa008944cbacf8aa9f8471b7, type: 3}
+  - {fileID: 21300000, guid: 0e215a0abaa6ae545bcbd447cacfe8fe, type: 3}
+  - {fileID: 21300000, guid: 2376d23c7caaa804596a338c5e78fd8e, type: 3}
+  - {fileID: 21300000, guid: cb68dc712f53a3a4c9e7be858d6e73d0, type: 3}
+  - {fileID: 21300000, guid: fffad798f4ecbc24fbbee5657c6d104b, type: 3}
+  m_MinSpeed: 1
+  m_MaxSpeed: 1
+  m_AnimationStartTime: 0
+  m_AnimationStartFrame: 0
+  m_TileColliderType: 0
+  m_TileAnimationFlags: 0
