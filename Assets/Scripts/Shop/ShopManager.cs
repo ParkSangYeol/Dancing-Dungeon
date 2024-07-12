@@ -30,6 +30,11 @@ public class ShopManager : MonoBehaviour
     private int playerMoney;
     private int playerHp;
     private int playerAtk;
+    //능력치 강화 부분
+
+    public GameObject hairPart;
+    public GameObject clothPart;
+    public GameObject pantsPart;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start() {
@@ -74,6 +79,25 @@ public class ShopManager : MonoBehaviour
     {
         statePannel.SetActive(false);
         eqiquementPanel.SetActive(true);
+    }
+    public void OnHairPart()
+    {
+        
+        clothPart.SetActive(false);
+        pantsPart.SetActive(false);
+        hairPart.SetActive(true);
+    }
+    public void OnClothPart()
+    {
+        pantsPart.SetActive(false);
+        hairPart.SetActive(false);
+        clothPart.SetActive(true);
+    }
+    public void OnPantsPart()
+    {
+        hairPart.SetActive(false);
+        clothPart.SetActive(false);
+        pantsPart.SetActive(true);
     }
      
     void ActivateNumber(GameObject[] numberArray, int number)
