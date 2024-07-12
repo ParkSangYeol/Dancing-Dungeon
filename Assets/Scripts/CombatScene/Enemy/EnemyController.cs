@@ -1,6 +1,10 @@
 //#define TEST_MOVE_WITHOUT_NOTE
+
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using Sirenix.OdinInspector;
+using UnityEditor.Localization.Plugins.XLIFF.V20;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -34,10 +38,14 @@ namespace CombatScene.Enemy
             
         
         [Title("Events")] 
-        public UnityEvent<Transform> OnEnemyDead;
-        
-        [Title("Variables")]
+        public UnityEvent<Vector2> OnEnemyDead;
 
+        [Title("Variables")] 
+        private int currentAttackDelay;
+        private int currentDelayedAttackDelay;
+        private bool isDelayedAttackActive;
+        private List<Vector2> delayedAttackPositions;
+        
         [ShowInInspector]
         public float hp
         {
@@ -47,7 +55,7 @@ namespace CombatScene.Enemy
                 _hp = value;
                 if (_hp < 0)
                 {
-                    OnEnemyDead.Invoke(this.transform);
+                    OnEnemyDead.Invoke(this.transform.position);
                     
                 }
             }
@@ -64,7 +72,7 @@ namespace CombatScene.Enemy
         
         [ShowInInspector]
         private WeaponScriptableObject equipWeapon;
-
+        
         #endregion
 
         
@@ -120,7 +128,6 @@ namespace CombatScene.Enemy
         #region About Combat
         public void AddEnemyToSpawn()
         {
-
             combatManager.AddEnemy(transform.position,this);
         }
         
@@ -147,14 +154,49 @@ namespace CombatScene.Enemy
             weaponSpriteRenderer.sprite = equipWeapon.weaponSprite;
         }
 
-        public bool CanAttack(Vector2 targetPos)
+        /// <summary>
+        /// 캐릭터의 공격 여부를 반환하는 함수
+        /// </summary>
+        /// <param name="targetPos">공격할 대상의 위치</param>
+        /// <param name="attackDelaying">현재 캐릭터가 공격 후 딜레이 상태인지를 확인</param>
+        /// <param name="delayedAttackDelaying">현재 캐릭터가 딜레이 공격으로 딜레이 상태인지 확인</param>
+        /// <returns></returns>
+        public bool CanAttack(Vector2 targetPos, out bool attackDelaying, out bool delayedAttackDelaying)
         {
+            delayedAttackDelaying = false;
+            attackDelaying = false;
+            if (currentAttackDelay-- > 0)
+            {
+                attackDelaying = true;
+                return false;
+            }
+
+            if (currentDelayedAttackDelay > 0)
+            {
+                delayedAttackDelaying = true;
+                return false;
+            }
+
+            if (isDelayedAttackActive)
+            {
+                attackDelaying = true;
+                return false;
+            }
+            
+            
             Vector2 distanceVec = new Vector2(Mathf.Abs(targetPos.x - transform.position.x), Mathf.Abs(targetPos.y - transform.position.y)); 
             int distance = int.MaxValue;
             switch (equipWeapon.attackDirection)
             {
                 case AttackDirection.DIR_4:
-                    distance = (int)(distanceVec.x + distanceVec.y);
+                    if (distanceVec.x == 0 || distanceVec.y == 0)
+                    {
+                        distance = (int)Mathf.Max(distanceVec.x ,distanceVec.y);
+                    }
+                    else
+                    {
+                        distance = Int32.MaxValue;
+                    }
                     break;
                 case AttackDirection.DIR_8:
                     distance = (int)Mathf.Min(distanceVec.x, distanceVec.y);
@@ -162,10 +204,79 @@ namespace CombatScene.Enemy
                     distance += (int)(distanceVec.x + distanceVec.y);
                     break;
             }
+            
+            if (distance <= equipWeapon.range && !isDelayedAttackActive)
+            {
+                if (equipWeapon.isDelayedAttack)
+                {
+                    Vector2 incVec = new Vector2(targetPos.x - transform.position.x, targetPos.y - transform.position.y); 
 
-            return distance <= equipWeapon.range;
+                    // 지연 공격을 진행
+                    Vector2 dirVec = (Mathf.Abs(incVec.x) > Mathf.Abs(incVec.y)) ? new Vector2(Mathf.Sign(incVec.x), 0) : new Vector2(0, Mathf.Sign(incVec.y));
+            
+                    switch (equipWeapon.attackDirection)
+                    {
+                        case AttackDirection.DIR_4:
+                            for (int i = 1; i <= equipWeapon.range; i++)
+                            {
+                                // 공격 범위의 값 가져오기
+                                Vector2 targetPosition = (Vector2) this.transform.position + dirVec * i;
+                                // 바닥 타일 변경
+                                // TODO
+                                
+                                delayedAttackPositions.Add(targetPosition);
+                            }
+                            break;
+                        case AttackDirection.DIR_8:
+                            for (int i = 1; i <= equipWeapon.range; i++)
+                            {
+                                for (int j = -i; j <= i; j++)
+                                {
+                                    Vector2 targetPosition = (Vector2)this.transform.position + dirVec * i;
+                                    if (dirVec.x != 0)
+                                    {
+                                        targetPosition.y += j;
+                                    }
+                                    else if (dirVec.y != 0)
+                                    {
+                                        targetPosition.x += j;
+                                    }
+                                    
+                                    // 바닥 타일 변경
+                                    // TODO
+                                    
+                                    delayedAttackPositions.Add(targetPosition);
+                                }
+                            }
+                            break;
+                    }
+                    isDelayedAttackActive = true;
+                    delayedAttackDelaying = true;
+                    currentDelayedAttackDelay = equipWeapon.delayedAttackDelay;
+                    return false;
+                }
+            
+                currentAttackDelay = equipWeapon.attackDelay;
+                return true;
+            }
+
+            return false;
         }
 
+        public bool DelayedAttack(out List<Vector2> attackPositions)
+        {
+            if (!isDelayedAttackActive || --currentDelayedAttackDelay > 0)
+            {
+                attackPositions = null;
+                return false;
+            }
+            this.Attack();
+            attackPositions = delayedAttackPositions;
+            isDelayedAttackActive = false;
+            
+            return true;
+        }
+        
         public float GetPower()
         {
             return equipWeapon.power + characterData.defaultPower;
@@ -222,6 +333,9 @@ namespace CombatScene.Enemy
             this.power = characterData.defaultPower;
             this.shield = characterData.shield;
             this.equipWeapon = defaultWeapon;
+            this.currentAttackDelay = 0;
+            this.isDelayedAttackActive = false;
+            this.delayedAttackPositions = new List<Vector2>();
         }
         public void SetVariabePowerup(int upCapcity)// 스폰때마다 일정 조건마다 강해지도록함.
         {
@@ -230,6 +344,9 @@ namespace CombatScene.Enemy
             this.shield = characterData.shield+upCapcity;
             this.equipWeapon = defaultWeapon;
             
+            this.currentAttackDelay = 0;
+            this.isDelayedAttackActive = false;
+            this.delayedAttackPositions = new List<Vector2>();
         }
         private void SetEvent()
         {
@@ -251,6 +368,7 @@ namespace CombatScene.Enemy
                 weaponSpriteRenderer = transform.Find("UnitRoot/Root/BodySet/P_Body/ArmSet/ArmR/P_RArm/P_Weapon/R_Weapon").GetComponent<SpriteRenderer>();
             } 
             weaponSpriteRenderer.sprite = equipWeapon.weaponSprite;
+            combatManager.SetEnemyEvent(this);
         }
         #endregion
 

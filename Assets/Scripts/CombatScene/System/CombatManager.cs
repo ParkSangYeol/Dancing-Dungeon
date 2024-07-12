@@ -193,32 +193,39 @@ namespace CombatScene
             return false;
         }
 
+        public void SetEnemyEvent(EnemyController enemy)
+        {
+            enemy.OnEnemyDead.AddListener((enemyPosition) =>
+            {
+                // 랜덤한 아이템을 드랍하도록 설정.
+                float random = Random.Range(0, 1);
+                if (random < 0f)
+                {
+                    itemManager.SpawnRandomItem(enemyPosition);
+                }
+            });
+            
+            enemy.OnEnemyDead.AddListener((enemyPosition) =>
+            {
+                Debug.Log("Enemy Dead. Position is " + enemyPosition);
+                mapHandler.SetMapObject(enemyPosition, ObjectType.Load);
+                EnemyController enemy = null;
+                bool isGetEnemy = enemies.TryGetValue(enemyPosition, out enemy);
+                Debug.Log("Enemy Dead. Get Enemy: " + isGetEnemy + " enemy: " + enemy);
+                Debug.Log("Enemy Dead. Removing Enemy: " + enemies.Remove(enemyPosition));
+            });
+        }
+        
         public void AddEnemy(Vector2 position, EnemyController enemy)
         {
+            Debug.Log("Enemy Add. Position is " + position);
             if(!enemies.TryAdd(position, enemy))
             {
                 return;
             }
             mapHandler.SetMapObject(position, ObjectType.Enemy);
-            
-            enemy.OnEnemyDead.AddListener((enemyTransform) =>
-            {
-                // 랜덤한 아이템을 드랍하도록 설정.
-                float random = Random.Range(0, 1);
-                if (random < 0.2f)
-                {
-                    itemManager.SpawnRandomItem(enemyTransform.position);
-                }
-            });
-            
-            enemy.OnEnemyDead.AddListener((enemyTransform) =>
-            {
-                mapHandler.SetMapObject(enemyTransform.position, ObjectType.Load);
-                enemies.Remove(enemyTransform.position);
-            });
         }
 
-        
         public void PlayerBehavior(Vector2 inputVec/*, string hitResult = "normal"*/)
         {
             if (!(inputVec.x == 0 && Mathf.Abs(inputVec.y) == 1) && !(inputVec.y == 0 && Mathf.Abs(inputVec.x) == 1))
@@ -248,7 +255,34 @@ namespace CombatScene
             EnemyController enemy;
             if (enemies.TryGetValue(enemyPosition, out enemy))
             {
-                if (enemy.CanAttack(playerPosition))
+                List<Vector2> enemyDelayedAttackPositions;
+                if (enemy.DelayedAttack(out enemyDelayedAttackPositions))
+                {
+                    bool tempCheckAttack = false;
+                    foreach (var enemyDelayedAttackPosition in enemyDelayedAttackPositions)
+                    {
+                        WeaponScriptableObject enemyEquipWeapon = enemy.GetEquippedWeapon();
+                        particleManager.PlayParticle(enemyEquipWeapon.name, enemyDelayedAttackPosition + new Vector2(ConstVariables.tileSizeX / 2,ConstVariables.CharacterHeight), false);
+
+                        if (enemyDelayedAttackPosition.Equals(playerPosition))
+                        {
+                            player.Attacked(enemy.GetPower());
+                            if (!cameraTween.IsPlaying())
+                            {
+                                cameraTween.Restart();
+                            }
+
+                            tempCheckAttack = true;
+                        }
+                    }
+                    enemyDelayedAttackPositions.Clear();
+                    
+                    isAttack = tempCheckAttack;
+                    return !isAttack;
+                }
+                
+                bool attackDelaying, delayAttackDelaying;
+                if (enemy.CanAttack(playerPosition, out attackDelaying, out delayAttackDelaying))
                 {
                     // 플레이어 공격
                     enemy.Attack();
@@ -265,16 +299,25 @@ namespace CombatScene
                     isAttack = true;
                     return false;
                 }
-                else
+
+                if (delayAttackDelaying)
                 {
-                    if (MoveEnemy(targetPosition, enemyPosition))
-                    {
-                        isAttack = false;
-                        return true;
-                    }
+                    isAttack = true;
+                    return false;
+                }
+                
+                if (MoveEnemy(targetPosition, enemyPosition))
+                {
+                    isAttack = false || attackDelaying;
+                    return true;
+                }
+                
+                if (attackDelaying)
+                {
+                    isAttack = true;
+                    return false;
                 }
             }
-            Debug.LogError("There is no Enemy in position : " + enemyPosition);
             isAttack = false;
             return false;
         }
@@ -410,12 +453,6 @@ namespace CombatScene
                                     {
                                         dp[nX, nY] = tileInfo.depth + 1;
                                     }
-                                }
-                                else if (dp[nX, nY] == tileInfo.depth + 1)
-                                {
-                                    bool isAttack;
-                                    Debug.Log(nX + ", " + nY + " is enemy and depth is " + tileInfo.depth + 1);
-                                    EnemyBehavior(new Vector2((int)tileInfo.position.x, (int)tileInfo.position.y), new Vector2(nX, nY), out isAttack);
                                 }
                                 break;
                         }
