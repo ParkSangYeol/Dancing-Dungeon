@@ -45,6 +45,10 @@ public class MainSceneMaager : MonoBehaviour
     {
         
     }
+    public void GoShop()
+    {
+        SceneManager.LoadScene("ShopScene");
+    }
     void loadBgm()
     {
         AudioClip bgmClip = Resources.Load<AudioClip>("MainBgm");
