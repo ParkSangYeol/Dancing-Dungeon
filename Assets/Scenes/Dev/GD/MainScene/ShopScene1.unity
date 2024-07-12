@@ -461,6 +461,7 @@ GameObject:
   - component: {fileID: 75337053}
   - component: {fileID: 75337055}
   - component: {fileID: 75337054}
+  - component: {fileID: 75337056}
   m_Layer: 5
   m_Name: Hair6
   m_TagString: Untagged
@@ -500,14 +501,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.42638183, g: 0.9150943, b: 0.25467247, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f32b27de9394bf3489d83d11bf523f21, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7be0a2771196dbf44affc685c67ed471, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -525,6 +526,74 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 75337052}
   m_CullTransparentMesh: 1
+--- !u!114 &75337056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 75337052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 75337054}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1529658119}
+        m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
+        m_MethodName: SetHairPath
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Assets/Resources/SPUM/SPUM_Sprites/Packages/ModernPackVer1/0_Hair/Hair_m06.png
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1529658119}
+        m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
+        m_MethodName: GetTypeList
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Hair
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &128609886
 GameObject:
   m_ObjectHideFlags: 0
@@ -968,6 +1037,139 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 203362071}
   m_CullTransparentMesh: 1
+--- !u!1 &218054302
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 218054303}
+  - component: {fileID: 218054306}
+  - component: {fileID: 218054305}
+  - component: {fileID: 218054304}
+  m_Layer: 5
+  m_Name: Reset
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &218054303
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 218054302}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_ConstrainProportionsScale: 1
+  m_Children:
+  - {fileID: 1975487637}
+  m_Father: {fileID: 2024392925}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -519, y: -433}
+  m_SizeDelta: {x: 304.07, y: 106.29}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &218054304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 218054302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 218054305}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1529658119}
+        m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
+        m_MethodName: ResetCostume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &218054305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 218054302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: b222276a27a6e4fa1b8fbb32c1c31eb8, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &218054306
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 218054302}
+  m_CullTransparentMesh: 1
 --- !u!1 &221742012
 GameObject:
   m_ObjectHideFlags: 0
@@ -1054,6 +1256,7 @@ GameObject:
   - component: {fileID: 232233474}
   - component: {fileID: 232233476}
   - component: {fileID: 232233475}
+  - component: {fileID: 232233477}
   m_Layer: 5
   m_Name: Hair3
   m_TagString: Untagged
@@ -1100,7 +1303,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 8402349786366039410, guid: d5308a44ac1f24e96aaca968d07fec6c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1035fbea524f6284a98b04f05fc2c6e5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1118,6 +1321,74 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 232233473}
   m_CullTransparentMesh: 1
+--- !u!114 &232233477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 232233473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 232233475}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1529658119}
+        m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
+        m_MethodName: SetHairPath
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Assets/Resources/SPUM/SPUM_Sprites/Packages/ModernPackVer1/0_Hair/Hair_m03.png
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1529658119}
+        m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
+        m_MethodName: GetTypeList
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Hair
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &260353063
 GameObject:
   m_ObjectHideFlags: 0
@@ -1204,6 +1475,7 @@ GameObject:
   - component: {fileID: 278158799}
   - component: {fileID: 278158801}
   - component: {fileID: 278158800}
+  - component: {fileID: 278158802}
   m_Layer: 5
   m_Name: Pants3
   m_TagString: Untagged
@@ -1229,7 +1501,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -314.2998, y: 122}
+  m_AnchoredPosition: {x: -314.29987, y: 122}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &278158800
@@ -1270,6 +1542,74 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 278158798}
   m_CullTransparentMesh: 1
+--- !u!114 &278158802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 278158798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 278158800}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1529658119}
+        m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
+        m_MethodName: SetPantsPath
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Assets/Resources/SPUM/SPUM_Sprites/Packages/ModernPackVer1/3_Pant/Foot_m03.png
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1529658119}
+        m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
+        m_MethodName: GetTypeList
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Pants
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &333734300
 GameObject:
   m_ObjectHideFlags: 0
@@ -1420,191 +1760,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 337387154}
   m_CullTransparentMesh: 1
---- !u!1001 &338335758
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 720206860261028473, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 720206860261028473, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: b6040601409caf746bfd8c9f61b45c23, type: 2}
-    - target: {fileID: 720206860261028473, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_ApplyRootMotion
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 903269088719631507, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.999962
-      objectReference: {fileID: 0}
-    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.008726558
-      objectReference: {fileID: 0}
-    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -5.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -2.26
-      objectReference: {fileID: 0}
-    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5421182528552174715, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5472235102980992629, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_Name
-      value: PlayerPreview
-      objectReference: {fileID: 0}
-    - target: {fileID: 5945894804758201247, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6799988854346539997, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6799988854346539997, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6799988854346539997, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 6.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 6799988854346539997, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6799988854346539997, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6799988854346539997, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6799988854346539997, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7786892158162863254, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: '_clothListString.Array.data[0]'
-      value: Assets/Resources/SPUM/SPUM_Sprites/Packages/ModernPackVer1/2_Cloth/hoodie_c2.png
-      objectReference: {fileID: 0}
-    - target: {fileID: 8339816449505909659, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: UnitTypeChanged.m_PersistentCalls.m_Calls.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8339816449505909659, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: UnitTypeChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8339816449505909659, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: UnitTypeChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8409128494786394718, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8409128494786394718, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8409128494786394718, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8499787462336601673, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9150091268887608482, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
 --- !u!1 &346404854
 GameObject:
   m_ObjectHideFlags: 0
@@ -2187,6 +2342,230 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 404146382}
   m_CullTransparentMesh: 1
+--- !u!1001 &422869381
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.999962
+      objectReference: {fileID: 0}
+    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.008726558
+      objectReference: {fileID: 0}
+    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -5.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -2.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5360426106763110196, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5360426106763110196, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5360426106763110196, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5472235102980992629, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
+      propertyPath: m_Name
+      value: PlayerPreview
+      objectReference: {fileID: 0}
+    - target: {fileID: 5785896446434231269, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5785896446434231269, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5785896446434231269, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6018827537588434697, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6018827537588434697, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6018827537588434697, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6913019114299672544, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6913019114299672544, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6913019114299672544, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7786892158162863254, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
+      propertyPath: _clothList.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7786892158162863254, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
+      propertyPath: '_clothList.Array.data[1]'
+      value: 
+      objectReference: {fileID: 422869384}
+    - target: {fileID: 7786892158162863254, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
+      propertyPath: '_clothList.Array.data[2]'
+      value: 
+      objectReference: {fileID: 422869383}
+    - target: {fileID: 7786892158162863254, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
+      propertyPath: '_clothList.Array.data[3]'
+      value: 
+      objectReference: {fileID: 422869382}
+    - target: {fileID: 7786892158162863254, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
+      propertyPath: _clothListString.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7786892158162863254, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
+      propertyPath: '_clothListString.Array.data[0]'
+      value: Assets/Resources/SPUM/SPUM_Sprites/Packages/ModernPackVer1/2_Cloth/farmer.png
+      objectReference: {fileID: 0}
+    - target: {fileID: 7786892158162863254, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
+      propertyPath: '_clothListString.Array.data[1]'
+      value: Assets/Resources/SPUM/SPUM_Sprites/Packages/ModernPackVer1/2_Cloth/farmer.png
+      objectReference: {fileID: 0}
+    - target: {fileID: 7786892158162863254, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
+      propertyPath: '_clothListString.Array.data[2]'
+      value: Assets/Resources/SPUM/SPUM_Sprites/Packages/ModernPackVer1/2_Cloth/farmer.png
+      objectReference: {fileID: 0}
+    - target: {fileID: 7786892158162863254, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
+      propertyPath: '_clothListString.Array.data[3]'
+      value: Assets/Resources/SPUM/SPUM_Sprites/Packages/ModernPackVer1/2_Cloth/farmer.png
+      objectReference: {fileID: 0}
+    - target: {fileID: 8409128494786394718, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8409128494786394718, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9150091268887608482, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
+--- !u!212 &422869382 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5785896446434231269, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
+  m_PrefabInstance: {fileID: 422869381}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &422869383 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5360426106763110196, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
+  m_PrefabInstance: {fileID: 422869381}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &422869384 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 29424153150961863, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
+  m_PrefabInstance: {fileID: 422869381}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &495254953
 GameObject:
   m_ObjectHideFlags: 0
@@ -2301,6 +2680,7 @@ GameObject:
   - component: {fileID: 516477049}
   - component: {fileID: 516477051}
   - component: {fileID: 516477050}
+  - component: {fileID: 516477052}
   m_Layer: 5
   m_Name: Clothes1
   m_TagString: Untagged
@@ -2347,7 +2727,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 9071153741043795472, guid: 939f1a373de4e460c931c39782782ab8, type: 3}
+  m_Sprite: {fileID: -1786316325, guid: c1b30e23d9f46514a89b176898abd52d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2365,6 +2745,74 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 516477048}
   m_CullTransparentMesh: 1
+--- !u!114 &516477052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 516477048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 516477050}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1529658119}
+        m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
+        m_MethodName: SetClothPath
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Assets/Resources/SPUM/SPUM_Sprites/Packages/ModernPackVer1/2_Cloth/dress_1.png
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1529658119}
+        m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
+        m_MethodName: GetTypeList
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Cloth
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &525127635
 GameObject:
   m_ObjectHideFlags: 0
@@ -2583,6 +3031,7 @@ GameObject:
   - component: {fileID: 556320219}
   - component: {fileID: 556320221}
   - component: {fileID: 556320220}
+  - component: {fileID: 556320222}
   m_Layer: 5
   m_Name: Clothes4
   m_TagString: Untagged
@@ -2629,7 +3078,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 932715984, guid: 25288d7b3bb67f040b090f4d1868e9a4, type: 3}
+  m_Sprite: {fileID: -257058155, guid: 7e7c9fa27b82f4744aa20431defe3a6f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2647,6 +3096,74 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 556320218}
   m_CullTransparentMesh: 1
+--- !u!114 &556320222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556320218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 556320220}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1529658119}
+        m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
+        m_MethodName: SetClothPath
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Assets/Resources/SPUM/SPUM_Sprites/Packages/ModernPackVer1/2_Cloth/suit_1.png
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1529658119}
+        m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
+        m_MethodName: GetTypeList
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Cloth
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &560279684
 GameObject:
   m_ObjectHideFlags: 0
@@ -3319,12 +3836,12 @@ GameObject:
   m_Component:
   - component: {fileID: 666894825}
   m_Layer: 5
-  m_Name: HeadPart
+  m_Name: HairPart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &666894825
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3361,6 +3878,7 @@ GameObject:
   - component: {fileID: 696007399}
   - component: {fileID: 696007401}
   - component: {fileID: 696007400}
+  - component: {fileID: 696007402}
   m_Layer: 5
   m_Name: Pants1
   m_TagString: Untagged
@@ -3427,6 +3945,74 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 696007398}
   m_CullTransparentMesh: 1
+--- !u!114 &696007402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 696007398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 696007400}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1529658119}
+        m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
+        m_MethodName: SetPantsPath
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Assets/Resources/SPUM/SPUM_Sprites/Packages/ModernPackVer1/3_Pant/Foot_m01.png
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1529658119}
+        m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
+        m_MethodName: GetTypeList
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Pants
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &698046974
 GameObject:
   m_ObjectHideFlags: 0
@@ -3513,6 +4099,7 @@ GameObject:
   - component: {fileID: 754534250}
   - component: {fileID: 754534252}
   - component: {fileID: 754534251}
+  - component: {fileID: 754534253}
   m_Layer: 5
   m_Name: Clothes2
   m_TagString: Untagged
@@ -3559,7 +4146,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -257058155, guid: 2474b3e47b43f5b4d9227e989892f203, type: 3}
+  m_Sprite: {fileID: -2055830843, guid: 88d42b4baaef9e9439e8f13e4a86e217, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3577,6 +4164,74 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 754534249}
   m_CullTransparentMesh: 1
+--- !u!114 &754534253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 754534249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 754534251}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1529658119}
+        m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
+        m_MethodName: SetClothPath
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Assets/Resources/SPUM/SPUM_Sprites/Packages/ModernPackVer1/2_Cloth/farmer.png
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1529658119}
+        m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
+        m_MethodName: GetTypeList
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Cloth
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &757989966
 GameObject:
   m_ObjectHideFlags: 0
@@ -5187,6 +5842,7 @@ GameObject:
   - component: {fileID: 977930135}
   - component: {fileID: 977930137}
   - component: {fileID: 977930136}
+  - component: {fileID: 977930138}
   m_Layer: 5
   m_Name: Hair4
   m_TagString: Untagged
@@ -5233,7 +5889,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: db83e027f960b4aecb3457829736c4ee, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1643ccf65051bef43a2cae8604b6aed5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5251,6 +5907,74 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 977930134}
   m_CullTransparentMesh: 1
+--- !u!114 &977930138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 977930134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 977930136}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1529658119}
+        m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
+        m_MethodName: SetHairPath
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Assets/Resources/SPUM/SPUM_Sprites/Packages/ModernPackVer1/0_Hair/Hair_m04.png
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1529658119}
+        m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
+        m_MethodName: GetTypeList
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Hair
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1004116133
 GameObject:
   m_ObjectHideFlags: 0
@@ -6022,6 +6746,7 @@ GameObject:
   - component: {fileID: 1134169759}
   - component: {fileID: 1134169761}
   - component: {fileID: 1134169760}
+  - component: {fileID: 1134169762}
   m_Layer: 5
   m_Name: Pants4
   m_TagString: Untagged
@@ -6088,6 +6813,74 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1134169758}
   m_CullTransparentMesh: 1
+--- !u!114 &1134169762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1134169758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1134169760}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1529658119}
+        m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
+        m_MethodName: SetPantsPath
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Assets/Resources/SPUM/SPUM_Sprites/Packages/ModernPackVer1/3_Pant/Foot_m04.png
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1529658119}
+        m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
+        m_MethodName: GetTypeList
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Pants
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1137886539
 GameObject:
   m_ObjectHideFlags: 0
@@ -6748,7 +7541,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1303389392
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6784,6 +7577,7 @@ GameObject:
   - component: {fileID: 1306315123}
   - component: {fileID: 1306315125}
   - component: {fileID: 1306315124}
+  - component: {fileID: 1306315126}
   m_Layer: 5
   m_Name: Hair1
   m_TagString: Untagged
@@ -6830,7 +7624,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 443418247e21b7e4598b1131a0f0c046, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9519d95562f9c5b4d9d14bff0f2a020f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6848,6 +7642,74 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1306315122}
   m_CullTransparentMesh: 1
+--- !u!114 &1306315126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1306315122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1306315124}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1529658119}
+        m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
+        m_MethodName: SetHairPath
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Assets/Resources/SPUM/SPUM_Sprites/Packages/ModernPackVer1/0_Hair/Hair_m01.png
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1529658119}
+        m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
+        m_MethodName: GetTypeList
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Hair
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1355944251
 GameObject:
   m_ObjectHideFlags: 0
@@ -7533,6 +8395,7 @@ GameObject:
   - component: {fileID: 1502808881}
   - component: {fileID: 1502808883}
   - component: {fileID: 1502808882}
+  - component: {fileID: 1502808884}
   m_Layer: 5
   m_Name: Clothes6
   m_TagString: Untagged
@@ -7579,7 +8442,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -2055830843, guid: 6aa63b0ad6c40ea45a5c26ece3dfffa4, type: 3}
+  m_Sprite: {fileID: 932715984, guid: e8d310f0ae06d784b8397e90553d8512, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7597,6 +8460,74 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1502808880}
   m_CullTransparentMesh: 1
+--- !u!114 &1502808884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1502808880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1502808882}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1529658119}
+        m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
+        m_MethodName: SetClothPath
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Assets/Resources/SPUM/SPUM_Sprites/Packages/ModernPackVer1/2_Cloth/winter1.png
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1529658119}
+        m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
+        m_MethodName: GetTypeList
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Cloth
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1506997797
 GameObject:
   m_ObjectHideFlags: 0
@@ -7972,6 +8903,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1527202516}
   m_CullTransparentMesh: 1
+--- !u!114 &1529658119 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7786892158162863254, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
+  m_PrefabInstance: {fileID: 422869381}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baea2e9758e554909b2367e396d9c5a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1553789507
 GameObject:
   m_ObjectHideFlags: 0
@@ -8283,6 +9225,7 @@ GameObject:
   - component: {fileID: 1650020534}
   - component: {fileID: 1650020536}
   - component: {fileID: 1650020535}
+  - component: {fileID: 1650020537}
   m_Layer: 5
   m_Name: Hair5
   m_TagString: Untagged
@@ -8329,7 +9272,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 20818139d5de72f4fb7e5394f50ab9ca, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7261ed8e02694ef49be5fe20860eada6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8347,6 +9290,74 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1650020533}
   m_CullTransparentMesh: 1
+--- !u!114 &1650020537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1650020533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1650020535}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1529658119}
+        m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
+        m_MethodName: SetHairPath
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Assets/Resources/SPUM/SPUM_Sprites/Packages/ModernPackVer1/0_Hair/Hair_m05.png
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1529658119}
+        m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
+        m_MethodName: GetTypeList
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Hair
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1655627361
 GameObject:
   m_ObjectHideFlags: 0
@@ -8586,6 +9597,7 @@ MonoBehaviour:
   hairPart: {fileID: 666894824}
   clothPart: {fileID: 2032779374}
   pantsPart: {fileID: 1303389391}
+  sPUM_SpriteList: {fileID: 1529658119}
 --- !u!4 &1684914332
 Transform:
   m_ObjectHideFlags: 0
@@ -8612,6 +9624,7 @@ GameObject:
   - component: {fileID: 1705570699}
   - component: {fileID: 1705570701}
   - component: {fileID: 1705570700}
+  - component: {fileID: 1705570702}
   m_Layer: 5
   m_Name: Hair2
   m_TagString: Untagged
@@ -8658,7 +9671,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: fcb262b6cbcd168408bfcdc880434208, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 67505176a01fd1c4ba6088e463f72f28, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8676,6 +9689,74 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1705570698}
   m_CullTransparentMesh: 1
+--- !u!114 &1705570702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1705570698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1705570700}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1529658119}
+        m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
+        m_MethodName: SetHairPath
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Assets/Resources/SPUM/SPUM_Sprites/Packages/ModernPackVer1/0_Hair/Hair_m02.png
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1529658119}
+        m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
+        m_MethodName: GetTypeList
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Hair
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1728886143
 GameObject:
   m_ObjectHideFlags: 0
@@ -8762,6 +9843,7 @@ GameObject:
   - component: {fileID: 1760664374}
   - component: {fileID: 1760664376}
   - component: {fileID: 1760664375}
+  - component: {fileID: 1760664377}
   m_Layer: 5
   m_Name: Pants2
   m_TagString: Untagged
@@ -8787,7 +9869,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -517.2998, y: 121}
+  m_AnchoredPosition: {x: -517.29987, y: 121}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1760664375
@@ -8828,6 +9910,74 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1760664373}
   m_CullTransparentMesh: 1
+--- !u!114 &1760664377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1760664373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1760664375}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1529658119}
+        m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
+        m_MethodName: SetPantsPath
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Assets/Resources/SPUM/SPUM_Sprites/Packages/ModernPackVer1/3_Pant/Foot_m02.png
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1529658119}
+        m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
+        m_MethodName: GetTypeList
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Pants
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1766549791
 GameObject:
   m_ObjectHideFlags: 0
@@ -8839,6 +9989,7 @@ GameObject:
   - component: {fileID: 1766549792}
   - component: {fileID: 1766549794}
   - component: {fileID: 1766549793}
+  - component: {fileID: 1766549795}
   m_Layer: 5
   m_Name: Clothes5
   m_TagString: Untagged
@@ -8885,7 +10036,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 942551685, guid: 37d93ab4f98423046b41f21b059ee2c0, type: 3}
+  m_Sprite: {fileID: 942551685, guid: eab835d0f388a3d41b2a1aa082883144, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8903,6 +10054,74 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1766549791}
   m_CullTransparentMesh: 1
+--- !u!114 &1766549795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766549791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1766549793}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1529658119}
+        m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
+        m_MethodName: SetClothPath
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Assets/Resources/SPUM/SPUM_Sprites/Packages/ModernPackVer1/2_Cloth/tee_1.png
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1529658119}
+        m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
+        m_MethodName: GetTypeList
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Cloth
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1781269950
 GameObject:
   m_ObjectHideFlags: 0
@@ -8989,6 +10208,7 @@ GameObject:
   - component: {fileID: 1782703631}
   - component: {fileID: 1782703633}
   - component: {fileID: 1782703632}
+  - component: {fileID: 1782703634}
   m_Layer: 5
   m_Name: Pants5
   m_TagString: Untagged
@@ -9055,6 +10275,74 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1782703630}
   m_CullTransparentMesh: 1
+--- !u!114 &1782703634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1782703630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1782703632}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1529658119}
+        m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
+        m_MethodName: SetPantsPath
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Assets/Resources/SPUM/SPUM_Sprites/Packages/ModernPackVer1/3_Pant/Foot_m05.png
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1529658119}
+        m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
+        m_MethodName: GetTypeList
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Pants
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1795096784
 GameObject:
   m_ObjectHideFlags: 0
@@ -9275,6 +10563,7 @@ GameObject:
   - component: {fileID: 1844583277}
   - component: {fileID: 1844583279}
   - component: {fileID: 1844583278}
+  - component: {fileID: 1844583280}
   m_Layer: 5
   m_Name: Clothes3
   m_TagString: Untagged
@@ -9321,7 +10610,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -567412746, guid: 93386983a19b0934c8c8c28e13376ddb, type: 3}
+  m_Sprite: {fileID: 1751833497, guid: 3e33af9c469d76542879abacf56e9b93, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9339,6 +10628,74 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1844583276}
   m_CullTransparentMesh: 1
+--- !u!114 &1844583280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1844583276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1844583278}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1529658119}
+        m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
+        m_MethodName: SetClothPath
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Assets/Resources/SPUM/SPUM_Sprites/Packages/ModernPackVer1/2_Cloth/hoodie.png
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1529658119}
+        m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
+        m_MethodName: GetTypeList
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Cloth
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1860860171
 GameObject:
   m_ObjectHideFlags: 0
@@ -9755,6 +11112,142 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1968505335}
   m_CullTransparentMesh: 1
+--- !u!1 &1975487636
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1975487637}
+  - component: {fileID: 1975487639}
+  - component: {fileID: 1975487638}
+  m_Layer: 5
+  m_Name: Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1975487637
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1975487636}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 218054303}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1975487638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1975487636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: "\uB418\uB3CC\uB9AC\uAE30"
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 9b16168ae80b8a647956f9628dbd1f69, type: 2}
+  m_sharedMaterial: {fileID: -314500916683896781, guid: 9b16168ae80b8a647956f9628dbd1f69, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4281479730
+  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 24
+  m_fontSizeBase: 24
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1975487639
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1975487636}
+  m_CullTransparentMesh: 1
 --- !u!1 &1986795874
 GameObject:
   m_ObjectHideFlags: 0
@@ -10088,6 +11581,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1617455945}
+  - {fileID: 218054303}
   m_Father: {fileID: 495254957}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -10510,4 +12004,4 @@ SceneRoots:
   - {fileID: 495254957}
   - {fileID: 648474415}
   - {fileID: 1684914332}
-  - {fileID: 338335758}
+  - {fileID: 422869381}

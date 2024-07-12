@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using System.Diagnostics;
+using Sirenix.OdinInspector;
 
 public class SPUM_SpriteList : MonoBehaviour
 {
@@ -28,8 +30,19 @@ public class SPUM_SpriteList : MonoBehaviour
     public List<string> _pantListString = new List<string>();
     public List<string> _weaponListString = new List<string>();
     public List<string> _backListString = new List<string>();
-    
 
+    private string baseBodyString;
+    private string basePantsString;
+    private string baseHairString;
+    private string previewBodyString;
+    private string previewHairString;
+    private string previewPantsString;
+    
+    private void Start() {
+        baseBodyString = PlayerPrefs.GetString("PlayerBody",null);
+        basePantsString = PlayerPrefs.GetString("PlayerPants",null);
+        baseHairString = PlayerPrefs.GetString("PlayerHair",null);
+    }
 
     public void Reset()
     {
@@ -141,6 +154,7 @@ public class SPUM_SpriteList : MonoBehaviour
         SyncPath(_weaponList,_weaponListString);
         SyncPath(_backList,_backListString);
     }
+   
 
     public void SyncPath(List<SpriteRenderer> _objList, List<string> _pathList)
     {
@@ -167,5 +181,63 @@ public class SPUM_SpriteList : MonoBehaviour
                 _objList[i].sprite = null;
             }
         }
+    }
+    public void GetTypeList(string type)
+    {
+        switch(type)
+        {
+            case "Cloth" :
+                ReplacePathCloth_Pant(_clothListString,previewBodyString);
+                SyncPath(_clothList,_clothListString);
+                break;
+            case "Hair" :
+                _hairListString[0] = previewHairString;
+                SyncPath(_hairList,_hairListString);
+                break;
+            case "Pants" :
+                ReplacePathCloth_Pant(_pantListString,previewPantsString);
+                SyncPath(_pantList,_pantListString);
+                break;
+                
+        }
+    }
+    public void ReplacePathCloth_Pant(List<string> pahtlist, string mypath)
+    {
+    
+        for(int i=0;i<pahtlist.Count;i++)
+        {
+            pahtlist[i] = mypath;
+        }
+    }
+    
+    public void SetClothPath(string path)
+    {
+        previewBodyString = path;
+    }
+    public void SetHairPath(string path)
+    {
+        previewHairString = path;
+    }
+    public void SetPantsPath(string path)
+    {
+        previewPantsString = path;
+    }
+    public void ResetCostume()
+    {
+       InitializeToReset();
+
+    }
+    private void InitializeToReset()
+    {
+        SetClothPath(baseBodyString);
+        ReplacePathCloth_Pant(_clothListString,previewBodyString);
+        SyncPath(_clothList,_clothListString);
+        SetPantsPath(basePantsString);
+        ReplacePathCloth_Pant(_pantListString,previewPantsString);
+        SyncPath(_pantList,_pantListString);
+        _hairListString[0] = previewHairString;
+        SyncPath(_hairList,_hairListString);
+        
+
     }
 }

@@ -561,6 +561,10 @@ PrefabInstance:
       propertyPath: mapCollider2D
       value: 
       objectReference: {fileID: 1282177793}
+    - target: {fileID: 8773557150969571933, guid: 4f67b48f7f3b9424e96c4bff23f4f2bd, type: 3}
+      propertyPath: forceUpdateMap
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

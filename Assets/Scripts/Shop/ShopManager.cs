@@ -36,6 +36,9 @@ public class ShopManager : MonoBehaviour
     public GameObject clothPart;
     public GameObject pantsPart;
 
+    //Spum sprite 변경
+    public SPUM_SpriteList sPUM_SpriteList;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start() {
         //hp 숫자배열 가져오기
@@ -47,7 +50,8 @@ public class ShopManager : MonoBehaviour
         atkfirstPlaceNumbers =GetChildObjects(atkfirstPlaceParent);
         atksecondPlaceNumbers = GetChildObjects(atksecondPlaceParent);
         atkthirdPlaceNumbers = GetChildObjects(atkthirdPlaceParent);
-        
+        //test용 
+        Test();
         //기존 hp,공격 값 가져오기
         playerHp = PlayerPrefs.GetInt("PlayerHp", 0);
         playerAtk =PlayerPrefs.GetInt("PlayerAttack",0);
@@ -69,6 +73,7 @@ public class ShopManager : MonoBehaviour
 
         //추후 돈 표시 기능 개발
         playerMoney = PlayerPrefs.GetInt("PlayerMoney",0);
+        
     }
     public void OnStatePanel()
     {
@@ -170,5 +175,6 @@ public class ShopManager : MonoBehaviour
         PlayerPrefs.SetInt("PlayerAttack", 0);
         PlayerPrefs.SetInt("PlayerHp",0);
     }
+   
 
 }

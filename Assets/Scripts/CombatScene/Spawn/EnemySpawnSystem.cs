@@ -2,12 +2,11 @@ using System.Collections.Generic;
 using CombatScene;
 using CombatScene.Enemy;
 using UnityEngine;
-using UnityEngine.Analytics;
 
 public class EnemySpawnSystem : MonoBehaviour
 {
     [SerializeField]
-    private List<GameObject> enemysPrefabs;
+    private List<GameObject> enemyPrefabs;
 
     private List<GameObject> enemyPool;
     [SerializeField]
@@ -18,14 +17,13 @@ public class EnemySpawnSystem : MonoBehaviour
     public int range;
     public int poolSize;
     private int currentPoolIndex = 0;
-    private Vector2 randomSpawn;
     public float spawnTime = 5f;
     private float currentTime = 0f;
     public int powerUp = 0;
-    private int spawNum=0;
+    private int spawnNum = 0;
 
     [SerializeField]
-    private int maxActiveEnemies = 10; // 최대 활성화된 적군의 수
+    private int maxActiveEnemies = 10;
 
     void Start()
     {
@@ -35,44 +33,35 @@ public class EnemySpawnSystem : MonoBehaviour
 
     void Update()
     {
-        
         currentTime += Time.deltaTime;
         if (currentTime > spawnTime)
         {
             currentTime = 0f;
             SpawnEnemy();
-           if(spawNum%3==0 && spawnTime>2f)
-           {
-              spawnTime-=0.2f;
-           }
-           
+            if (spawnNum % 3 == 0 && spawnTime > 2f)
+            {
+                spawnTime -= 0.2f;
+            }
         }
     }
 
     void InstantiateEnemy()
     {
-        enemyPool = new List<GameObject>(); // 풀을 명시적으로 초기화
-
         for (int i = 0; i < poolSize; i++)
         {
-            foreach (GameObject enemyPrefab in enemysPrefabs)
+            foreach (GameObject enemyPrefab in enemyPrefabs)
             {
                 GameObject enemy = Instantiate(enemyPrefab);
                 enemy.SetActive(false);
                 enemy.transform.SetParent(transform, true);
                 enemyPool.Add(enemy);
-                
             }
+        }
     }
 
-    
-}
-
-
-   void SpawnEnemy()
+    void SpawnEnemy()
     {
-        int activeEnemies = GetActiveEnemyCount();
-        if (activeEnemies >= maxActiveEnemies)
+        if (GetActiveEnemyCount() >= maxActiveEnemies)
         {
             Debug.Log("최대 적군 수임. 생성하지마라");
             return;
@@ -88,61 +77,48 @@ public class EnemySpawnSystem : MonoBehaviour
             int spawnY = (int)playerPosition.y + GetRandomValue(range);
             Vector2 spawnPosition = new Vector2(spawnX, spawnY);
 
-            // 스폰 위치가 맵의 유효 범위 내에 있는지 확인
-            if (IsPositionWithinMapBounds(spawnPosition))
+            if (IsPositionWithinMapBounds(spawnPosition) && CheckSpawn(spawnPosition))
             {
-                if (CheckSpawn(spawnPosition))
+                for (int i = 0; i < enemyPool.Count; i++)
                 {
-                    if (currentPoolIndex < enemyPool.Count)
+                    int index = (currentPoolIndex + i) % enemyPool.Count;
+                    if (!enemyPool[index].activeInHierarchy)
                     {
-                        GameObject enemy = enemyPool[currentPoolIndex];
-
+                        GameObject enemy = enemyPool[index];
                         enemy.transform.position = spawnPosition;
-
-                        
                         enemy.SetActive(true);
-
-                        // EnemyController 설정
-                        EnemyController enemyManager = enemy.GetComponent<EnemyController>();
-                        enemyManager.SetCombatManager(combatManager);
-                        enemyManager.AddEnemyToSpawn();
-                        enemyManager.SetVariabePowerup(powerUp);
-                        
-                        
-
-                        currentPoolIndex = (currentPoolIndex + 1) % enemyPool.Count;
-                        spawNum++;
-                        if (spawNum % 3 == 0 && powerUp<20)
+                        InitializeEnemy(enemy);
+                        currentPoolIndex = (index + 1) % enemyPool.Count;
+                        spawnNum++;
+                        if (spawnNum % 3 == 0 && powerUp < 20)
                         {
                             powerUp++;
                         }
                         return;
                     }
-                    else
-                    {
-                        Debug.LogError("currentPoolIndex가 enemyPool의 범위를 벗어났습니다: " + currentPoolIndex);
-                    }
                 }
-            }
-            else
-            {
-                Debug.LogWarning($"스폰 위치가 맵의 유효 범위를 벗어났습니다: {spawnPosition}");
             }
         }
 
         Debug.Log("유효한 스폰 위치를 찾지 못했습니다. " + maxAttempts + "번 시도 후 실패했습니다.");
     }
 
-// 스폰 위치가 맵의 유효 범위 내에 있는지 확인하는 메서드
-bool IsPositionWithinMapBounds(Vector2 spawnPosition)
-{
-    Vector2 relativePoint = spawnPosition - mapHandler.startPosition;
-    int idxX = (int)((relativePoint.x + ConstVariables.tileSizeX / 2) / ConstVariables.tileSizeX);
-    int idxY = (int)((relativePoint.y + ConstVariables.tileSizeY / 2) / ConstVariables.tileSizeY);
+    void InitializeEnemy(GameObject enemy)
+    {
+        EnemyController enemyManager = enemy.GetComponent<EnemyController>();
+        enemyManager.SetCombatManager(combatManager);
+        enemyManager.AddEnemyToSpawn();
+        enemyManager.SetVariabePowerup(powerUp);
+    }
 
-    return idxX >= 0 && idxX < ConstVariables.mapWidth && idxY >= 0 && idxY < ConstVariables.mapHeight;
-}
+    bool IsPositionWithinMapBounds(Vector2 spawnPosition)
+    {
+        Vector2 relativePoint = spawnPosition - mapHandler.startPosition;
+        int idxX = (int)((relativePoint.x + ConstVariables.tileSizeX / 2) / ConstVariables.tileSizeX);
+        int idxY = (int)((relativePoint.y + ConstVariables.tileSizeY / 2) / ConstVariables.tileSizeY);
 
+        return idxX >= 0 && idxX < ConstVariables.mapWidth && idxY >= 0 && idxY < ConstVariables.mapHeight;
+    }
 
     bool CheckSpawn(Vector2 spawnPosition)
     {
