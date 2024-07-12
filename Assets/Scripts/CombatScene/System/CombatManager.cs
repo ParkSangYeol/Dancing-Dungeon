@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using CombatScene.Enemy;
 using CombatScene.Player;
+using CombatScene.System;
 using CombatScene.System.Particle;
 using DG.Tweening;
 using Sirenix.OdinInspector;
@@ -50,8 +51,12 @@ namespace CombatScene
         
         #endif
         #endregion
-        
-        [Title("Components")]
+
+        [Title("Components")] 
+        [SerializeField] 
+        private AttackFocusPool _attackFocusPool;
+        public AttackFocusPool attackFocusPool => _attackFocusPool;
+
         [SerializeField]
         private MapHandler mapHandler;
         [SerializeField]
@@ -199,7 +204,7 @@ namespace CombatScene
             {
                 // 랜덤한 아이템을 드랍하도록 설정.
                 float random = Random.Range(0, 1);
-                if (random < 0f)
+                if (random < 0.1f)
                 {
                     itemManager.SpawnRandomItem(enemyPosition);
                 }
@@ -263,7 +268,8 @@ namespace CombatScene
                     {
                         WeaponScriptableObject enemyEquipWeapon = enemy.GetEquippedWeapon();
                         particleManager.PlayParticle(enemyEquipWeapon.name, enemyDelayedAttackPosition + new Vector2(ConstVariables.tileSizeX / 2,ConstVariables.CharacterHeight), false);
-
+                        attackFocusPool.ReturnAttackFocus(enemyDelayedAttackPosition);
+                        
                         if (enemyDelayedAttackPosition.Equals(playerPosition))
                         {
                             player.Attacked(enemy.GetPower());

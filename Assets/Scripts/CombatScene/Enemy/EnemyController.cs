@@ -222,7 +222,7 @@ namespace CombatScene.Enemy
                                 // 공격 범위의 값 가져오기
                                 Vector2 targetPosition = (Vector2) this.transform.position + dirVec * i;
                                 // 바닥 타일 변경
-                                // TODO
+                                combatManager.attackFocusPool.PlaceAttackFocus(targetPosition);
                                 
                                 delayedAttackPositions.Add(targetPosition);
                             }
@@ -243,7 +243,7 @@ namespace CombatScene.Enemy
                                     }
                                     
                                     // 바닥 타일 변경
-                                    // TODO
+                                    combatManager.attackFocusPool.PlaceAttackFocus(targetPosition);
                                     
                                     delayedAttackPositions.Add(targetPosition);
                                 }
