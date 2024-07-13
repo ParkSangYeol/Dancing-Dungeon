@@ -1,4 +1,6 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ShopManager : MonoBehaviour
 {
@@ -6,6 +8,7 @@ public class ShopManager : MonoBehaviour
     public int attackUpgradeCost;// 업그레이드 비용(공격)
     public int hpUpAmount; // 한번 증가시킬때 얼마나 증가하는지
     public int attackUpAmount;//""
+    public TextMeshProUGUI moneyText;
     [SerializeField]
     private GameObject statePannel;
     [SerializeField]
@@ -30,6 +33,8 @@ public class ShopManager : MonoBehaviour
     private int playerMoney;
     private int playerHp;
     private int playerAtk;
+
+    private string purchaseItem;
     //능력치 강화 부분
 
     public GameObject hairPart;
@@ -72,7 +77,8 @@ public class ShopManager : MonoBehaviour
 
 
         //추후 돈 표시 기능 개발
-        playerMoney = PlayerPrefs.GetInt("PlayerMoney",0);
+        playerMoney = PlayerPrefs.GetInt("PlayerMoney",1000);
+        SetMoneyText();
         
     }
     public void OnStatePanel()
@@ -114,7 +120,7 @@ public class ShopManager : MonoBehaviour
     }
     public void UpgradeHP()
     {
-        if(playerHp<1000)
+        if(playerHp<1000 && playerMoney>hpUpgradeCost)
         {
         
             // 버튼을 누르면 수행되는 작업
@@ -125,6 +131,7 @@ public class ShopManager : MonoBehaviour
             playerMoney-=hpUpgradeCost;
             PlayerPrefs.SetInt("PlayerMoney",playerMoney);
             PlayerPrefs.Save();
+            SetMoneyText();
             string playerHpString = playerHp.ToString("D3"); 
 
         
@@ -142,13 +149,14 @@ public class ShopManager : MonoBehaviour
             // 버튼을 누르면 수행되는 작업
             //1) 조건검사(돈이 있는지)
             //2) PlayerPrefeb의 hp 재설정
-            if(playerAtk<1000)
+            if(playerAtk<1000 && playerMoney>attackUpgradeCost)
             {
                 playerAtk += attackUpAmount;
                 PlayerPrefs.SetInt("PlayerAttack", playerAtk);
                 playerMoney-=attackUpgradeCost;
                 PlayerPrefs.SetInt("PlayerMoney",playerMoney);
                 PlayerPrefs.Save();
+                SetMoneyText();
                 string playerAtkString = playerAtk.ToString("D3"); 
 
             
@@ -174,7 +182,50 @@ public class ShopManager : MonoBehaviour
     {
         PlayerPrefs.SetInt("PlayerAttack", 0);
         PlayerPrefs.SetInt("PlayerHp",0);
+        PlayerPrefs.SetInt("PlayerMoney",1000);
+        for (int i = 1; i <= 6; i++)
+        {
+            string hairname = "Hair" + i;
+            string clothename = "Clothes" + i;
+            string pantsname = "Pants" + i;
+            PlayerPrefs.SetInt(hairname,0);
+            PlayerPrefs.SetInt(clothename,0);
+            PlayerPrefs.SetInt(pantsname,0);
+        }
     }
+
+    public void SetMoneyText()
+    {
+        moneyText.text = ""+playerMoney;
+        Debug.Log("돈 업데이트");
+    }
+
+    public void SetPurchaseString(string name)
+    {
+        purchaseItem = name;
+    }
+    
+    public void PurchaseItem(int cost)
+    {
+        string item = purchaseItem;
+        if (playerMoney >= cost)
+        {
+            playerMoney -= cost;
+            PlayerPrefs.SetInt("PlayerMoney", playerMoney);
+            PlayerPrefs.SetInt(item, 1);
+            SetMoneyText();
+            
+            
+        }
+    }
+
+    public void GoMain()
+    {
+        SceneManager.LoadScene("Scenes/Dev/GD/MainScene/MainScene");
+    }
+    
+
+    
    
 
 }

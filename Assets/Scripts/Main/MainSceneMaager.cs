@@ -47,7 +47,7 @@ public class MainSceneMaager : MonoBehaviour
     }
     public void GoShop()
     {
-        SceneManager.LoadScene("ShopScene");
+        SceneManager.LoadScene("ShopScene1");
     }
     void loadBgm()
     {
