@@ -12,11 +12,11 @@ namespace CombatScene.Enemy
 
         [Title("캐릭터 정보")] 
         public string name;
-        [Range(10, 20)]
+        [Range(10, 200)]
         public int hp;
-        [Range(1, 3)]
+        [Range(1, 30)]
         public float defaultPower;
-        [Range(0, 2)]
+        [Range(0, 20)]
         public float shield;
     }
 }

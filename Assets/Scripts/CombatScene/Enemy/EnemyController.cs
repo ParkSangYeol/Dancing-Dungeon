@@ -17,7 +17,7 @@ namespace CombatScene.Enemy
         [Title("Components")]
         [InfoBox("GameManager의 CombatManager를 추가해주세요!", InfoMessageType.Error, "IsCombatManagerNotSetup")]
         [SerializeField]
-        private CombatManager combatManager;
+        protected CombatManager combatManager;
         [SerializeField]
         private Animator animator;
         [InfoBox("자식 컴포넌트의 UnityRoot를 추가해주세요.", InfoMessageType.Info)]
@@ -39,12 +39,13 @@ namespace CombatScene.Enemy
         
         [Title("Events")] 
         public UnityEvent<Vector2> OnEnemyDead;
-
+        
         [Title("Variables")] 
         private int currentAttackDelay;
         private int currentDelayedAttackDelay;
         private bool isDelayedAttackActive;
         private List<Vector2> delayedAttackPositions;
+        public ObjectType tileObjectType { get; private set; }
         
         [ShowInInspector]
         public float hp
@@ -74,16 +75,19 @@ namespace CombatScene.Enemy
         private WeaponScriptableObject equipWeapon;
         
         #endregion
-
         
         // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
+        protected void Start()
         {
             combatManager = FindAnyObjectByType<CombatManager>();
             SetComponent();
 #if TEST_MOVE_WITHOUT_NOTE
             SetVariables(); // 스폰할때마다 해주는 것으로 해결, 시간이 지남에 따라 적군이 강해지도록 하기위함.
 #endif
+            if (this as BossController)
+            {
+                SetVariables();
+            }
             SetEvent();
             SetExternalComponent();
             Debug.Log("Enemy Power : " + this._power);
@@ -108,7 +112,7 @@ namespace CombatScene.Enemy
         /// <param name="targetPosition"> 이동시킬 타겟 위치(현재 위치에서 더해주는 값)</param>
         /// <param name="duration"> 이동 시간(초)</param>
         /// <returns></returns>
-        IEnumerator MoveTo(Vector2 targetPosition, float duration)
+        protected IEnumerator MoveTo(Vector2 targetPosition, float duration)
         {
             // 플레이어 이동 애니메이션 재생
             animator.SetTrigger("Move");
@@ -160,7 +164,7 @@ namespace CombatScene.Enemy
         /// <param name="targetPos">공격할 대상의 위치</param>
         /// <param name="attackDelaying">현재 캐릭터가 공격 후 딜레이 상태인지를 확인</param>
         /// <param name="delayedAttackDelaying">현재 캐릭터가 딜레이 공격으로 딜레이 상태인지 확인</param>
-        /// <returns></returns>
+        /// <returns> 공격 가능여부를 반환 </returns>
         public bool CanAttack(Vector2 targetPos, out bool attackDelaying, out bool delayedAttackDelaying)
         {
             delayedAttackDelaying = false;
@@ -276,12 +280,20 @@ namespace CombatScene.Enemy
             
             return true;
         }
-        
+
+        protected void CancelDelayedAttack()
+        {
+            foreach (var position in delayedAttackPositions)
+            {
+                combatManager.attackFocusPool.ReturnAttackFocus(position);
+            }
+            delayedAttackPositions.Clear();
+        }
         public float GetPower()
         {
             return equipWeapon.power + characterData.defaultPower;
         }
-
+        
         public void Attack()
         {
             animator.SetTrigger("Attack");    
@@ -291,7 +303,6 @@ namespace CombatScene.Enemy
         {
             return equipWeapon;
         }
-        
 
         #endregion
         
@@ -333,6 +344,9 @@ namespace CombatScene.Enemy
             this.power = characterData.defaultPower;
             this.shield = characterData.shield;
             this.equipWeapon = defaultWeapon;
+            this.tileObjectType = (this as BossController) ? ObjectType.Boss : ObjectType.Enemy;
+            
+            
             this.currentAttackDelay = 0;
             this.isDelayedAttackActive = false;
             this.delayedAttackPositions = new List<Vector2>();
@@ -343,6 +357,7 @@ namespace CombatScene.Enemy
             this.power = characterData.defaultPower+upCapcity;
             this.shield = characterData.shield+upCapcity;
             this.equipWeapon = defaultWeapon;
+            this.tileObjectType = (this as BossController) ? ObjectType.Boss : ObjectType.Enemy;
             
             this.currentAttackDelay = 0;
             this.isDelayedAttackActive = false;
@@ -354,6 +369,11 @@ namespace CombatScene.Enemy
             {
                 animator.SetTrigger("Dead");
                 _hp=hp;
+            });
+            
+            OnEnemyDead.AddListener((enemyTransform) =>
+            {
+                CancelDelayedAttack();
             });
         }
         private void SetExternalComponent()
@@ -368,7 +388,7 @@ namespace CombatScene.Enemy
                 weaponSpriteRenderer = transform.Find("UnitRoot/Root/BodySet/P_Body/ArmSet/ArmR/P_RArm/P_Weapon/R_Weapon").GetComponent<SpriteRenderer>();
             } 
             weaponSpriteRenderer.sprite = equipWeapon.weaponSprite;
-            combatManager.SetEnemyEvent(this);
+            combatManager.SetEnemyEvent((this as BossController) ?? this);
         }
         #endregion
 

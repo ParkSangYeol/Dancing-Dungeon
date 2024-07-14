@@ -58,7 +58,8 @@ namespace CombatScene
         public AttackFocusPool attackFocusPool => _attackFocusPool;
 
         [SerializeField]
-        private MapHandler mapHandler;
+        private MapHandler _mapHandler;
+        public MapHandler mapHandler => _mapHandler;
         [SerializeField]
         private ParticleManager particleManager;
         [SerializeField]
@@ -69,6 +70,8 @@ namespace CombatScene
         [InfoBox("플레이어를 넣어주세요!", InfoMessageType.Error, "IsPlayerNotSetup")]
         [SerializeField]
         private PlayerController player;
+        
+        [Title("Variables")]
         public Vector2 playerPosition;
         private Dictionary<Vector2, EnemyController> enemies = new Dictionary<Vector2, EnemyController>();
         private HitScanByRay hitScanByRay;
@@ -81,7 +84,7 @@ namespace CombatScene
         {
             if (mapHandler == null)
             {
-                mapHandler = GetComponent<MapHandler>();
+                _mapHandler = GetComponent<MapHandler>();
             }
             
             if (particleManager == null)
@@ -178,16 +181,16 @@ namespace CombatScene
         {
             ObjectType tileObject = mapHandler.GetPoint(targetPosition);
             
-            if (tileObject.Equals(ObjectType.Player) || tileObject.Equals(ObjectType.Enemy))
+            if (tileObject.Equals(ObjectType.Player) || tileObject.Equals(ObjectType.Enemy) || tileObject.Equals(ObjectType.Boss))
             {
                 // 플레이어나 적 위치로는 이동 불가
                 return false;
             }
             
-            if (mapHandler.SetMapObject(targetPosition, ObjectType.Enemy))
+            EnemyController enemy = enemies[enemyPosition];
+            if (mapHandler.SetMapObject(targetPosition, enemy.tileObjectType))
             {
                 mapHandler.SetMapObject(enemyPosition, ObjectType.Load);
-                EnemyController enemy = enemies[enemyPosition];
                 enemy.MoveCharacter(targetPosition);
                 
                 enemies.Remove(enemyPosition);
@@ -200,25 +203,53 @@ namespace CombatScene
 
         public void SetEnemyEvent(EnemyController enemy)
         {
-            enemy.OnEnemyDead.AddListener((enemyPosition) =>
+            if (enemy is BossController)
             {
-                // 랜덤한 아이템을 드랍하도록 설정.
-                float random = Random.Range(0, 1);
-                if (random < 0.1f)
+                enemy.OnEnemyDead.AddListener((enemyPosition) =>
                 {
-                    itemManager.SpawnRandomItem(enemyPosition);
-                }
-            });
-            
-            enemy.OnEnemyDead.AddListener((enemyPosition) =>
+                    // 랜덤한 아이템을 드랍하도록 설정.
+                    float random = Random.Range(0, 1f);
+                    for (int i = -1; i <= 1; i++)
+                    {
+                        for (int j = -1; j <= 1; j++)
+                        {
+                            itemManager.SpawnRandomItem(enemyPosition + new Vector2(i, j));
+                        }
+                    }    
+                });
+                
+                enemy.OnEnemyDead.AddListener((enemyPosition) =>
+                {
+                    Debug.Log("Enemy Dead. Position is " + enemyPosition);
+                    mapHandler.SetMapObject(enemyPosition, ObjectType.Load);
+                    EnemyController enemy = null;
+                    bool isGetEnemy = enemies.TryGetValue(enemyPosition, out enemy);
+                    Debug.Log("Enemy Dead. Get Enemy: " + isGetEnemy + " enemy: " + enemy);
+                    Debug.Log("Enemy Dead. Removing Enemy: " + enemies.Remove(enemyPosition));
+                });
+            }
+            else
             {
-                Debug.Log("Enemy Dead. Position is " + enemyPosition);
-                mapHandler.SetMapObject(enemyPosition, ObjectType.Load);
-                EnemyController enemy = null;
-                bool isGetEnemy = enemies.TryGetValue(enemyPosition, out enemy);
-                Debug.Log("Enemy Dead. Get Enemy: " + isGetEnemy + " enemy: " + enemy);
-                Debug.Log("Enemy Dead. Removing Enemy: " + enemies.Remove(enemyPosition));
-            });
+                enemy.OnEnemyDead.AddListener((enemyPosition) =>
+                {
+                    // 랜덤한 아이템을 드랍하도록 설정.
+                    float random = Random.Range(0, 1f);
+                    if (random < 0.1f)
+                    {
+                        itemManager.SpawnRandomItem(enemyPosition);
+                    }
+                });
+                
+                enemy.OnEnemyDead.AddListener((enemyPosition) =>
+                {
+                    Debug.Log("Enemy Dead. Position is " + enemyPosition);
+                    mapHandler.SetMapObject(enemyPosition, ObjectType.Load);
+                    EnemyController enemy = null;
+                    bool isGetEnemy = enemies.TryGetValue(enemyPosition, out enemy);
+                    Debug.Log("Enemy Dead. Get Enemy: " + isGetEnemy + " enemy: " + enemy);
+                    Debug.Log("Enemy Dead. Removing Enemy: " + enemies.Remove(enemyPosition));
+                });
+            }
         }
         
         public void AddEnemy(Vector2 position, EnemyController enemy)
@@ -230,7 +261,16 @@ namespace CombatScene
             }
             mapHandler.SetMapObject(position, ObjectType.Enemy);
         }
-
+        public void AddBoss(Vector2 position, EnemyController enemy)
+        {
+            Debug.Log("Boss Add. Position is " + position);
+            if(!enemies.TryAdd(position, enemy))
+            {
+                return;
+            }
+            mapHandler.SetMapObject(position, ObjectType.Boss);
+        }
+        
         public void PlayerBehavior(Vector2 inputVec/*, string hitResult = "normal"*/)
         {
             if (!(inputVec.x == 0 && Mathf.Abs(inputVec.y) == 1) && !(inputVec.y == 0 && Mathf.Abs(inputVec.x) == 1))
@@ -328,6 +368,20 @@ namespace CombatScene
             return false;
         }
 
+        private bool BossBehavior(Vector2 bossPosition)
+        {
+            EnemyController enemy;
+            if (enemies.TryGetValue(bossPosition, out enemy))
+            {
+                Debug.Log("EnemyName is " + enemy.name + " Enemy is Boss? " + (enemy is BossController));
+                if (enemy as BossController)
+                {
+                    return (enemy as BossController).BossBehaviorAble(playerPosition);
+                }
+            }
+            return false;
+        }
+        
         /// <summary>
         /// 플레이어의 입력 방향에 적이 있으면 공격을 시도함.
         /// </summary>
@@ -445,6 +499,37 @@ namespace CombatScene
                                     queue.Enqueue(new TileInfo(new Vector2(nX, nY), tileInfo.depth + 1));
                                 }
                                 break;
+                            case ObjectType.Boss:
+                                if (dp[nX, nY] > tileInfo.depth + 1 && BossBehavior(new Vector2(nX, nY)))
+                                {
+                                    bool isAttack;
+                                    if (EnemyBehavior(new Vector2((int)tileInfo.position.x, (int)tileInfo.position.y),
+                                            new Vector2(nX, nY), out isAttack))
+                                    {
+                                        dp[nX, nY] = tileInfo.depth + 1;
+                                        queue.Enqueue(new TileInfo(new Vector2(nX, nY), tileInfo.depth + 1));
+                                    }
+                                    else if (isAttack)
+                                    {
+                                        dp[nX, nY] = tileInfo.depth + 1;
+                                    }
+                                }
+                                else
+                                {
+                                    dp[nX, nY] = tileInfo.depth + 1;
+                                    for (int j = 0; j < 4; j++)
+                                    {
+                                        int nnX = nX + ConstVariables.dX[i];
+                                        int nnY = nY + ConstVariables.dY[i];
+                                        
+                                        ObjectType nextTileObject = mapHandler.GetPoint(nnX, nnY);
+                                        if (nextTileObject.Equals(ObjectType.Load) || nextTileObject.Equals(ObjectType.Boss))
+                                        {
+                                            dp[nnX, nnY] = tileInfo.depth + 2;
+                                        }
+                                    }
+                                }
+                                break;
                             case ObjectType.Enemy:
                                 if (dp[nX, nY] > tileInfo.depth + 1)
                                 {
@@ -465,8 +550,10 @@ namespace CombatScene
                     }
                 }
             }
+            
+            
         }
-
+        
         #region Inner Class
         
         private class dpClass
@@ -493,9 +580,9 @@ namespace CombatScene
 
             public dpClass(int detectRange, Vector2 playerPos)
             {
-                dp = new int [detectRange * 2 + 1, detectRange * 2 + 1];
-                this.offsetX = (int)playerPos.x - detectRange;
-                this.offsetY = (int)playerPos.y - detectRange;
+                dp = new int [detectRange * 2 + 3, detectRange * 2 + 3];
+                this.offsetX = (int)playerPos.x - detectRange - 1;
+                this.offsetY = (int)playerPos.y - detectRange - 1;
                 
                 
                 // 초기값 설정

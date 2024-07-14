@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8773557150969571933}
   - component: {fileID: 3930489484063137679}
   - component: {fileID: 303837332041483112}
+  - component: {fileID: 8813436921169137019}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -47,6 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dae9393599d500479a6f46a42571ded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _attackFocusPool: {fileID: 8813436921169137019}
   mapHandler: {fileID: 8773557150969571933}
   particleManager: {fileID: 3930489484063137679}
   itemManager: {fileID: 303837332041483112}
@@ -114,3 +116,18 @@ MonoBehaviour:
   itemLists: {fileID: 11400000, guid: ff1ddfc41ea2deb459eb86e9e14ffc2f, type: 2}
   combatSceneUIManager: {fileID: 0}
   particleManager: {fileID: 3930489484063137679}
+--- !u!114 &8813436921169137019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2387518821727625666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ce527106401f604aab9f2b4af1835e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolPosition: {x: -1000, y: -1000, z: 0}
+  numOfDefaultFocus: 10
+  attackFocusPrefab: {fileID: 373857621645509056, guid: 63ba69f2efa76964a933783b8c304c98, type: 3}
