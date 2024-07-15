@@ -14,7 +14,7 @@ namespace CombatScene
         public string name;
         [Range(1, 3)]
         public int range;
-        [Range(0, 5)]
+        [Range(0, 500)]
         public int power;
         public AttackDirection attackDirection;
         [Range(0, 5)] 

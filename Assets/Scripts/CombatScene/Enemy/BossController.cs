@@ -31,7 +31,6 @@ namespace CombatScene.Enemy
         {
             if (!bossArea.OverlapPoint(playerPosition))
             {
-                Debug.Log("Is Boss OverlapPoint? : " + bossArea.OverlapPoint(this.transform.position));
                 // 보스를 초기 위치로 이동시키기
                 ReturnBossToDefaultPosition();
                 CancelDelayedAttack();
@@ -46,7 +45,6 @@ namespace CombatScene.Enemy
 
         private void ReturnBossToDefaultPosition()
         {
-            Debug.Log("Call Return Boss Algorithm");
             // A* 알고리즘 사용
             Dictionary<Vector2, Vector2> parents = new Dictionary<Vector2, Vector2>();
             SearchTileNode startNode = new SearchTileNode(this.transform.position);
@@ -86,7 +84,6 @@ namespace CombatScene.Enemy
             {
                 movePos = parents[movePos];
             }
-            Debug.Log("Call MoveEnemy. movePos: " + movePos + " transform.position: " + transform.position);
             combatManager.MoveEnemy(movePos, this.transform.position);
         }
     }

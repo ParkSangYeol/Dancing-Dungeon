@@ -191,10 +191,10 @@ namespace CombatScene
             if (mapHandler.SetMapObject(targetPosition, enemy.tileObjectType))
             {
                 mapHandler.SetMapObject(enemyPosition, ObjectType.Load);
-                enemy.MoveCharacter(targetPosition);
-                
                 enemies.Remove(enemyPosition);
                 enemies.Add(targetPosition, enemy);
+                enemy.MoveCharacter(targetPosition);
+                
                 return true;
             }
             
@@ -364,6 +364,10 @@ namespace CombatScene
                     return false;
                 }
             }
+            else
+            {
+                Debug.LogError("There is No Enemy in position " + enemyPosition);
+            }
             isAttack = false;
             return false;
         }
@@ -373,11 +377,14 @@ namespace CombatScene
             EnemyController enemy;
             if (enemies.TryGetValue(bossPosition, out enemy))
             {
-                Debug.Log("EnemyName is " + enemy.name + " Enemy is Boss? " + (enemy is BossController));
                 if (enemy as BossController)
                 {
                     return (enemy as BossController).BossBehaviorAble(playerPosition);
                 }
+            }
+            else
+            {
+                Debug.LogError("There is No Enemy: " + bossPosition);
             }
             return false;
         }
@@ -461,6 +468,7 @@ namespace CombatScene
         
         public void SearchTiles()
         {
+            Debug.Log("Call Search Tiles");
             dpClass dp = new dpClass(ConstVariables.maxDetactRange, playerPosition);
             Queue<TileInfo> queue = new Queue<TileInfo>();
             queue.Enqueue(new TileInfo(playerPosition, 0));
@@ -500,7 +508,11 @@ namespace CombatScene
                                 }
                                 break;
                             case ObjectType.Boss:
-                                if (dp[nX, nY] > tileInfo.depth + 1 && BossBehavior(new Vector2(nX, nY)))
+                                if (dp[nX, nY] <= tileInfo.depth + 1)
+                                {
+                                    break;
+                                }
+                                if (BossBehavior(new Vector2(nX, nY)))
                                 {
                                     bool isAttack;
                                     if (EnemyBehavior(new Vector2((int)tileInfo.position.x, (int)tileInfo.position.y),
@@ -516,16 +528,16 @@ namespace CombatScene
                                 }
                                 else
                                 {
-                                    dp[nX, nY] = tileInfo.depth + 1;
+                                    dp[nX, nY] = 0;
                                     for (int j = 0; j < 4; j++)
                                     {
-                                        int nnX = nX + ConstVariables.dX[i];
-                                        int nnY = nY + ConstVariables.dY[i];
+                                        int nnX = nX + ConstVariables.dX[j];
+                                        int nnY = nY + ConstVariables.dY[j];
                                         
                                         ObjectType nextTileObject = mapHandler.GetPoint(nnX, nnY);
-                                        if (nextTileObject.Equals(ObjectType.Load) || nextTileObject.Equals(ObjectType.Boss))
+                                        if (nextTileObject.Equals(ObjectType.Boss))
                                         {
-                                            dp[nnX, nnY] = tileInfo.depth + 2;
+                                            dp[nnX, nnY] = 0;
                                         }
                                     }
                                 }
