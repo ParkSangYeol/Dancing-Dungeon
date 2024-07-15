@@ -122,4 +122,9 @@ public class MainSceneMaager : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
+    public void GoInventory()
+    {
+        SceneManager.LoadScene("Inventory");
+    }
+
 }

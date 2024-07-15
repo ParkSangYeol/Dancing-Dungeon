@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -6,6 +7,12 @@ public class InventoryManager : MonoBehaviour
     public GameObject hairPanel;
     public GameObject clothePanel;
     public GameObject pantsPanel;
+    public string[] hairpath;
+    public string[] clothpath;
+    public string[] pantspath;
+    public Sprite[] hairImage;
+    public Sprite[] clothImage;
+    public Sprite[] pantsImage;
     
     void Start()
     {
@@ -40,5 +47,15 @@ public class InventoryManager : MonoBehaviour
             
         }
     }
-    // 산 옷들을 보여줘야함.
+
+    public void GoMenu()
+    {
+        SceneManager.LoadScene("Scenes/Dev/GD/MainScene/MainScene");
+    }
+    
+    
+    
+    
+    // 산 옷들을 보여줘야함. 칸에서 띄어줘야함 어떻게?
+    //PlayerPrefeb 에서 이 아이템들이 존재하는지 그리고 이것들을 산 순서대로 저장할것
 }

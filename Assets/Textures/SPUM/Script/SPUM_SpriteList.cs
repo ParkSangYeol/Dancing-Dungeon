@@ -4,6 +4,8 @@ using UnityEngine;
 using System.IO;
 using System.Diagnostics;
 using Sirenix.OdinInspector;
+using UnityEngine.SceneManagement;
+using Debug = UnityEngine.Debug;
 
 public class SPUM_SpriteList : MonoBehaviour
 {
@@ -37,11 +39,22 @@ public class SPUM_SpriteList : MonoBehaviour
     private string previewBodyString;
     private string previewHairString;
     private string previewPantsString;
-    
+
+    private string[] inventoryhairpath = new string[6];
+    private string[] inventoryclothpath = new string[6];
+    private string[] inventorypantspath = new string[5];
+
+    private int currentInventoryindex=0;
     private void Start() {
         baseBodyString = PlayerPrefs.GetString("PlayerBody",null);
         basePantsString = PlayerPrefs.GetString("PlayerPants",null);
         baseHairString = PlayerPrefs.GetString("PlayerHair",null);
+        if (this.CompareTag("Player"))
+        {
+            LoadWear();
+        }
+        
+
     }
 
     public void Reset()
@@ -158,49 +171,115 @@ public class SPUM_SpriteList : MonoBehaviour
 
     public void SyncPath(List<SpriteRenderer> _objList, List<string> _pathList)
     {
-        for(var i = 0 ; i < _pathList.Count ; i++)
+        if (_objList == null)
         {
-            if(_pathList[i].Length > 1 ) 
+            Debug.LogError("_objList is null");
+            return;
+        }
+        if (_pathList == null)
+        {
+            Debug.LogError("_pathList is null");
+            return;
+        }
+
+        for (var i = 0; i < _pathList.Count; i++)
+        {
+            if (_pathList[i].Length > 1)
             {
                 string tPath = _pathList[i];
-                tPath = tPath.Replace("Assets/Resources/","");
-                tPath = tPath.Replace(".png","");
-                
+                tPath = tPath.Replace("Assets/Resources/", "");
+                tPath = tPath.Replace(".png", "");
+
                 Sprite[] tSP = Resources.LoadAll<Sprite>(tPath);
-                if(tSP.Length > 1)
+                if (tSP.Length > 1)
                 {
-                    _objList[i].sprite = tSP[i];
+                    if (i < _objList.Count && _objList[i] != null)
+                    {
+                        _objList[i].sprite = tSP[i];
+                    }
+                    else
+                    {
+                        Debug.LogWarning($"_objList at index {i} is null or out of range");
+                    }
                 }
                 else if (tSP.Length > 0)
                 {
-                    _objList[i].sprite = tSP[0];
+                    if (i < _objList.Count && _objList[i] != null)
+                    {
+                        _objList[i].sprite = tSP[0];
+                    }
+                    else
+                    {
+                        Debug.LogWarning($"_objList at index {i} is null or out of range");
+                    }
                 }
             }
             else
             {
-                _objList[i].sprite = null;
+                if (i < _objList.Count && _objList[i] != null)
+                {
+                    _objList[i].sprite = null;
+                }
+                else
+                {
+                    Debug.LogWarning($"_objList at index {i} is null or out of range");
+                }
             }
         }
     }
     public void GetTypeList(string type)
     {
+      
+            switch(type)
+            {
+                case "Cloth" :
+                    ReplacePathCloth_Pant(_clothListString,previewBodyString);
+                    SyncPath(_clothList,_clothListString);
+                    break;
+                case "Hair" :
+                    _hairListString[0] = previewHairString;
+                    SyncPath(_hairList, _hairListString);
+                    break;
+                case "Pants" :
+                    ReplacePathCloth_Pant(_pantListString,previewPantsString);
+                    SyncPath(_pantList,_pantListString);
+                    break;
+                
+            }
+        
+    }
+
+    public void Wear(string type)
+    {
         switch(type)
         {
-            case "Cloth" :
-                ReplacePathCloth_Pant(_clothListString,previewBodyString);
-                SyncPath(_clothList,_clothListString);
+            case "Cloth":
+                Debug.Log(currentInventoryindex);
+                ReplacePathCloth_Pant(_clothListString, inventoryclothpath[currentInventoryindex-1]);
+                SyncPath(_clothList, _clothListString);
+                PlayerPrefs.GetString("WearingCloth", inventoryclothpath[currentInventoryindex - 1]);
+                PlayerPrefs.SetString("WearingCloth", inventoryclothpath[currentInventoryindex - 1]);
                 break;
-            case "Hair" :
-                _hairListString[0] = previewHairString;
-                SyncPath(_hairList,_hairListString);
+            case "Hair":
+                Debug.Log("currentindex는 "+currentInventoryindex+"이고 들어간 path는"+inventoryhairpath[currentInventoryindex-1]);
+                _hairListString[0] = inventoryhairpath[currentInventoryindex-1];
+                Debug.Log(_hairListString[0]);
+                SyncPath(_hairList, _hairListString);
+                PlayerPrefs.GetString("WearingHair", inventoryhairpath[currentInventoryindex - 1]);
+                PlayerPrefs.SetString("WearingHair", inventoryhairpath[currentInventoryindex - 1]);
                 break;
-            case "Pants" :
-                ReplacePathCloth_Pant(_pantListString,previewPantsString);
-                SyncPath(_pantList,_pantListString);
-                break;
+            case "Pants":
+                Debug.Log(currentInventoryindex);
+                ReplacePathCloth_Pant(_pantListString, inventorypantspath[currentInventoryindex-1]);
+                SyncPath(_pantList, _pantListString);
+                PlayerPrefs.GetString("WearingPants", inventorypantspath[currentInventoryindex - 1]);
+                PlayerPrefs.SetString("WearingPants", inventorypantspath[currentInventoryindex - 1]);
                 
+                break;
         }
+        PlayerPrefs.Save();
     }
+    
     public void ReplacePathCloth_Pant(List<string> pahtlist, string mypath)
     {
     
@@ -224,7 +303,7 @@ public class SPUM_SpriteList : MonoBehaviour
     }
     public void ResetCostume()
     {
-       InitializeToReset();
+        LoadWear();
 
     }
     private void InitializeToReset()
@@ -232,12 +311,96 @@ public class SPUM_SpriteList : MonoBehaviour
         SetClothPath(baseBodyString);
         ReplacePathCloth_Pant(_clothListString,previewBodyString);
         SyncPath(_clothList,_clothListString);
+        
         SetPantsPath(basePantsString);
         ReplacePathCloth_Pant(_pantListString,previewPantsString);
         SyncPath(_pantList,_pantListString);
+        
         _hairListString[0] = previewHairString;
         SyncPath(_hairList,_hairListString);
         
 
     }
+
+    public void InitializedPath(string type, string path, int index)
+    {
+        switch (type)
+        {
+            case "Hair":
+                Debug.Log(index+"번째에 추가할"+"리스트에 추가할 PATH : "+ path);
+                inventoryhairpath[index] = path;
+                Debug.Log(index+"번째에 추가할"+"리스트에 들어간 패스 : "+ inventoryhairpath[index]);
+                
+                break;
+            case "Cloth":
+                Debug.Log(index+"번째에 추가할"+"리스트에 추가할 PATH : "+ path);
+                inventoryclothpath[index] = path;
+                Debug.Log("리스트에 들어간 패스 : "+ inventoryclothpath[index]);
+                
+                break;
+            case "Pants":
+                Debug.Log(index+"번째에 추가할"+"리스트에 추가할 PATH : "+ path);
+                inventorypantspath[index] = path;
+                Debug.Log("리스트에 들어간 패스 : "+ inventoryclothpath[index]);
+                
+                break;
+        }
+    }
+    
+
+    public void SetPathInventory(string type,string path)
+    {
+        switch (type)
+        {
+            case "Hair":
+                Debug.Log("리스트에 추가할 PATH : "+ path);
+                inventoryhairpath[currentInventoryindex] = path;
+                Debug.Log("리스트에 들어간 패스 : "+ inventoryhairpath[currentInventoryindex]);
+                Debug.Log("선택한 버튼 번호 : "+currentInventoryindex);
+                break;
+            case "Cloth":
+                Debug.Log("리스트에 추가할 PATH : "+ path);
+                inventoryclothpath[currentInventoryindex] = path;
+                Debug.Log("리스트에 들어간 패스 : "+ inventoryhairpath[currentInventoryindex]);
+                Debug.Log("선택한 버튼 번호 : "+currentInventoryindex);
+                break;
+            case "Pants":
+                Debug.Log("리스트에 추가할 PATH : "+ path);
+                inventorypantspath[currentInventoryindex] = path;
+                Debug.Log("리스트에 들어간 패스 : "+ inventoryhairpath[currentInventoryindex]);
+                Debug.Log("선택한 버튼 번호 : "+currentInventoryindex);
+                break;
+        }
+    }
+
+    public void SetCurrentInventoryindex(int index)
+    {
+        currentInventoryindex = index;
+    }
+
+    public void LoadWear()
+    {
+        if (PlayerPrefs.HasKey("WearingHair"))
+        {
+            string path = PlayerPrefs.GetString("WearingHair");
+            _hairListString[0] = path;
+            SyncPath(_hairList, _hairListString);
+            
+        }
+
+        if (PlayerPrefs.HasKey("WearingCloth"))
+        {
+            string path = PlayerPrefs.GetString("WearingCloth");
+            ReplacePathCloth_Pant(_clothListString, path);
+            SyncPath(_clothList, _clothListString);
+        }
+
+        if (PlayerPrefs.HasKey("WearingPants"))
+        {
+            string path = PlayerPrefs.GetString("WearingPants");
+            ReplacePathCloth_Pant(_pantListString, path);
+            SyncPath(_pantList, _pantListString);
+        }
+    }
+    
 }

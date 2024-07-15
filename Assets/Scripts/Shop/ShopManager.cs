@@ -33,6 +33,10 @@ public class ShopManager : MonoBehaviour
     private int playerMoney;
     private int playerHp;
     private int playerAtk;
+    
+    private int hairinventory; 
+    private int clothinventory;
+    private int pantsinventory;
 
     private string purchaseItem;
     //능력치 강화 부분
@@ -56,7 +60,7 @@ public class ShopManager : MonoBehaviour
         atksecondPlaceNumbers = GetChildObjects(atksecondPlaceParent);
         atkthirdPlaceNumbers = GetChildObjects(atkthirdPlaceParent);
         //test용 
-        Test();
+        
         //기존 hp,공격 값 가져오기
         playerHp = PlayerPrefs.GetInt("PlayerHp", 0);
         playerAtk =PlayerPrefs.GetInt("PlayerAttack",0);
@@ -74,13 +78,27 @@ public class ShopManager : MonoBehaviour
         ActivateNumber(atkfirstPlaceNumbers, playerAtkString[0] - '0');
         ActivateNumber(atksecondPlaceNumbers, playerAtkString[1] - '0');
         ActivateNumber(atkthirdPlaceNumbers, playerAtkString[2] - '0');
+        
+        
 
-
+    
         //추후 돈 표시 기능 개발
         playerMoney = PlayerPrefs.GetInt("PlayerMoney",1000);
+        
         SetMoneyText();
         
     }
+
+    public void InitializePlayPrefebsInventory()
+    {
+        
+            hairinventory = PlayerPrefs.GetInt("HairInventory", 0);
+            clothinventory = PlayerPrefs.GetInt("ClothInventory" , 0);
+            pantsinventory = PlayerPrefs.GetInt("PantsInventory", 0);
+        
+        
+    }
+    
     public void OnStatePanel()
     {
         eqiquementPanel.SetActive(false);
@@ -186,7 +204,7 @@ public class ShopManager : MonoBehaviour
         for (int i = 1; i <= 6; i++)
         {
             string hairname = "Hair" + i;
-            string clothename = "Clothes" + i;
+            string clothename = "Cloth" + i;
             string pantsname = "Pants" + i;
             PlayerPrefs.SetInt(hairname,0);
             PlayerPrefs.SetInt(clothename,0);
@@ -213,11 +231,34 @@ public class ShopManager : MonoBehaviour
             playerMoney -= cost;
             PlayerPrefs.SetInt("PlayerMoney", playerMoney);
             PlayerPrefs.SetInt(item, 1);
+            string inventorytype = item.Substring(0, item.Length - 1);
+            string inventoryitem = inventorytype + "Inventory";
+            //인벤토리 몇번에 저장되는지 알려주기 위함. 처음엔 1 그다음엔 2 또 그다음엔 3번째칸에 산 아이템이 들어감. 
+            PlayerPrefs.SetInt(inventoryitem,TypeTest(inventoryitem)+1);
+            int inventoryindex = PlayerPrefs.GetInt(inventoryitem); //HairInventory
+            
+            //몇번아이템을 샀는지도 중요하다.
+            string test =PlayerPrefs.GetString(inventoryitem + inventoryindex, "null");
+            
+            PlayerPrefs.SetString(inventoryitem+inventoryindex,item);//Ex) HairInventory1 
+            string purchase = PlayerPrefs.GetString(inventoryitem + inventoryindex, "null");
+            
+            Debug.Log(purchase);
+            
+            
             SetMoneyText();
+            PlayerPrefs.Save();
             
             
         }
     }
+
+    public int TypeTest(string str)
+    {
+        return PlayerPrefs.GetInt(str, 0);
+
+    }
+    
 
     public void GoMain()
     {

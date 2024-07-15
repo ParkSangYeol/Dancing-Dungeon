@@ -784,7 +784,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1529658119}
+      - m_Target: {fileID: 7786892157744774419}
         m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
         m_MethodName: SetHairPath
         m_Mode: 5
@@ -796,7 +796,7 @@ MonoBehaviour:
           m_StringArgument: Assets/Resources/SPUM/SPUM_Sprites/Packages/ModernPackVer1/0_Hair/Hair_m06.png
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1529658119}
+      - m_Target: {fileID: 7786892157744774419}
         m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
         m_MethodName: GetTypeList
         m_Mode: 5
@@ -1321,7 +1321,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Clothes5
+          m_StringArgument: Cloth5
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1684914331}
@@ -2124,7 +2124,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1529658119}
+      - m_Target: {fileID: 7786892157744774419}
         m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
         m_MethodName: ResetCostume
         m_Mode: 1
@@ -2371,7 +2371,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1529658119}
+      - m_Target: {fileID: 7786892157744774419}
         m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
         m_MethodName: SetHairPath
         m_Mode: 5
@@ -2383,7 +2383,7 @@ MonoBehaviour:
           m_StringArgument: Assets/Resources/SPUM/SPUM_Sprites/Packages/ModernPackVer1/0_Hair/Hair_m03.png
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1529658119}
+      - m_Target: {fileID: 7786892157744774419}
         m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
         m_MethodName: GetTypeList
         m_Mode: 5
@@ -2594,7 +2594,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1529658119}
+      - m_Target: {fileID: 7786892157744774419}
         m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
         m_MethodName: SetPantsPath
         m_Mode: 5
@@ -2606,7 +2606,7 @@ MonoBehaviour:
           m_StringArgument: Assets/Resources/SPUM/SPUM_Sprites/Packages/ModernPackVer1/3_Pant/Foot_m03.png
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1529658119}
+      - m_Target: {fileID: 7786892157744774419}
         m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
         m_MethodName: GetTypeList
         m_Mode: 5
@@ -4232,230 +4232,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 416205815}
   m_CullTransparentMesh: 1
---- !u!1001 &422869381
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.999962
-      objectReference: {fileID: 0}
-    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.008726558
-      objectReference: {fileID: 0}
-    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -5.14
-      objectReference: {fileID: 0}
-    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -2.19
-      objectReference: {fileID: 0}
-    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1337061401424477107, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5360426106763110196, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5360426106763110196, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5360426106763110196, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5472235102980992629, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_Name
-      value: PlayerPreview
-      objectReference: {fileID: 0}
-    - target: {fileID: 5785896446434231269, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5785896446434231269, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5785896446434231269, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6018827537588434697, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6018827537588434697, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6018827537588434697, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6913019114299672544, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6913019114299672544, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6913019114299672544, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7786892158162863254, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: _clothList.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7786892158162863254, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: '_clothList.Array.data[1]'
-      value: 
-      objectReference: {fileID: 422869384}
-    - target: {fileID: 7786892158162863254, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: '_clothList.Array.data[2]'
-      value: 
-      objectReference: {fileID: 422869383}
-    - target: {fileID: 7786892158162863254, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: '_clothList.Array.data[3]'
-      value: 
-      objectReference: {fileID: 422869382}
-    - target: {fileID: 7786892158162863254, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: _clothListString.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7786892158162863254, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: '_clothListString.Array.data[0]'
-      value: Assets/Resources/SPUM/SPUM_Sprites/Packages/ModernPackVer1/2_Cloth/farmer.png
-      objectReference: {fileID: 0}
-    - target: {fileID: 7786892158162863254, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: '_clothListString.Array.data[1]'
-      value: Assets/Resources/SPUM/SPUM_Sprites/Packages/ModernPackVer1/2_Cloth/farmer.png
-      objectReference: {fileID: 0}
-    - target: {fileID: 7786892158162863254, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: '_clothListString.Array.data[2]'
-      value: Assets/Resources/SPUM/SPUM_Sprites/Packages/ModernPackVer1/2_Cloth/farmer.png
-      objectReference: {fileID: 0}
-    - target: {fileID: 7786892158162863254, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: '_clothListString.Array.data[3]'
-      value: Assets/Resources/SPUM/SPUM_Sprites/Packages/ModernPackVer1/2_Cloth/farmer.png
-      objectReference: {fileID: 0}
-    - target: {fileID: 8409128494786394718, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8409128494786394718, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9150091268887608482, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
---- !u!212 &422869382 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 5785896446434231269, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-  m_PrefabInstance: {fileID: 422869381}
-  m_PrefabAsset: {fileID: 0}
---- !u!212 &422869383 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 5360426106763110196, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-  m_PrefabInstance: {fileID: 422869381}
-  m_PrefabAsset: {fileID: 0}
---- !u!212 &422869384 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 29424153150961863, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-  m_PrefabInstance: {fileID: 422869381}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &429802248
 GameObject:
   m_ObjectHideFlags: 0
@@ -5055,7 +4831,7 @@ GameObject:
   - component: {fileID: 516477050}
   - component: {fileID: 516477052}
   m_Layer: 5
-  m_Name: Clothes1
+  m_Name: Cloth1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5164,7 +4940,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1529658119}
+      - m_Target: {fileID: 7786892157744774419}
         m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
         m_MethodName: SetClothPath
         m_Mode: 5
@@ -5176,7 +4952,7 @@ MonoBehaviour:
           m_StringArgument: Assets/Resources/SPUM/SPUM_Sprites/Packages/ModernPackVer1/2_Cloth/dress_1.png
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1529658119}
+      - m_Target: {fileID: 7786892157744774419}
         m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
         m_MethodName: GetTypeList
         m_Mode: 5
@@ -5408,7 +5184,7 @@ GameObject:
   - component: {fileID: 556320220}
   - component: {fileID: 556320222}
   m_Layer: 5
-  m_Name: Clothes4
+  m_Name: Cloth4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5517,7 +5293,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1529658119}
+      - m_Target: {fileID: 7786892157744774419}
         m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
         m_MethodName: SetClothPath
         m_Mode: 5
@@ -5529,7 +5305,7 @@ MonoBehaviour:
           m_StringArgument: Assets/Resources/SPUM/SPUM_Sprites/Packages/ModernPackVer1/2_Cloth/suit_1.png
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1529658119}
+      - m_Target: {fileID: 7786892157744774419}
         m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
         m_MethodName: GetTypeList
         m_Mode: 5
@@ -6906,7 +6682,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &666894825
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7192,7 +6968,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1529658119}
+      - m_Target: {fileID: 7786892157744774419}
         m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
         m_MethodName: SetPantsPath
         m_Mode: 5
@@ -7204,7 +6980,7 @@ MonoBehaviour:
           m_StringArgument: Assets/Resources/SPUM/SPUM_Sprites/Packages/ModernPackVer1/3_Pant/Foot_m01.png
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1529658119}
+      - m_Target: {fileID: 7786892157744774419}
         m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
         m_MethodName: GetTypeList
         m_Mode: 5
@@ -7440,7 +7216,7 @@ GameObject:
   - component: {fileID: 754534251}
   - component: {fileID: 754534253}
   m_Layer: 5
-  m_Name: Clothes2
+  m_Name: Cloth2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7549,7 +7325,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1529658119}
+      - m_Target: {fileID: 7786892157744774419}
         m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
         m_MethodName: SetClothPath
         m_Mode: 5
@@ -7561,7 +7337,7 @@ MonoBehaviour:
           m_StringArgument: Assets/Resources/SPUM/SPUM_Sprites/Packages/ModernPackVer1/2_Cloth/farmer.png
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1529658119}
+      - m_Target: {fileID: 7786892157744774419}
         m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
         m_MethodName: GetTypeList
         m_Mode: 5
@@ -8451,7 +8227,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Clothes2
+          m_StringArgument: Cloth2
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1684914331}
@@ -10617,7 +10393,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Clothes3
+          m_StringArgument: Cloth3
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1684914331}
@@ -11015,7 +10791,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1529658119}
+      - m_Target: {fileID: 7786892157744774419}
         m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
         m_MethodName: SetHairPath
         m_Mode: 5
@@ -11027,7 +10803,7 @@ MonoBehaviour:
           m_StringArgument: Assets/Resources/SPUM/SPUM_Sprites/Packages/ModernPackVer1/0_Hair/Hair_m04.png
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1529658119}
+      - m_Target: {fileID: 7786892157744774419}
         m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
         m_MethodName: GetTypeList
         m_Mode: 5
@@ -12467,7 +12243,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1529658119}
+      - m_Target: {fileID: 7786892157744774419}
         m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
         m_MethodName: SetPantsPath
         m_Mode: 5
@@ -12479,7 +12255,7 @@ MonoBehaviour:
           m_StringArgument: Assets/Resources/SPUM/SPUM_Sprites/Packages/ModernPackVer1/3_Pant/Foot_m04.png
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1529658119}
+      - m_Target: {fileID: 7786892157744774419}
         m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
         m_MethodName: GetTypeList
         m_Mode: 5
@@ -13847,7 +13623,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1303389392
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13994,7 +13770,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1529658119}
+      - m_Target: {fileID: 7786892157744774419}
         m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
         m_MethodName: SetHairPath
         m_Mode: 5
@@ -14006,7 +13782,7 @@ MonoBehaviour:
           m_StringArgument: Assets/Resources/SPUM/SPUM_Sprites/Packages/ModernPackVer1/0_Hair/Hair_m01.png
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1529658119}
+      - m_Target: {fileID: 7786892157744774419}
         m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
         m_MethodName: GetTypeList
         m_Mode: 5
@@ -14805,7 +14581,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Clothes1
+          m_StringArgument: Cloth1
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1684914331}
@@ -15529,7 +15305,7 @@ GameObject:
   - component: {fileID: 1502808882}
   - component: {fileID: 1502808884}
   m_Layer: 5
-  m_Name: Clothes6
+  m_Name: Cloth6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15638,7 +15414,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1529658119}
+      - m_Target: {fileID: 7786892157744774419}
         m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
         m_MethodName: SetClothPath
         m_Mode: 5
@@ -15650,7 +15426,7 @@ MonoBehaviour:
           m_StringArgument: Assets/Resources/SPUM/SPUM_Sprites/Packages/ModernPackVer1/2_Cloth/winter1.png
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1529658119}
+      - m_Target: {fileID: 7786892157744774419}
         m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
         m_MethodName: GetTypeList
         m_Mode: 5
@@ -16173,17 +15949,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1527202516}
   m_CullTransparentMesh: 1
---- !u!114 &1529658119 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7786892158162863254, guid: 703063bf0fc992f4ea38cbcd6093c0e8, type: 3}
-  m_PrefabInstance: {fileID: 422869381}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: baea2e9758e554909b2367e396d9c5a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1542278376
 GameObject:
   m_ObjectHideFlags: 0
@@ -16289,7 +16054,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Clothes6
+          m_StringArgument: Cloth6
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1684914331}
@@ -17064,7 +16829,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1529658119}
+      - m_Target: {fileID: 7786892157744774419}
         m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
         m_MethodName: SetHairPath
         m_Mode: 5
@@ -17076,7 +16841,7 @@ MonoBehaviour:
           m_StringArgument: Assets/Resources/SPUM/SPUM_Sprites/Packages/ModernPackVer1/0_Hair/Hair_m05.png
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1529658119}
+      - m_Target: {fileID: 7786892157744774419}
         m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
         m_MethodName: GetTypeList
         m_Mode: 5
@@ -17464,7 +17229,7 @@ MonoBehaviour:
   hairPart: {fileID: 666894824}
   clothPart: {fileID: 2032779374}
   pantsPart: {fileID: 1303389391}
-  sPUM_SpriteList: {fileID: 1529658119}
+  sPUM_SpriteList: {fileID: 7786892157744774419}
 --- !u!4 &1684914332
 Transform:
   m_ObjectHideFlags: 0
@@ -17602,7 +17367,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1529658119}
+      - m_Target: {fileID: 7786892157744774419}
         m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
         m_MethodName: SetHairPath
         m_Mode: 5
@@ -17614,7 +17379,7 @@ MonoBehaviour:
           m_StringArgument: Assets/Resources/SPUM/SPUM_Sprites/Packages/ModernPackVer1/0_Hair/Hair_m02.png
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1529658119}
+      - m_Target: {fileID: 7786892157744774419}
         m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
         m_MethodName: GetTypeList
         m_Mode: 5
@@ -17901,7 +17666,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1529658119}
+      - m_Target: {fileID: 7786892157744774419}
         m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
         m_MethodName: SetPantsPath
         m_Mode: 5
@@ -17913,7 +17678,7 @@ MonoBehaviour:
           m_StringArgument: Assets/Resources/SPUM/SPUM_Sprites/Packages/ModernPackVer1/3_Pant/Foot_m02.png
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1529658119}
+      - m_Target: {fileID: 7786892157744774419}
         m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
         m_MethodName: GetTypeList
         m_Mode: 5
@@ -17938,7 +17703,7 @@ GameObject:
   - component: {fileID: 1766549793}
   - component: {fileID: 1766549795}
   m_Layer: 5
-  m_Name: Clothes5
+  m_Name: Cloth5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18047,7 +17812,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1529658119}
+      - m_Target: {fileID: 7786892157744774419}
         m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
         m_MethodName: SetClothPath
         m_Mode: 5
@@ -18059,7 +17824,7 @@ MonoBehaviour:
           m_StringArgument: Assets/Resources/SPUM/SPUM_Sprites/Packages/ModernPackVer1/2_Cloth/tee_1.png
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1529658119}
+      - m_Target: {fileID: 7786892157744774419}
         m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
         m_MethodName: GetTypeList
         m_Mode: 5
@@ -18176,7 +17941,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Clothes4
+          m_StringArgument: Cloth4
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1684914331}
@@ -18440,7 +18205,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1529658119}
+      - m_Target: {fileID: 7786892157744774419}
         m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
         m_MethodName: SetPantsPath
         m_Mode: 5
@@ -18452,7 +18217,7 @@ MonoBehaviour:
           m_StringArgument: Assets/Resources/SPUM/SPUM_Sprites/Packages/ModernPackVer1/3_Pant/Foot_m05.png
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1529658119}
+      - m_Target: {fileID: 7786892157744774419}
         m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
         m_MethodName: GetTypeList
         m_Mode: 5
@@ -18898,7 +18663,7 @@ GameObject:
   - component: {fileID: 1844583278}
   - component: {fileID: 1844583280}
   m_Layer: 5
-  m_Name: Clothes3
+  m_Name: Cloth3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19007,7 +18772,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1529658119}
+      - m_Target: {fileID: 7786892157744774419}
         m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
         m_MethodName: SetClothPath
         m_Mode: 5
@@ -19019,7 +18784,7 @@ MonoBehaviour:
           m_StringArgument: Assets/Resources/SPUM/SPUM_Sprites/Packages/ModernPackVer1/2_Cloth/hoodie.png
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1529658119}
+      - m_Target: {fileID: 7786892157744774419}
         m_TargetAssemblyTypeName: SPUM_SpriteList, Assembly-CSharp
         m_MethodName: GetTypeList
         m_Mode: 5
@@ -21376,6 +21141,118 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2142464049}
   m_CullTransparentMesh: 1
+--- !u!1001 &614300760501048705
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1868455895979183252, guid: 96553db90fe7b3f4fad26320555dbe01, type: 3}
+      propertyPath: m_Name
+      value: PlayerPreviewFinal
+      objectReference: {fileID: 0}
+    - target: {fileID: 3593832788184683981, guid: 96553db90fe7b3f4fad26320555dbe01, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6707279522929286094, guid: 96553db90fe7b3f4fad26320555dbe01, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6707279522929286094, guid: 96553db90fe7b3f4fad26320555dbe01, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6707279522929286094, guid: 96553db90fe7b3f4fad26320555dbe01, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6707279522929286094, guid: 96553db90fe7b3f4fad26320555dbe01, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6707279522929286094, guid: 96553db90fe7b3f4fad26320555dbe01, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6707279522929286094, guid: 96553db90fe7b3f4fad26320555dbe01, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6707279522929286094, guid: 96553db90fe7b3f4fad26320555dbe01, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6707279522929286094, guid: 96553db90fe7b3f4fad26320555dbe01, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6707279522929286094, guid: 96553db90fe7b3f4fad26320555dbe01, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6707279522929286094, guid: 96553db90fe7b3f4fad26320555dbe01, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6707279522929286094, guid: 96553db90fe7b3f4fad26320555dbe01, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6707279522929286094, guid: 96553db90fe7b3f4fad26320555dbe01, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.999962
+      objectReference: {fileID: 0}
+    - target: {fileID: 6707279522929286094, guid: 96553db90fe7b3f4fad26320555dbe01, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6707279522929286094, guid: 96553db90fe7b3f4fad26320555dbe01, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.008726558
+      objectReference: {fileID: 0}
+    - target: {fileID: 6707279522929286094, guid: 96553db90fe7b3f4fad26320555dbe01, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6707279522929286094, guid: 96553db90fe7b3f4fad26320555dbe01, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -5.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 6707279522929286094, guid: 96553db90fe7b3f4fad26320555dbe01, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -2.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 6707279522929286094, guid: 96553db90fe7b3f4fad26320555dbe01, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6707279522929286094, guid: 96553db90fe7b3f4fad26320555dbe01, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6707279522929286094, guid: 96553db90fe7b3f4fad26320555dbe01, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 96553db90fe7b3f4fad26320555dbe01, type: 3}
+--- !u!114 &7786892157744774419 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2157592561911998798, guid: 96553db90fe7b3f4fad26320555dbe01, type: 3}
+  m_PrefabInstance: {fileID: 614300760501048705}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baea2e9758e554909b2367e396d9c5a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -21386,4 +21263,4 @@ SceneRoots:
   - {fileID: 495254957}
   - {fileID: 648474415}
   - {fileID: 1684914332}
-  - {fileID: 422869381}
+  - {fileID: 614300760501048705}
