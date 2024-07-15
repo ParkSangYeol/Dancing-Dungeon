@@ -216,6 +216,7 @@ namespace CombatScene
         Block,
         Player,
         Enemy,
-        Load
+        Load,
+        Boss
     }
 }

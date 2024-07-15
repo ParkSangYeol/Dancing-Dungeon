@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 506b092065d862243a59ef240314a9a3, type: 3}
+  m_Name: BossWeapon-Unarmed
+  m_EditorClassIdentifier: 
+  thumbnail: {fileID: 2554473656886179314, guid: d24756e433435b249be5737019648d69, type: 3}
+  weaponSprite: {fileID: 0}
+  name: "\uBCF4\uC2A4 \uB9E8\uC190"
+  range: 1
+  power: 5
+  attackDirection: 0
+  attackDelay: 0
+  isDelayedAttack: 1
+  delayedAttackDelay: 1
+  isSplash: 1
+  VFX: {fileID: 19834362, guid: 5bf2d5976d852ed4498de3bc1560c2c4, type: 3}

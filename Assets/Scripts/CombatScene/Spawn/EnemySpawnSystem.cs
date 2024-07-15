@@ -114,7 +114,7 @@ public class EnemySpawnSystem : MonoBehaviour
                         spawNum++;
                         if (spawNum % 3 == 0 && powerUp<20)
                         {
-                            powerUp++;
+                            //powerUp++;
                         }
                         return;
                     }
