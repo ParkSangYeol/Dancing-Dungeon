@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attackFocusPool: {fileID: 8813436921169137019}
-  mapHandler: {fileID: 8773557150969571933}
+  _mapHandler: {fileID: 0}
   particleManager: {fileID: 3930489484063137679}
   itemManager: {fileID: 303837332041483112}
   combatSceneUIManager: {fileID: 0}
@@ -96,6 +96,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4b91932d719e6f74988cd22d2a2b4b3c, type: 2}
   - {fileID: 11400000, guid: e5e022242be28c545b0830205f09ef90, type: 2}
   - {fileID: 11400000, guid: d79a7738103c6344d947a7ba1f88071b, type: 2}
+  - {fileID: 11400000, guid: 776638426594ddf42b7dc92f63ffd1af, type: 2}
+  - {fileID: 11400000, guid: 4c62440f15cfac641aee9d45f5d3d32c, type: 2}
   itemParticlePrefab: {fileID: 198356074628506108, guid: 73e37b4ccaf87f148aa1cff27e1658e7, type: 3}
   poolPosition: {x: -1000, y: -1000, z: 0}
   normalAtkSound: {fileID: 8300000, guid: f0bda0fb28e55094da8c606b16ebe906, type: 3}
