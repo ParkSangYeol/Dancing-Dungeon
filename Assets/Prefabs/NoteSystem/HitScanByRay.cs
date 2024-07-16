@@ -19,7 +19,7 @@ public class HitScanByRay : MonoBehaviour
     private bool missHapppen = false;
     
 
-    public UnityEvent<Vector2> OnPressedKey;
+    public UnityEvent<Vector2,string> OnPressedKey;
     public UnityEvent<string> OnTimingHit;
     private string currentHit = "";
     
@@ -119,7 +119,7 @@ public class HitScanByRay : MonoBehaviour
                     currentHit = "Perfect";
                     Debug.Log("Perfect : Left X : " + left_x + " Right X : " + right_x + " Difference " + xDifference);
                     OnTimingHit?.Invoke(currentHit);
-                    OnPressedKey?.Invoke(moveDir);
+                    OnPressedKey?.Invoke(moveDir,currentHit);
                     lefthit.collider.gameObject.SetActive(false);
                     righthit.collider.gameObject.SetActive(false);
                     combatSceneUIManager.SetCombo(currentHit);
@@ -129,7 +129,7 @@ public class HitScanByRay : MonoBehaviour
                 {
                     currentHit = "Great";
                     OnTimingHit?.Invoke(currentHit);
-                    OnPressedKey?.Invoke(moveDir);
+                    OnPressedKey?.Invoke(moveDir,currentHit);
                     lefthit.collider.gameObject.SetActive(false);
                     righthit.collider.gameObject.SetActive(false);
                 
@@ -139,7 +139,6 @@ public class HitScanByRay : MonoBehaviour
                 {
                     OnTimingHit?.Invoke(currentHit);
                     currentHit = "Bad";
-                    
                     combatSceneUIManager.SetCombo(currentHit);
                 }
                 else if (xDifference > 1300)
