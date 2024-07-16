@@ -47,7 +47,7 @@ public class MainSceneMaager : MonoBehaviour
     }
     public void GoShop()
     {
-        SceneManager.LoadScene("ShopScene");
+        SceneManager.LoadScene("ShopScene1");
     }
     void loadBgm()
     {
@@ -120,6 +120,11 @@ public class MainSceneMaager : MonoBehaviour
 
         
         SceneManager.LoadScene(sceneName);
+    }
+
+    public void GoInventory()
+    {
+        SceneManager.LoadScene("Inventory");
     }
 
 }

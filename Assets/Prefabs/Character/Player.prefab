@@ -2028,6 +2028,7 @@ MonoBehaviour:
   - {fileID: 3790252776731768551}
   _clothList:
   - {fileID: 6913019114299672544}
+  - {fileID: 29424153150961863}
   - {fileID: 5360426106763110196}
   - {fileID: 5785896446434231269}
   _armorList:

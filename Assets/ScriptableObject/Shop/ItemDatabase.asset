@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bedeaf0f7e5a3714f874a586e157e1e7, type: 3}
+  m_Name: ItemDatabase
+  m_EditorClassIdentifier: 
+  items:
+  - itemID: Hoodie
+    itemName: 
+    itemIcon: {fileID: 1751833497, guid: 3e33af9c469d76542879abacf56e9b93, type: 3}
+    itemSpritePath: Assets/Resources/SPUM/SPUM_Sprites/Packages/MordernPackVer1/2_Cloth/hoodie.png
+  - itemID: Suit1
+    itemName: 
+    itemIcon: {fileID: -257058155, guid: 7e7c9fa27b82f4744aa20431defe3a6f, type: 3}
+    itemSpritePath: Assets/Resources/SPUM/SPUM_Sprites/Packages/MordernPackVer1/2_Cloth/suit_1.png
+  - itemID: 
+    itemName: 
+    itemIcon: {fileID: -2055830843, guid: 88d42b4baaef9e9439e8f13e4a86e217, type: 3}
+    itemSpritePath: Assets/Resources/SPUM/SPUM_Sprites/Packages/MordernPackVer1/2_Cloth/farmer.png
+  - itemID: Winter1
+    itemName: 
+    itemIcon: {fileID: 932715984, guid: e8d310f0ae06d784b8397e90553d8512, type: 3}
+    itemSpritePath: Assets/Resources/SPUM/SPUM_Sprites/Packages/MordernPackVer1/2_Cloth/winter1.png
+  - itemID: Dress_1
+    itemName: 
+    itemIcon: {fileID: -1786316325, guid: c1b30e23d9f46514a89b176898abd52d, type: 3}
+    itemSpritePath: Assets/Resources/SPUM/SPUM_Sprites/Packages/MordernPackVer1/2_Cloth/dress_1.png
+  - itemID: Tee1
+    itemName: 
+    itemIcon: {fileID: 942551685, guid: eab835d0f388a3d41b2a1aa082883144, type: 3}
+    itemSpritePath: Assets/Resources/SPUM/SPUM_Sprites/Packages/MordernPackVer1/2_Cloth/tee_1.png
