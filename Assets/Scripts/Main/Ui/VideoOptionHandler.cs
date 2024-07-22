@@ -47,6 +47,7 @@ namespace Main.UI
             SetupResolutionDropdown();
             SetFrameDropdown();
             SetupToggle();
+            this.gameObject.SetActive(false);
         }
 
         private void SetupScreen()
