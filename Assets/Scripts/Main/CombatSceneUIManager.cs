@@ -23,15 +23,18 @@ public class CombatSceneUIManager : MonoBehaviour
     public string nextScene;
     [SerializeField]private GameObject weaponPannel;
     [SerializeField]private GameObject shieldPannel;
+    [SerializeField]private GameObject powerPanel;
     [SerializeField]private HitScanByRay hitScanByRay;
 
 
     private Image weaponimage;
-    private TextMeshProUGUI powerText;
     private TextMeshProUGUI weaponName;
     private TextMeshProUGUI range;
     private TextMeshProUGUI splashText;
-    private TextMeshProUGUI directionText;
+    private TextMeshProUGUI hpText;
+    private TextMeshProUGUI shieldText;
+    private TextMeshProUGUI powerText;
+    private PlayerController playerController;
 
 
     private int combo=0;
@@ -40,6 +43,7 @@ public class CombatSceneUIManager : MonoBehaviour
     private int greatCombo=0;
     private int badCombo=0;
     private int missCombo=0;
+    
     void Awake()
     {
         combatAudioSource = GetComponent<AudioSource>();
@@ -56,13 +60,19 @@ public class CombatSceneUIManager : MonoBehaviour
             
         };
         overPannel.SetActive(false);
+        // 초기 변수 설정
         weaponimage=weaponPannel.transform.Find("WeaponImage").GetComponent<Image>();
-        powerText=weaponPannel.transform.Find("Power").GetComponent<TextMeshProUGUI>();
-        range = weaponPannel.transform.Find("Range").GetComponent<TextMeshProUGUI>();
         weaponName= weaponPannel.transform.Find("WeaponName").GetComponent<TextMeshProUGUI>();
-        splashText =weaponPannel.transform.Find("Splash").GetComponent<TextMeshProUGUI>();
-        directionText =weaponPannel.transform.Find("Direction").GetComponent<TextMeshProUGUI>();
-        SetWeapon(player.GetComponent<PlayerController>().GetEquippedWeapon());
+        range = weaponPannel.transform.Find("Range").GetComponent<TextMeshProUGUI>();
+        splashText =weaponPannel.transform.Find("Splash & Direction").GetComponent<TextMeshProUGUI>();
+        hpText = hpPannel.GetComponentInChildren<TextMeshProUGUI>();
+        shieldText = shieldPannel.GetComponentInChildren<TextMeshProUGUI>();
+        powerText = powerPanel.GetComponentInChildren<TextMeshProUGUI>();
+        playerController = player.GetComponent<PlayerController>();
+        // 초기 UI 설정
+        WeaponScriptableObject playerWeapon = playerController.GetEquippedWeapon();
+        SetWeapon(playerWeapon);
+        SetPower(playerWeapon);
         SetShield();
         SetHpUi();
         
@@ -73,7 +83,7 @@ public class CombatSceneUIManager : MonoBehaviour
     {
         SetHpUi();
         SetShield();
-        if(player.GetComponent<PlayerController>().hp <=0 || Input.GetKeyDown(KeyCode.Q))
+        if(playerController.hp <=0 || Input.GetKeyDown(KeyCode.Q))
         {
         
             overPannel.SetActive(true);
@@ -109,14 +119,13 @@ public class CombatSceneUIManager : MonoBehaviour
 
     }
     
-    public void SetHpUi()
+    private void SetHpUi()
     {
         if (hpPannel!= null && player != null)
         {
-            TextMeshProUGUI hpText = hpPannel.GetComponentInChildren<TextMeshProUGUI>();
-            if (hpText != null && player.GetComponent<PlayerController>().hp>0)
+            if (hpText != null && playerController.hp>0)
             {
-                hpText.text = player.GetComponent<PlayerController>().hp.ToString();
+                hpText.text = playerController.hp.ToString();
             }
             else
             {
@@ -125,10 +134,16 @@ public class CombatSceneUIManager : MonoBehaviour
             }
         }
     }
-    public void SetShield()
+    private void SetShield()
     {
-        shieldPannel.GetComponentInChildren<TextMeshProUGUI>().text = player.GetComponent<PlayerController>().shield.ToString();
+        shieldText.text = playerController.shield.ToString();
     }
+    
+    private void SetPower(WeaponScriptableObject weaponScriptableObject)
+    {
+        powerText.text = (weaponScriptableObject.power + playerController.GetPlayerPower()).ToString();
+    }
+    
     public void SetCombo(string timing)
     {
  
@@ -189,37 +204,21 @@ public class CombatSceneUIManager : MonoBehaviour
     {
         if(weaponScriptableObject==null)
         {
-            weaponScriptableObject= player.GetComponent<PlayerController>().GetEquippedWeapon();
+            weaponScriptableObject= playerController.GetEquippedWeapon();
         }
         weaponimage.sprite=weaponScriptableObject.thumbnail;
-        powerText.text = "Power : " + weaponScriptableObject.power+" + "+player.GetComponent<PlayerController>().GetPlayerPower();
-        weaponName.text ="Weapon : "+weaponScriptableObject.name;
+        weaponName.text = weaponScriptableObject.name; 
         range.text ="Range : "+ weaponScriptableObject.range;
-        if(weaponScriptableObject.isSplash)
+        
+        string splash = weaponScriptableObject.isSplash ? "다중 공격" : "단일 공격";
+        string attackDir = weaponScriptableObject.attackDirection switch
         {
-            splashText.text ="다중공격";
-        }
-        else
-        {
-            splashText.text="단일 공격";
-        }
-        switch(weaponScriptableObject.attackDirection)
-        {
-            case AttackDirection.DIR_8:
-                directionText.text = "8방향";
-                break;
-            case AttackDirection.DIR_4:
-                directionText.text = "4방향";
-                break;
-            default:
-                directionText.text = "에러";
-                break;
+            AttackDirection.DIR_8 => "8방향",
+            AttackDirection.DIR_4 => "4방향",
+            _ => "에러"
+        };
 
-        }
-
-        
-        
-        
+        splashText.text = attackDir + " " + splash;
     }
     
 }
