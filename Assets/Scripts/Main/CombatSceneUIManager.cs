@@ -59,7 +59,7 @@ public class CombatSceneUIManager : MonoBehaviour
             Resources.Load<AudioClip>("BattleBgm"),
             
         };
-        overPannel.SetActive(false);
+        
         // 초기 변수 설정
         weaponimage=weaponPannel.transform.Find("WeaponImage").GetComponent<Image>();
         weaponName= weaponPannel.transform.Find("WeaponName").GetComponent<TextMeshProUGUI>();
@@ -87,7 +87,7 @@ public class CombatSceneUIManager : MonoBehaviour
         {
         
             overPannel.SetActive(true);
-            Time.timeScale=0;
+            //Time.timeScale=0;
             
         }
         if(!combatAudioSource.isPlaying)
