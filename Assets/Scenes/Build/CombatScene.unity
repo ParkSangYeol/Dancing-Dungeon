@@ -2780,6 +2780,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 950771141}
     m_Modifications:
+    - target: {fileID: 1210836331651883639, guid: d6469f820ee8532459310cb537ac3717, type: 3}
+      propertyPath: targetType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2410587687355061195, guid: d6469f820ee8532459310cb537ac3717, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2410587687355061195, guid: d6469f820ee8532459310cb537ac3717, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2410587687355061195, guid: d6469f820ee8532459310cb537ac3717, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4215849991149987586, guid: d6469f820ee8532459310cb537ac3717, type: 3}
       propertyPath: combatSceneUIManager
       value: 
@@ -2888,9 +2904,25 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 437984765}
+    - target: {fileID: 6454885747613333242, guid: d6469f820ee8532459310cb537ac3717, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6454885747613333242, guid: d6469f820ee8532459310cb537ac3717, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.7071068
+      objectReference: {fileID: 0}
     - target: {fileID: 7551665153482089693, guid: d6469f820ee8532459310cb537ac3717, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 16.699951
+      objectReference: {fileID: 0}
+    - target: {fileID: 9173631124727184530, guid: d6469f820ee8532459310cb537ac3717, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 9173631124727184530, guid: d6469f820ee8532459310cb537ac3717, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.7071068
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
