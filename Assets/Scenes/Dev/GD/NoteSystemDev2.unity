@@ -1161,6 +1161,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 406206206}
   m_CullTransparentMesh: 1
+--- !u!212 &424169718 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 8952129055106422361, guid: 6dc3530836c63e241a614b85f1ba54ce, type: 3}
+  m_PrefabInstance: {fileID: 708260307}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &424169719 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 3790252776731768551, guid: 6dc3530836c63e241a614b85f1ba54ce, type: 3}
+  m_PrefabInstance: {fileID: 708260307}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &424169720 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 266387236551418412, guid: 6dc3530836c63e241a614b85f1ba54ce, type: 3}
+  m_PrefabInstance: {fileID: 708260307}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &424169721 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5123154135837540300, guid: 6dc3530836c63e241a614b85f1ba54ce, type: 3}
+  m_PrefabInstance: {fileID: 708260307}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &424169722 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 2221743794839996818, guid: 6dc3530836c63e241a614b85f1ba54ce, type: 3}
+  m_PrefabInstance: {fileID: 708260307}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &424169723 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 568077030238992320, guid: 6dc3530836c63e241a614b85f1ba54ce, type: 3}
+  m_PrefabInstance: {fileID: 708260307}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &450198912
 GameObject:
   m_ObjectHideFlags: 0
@@ -9235,6 +9265,30 @@ PrefabInstance:
       propertyPath: _clothList.Array.size
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 7786892158162863254, guid: 6dc3530836c63e241a614b85f1ba54ce, type: 3}
+      propertyPath: '_bodyList.Array.data[0]'
+      value: 
+      objectReference: {fileID: 424169723}
+    - target: {fileID: 7786892158162863254, guid: 6dc3530836c63e241a614b85f1ba54ce, type: 3}
+      propertyPath: '_bodyList.Array.data[1]'
+      value: 
+      objectReference: {fileID: 424169722}
+    - target: {fileID: 7786892158162863254, guid: 6dc3530836c63e241a614b85f1ba54ce, type: 3}
+      propertyPath: '_bodyList.Array.data[2]'
+      value: 
+      objectReference: {fileID: 424169721}
+    - target: {fileID: 7786892158162863254, guid: 6dc3530836c63e241a614b85f1ba54ce, type: 3}
+      propertyPath: '_bodyList.Array.data[3]'
+      value: 
+      objectReference: {fileID: 424169720}
+    - target: {fileID: 7786892158162863254, guid: 6dc3530836c63e241a614b85f1ba54ce, type: 3}
+      propertyPath: '_bodyList.Array.data[4]'
+      value: 
+      objectReference: {fileID: 424169719}
+    - target: {fileID: 7786892158162863254, guid: 6dc3530836c63e241a614b85f1ba54ce, type: 3}
+      propertyPath: '_bodyList.Array.data[5]'
+      value: 
+      objectReference: {fileID: 424169718}
     - target: {fileID: 7786892158162863254, guid: 6dc3530836c63e241a614b85f1ba54ce, type: 3}
       propertyPath: '_clothList.Array.data[1]'
       value: 

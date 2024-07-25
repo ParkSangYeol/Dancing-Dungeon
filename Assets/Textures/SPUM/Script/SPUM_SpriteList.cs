@@ -32,17 +32,21 @@ public class SPUM_SpriteList : MonoBehaviour
     public List<string> _pantListString = new List<string>();
     public List<string> _weaponListString = new List<string>();
     public List<string> _backListString = new List<string>();
+    
 
     private string baseBodyString;
     private string basePantsString;
     private string baseHairString;
+    private string baseRaceString;
     private string previewBodyString;
     private string previewHairString;
     private string previewPantsString;
+    private string previewRaceString;
 
     private string[] inventoryhairpath = new string[6];
     private string[] inventoryclothpath = new string[6];
     private string[] inventorypantspath = new string[5];
+    private string[] inventoryracepath = new string[5];
 
     private int currentInventoryindex=0;
     private void Start() {
@@ -101,6 +105,7 @@ public class SPUM_SpriteList : MonoBehaviour
             }
         }
     }
+    
 
     public void LoadSprite(SPUM_SpriteList data)
     {
@@ -167,6 +172,54 @@ public class SPUM_SpriteList : MonoBehaviour
         SyncPath(_weaponList,_weaponListString);
         SyncPath(_backList,_backListString);
     }
+    public void SyncPath_Race(List<SpriteRenderer> _objList, string _path)
+    {
+        if (_objList == null)
+        {
+            Debug.LogError("_objList is null");
+            return;
+        }
+        if (string.IsNullOrEmpty(_path))
+        {
+            Debug.LogError("_path is null or empty");
+            return;
+        }
+
+        // 경로를 조정
+        string tPath = _path.Replace("Assets/Resources/", "").Replace(".png", "");
+
+        // Sprite 리소스를 로드
+        Sprite[] tSP = Resources.LoadAll<Sprite>(tPath);
+        if (tSP.Length > 0)
+        {
+            // _objList의 각 SpriteRenderer에 Sprite를 순서대로 할당
+            for (var i = 0; i < _objList.Count; i++)
+            {
+                if (_objList[i] != null)
+                {
+                    if (i < tSP.Length)
+                    {
+                        _objList[i].sprite = tSP[i];
+                    }
+                    else
+                    {
+                        Debug.LogWarning($"_objList at index {i} has no corresponding sprite in tSP");
+                        _objList[i].sprite = null; // _objList가 tSP보다 길다면 null 할당
+                    }
+                }
+                else
+                {
+                    Debug.LogWarning($"_objList at index {i} is null");
+                }
+            }
+        }
+        else
+        {
+            Debug.LogWarning($"No sprites found at path: {tPath}");
+        }
+    }
+
+    
    
 
     public void SyncPath(List<SpriteRenderer> _objList, List<string> _pathList)
@@ -244,6 +297,11 @@ public class SPUM_SpriteList : MonoBehaviour
                     ReplacePathCloth_Pant(_pantListString,previewPantsString);
                     SyncPath(_pantList,_pantListString);
                     break;
+               case "Race" :
+                    _bodyString = previewRaceString;
+                    SyncPath_Race(_bodyList, _bodyString);
+                    break;
+                    
                 
             }
         
@@ -274,7 +332,13 @@ public class SPUM_SpriteList : MonoBehaviour
                 SyncPath(_pantList, _pantListString);
                 PlayerPrefs.GetString("WearingPants", inventorypantspath[currentInventoryindex - 1]);
                 PlayerPrefs.SetString("WearingPants", inventorypantspath[currentInventoryindex - 1]);
-                
+                break;
+            case "Race":
+                Debug.Log(currentInventoryindex);
+                _bodyString = inventoryracepath[currentInventoryindex - 1];
+                SyncPath_Race(_bodyList, _bodyString);
+                PlayerPrefs.GetString("WearingRace", inventoryracepath[currentInventoryindex - 1]);
+                PlayerPrefs.SetString("WearingRace", inventoryracepath[currentInventoryindex - 1]);
                 break;
         }
         PlayerPrefs.Save();
@@ -300,6 +364,11 @@ public class SPUM_SpriteList : MonoBehaviour
     public void SetPantsPath(string path)
     {
         previewPantsString = path;
+    }
+
+    public void SetRacePath(string path)
+    {
+        previewRaceString = path;
     }
     public void ResetCostume()
     {
@@ -341,8 +410,12 @@ public class SPUM_SpriteList : MonoBehaviour
             case "Pants":
                 Debug.Log(index+"번째에 추가할"+"리스트에 추가할 PATH : "+ path);
                 inventorypantspath[index] = path;
-                Debug.Log("리스트에 들어간 패스 : "+ inventoryclothpath[index]);
-                
+                Debug.Log("리스트에 들어간 패스 : "+ inventorypantspath[index]);
+                break;
+            case "Race":
+                Debug.Log(index+"번째에 추가할"+"리스트에 추가할 PATH : "+ path);
+                inventoryracepath[index] = path;
+                Debug.Log("리스트에 들어간 패스 : "+ inventoryracepath[index]);
                 break;
         }
     }
@@ -370,6 +443,10 @@ public class SPUM_SpriteList : MonoBehaviour
                 Debug.Log("리스트에 들어간 패스 : "+ inventoryhairpath[currentInventoryindex]);
                 Debug.Log("선택한 버튼 번호 : "+currentInventoryindex);
                 break;
+            case "Race":
+                inventoryracepath[currentInventoryindex] = path;
+                break;
+                
         }
     }
 
@@ -401,6 +478,13 @@ public class SPUM_SpriteList : MonoBehaviour
             ReplacePathCloth_Pant(_pantListString, path);
             SyncPath(_pantList, _pantListString);
         }
+        if (PlayerPrefs.HasKey("WearingRace"))
+        {
+            string path = PlayerPrefs.GetString("WearingRace");
+            _bodyString = path;
+            SyncPath_Race(_bodyList, _bodyString);
+        }
+        
     }
     
 }

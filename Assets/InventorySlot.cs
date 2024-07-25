@@ -39,6 +39,10 @@ public class inventorySlot : MonoBehaviour
             {
                 ProcessItem("Pants", _inventoryManager.pantspath, _inventoryManager.pantsImage, savedItem);
             }
+            else if (gameObject.name.Contains("Race"))
+            {
+                ProcessItem("Race", _inventoryManager.racepath, _inventoryManager.raceImage, savedItem);
+            }
             
 
             StartCoroutine(WaitSetting());

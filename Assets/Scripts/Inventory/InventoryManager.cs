@@ -7,12 +7,15 @@ public class InventoryManager : MonoBehaviour
     public GameObject hairPanel;
     public GameObject clothePanel;
     public GameObject pantsPanel;
+    public GameObject racePanel;
     public string[] hairpath;
     public string[] clothpath;
     public string[] pantspath;
+    public string[] racepath;
     public Sprite[] hairImage;
     public Sprite[] clothImage;
     public Sprite[] pantsImage;
+    public Sprite[] raceImage;
     
     void Start()
     {
@@ -33,8 +36,10 @@ public class InventoryManager : MonoBehaviour
                 hairPanel.SetActive(true);
                 clothePanel.SetActive(false);
                 pantsPanel.SetActive(false);
+                racePanel.SetActive(false);
                 break;
             case  "Cloth":
+                racePanel.SetActive(false);
                 hairPanel.SetActive(false);
                 clothePanel.SetActive(true);
                 pantsPanel.SetActive(false);
@@ -42,7 +47,14 @@ public class InventoryManager : MonoBehaviour
             case "Pants":
                 hairPanel.SetActive(false);
                 clothePanel.SetActive(false);
+                racePanel.SetActive(false);
                 pantsPanel.SetActive(true);
+                break;
+            case "Race":
+                hairPanel.SetActive(false);
+                clothePanel.SetActive(false);
+                pantsPanel.SetActive(false);
+                racePanel.SetActive(true);
                 break;
             
         }

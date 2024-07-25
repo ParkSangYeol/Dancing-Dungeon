@@ -27,6 +27,7 @@ public class EnemySpawnSystem : MonoBehaviour
 
     void Start()
     {
+        
         InitializeEnemyPools();
         currentSpawnTime = initialSpawnTime;
         enemyTypes = new List<string>(enemyPools.Keys);

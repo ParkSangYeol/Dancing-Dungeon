@@ -139,6 +139,11 @@ public class CombatSceneUIManager : MonoBehaviour
             missCombo++;
             hitScanByRay.HappenMiss();
         }
+        else if (timing == "Bad")
+        {
+            combo = 0;
+            badCombo++;
+        }
         else
         {
             combo++; // 다른 경우에 콤보 업데이트
