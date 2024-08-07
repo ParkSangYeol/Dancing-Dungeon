@@ -37,6 +37,7 @@ public class ShopManager : MonoBehaviour
     private int hairinventory; 
     private int clothinventory;
     private int pantsinventory;
+    private int raceinventory;
 
     private string purchaseItem;
     //능력치 강화 부분
@@ -44,6 +45,7 @@ public class ShopManager : MonoBehaviour
     public GameObject hairPart;
     public GameObject clothPart;
     public GameObject pantsPart;
+    public GameObject racePart;
 
     //Spum sprite 변경
     public SPUM_SpriteList sPUM_SpriteList;
@@ -111,23 +113,35 @@ public class ShopManager : MonoBehaviour
     }
     public void OnHairPart()
     {
-        
+        racePart.SetActive(false);
         clothPart.SetActive(false);
         pantsPart.SetActive(false);
         hairPart.SetActive(true);
     }
     public void OnClothPart()
     {
+        racePart.SetActive(false);
         pantsPart.SetActive(false);
         hairPart.SetActive(false);
         clothPart.SetActive(true);
     }
     public void OnPantsPart()
     {
+        racePart.SetActive(false);
         hairPart.SetActive(false);
         clothPart.SetActive(false);
         pantsPart.SetActive(true);
     }
+
+    public void OnRacePart()
+    {
+        hairPart.SetActive(false);
+        clothPart.SetActive(false);
+        pantsPart.SetActive(false);
+        racePart.SetActive(true);
+        
+    }
+    
      
     void ActivateNumber(GameObject[] numberArray, int number)
     {

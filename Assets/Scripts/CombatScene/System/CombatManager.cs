@@ -76,6 +76,8 @@ namespace CombatScene
         private Dictionary<Vector2, EnemyController> enemies = new Dictionary<Vector2, EnemyController>();
         private HitScanByRay hitScanByRay;
 
+        [InfoBox("이 값은 퍼펙트 시 크리티컬 보정값입니다.")]
+        [SerializeField] private float perfectCrit;
         private Camera mainCamera;
         private Sequence cameraTween;
 
@@ -271,7 +273,7 @@ namespace CombatScene
             mapHandler.SetMapObject(position, ObjectType.Boss);
         }
         
-        public void PlayerBehavior(Vector2 inputVec/*, string hitResult = "normal"*/)
+        public void PlayerBehavior(Vector2 inputVec, string hitResult = "normal")
         {
             if (!(inputVec.x == 0 && Mathf.Abs(inputVec.y) == 1) && !(inputVec.y == 0 && Mathf.Abs(inputVec.x) == 1))
             {  
@@ -281,7 +283,8 @@ namespace CombatScene
             }
             
             player.LookAt(inputVec);
-            bool isCrit = false; // bool isCrit = hitResult.Equals("Perfect");
+           // bool isCrit = false; //
+            bool isCrit = hitResult.Equals("Perfect");
                 
             if (!TryPlayerAttackAble(inputVec, isCrit))
             {
@@ -565,6 +568,8 @@ namespace CombatScene
             
             
         }
+
+       
         
         #region Inner Class
         

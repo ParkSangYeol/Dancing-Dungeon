@@ -50,8 +50,10 @@ namespace  CombatScene.Player
         [Title("Events")] 
         public UnityEvent OnPlayerDead;
 
+        public UnityEvent OnPlayerSpawn;
         [Title("Variables")] 
         private InputAction moveAction;
+        
 
         [ShowInInspector]
         public float hp
@@ -66,6 +68,9 @@ namespace  CombatScene.Player
                 }
             }
         }
+
+       
+        
 
         private float _hp;
 
@@ -85,8 +90,10 @@ namespace  CombatScene.Player
             set => _shield = value < 0 ? 0 : value;
         }
 
-        private float _shield;
+       
 
+        private float _shield;
+        
         [ShowInInspector] private WeaponScriptableObject equipWeapon;
 
         #endregion
@@ -318,12 +325,13 @@ namespace  CombatScene.Player
             {
                 Debug.LogError(gameObject.name + ": 기본 무기가 없습니다!");
             }
-            
-            this.hp = playerCharacterData.hp;
+
+            playerCharacterData.defaultPower = PlayerPrefs.GetInt("PlayerAttack");
+            this.hp = playerCharacterData.hp + PlayerPrefs.GetInt("PlayerHP",0);
             this.power = playerCharacterData.defaultPower;
             this.shield = playerCharacterData.shield;
             this.equipWeapon = defaultWeapon;
-            
+            Debug.Log("Hp : "+this.hp+ "Attack : "+this.power);
             moveAction = playerInput.actions["Move"];
         }
 
