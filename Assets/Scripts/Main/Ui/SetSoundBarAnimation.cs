@@ -13,12 +13,12 @@ namespace Main.UI
         private static readonly int NoteEnable = Animator.StringToHash("NoteEnable");
         
         [SerializeField]
-        private AudioSource audioSource;
+        private BGMPlayer bgmPlayer;
         private float[] samples = new float[128];
 
         private float GetAudioLevel()
         {
-            audioSource.GetOutputData(samples, 0);
+            bgmPlayer.GetOutputData(ref samples, 0);
             float sum = 0f;
         
             for (int i = 0; i < samples.Length; i++)
@@ -42,10 +42,6 @@ namespace Main.UI
             if (animator == null)
             {
                 Debug.LogError(this.gameObject.name + "의 Animator값이 설정되어 있지 않습니다.");
-            }
-            if (audioSource == null)
-            {
-                Debug.LogError(this.gameObject.name + "의 AudioSource값이 설정되어 있지 않습니다.");
             }
         }
 
