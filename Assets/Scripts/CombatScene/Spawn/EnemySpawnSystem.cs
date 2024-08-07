@@ -24,6 +24,7 @@ public class EnemySpawnSystem : MonoBehaviour
     private float spawnTimer = 0f;
     private int spawnCount = 0;
     private int powerUp = 0;
+    private bool isSpawnPlayer = false;
 
     void Start()
     {
@@ -32,12 +33,16 @@ public class EnemySpawnSystem : MonoBehaviour
         currentSpawnTime = initialSpawnTime;
         enemyTypes = new List<string>(enemyPools.Keys);
         SubscribeToEnemyEvents();
+        player.transform.position = FindRandomPlayerSpawnPosition();
+        combatManager.MovePlayer(player.transform.position);
+        
+        
     }
 
     void Update()
     {
         spawnTimer += Time.deltaTime;
-        if (spawnTimer >= currentSpawnTime)
+        if (spawnTimer >= currentSpawnTime&&isSpawnPlayer)
         {
             spawnTimer = 0f;
             SpawnEnemy();
@@ -110,6 +115,42 @@ public class EnemySpawnSystem : MonoBehaviour
             Debug.Log("유효한 스폰 위치를 찾지 못했습니다.");
         }
     }
+    Vector2 FindRandomPlayerSpawnPosition()
+    {
+        List<Vector2> validPositions = new List<Vector2>();
+
+        // 맵의 경계 내에서 유효한 스폰 위치를 수집
+        for (int x = 0; x < ConstVariables.mapWidth-15; x++)
+        {
+            for (int y = 0; y < ConstVariables.mapHeight-30; y++)
+            {
+                // 각 타일의 위치를 계산하고 타일의 중앙을 구하기 위해 타일 크기의 절반을 더함
+                Vector2 potentialPosition = new Vector2(
+                    mapHandler.startPosition.x + (x * ConstVariables.tileSizeX) + ConstVariables.tileSizeX / 2,
+                    mapHandler.startPosition.y + (y * ConstVariables.tileSizeY) + ConstVariables.tileSizeY / 2);
+
+                if (CheckSpawn(potentialPosition)&& mapHandler.IsInsideMap((int)potentialPosition.x,(int)potentialPosition.y))
+                {
+                    validPositions.Add(potentialPosition);
+                }
+            }
+        }
+
+        if (validPositions.Count > 0)
+        {
+            Vector2 spawnPosition = validPositions[Random.Range(0, validPositions.Count)];
+            player.transform.position = spawnPosition;
+            isSpawnPlayer = true;
+            return spawnPosition;
+        }
+
+        Debug.LogError("맵 내에서 유효한 플레이어 스폰 위치를 찾지 못했습니다.");
+        isSpawnPlayer = true;
+        return Vector2.zero; // 유효한 위치를 찾지 못했을 경우 기본값 반환
+    }
+
+
+
 
     Vector2 FindValidSpawnPosition()
     {
@@ -253,6 +294,7 @@ public class EnemySpawnSystem : MonoBehaviour
             Debug.LogWarning($"Enemy at position {position} not found.");
         }
     }
+   
 
     GameObject FindEnemyAtPosition(Vector2 position)
     {
