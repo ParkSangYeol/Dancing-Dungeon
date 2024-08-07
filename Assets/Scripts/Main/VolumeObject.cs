@@ -7,12 +7,17 @@ using UnityEngine.Rendering.Universal;
 
 public class VolumeObject : Singleton<VolumeObject>
 {
+    [SerializeField]
     private Volume volume;
     public List<VolumeProfile> volumeProfile;
 
-    private void Start()
+    protected override void Awake()
     {
-        volume = gameObject.GetComponent<Volume>();
+        base.Awake();
+        if (volume == null)
+        {
+            volume = gameObject.GetComponent<Volume>();
+        }
     }
 
     public void SetVolumeProfile(int index)

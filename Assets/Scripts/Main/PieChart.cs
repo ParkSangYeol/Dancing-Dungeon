@@ -1,7 +1,10 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro; // TextMeshProUGUI 사용을 위해 추가
 using System.Collections.Generic;
+using DG.Tweening;
+using UnityEngine.UI.Extensions;
 
 public class PieChart : MonoBehaviour
 {
@@ -10,6 +13,11 @@ public class PieChart : MonoBehaviour
     public Font customFont; // 에디터에서 할당할 폰트
     public RectTransform graphAnchor; // 그래프의 위치를 지정할 빈 게임오브젝트
 
+    // 그래프 애니메이션 관련 함수
+    public float fillGraphDuration = 1f;
+    public Ease easeGraph = Ease.Flash;
+    public Color graphColor;
+    
     // 게임 오버 패널의 텍스트 필드 참조
     public TextMeshProUGUI perfectText;
     public TextMeshProUGUI greatText;
@@ -24,18 +32,18 @@ public class PieChart : MonoBehaviour
     private int missCount;
 
     [SerializeField]private CombatSceneUIManager combatSceneUIManager;
-    void Start()
-    {
+    [SerializeField] 
+    private TMP_Text percentText; 
     
-    }
-
     private void OnEnable()
     {
-        ShowPieChart();
+        StartCoroutine(ShowPieChart());
     }
 
-    private void ShowPieChart()
+    /*
+    IEnumerator ShowPieChart()
     {
+        Time.timeScale = 1f;
         perfectCount = combatSceneUIManager.GetPerfectCombo;
         greatCount = combatSceneUIManager.GetGreatCombo;
         badCount = combatSceneUIManager.GetBadCombo;
@@ -45,7 +53,7 @@ public class PieChart : MonoBehaviour
         if (total == 0)
         {
             Debug.LogWarning("Total count is zero, no data to display in the pie chart.");
-            return;
+            yield break;
         }
 
         float perfectRatio = perfectCount / total;
@@ -65,10 +73,14 @@ public class PieChart : MonoBehaviour
 
         float zRotation = 0f;
 
-        CreateSlice("Perfect", perfectRatio, Color.green, ref zRotation);
-        CreateSlice("Great", greatRatio, Color.blue, ref zRotation);
-        CreateSlice("Bad", badRatio, Color.yellow, ref zRotation);
-        CreateSlice("Miss", missRatio, Color.red, ref zRotation);
+        yield return StartCoroutine(CreateSlice("Perfect", perfectRatio, Color.green, zRotation));
+        zRotation -= perfectRatio * 360f;
+        yield return StartCoroutine(CreateSlice("Great", greatRatio, Color.blue, zRotation));
+        zRotation -= greatRatio * 360f;
+        yield return StartCoroutine(CreateSlice("Bad", badRatio, Color.yellow, zRotation));
+        zRotation -= badRatio * 360f;
+        yield return StartCoroutine(CreateSlice("Miss", missRatio, Color.red, zRotation));
+        zRotation -= missRatio * 360f;
 
         // 그래프 위치 조정
         if (graphAnchor != null)
@@ -77,18 +89,80 @@ public class PieChart : MonoBehaviour
             chartRectTransform.anchoredPosition = graphAnchor.anchoredPosition;
         }
     }
-
-    private void CreateSlice(string label, float fillAmount, Color color, ref float zRotation)
+    */
+    
+    IEnumerator ShowPieChart()
     {
-        if (fillAmount <= 0) return;
+        Time.timeScale = 1f;
+        perfectCount = combatSceneUIManager.GetPerfectCombo;
+        greatCount = combatSceneUIManager.GetGreatCombo;
+        badCount = combatSceneUIManager.GetBadCombo;
+        missCount = combatSceneUIManager.GetMissCombo;
+        float total = perfectCount + greatCount + badCount + missCount;
+        float accuracy = (perfectCount + (greatCount * 0.8f)) / total;
+        if (total == 0)
+        {
+            Debug.LogWarning("Total count is zero, no data to display in the pie chart.");
+            yield break;
+        }
 
+        StartCoroutine(CreateSlice("Accuracy", accuracy, graphColor));
+        int percent = (int)(accuracy * 100f);
+        percentText.DOText(percent.ToString(), fillGraphDuration, false, ScrambleMode.Numerals)
+            .SetEase(easeGraph);
+        
+        // 그래프 위치 조정
+        if (graphAnchor != null)
+        {
+            RectTransform chartRectTransform = chartContainer.GetComponent<RectTransform>();
+            chartRectTransform.anchoredPosition = graphAnchor.anchoredPosition;
+        }
+    }
+    
+    IEnumerator CreateSlice(string label, float fillAmount, Color color)
+    {
+        if (fillAmount <= 0) yield break;
         GameObject slice = Instantiate(slicePrefab, chartContainer);
-        Image sliceImage = slice.GetComponent<Image>();
-        sliceImage.fillAmount = fillAmount;
+        UICircle sliceImage = slice.GetComponent<UICircle>();
+        sliceImage.color = color;
+
+        sliceImage.SetArc(0);
+
+        float fillTime = 0f;
+        while (fillTime < fillGraphDuration)
+        {
+            float arcValue = DOVirtual.EasedValue(0f, fillGraphDuration, fillTime, easeGraph);
+            sliceImage.SetArc(arcValue * fillAmount);
+            fillTime += Time.deltaTime;
+            yield return new WaitForSeconds(Time.deltaTime);
+        }
+        sliceImage.SetArc(fillAmount);
+    }
+
+    /*
+    IEnumerator CreateSlice(string label, float fillAmount, Color color, float zRotation)
+    {
+        if (fillAmount <= 0) yield break;
+        Debug.Log("Start Create PieChartSlice. current Time Scale: " + Time.timeScale);
+        Debug.Log("PieChart Slice info. Label:" + label+ ", fillAmount: " + fillAmount);
+        
+        GameObject slice = Instantiate(slicePrefab, chartContainer);
+        UICircle sliceImage = slice.GetComponent<UICircle>();
         sliceImage.color = color;
 
         RectTransform rectTransform = slice.GetComponent<RectTransform>();
-        rectTransform.localRotation = Quaternion.Euler(new Vector3(0, 0, zRotation));
-        zRotation -= fillAmount * 360f;
+        rectTransform.localRotation = Quaternion.Euler(new Vector3(0, 0, zRotation));;
+        sliceImage.SetArc(0);
+
+        while (sliceImage.Arc < fillAmount)
+        {
+            Debug.Log("PieChart Arc Change. arc: " + sliceImage.Arc);
+            sliceImage.SetArc(sliceImage.Arc + Time.deltaTime);
+            yield return new WaitForSeconds(Time.deltaTime);
+        }
+        sliceImage.SetArc(fillAmount);
+        
+        yield return new WaitForSeconds(0.2f);
     }
+    */
 }
