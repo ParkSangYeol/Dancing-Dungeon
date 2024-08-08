@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: 5549253774142331355}
   audioClipKey: 
-  volume: 0.5
+  volume: 1
   aliveSceneChange: 0
   autoPlay: 0
   isLoop: 0

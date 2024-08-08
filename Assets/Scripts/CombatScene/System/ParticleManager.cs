@@ -86,7 +86,7 @@ namespace CombatScene.System.Particle
             particle.gameObject.SetActive(false);
             particle.transform.position = poolPosition;
             itemParticle = particle.GetComponent<ItemParticle>();
-            itemParticle.audioSource.clip = itemInteractSound;
+            itemParticle.SetAudioClip(itemInteractSound);
         }
         
         public void DestroyParticle(GameObject particle)

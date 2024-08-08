@@ -5,21 +5,25 @@ namespace CombatScene
     public class ItemParticle : MonoBehaviour
     {
         private ParticleSystem particleSystem;
-        public AudioSource audioSource;
+        private SFXPlayer sfxPlayer;
         
         private void Awake()
         {
             particleSystem = GetComponent<ParticleSystem>();
-            audioSource = GetComponent<AudioSource>();
+            sfxPlayer = transform.GetComponentInChildren<SFXPlayer>();
         }
         
         public void PlayParticle()
         {
             particleSystem.Play();
-            if (audioSource == null) 
+            if (sfxPlayer == null) 
                 return;
-            audioSource.pitch = Random.Range(0.8f, 1.2f);
-            audioSource.PlayOneShot(audioSource.clip);
+            sfxPlayer.PlayWithRandomPitch(new Vector2(0.9f, 1.1f));
+        }
+
+        public void SetAudioClip(AudioClip audioClip)
+        {
+            sfxPlayer.SetAudioClip(audioClip);
         }
     }
 }

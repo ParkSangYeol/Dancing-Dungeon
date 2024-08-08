@@ -17,7 +17,14 @@ public class SFXPlayer : AudioPlayer
         audioClipKey = audioClip.name;
         SoundManager.Instance.PlaySFX(this, audioClip, isLoop);
     }
-
+    
+    public void PlayWithRandomPitch(Vector2 randomPitch)
+    {
+        base.Play();
+        audioClipKey = audioClip.name;
+        SoundManager.Instance.PlaySFX(this, audioClip, isLoop, randomPitch);
+    }
+    
     public void SetVolume(float volume)
     {
         this.volume = volume;

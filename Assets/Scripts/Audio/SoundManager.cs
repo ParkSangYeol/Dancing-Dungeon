@@ -163,7 +163,7 @@ public class SoundManager : com.kleberswf.lib.core.Singleton<SoundManager>
         audioSource.Play();
     }
 
-    public void PlaySFX(AudioPlayer audioPlayer, AudioClip sfxClip, bool isLoop = false)
+    public void PlaySFX(AudioPlayer audioPlayer, AudioClip sfxClip, bool isLoop = false, Vector2? randomPitch = null)
     {
         if (!sfxPlayerDic.ContainsKey(sfxClip.name))
         {
@@ -178,9 +178,14 @@ public class SoundManager : com.kleberswf.lib.core.Singleton<SoundManager>
         var audioSource = audioPlayer.AudioSource;
         audioSource.loop = isLoop;
         audioSource.clip = sfxClip;
+        if (randomPitch != null)
+        {
+            audioSource.pitch = Random.Range(randomPitch.Value.x, randomPitch.Value.y);
+        }
+        
         audioSource.Play();
     }
-
+    
     public void RemoveSFXPlayer(AudioPlayer audioPlayer)
     {
         var key = audioPlayer.audioClipKey;
