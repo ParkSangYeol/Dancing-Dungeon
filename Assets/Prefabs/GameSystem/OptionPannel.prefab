@@ -251,7 +251,7 @@ GameObject:
   - component: {fileID: 3087934093598504040}
   - component: {fileID: 4612946402951500401}
   - component: {fileID: 6714456526113937307}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -775,7 +775,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -3750}
+  m_AnchoredPosition: {x: 0, y: -4200}
   m_SizeDelta: {x: 0, y: 150}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &1240971033287732443
@@ -1776,7 +1776,7 @@ GameObject:
   - component: {fileID: 1987967249558717458}
   - component: {fileID: 47074889551034429}
   - component: {fileID: 8922340039485944258}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Text-Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1934,7 +1934,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -3300}
+  m_AnchoredPosition: {x: 0, y: -3750}
   m_SizeDelta: {x: 0, y: 150}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &2020590220228812418
@@ -2640,7 +2640,7 @@ GameObject:
   - component: {fileID: 5003507285220900806}
   - component: {fileID: 5022963471914624116}
   - component: {fileID: 8229280628613485358}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Text-Sound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2899,7 +2899,7 @@ GameObject:
   - component: {fileID: 1666896688496329948}
   - component: {fileID: 4240597548558167628}
   - component: {fileID: 3610539997713513412}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3288,7 +3288,7 @@ GameObject:
   - component: {fileID: 1617763987774880621}
   - component: {fileID: 699680691729002233}
   - component: {fileID: 4887630082884166766}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Text-ScreenType
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3638,7 +3638,7 @@ GameObject:
   - component: {fileID: 3057580255446330719}
   m_Layer: 5
   m_Name: BackButton
-  m_TagString: Untagged
+  m_TagString: NegativeSFXUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4229,7 +4229,7 @@ GameObject:
   - component: {fileID: 614227674963729504}
   - component: {fileID: 7287233850686638175}
   - component: {fileID: 5816496841112785188}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Text-Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4365,7 +4365,7 @@ GameObject:
   - component: {fileID: 9091477108634281488}
   - component: {fileID: 5298014407239428521}
   - component: {fileID: 2572815823683032412}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Text-Brightness
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4592,7 +4592,7 @@ GameObject:
   - component: {fileID: 5241479897489372729}
   - component: {fileID: 3308740604999779913}
   - component: {fileID: 2135787369817636735}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5727,7 +5727,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -3600}
+  m_AnchoredPosition: {x: 0, y: -4050}
   m_SizeDelta: {x: 0, y: 150}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &5985055670049159143
@@ -6289,7 +6289,7 @@ GameObject:
   - component: {fileID: 803256544164339416}
   - component: {fileID: 1449212488879119734}
   - component: {fileID: 3845207391290718546}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Text-UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7166,7 +7166,7 @@ GameObject:
   - component: {fileID: 5428250133822233576}
   - component: {fileID: 5272118793252545930}
   - component: {fileID: 7991972331374385619}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Text-Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8795,7 +8795,7 @@ GameObject:
   - component: {fileID: 8779194998638998909}
   - component: {fileID: 4005865202512305976}
   - component: {fileID: 3125841820305184798}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Text-Title (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9835,7 +9835,7 @@ GameObject:
   - component: {fileID: 7017804716548158450}
   m_Layer: 5
   m_Name: OptionPannel
-  m_TagString: Untagged
+  m_TagString: NegativeSFXUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
