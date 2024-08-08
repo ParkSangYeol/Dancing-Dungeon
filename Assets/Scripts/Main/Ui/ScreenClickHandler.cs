@@ -101,15 +101,15 @@ namespace Main.UI
             return false;
         }
         
-        private void PlaySFX(AudioClip audioClip, Vector2 pitchVec)
+        private void PlaySFX(AudioClip audioClip, Vector2 pitchVec, bool dontPlayWhenPlaying = false)
         {
             sfxPlayer.SetAudioClip(audioClip);
-            sfxPlayer.PlayWithRandomPitch(pitchVec);
+            sfxPlayer.PlayWithRandomPitch(pitchVec, dontPlayWhenPlaying);
         }
 
-        public void PlayClickSFX()
+        public void PlayClickSFX(bool dontPlayWhenPlaying = false)
         {
-            PlaySFX(uiClickAudioClip, new Vector2(1.05f, 1.1f));
+            PlaySFX(uiClickAudioClip, new Vector2(1.05f, 1.1f), dontPlayWhenPlaying);
         }
         
         #region Init
