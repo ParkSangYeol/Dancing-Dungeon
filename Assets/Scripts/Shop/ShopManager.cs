@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -54,8 +55,11 @@ public class ShopManager : MonoBehaviour
     public GameObject purchaseCheckPanel;
     public GameObject shortMoneyPanel;
 
+   
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start() {
+        
         //hp 숫자배열 가져오기
         hpfirstPlaceNumbers = GetChildObjects(hpfirstPlaceParent);
         hpsecondPlaceNumbers = GetChildObjects(hpsecondPlaceParent);
@@ -70,6 +74,9 @@ public class ShopManager : MonoBehaviour
         //기존 hp,공격 값 가져오기
         playerHp = PlayerPrefs.GetInt("PlayerHp", 0);
         playerAtk =PlayerPrefs.GetInt("PlayerAttack",0);
+        //돈 정보 가져오기
+        playerMoney = PlayerPrefs.GetInt("PlayerMoney",1000);
+        SetMoneyText();
         Debug.Log(playerHp+" "+playerAtk);
         
        
@@ -84,14 +91,12 @@ public class ShopManager : MonoBehaviour
         ActivateNumber(atkfirstPlaceNumbers, playerAtkString[0] - '0');
         ActivateNumber(atksecondPlaceNumbers, playerAtkString[1] - '0');
         ActivateNumber(atkthirdPlaceNumbers, playerAtkString[2] - '0');
-        
+        Debug.Log(playerMoney);
         
 
     
-        //추후 돈 표시 기능 개발
-        playerMoney = PlayerPrefs.GetInt("PlayerMoney",1000);
         
-        SetMoneyText();
+        
         
     }
 
@@ -262,14 +267,28 @@ public class ShopManager : MonoBehaviour
             string purchase = PlayerPrefs.GetString(inventoryitem + inventoryindex, "null");
             
             Debug.Log(purchase);
-            
-            
+
+            PlayerPrefs.Save();
+            ChangePurchaseButtonText(item);
             SetMoneyText();
+            
+            
             
             
             
         }
     }
+
+    public void ChangePurchaseButtonText(string name)
+    {
+        GameObject purchaseButton = GameObject.Find(name + "PurchaseButton");
+        if(PlayerPrefs.GetInt(name) == 1)
+        {
+            purchaseButton.GetComponentInChildren<TextMeshProUGUI>().text = "구매완료";
+            purchaseButton.GetComponent<Button>().interactable = false;
+        }
+    }
+    
 
     public int TypeTest(string str)
     {
@@ -280,7 +299,7 @@ public class ShopManager : MonoBehaviour
 
     public void GoMain()
     {
-        SceneManager.LoadScene("Scenes/Dev/GD/MainScene/MainScene");
+        SceneManager.LoadScene("Scenes/Build/MainScene");
     }
 
     public void ExitButtonFunc()
@@ -297,7 +316,7 @@ public class ShopManager : MonoBehaviour
 
     public void OnPurchaseCheckPanel(int cost) //가진 돈보다 적다면 구매불가 패널 띄우기
     {
-        int playerMoney = PlayerPrefs.GetInt("PlayerMoney", 0);
+        
         if (playerMoney >= cost)
         {
             purchaseCheckPanel.SetActive(true);
@@ -309,6 +328,12 @@ public class ShopManager : MonoBehaviour
             shortMoneyPanel.SetActive(true);
         }
         
+    }
+
+    void InitializePlayerPrefeb()
+    {
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.Save();
     }
     
 

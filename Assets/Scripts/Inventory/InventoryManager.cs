@@ -1,5 +1,7 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -16,10 +18,14 @@ public class InventoryManager : MonoBehaviour
     public Sprite[] clothImage;
     public Sprite[] pantsImage;
     public Sprite[] raceImage;
+    public Image fadeImage;
+    public float fadeDuration;
+    public Button[] buttonArray;
+    [SerializeField] private float buttonDelay;
     
     void Start()
     {
-        
+        StartCoroutine(ClickButtonsInReverse());
     }
 
     // Update is called once per frame
@@ -64,10 +70,38 @@ public class InventoryManager : MonoBehaviour
     {
         SceneManager.LoadScene("Scenes/Dev/GD/MainScene/MainScene");
     }
+    private IEnumerator FadeIn()
+    {
+       
+        fadeImage.color = new Color(0, 0, 0, 1);
+        fadeImage.gameObject.SetActive(true);
+
+        
+        for (float t = fadeDuration; t > 0; t -= Time.deltaTime)
+        {
+            float alpha = t / fadeDuration;
+            fadeImage.color = new Color(0, 0, 0, alpha);
+            yield return null;
+        }
+
+        
+        fadeImage.color = new Color(0, 0, 0, 0);
+        fadeImage.gameObject.SetActive(false);
+    }
+    IEnumerator ClickButtonsInReverse()
+    {
+        StartCoroutine(FadeIn());
+        for (int i = buttonArray.Length - 1; i >= 0; i--)
+        {
+            
+            buttonArray[i].onClick.Invoke();
+            Debug.Log(i+"번째 버튼 눌림");
+            
+            yield return new WaitForSeconds(buttonDelay);
+        }
+    }
     
     
     
     
-    // 산 옷들을 보여줘야함. 칸에서 띄어줘야함 어떻게?
-    //PlayerPrefeb 에서 이 아이템들이 존재하는지 그리고 이것들을 산 순서대로 저장할것
 }

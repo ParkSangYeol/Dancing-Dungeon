@@ -12,7 +12,7 @@ public class PreventError : MonoBehaviour
     void Start()
     {
         StartCoroutine(WaitForTest());
-        if (PlayerPrefs.GetInt(gameObject.transform.parent.name) == 1)
+        if (PlayerPrefs.GetInt(gameObject.transform.parent.name,0) == 1)
         {
             PreventDoublePurchase();
         }
