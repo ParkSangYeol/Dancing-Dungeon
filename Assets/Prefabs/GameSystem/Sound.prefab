@@ -220,6 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handle: {fileID: 8534034893378117685}
+  soundType: 0
 --- !u!114 &8584196105350477232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,7 +235,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 1180532788599024919}
   noteAnimator: {fileID: 8037504318838995537}
-  audioSource: {fileID: 0}
+  bgmPlayer: {fileID: 0}
 --- !u!1 &1232302620820073909
 GameObject:
   m_ObjectHideFlags: 0
@@ -10788,7 +10789,7 @@ GameObject:
   - component: {fileID: 1652320568183107817}
   - component: {fileID: 3992466978766760924}
   - component: {fileID: 653548177732833321}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

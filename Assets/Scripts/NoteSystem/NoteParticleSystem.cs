@@ -5,10 +5,8 @@ using UnityEngine;
 public class NoteParticleSystem : MonoBehaviour
 {
     private Dictionary<string, ParticleSystem> particleSystems;
-    private List<AudioClip> battleBgms;
     Dictionary<string, AudioClip> particleSounds;
-    private AudioSource battleBgmsource;
-    private AudioSource particlSource;
+    private SFXPlayer sfxPlayer;
     [SerializeField] CombatSceneUIManager combatSceneUIManager;
 
     private void Awake()
@@ -52,23 +50,10 @@ public class NoteParticleSystem : MonoBehaviour
             { "Miss", Resources.Load<AudioClip>("MissTiming") }
         };
 
-        battleBgms = new List<AudioClip>
-        {
-            Resources.Load<AudioClip>("BattleBgm"),
-            Resources.Load<AudioClip>("BattleBgm2"),
-        };
-
-        battleBgmsource = gameObject.AddComponent<AudioSource>();
-        particlSource = gameObject.AddComponent<AudioSource>();
+        sfxPlayer = transform.GetComponentInChildren<SFXPlayer>();
 
         // 디버깅 로그 추가
         float allVolume = PlayerPrefs.GetFloat("AllVolume");
-        
-
-        battleBgmsource.volume = allVolume;
-        particlSource.volume = allVolume;
-
-      
     }
 
     void Start()
@@ -92,8 +77,8 @@ public class NoteParticleSystem : MonoBehaviour
 
             Debug.Log($"Playing particle: {timing}");
             particleSystems[timing].Play();
-            particlSource.PlayOneShot(particleSounds[timing]);
-            
+            sfxPlayer.SetAudioClip(particleSounds[timing]);
+            sfxPlayer.Play();
         }
         else
         {

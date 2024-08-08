@@ -18,8 +18,10 @@ public class SFXPlayer : AudioPlayer
         SoundManager.Instance.PlaySFX(this, audioClip, isLoop);
     }
     
-    public void PlayWithRandomPitch(Vector2 randomPitch)
+    public void PlayWithRandomPitch(Vector2 randomPitch, bool dontPlayWhenPlaying = false)
     {
+        if (dontPlayWhenPlaying && isPlay)
+            return;
         base.Play();
         audioClipKey = audioClip.name;
         SoundManager.Instance.PlaySFX(this, audioClip, isLoop, randomPitch);
