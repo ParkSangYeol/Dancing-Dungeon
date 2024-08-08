@@ -2447,7 +2447,7 @@ GameObject:
   - component: {fileID: 1728103077}
   - component: {fileID: 1728103079}
   - component: {fileID: 1728103078}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: ComboText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
