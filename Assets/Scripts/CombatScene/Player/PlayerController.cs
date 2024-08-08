@@ -17,7 +17,7 @@ namespace  CombatScene.Player
         [SerializeField]
         private PlayerInput playerInput;
         [SerializeField]
-        private AudioSource audioSource;
+        private SFXPlayer sfxPlayer;
         [SerializeField] 
         private Animator animator;
 
@@ -216,8 +216,8 @@ namespace  CombatScene.Player
 
         IEnumerator BlockTo(Vector2 addPos, float duration)
         {
-            audioSource.pitch = Random.Range(0.8f, 1.2f);
-            audioSource.PlayOneShot(playerCharacterData.moveToBlockSFX);
+            sfxPlayer.SetAudioClip(playerCharacterData.moveToBlockSFX);
+            sfxPlayer.PlayWithRandomPitch(new Vector2(0.8f, 1.2f));
             
             Vector3 defaultPos = transform.position;
             float dur = duration / 3;
@@ -308,9 +308,9 @@ namespace  CombatScene.Player
                 animator = transform.GetChild(0).GetComponent<Animator>();
             }
 
-            if (audioSource == null)
+            if (sfxPlayer == null)
             {
-                audioSource = GetComponent<AudioSource>();
+                sfxPlayer = GetComponentInChildren<SFXPlayer>();
             }
         }
 
