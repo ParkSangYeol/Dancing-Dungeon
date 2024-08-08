@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ShopManager : MonoBehaviour
 {
@@ -49,6 +50,9 @@ public class ShopManager : MonoBehaviour
 
     //Spum sprite 변경
     public SPUM_SpriteList sPUM_SpriteList;
+
+    public GameObject purchaseCheckPanel;
+    public GameObject shortMoneyPanel;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start() {
@@ -261,7 +265,7 @@ public class ShopManager : MonoBehaviour
             
             
             SetMoneyText();
-            PlayerPrefs.Save();
+            
             
             
         }
@@ -278,9 +282,37 @@ public class ShopManager : MonoBehaviour
     {
         SceneManager.LoadScene("Scenes/Dev/GD/MainScene/MainScene");
     }
+
+    public void ExitButtonFunc()
+    {
+        if (purchaseCheckPanel.activeInHierarchy)
+        {
+            purchaseCheckPanel.SetActive(false);
+        }
+        else if (shortMoneyPanel.activeInHierarchy)
+        {
+            shortMoneyPanel.SetActive(false);
+        }
+    }
+
+    public void OnPurchaseCheckPanel(int cost) //가진 돈보다 적다면 구매불가 패널 띄우기
+    {
+        int playerMoney = PlayerPrefs.GetInt("PlayerMoney", 0);
+        if (playerMoney >= cost)
+        {
+            purchaseCheckPanel.SetActive(true);
+            shortMoneyPanel.SetActive(false);
+        }
+        else
+        {
+            purchaseCheckPanel.SetActive(false);
+            shortMoneyPanel.SetActive(true);
+        }
+        
+    }
     
 
-    
-   
+
+
 
 }
