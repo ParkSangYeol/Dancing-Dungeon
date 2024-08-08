@@ -9,7 +9,7 @@ public class MainSceneMaager : MonoBehaviour
     
        [SerializeField] private GameObject mainPannel;
        [SerializeField]private GameObject optionPannel;
-       [SerializeField] private AudioSource mainAudioSource;
+       [SerializeField] private BGMPlayer bgmPlayer;
        [SerializeField] private Slider slider;
         public string nextScene;
         public Image fadeImage; // 페이드 효과를 위한 이미지
@@ -17,8 +17,7 @@ public class MainSceneMaager : MonoBehaviour
       
     void Awake()
     {
-        mainAudioSource = GetComponent<AudioSource>();
-        
+        bgmPlayer = GetComponent<BGMPlayer>();
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -52,10 +51,12 @@ public class MainSceneMaager : MonoBehaviour
     void loadBgm()
     {
         AudioClip bgmClip = Resources.Load<AudioClip>("MainBgm");
+        SoundManager.Instance.PlayBGM(bgmClip, 1f);
+        /*
         mainAudioSource.clip = bgmClip;
         mainAudioSource.loop = true;
         mainAudioSource.Play();
-
+        */
     }
     public void StartGame()
     {
@@ -72,12 +73,14 @@ public class MainSceneMaager : MonoBehaviour
         optionPannel.SetActive(false);
         mainPannel.SetActive(true);
     }
+    /*
     public void SetVolume()
     {
         mainAudioSource.volume = slider.value;
         PlayerPrefs.SetFloat("AllVolume",slider.value);
         PlayerPrefs.Save();
     }
+    */
     public void ExitGame()
     {
 #if UNITY_EDITOR

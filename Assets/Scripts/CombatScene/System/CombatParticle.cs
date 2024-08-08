@@ -8,7 +8,7 @@ namespace CombatScene.System.Particle
     {
         public ParticleSystem particleSystem { get; private set; }
 
-        public AudioSource audioSource { get; private set; }
+        private SFXPlayer sfxPlayer;
 
         public CombatParticlePool combatParticlePool;
 
@@ -17,7 +17,7 @@ namespace CombatScene.System.Particle
         private void Awake()
         {
             particleSystem = GetComponent<ParticleSystem>();
-            audioSource = GetComponent<AudioSource>();
+            sfxPlayer = transform.GetComponentInChildren<SFXPlayer>();
         }
         
         private void ReturnParticleSystem()
@@ -27,10 +27,10 @@ namespace CombatScene.System.Particle
         
         public void PlaySFX(AudioClip audioClip)
         {
-            if (audioSource == null) 
+            if (sfxPlayer == null) 
                 return;
-            audioSource.pitch = Random.Range(0.8f, 1.2f);
-            audioSource.PlayOneShot(audioClip);
+            sfxPlayer.SetAudioClip(audioClip);
+            sfxPlayer.PlayWithRandomPitch(new Vector2(0.9f, 1.1f));
             Invoke("ReturnParticleSystem", particleSystem.main.duration);
         }
     }

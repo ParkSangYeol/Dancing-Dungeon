@@ -1,5 +1,8 @@
+using System;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UI;
 
 namespace Main.UI
 {
@@ -8,9 +11,36 @@ namespace Main.UI
         [SerializeField] 
         private Transform handle;
 
+        [SerializeField] 
+        private SoundType soundType;
+        private Slider slider;
+        
         private BarState currentState;
         private BarState willState;
-        
+
+        private void Awake()
+        {
+            slider = this.GetComponent<Slider>();
+        }
+
+        public void Start()
+        {
+            if (slider != null)
+            {
+                UnityAction<float> func = soundType switch
+                {
+                    SoundType.MASTER => SoundManager.Instance.ChangeAllVolume,
+                    SoundType.BGM => SoundManager.Instance.ChangeBGMVolume,
+                    SoundType.SFX => SoundManager.Instance.ChangeSFXVolume,
+                    _ => null
+                };
+                if (func != null)
+                {
+                    slider.onValueChanged.AddListener(func);
+                }
+            }
+        }
+
         public void OnPointerEnter()
         {
             willState = BarState.Hover;
@@ -71,6 +101,13 @@ namespace Main.UI
             Normal,
             Hover,
             Click
+        }
+
+        private enum SoundType
+        {
+            MASTER,
+            BGM,
+            SFX
         }
     }
 
