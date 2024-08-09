@@ -22,6 +22,7 @@ public class InventoryManager : MonoBehaviour
     public float fadeDuration;
     public Button[] buttonArray;
     [SerializeField] private float buttonDelay;
+    public GameObject applyPanel;
     
     void Start()
     {
@@ -68,29 +69,37 @@ public class InventoryManager : MonoBehaviour
 
     public void GoMenu()
     {
-        SceneManager.LoadScene("Scenes/Dev/GD/MainScene/MainScene");
+        //SceneManager.LoadScene("Scenes/Dev/GD/MainScene/MainScene");
+        SceneManager.LoadScene("Scenes/Build/MainScene");
+    }
+
+    public void OnApplyPannel()
+    {
+        applyPanel.SetActive(true);
     }
     private IEnumerator FadeIn()
     {
-       
-        fadeImage.color = new Color(0, 0, 0, 1);
+        float fadeSpeedMultiplier = 0.5f; // 페이드 속도를 느리게 할 수 있는 변수
+
+        fadeImage.color = new Color(0, 0, 0, 1); // 처음에 완전히 불투명하게 설정
         fadeImage.gameObject.SetActive(true);
 
-        
-        for (float t = fadeDuration; t > 0; t -= Time.deltaTime)
+        // 페이드인: 점차 투명해지게 설정
+        for (float t = 0; t < fadeDuration; t += Time.deltaTime * fadeSpeedMultiplier)
         {
-            float alpha = t / fadeDuration;
+            float alpha = 1 - (t / fadeDuration);
             fadeImage.color = new Color(0, 0, 0, alpha);
             yield return null;
         }
 
-        
-        fadeImage.color = new Color(0, 0, 0, 0);
+        fadeImage.color = new Color(0, 0, 0, 0); // 페이드 완료 후 완전히 투명하게 설정
         fadeImage.gameObject.SetActive(false);
     }
+
+
     IEnumerator ClickButtonsInReverse()
     {
-        StartCoroutine(FadeIn());
+       
         for (int i = buttonArray.Length - 1; i >= 0; i--)
         {
             
