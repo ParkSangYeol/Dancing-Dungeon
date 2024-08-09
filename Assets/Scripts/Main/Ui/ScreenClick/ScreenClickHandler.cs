@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Coffee.UIExtensions;
 using Sirenix.OdinInspector;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -34,6 +35,8 @@ namespace Main.UI
         private UIParticle clickVFX;
         
         private ScreenClickParticlePool particlePool;
+
+        private int recentClick;
         
         #endregion
         
@@ -107,35 +110,81 @@ namespace Main.UI
             // SFX 출력. UI 종류에 따른 처리 진행
             if (overlapObject.CompareTag("NegativeSFXUI"))
             {
-                PlaySFX(uiClickAudioClip, new Vector2(0.9f, 0.95f));
+                PlayNegativeSFX();
             }
             else if (overlapObject.TryGetComponent<Toggle>(out var toggle))
             {
+                // Toggle인 경우
                 if (toggle.isOn)
                 {
-                    PlaySFX(uiClickAudioClip, new Vector2(0.9f, 0.95f));
+                    PlayNegativeSFX();
                 }
                 else
                 { 
-                    PlaySFX(uiClickAudioClip, new Vector2(1.05f, 1.1f));
+                    PlayPositiveSFX();
+                }
+            }
+            else if (overlapObject.TryGetComponent<TMP_Dropdown>(out var dropdown))
+            {
+                // DropDown인 경우
+                /*
+                 * TMP_Dropdown의 isExpanded를 사용하는 경우 단순히 게임 오브젝트가 존재하는지 확인하고,
+                 * 결과를 리턴하기 때문에 플레이어가 Dropdown을 연타하여 사라지는 도중에 다시 펼쳐지는 경우를
+                 * 인식하지 못함. 이에 따라 일부 구현하여 처리
+                 */
+                if (dropdown.IsExpanded)
+                {
+                    Debug.Log("[ScreenClickHandler] Dropdown called. recent id is " + recentClick + " currentID is " + overlapObject.GetInstanceID());
+                    // Dropdown List가 존재함. 이 경우 추가 확인 진행.
+                    if (overlapObject.GetInstanceID() == recentClick)
+                    {
+                        Debug.Log("[ScreenClickHandler] Dropdown Expand & click double.");
+                        // dropdown을 두 번 클릭한 경우로 dropdown이 열린 상태로 볼 수 있음.
+                        PlayNegativeSFX();
+                        recentClick = -1;
+                    }
+                    else
+                    {
+                        Debug.Log("[ScreenClickHandler] Dropdown Expand & click once.");
+                        // dropdown이 처음 눌린 상태로 볼 수 있음.
+                        PlayPositiveSFX();
+                    }
+                }
+                else
+                {
+                    Debug.Log("[ScreenClickHandler] Dropdown UnExpand.");
+                    // Dropdown List가 존재하지 않음. 확정적으로 닫힌 상태.
+                    PlayPositiveSFX();
                 }
             }
             else
             {
-                PlaySFX(uiClickAudioClip, new Vector2(1.05f, 1.1f));
+                PlayPositiveSFX();
             }
+
+            recentClick = recentClick == -1? 0 : overlapObject.GetInstanceID();
         }
 
 
         private void WhenClickBlank(Vector3 clickPosition)
         {
             // SFX 출력
-            PlaySFX(uiClickAudioClip, new Vector2(0.9f, 0.95f));
+            PlayNegativeSFX();
         }
 
         #endregion
         
         #region About SFX
+
+        private void PlayPositiveSFX()
+        {
+            PlaySFX(uiClickAudioClip, new Vector2(1.05f, 1.1f));
+        }
+        
+        private void PlayNegativeSFX()
+        {
+            PlaySFX(uiClickAudioClip, new Vector2(0.9f, 0.95f));
+        }
         
         private void PlaySFX(AudioClip audioClip, Vector2 pitchVec, bool dontPlayWhenPlaying = false)
         {
