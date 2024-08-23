@@ -22,7 +22,7 @@ MonoBehaviour:
     - Locale-ko
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 558a2205f63198045b84222baa79b2b1
-    m_Address: SettingsTextTable_ko
+    m_Address: DefaultGameStringTable_ko
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-ko
