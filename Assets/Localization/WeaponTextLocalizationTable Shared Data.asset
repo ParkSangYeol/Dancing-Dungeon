@@ -81,6 +81,21 @@ MonoBehaviour:
     m_Key: Power
     m_Metadata:
       m_Items: []
+  - m_Id: 15578287080095744
+    m_Key: OptionPannel/Canvas (Environment)/OptionPannel/VideoOption/Frames/Frames/Template/Viewport/Content/Item/Item
+      Label
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15578397251878912
+    m_Key: OptionPannel/Canvas (Environment)/OptionPannel/VideoOption/Frames/Frames/Template/Viewport/Content/Item/Item
+      Label 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15578935603380224
+    m_Key: OptionPannel/Canvas (Environment)/OptionPannel/VideoOption/Frames/Frames/Template/Viewport/Content/Item/Item
+      Label 2
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
