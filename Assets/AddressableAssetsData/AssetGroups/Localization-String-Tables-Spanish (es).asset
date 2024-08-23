@@ -22,7 +22,7 @@ MonoBehaviour:
     - Locale-es
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: cae3513f4b7b2c7438247cccfd002070
-    m_Address: SettingsTextTable_es
+    m_Address: DefaultGameStringTable_es
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-es

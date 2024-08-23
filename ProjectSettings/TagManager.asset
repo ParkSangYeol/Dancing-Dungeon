@@ -19,6 +19,7 @@ TagManager:
   - StreetLamps
   - NegativeSFXUI
   - Boss
+
   layers:
   - Default
   - TransparentFX
@@ -30,7 +31,7 @@ TagManager:
   - MapBlock
   - CombatVFX
   - 
-  - 
+  - Ignore ScreenClick Raycast
   - LeftNote
   - RightNote
   - 

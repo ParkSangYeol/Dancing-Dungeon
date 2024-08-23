@@ -52,6 +52,7 @@ MonoBehaviour:
   raycastMask:
     serializedVersion: 2
     m_Bits: 32
+  clickVFX: {fileID: 4105240102161639187, guid: 293e1d442d5677b4b904a16659a70412, type: 3}
 --- !u!1001 &4300448751032969440
 PrefabInstance:
   m_ObjectHideFlags: 0

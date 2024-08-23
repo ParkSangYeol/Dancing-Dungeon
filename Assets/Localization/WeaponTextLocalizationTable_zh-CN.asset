@@ -82,6 +82,18 @@ MonoBehaviour:
     m_Localized: "\u653B\u51FB\u529B"
     m_Metadata:
       m_Items: []
+  - m_Id: 15578287080095744
+    m_Localized: DefaultGameStringTable
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15578397251878912
+    m_Localized: NoLimit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15578935603380224
+    m_Localized: "\uC81C\uD55C \uC5C6\uC74C"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

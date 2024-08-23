@@ -22,7 +22,7 @@ MonoBehaviour:
     - Locale-zh-CN
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 82e169297fe19ed449b09384eb0213d6
-    m_Address: SettingsTextTable_zh-CN
+    m_Address: DefaultGameStringTable_zh-CN
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-zh-CN

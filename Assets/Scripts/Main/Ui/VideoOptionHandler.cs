@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Settings;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
@@ -38,15 +40,19 @@ namespace Main.UI
 
         [SerializeField]
         private Slider slider;
-        
+
+        [SerializeField] 
+        private TMP_Text frameText;
+
         private void Start()
         {
             SetupScreen();
             SetupFrame();
             SetupBrightness();
             SetupResolutionDropdown();
-            SetFrameDropdown();
+            SetFrameDropdown(LocalizationSettings.SelectedLocale);
             SetupToggle();
+            LocalizationSettings.SelectedLocaleChanged += SetFrameDropdown;
             this.gameObject.SetActive(false);
         }
 
@@ -103,15 +109,15 @@ namespace Main.UI
             }
         }
 
-        private void SetFrameDropdown()
+        private void SetFrameDropdown(Locale locale)
         {
+            frameDropdown.options.Clear();
             foreach (var frameValue in frames)
             {
                 TMP_Dropdown.OptionData data = new TMP_Dropdown.OptionData();
                 if (frameValue == -1)
                 {
-                    // TODO 다국어 지원 시키기
-                    data.text = "제한 없음";
+                    data.text = LocalizationSettings.StringDatabase.GetLocalizedString("DefaultGameStringTable", "NoLimit");
                 }
                 else
                 {
@@ -123,6 +129,16 @@ namespace Main.UI
                 {
                     frameDropdown.value = frameDropdown.options.Count - 1;
                 }
+            }
+            ForceUpdateDropdownFrame();
+        }
+
+        private void ForceUpdateDropdownFrame()
+        {
+            Debug.Log("value: " + frameDropdown.value + " count: " + frameDropdown.options.Count);
+            if (frameDropdown.value == frameDropdown.options.Count - 1)
+            {
+                frameText.text = LocalizationSettings.StringDatabase.GetLocalizedString("DefaultGameStringTable", "NoLimit");
             }
         }
         
