@@ -1,0 +1,135 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: DefaultGameUITable_es
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: es
+  m_SharedData: {fileID: 11400000, guid: 71402fe91d1f0e249bcd44278395eba6, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 6891556864
+    m_Localized: "H\xE9roe del Ritmo"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8791576576
+    m_Localized: Iniciar juego
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10490269696
+    m_Localized: "Configuraci\xF3n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 94372155392
+    m_Localized: Salir
+    m_Metadata:
+      m_Items: []
+  - m_Id: 129197461504
+    m_Localized: Sonido
+    m_Metadata:
+      m_Items: []
+  - m_Id: 132439658496
+    m_Localized: Idioma (Language)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1467637616640
+    m_Localized: Fin del juego
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1587070423040
+    m_Localized: "Ir al men\xFA"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15479424977616896
+    m_Localized: Tienda
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15479427640999936
+    m_Localized: Inventario
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15479765404106752
+    m_Localized: Opciones del juego
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15479953640275968
+    m_Localized: "Configuraci\xF3n del mapa"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15479992513085440
+    m_Localized: "Activar iluminaci\xF3n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15479994442465280
+    m_Localized: Guardar datos del mapa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15480076235587584
+    m_Localized: "Configuraci\xF3n de interfaz"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15480095676186624
+    m_Localized: Mostrar armas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15480144447553536
+    m_Localized: Efecto de juicio de notas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15479872086228992
+    m_Localized: "Opciones de v\xEDdeo"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15480432063561728
+    m_Localized: Tasa de fotogramas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15483040744488960
+    m_Localized: "Sin l\xEDmite"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15480456864481280
+    m_Localized: "Resoluci\xF3n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15480480541327360
+    m_Localized: Modo de ventana
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15480507582005248
+    m_Localized: Pantalla completa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15480564561625088
+    m_Localized: Ventana
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15480580059578368
+    m_Localized: Brillo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15480733986340864
+    m_Localized: Sonido
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15480755930939392
+    m_Localized: "M\xFAsica de fondo"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15480782996783104
+    m_Localized: Efectos
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []
