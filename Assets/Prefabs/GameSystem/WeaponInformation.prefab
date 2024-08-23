@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4966413797613157342}
   - component: {fileID: 2032584991260142503}
   - component: {fileID: 7991797665583156714}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: WeaponName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 6216199987194611873}
   - component: {fileID: 7943103504060201967}
   - component: {fileID: 44392155835971100}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Range
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -284,7 +284,7 @@ GameObject:
   - component: {fileID: 4618605344485037324}
   - component: {fileID: 4521122466939843243}
   - component: {fileID: 5508514156979335417}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: WeaponImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -378,7 +378,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3471730297596167969}
   - component: {fileID: 4352637027341367940}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: WeaponInformation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -428,7 +428,7 @@ GameObject:
   - component: {fileID: 8637959597954957759}
   - component: {fileID: 6331851084102108183}
   - component: {fileID: 1770372472719810358}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: WeaponImageFrame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -503,7 +503,7 @@ GameObject:
   - component: {fileID: 8549034817026382076}
   - component: {fileID: 1626283229519032170}
   - component: {fileID: 4861102522737336407}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Splash & Direction
   m_TagString: Untagged
   m_Icon: {fileID: 0}

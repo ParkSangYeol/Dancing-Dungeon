@@ -16,7 +16,6 @@ public class CombatSceneUIManager : MonoBehaviour
     [SerializeField] GameObject overPannel;
     [SerializeField] GameObject hpPannel;
     [SerializeField] GameObject comboPannel;
-    [SerializeField] AudioSource combatAudioSource;
     private List<AudioClip> battleBgms;
     private int currentBgmIndex;
     [SerializeField]private GameObject player;
@@ -35,7 +34,7 @@ public class CombatSceneUIManager : MonoBehaviour
     private TextMeshProUGUI shieldText;
     private TextMeshProUGUI powerText;
     private PlayerController playerController;
-
+    private BGMPlayer bgmPlayer;
 
     private int combo=0;
     private int maxCombo=0;
@@ -46,14 +45,10 @@ public class CombatSceneUIManager : MonoBehaviour
     
     void Awake()
     {
-        combatAudioSource = GetComponent<AudioSource>();
+        bgmPlayer = GetComponent<BGMPlayer>();
     }
     void Start()
     {
-        if(PlayerPrefs.HasKey("AllVolume"))
-        {
-            combatAudioSource.volume = PlayerPrefs.GetFloat("AllVolume");
-        }
         battleBgms = new List<AudioClip>
         {
             Resources.Load<AudioClip>("BattleBgm"),
@@ -69,6 +64,7 @@ public class CombatSceneUIManager : MonoBehaviour
         shieldText = shieldPannel.GetComponentInChildren<TextMeshProUGUI>();
         powerText = powerPanel.GetComponentInChildren<TextMeshProUGUI>();
         playerController = player.GetComponent<PlayerController>();
+        
         // 초기 UI 설정
         WeaponScriptableObject playerWeapon = playerController.GetEquippedWeapon();
         SetWeapon(playerWeapon);
@@ -76,6 +72,8 @@ public class CombatSceneUIManager : MonoBehaviour
         SetShield();
         SetHpUi();
         
+        // 초기 BGM 실행
+        PlayBgmOneShot();
     }
 
     // Update is called once per frame
@@ -90,7 +88,7 @@ public class CombatSceneUIManager : MonoBehaviour
             //Time.timeScale=0;
             
         }
-        if(!combatAudioSource.isPlaying)
+        if(!bgmPlayer.IsBGMPlaying())
         {
             PlayBgmOneShot();
         }
@@ -107,16 +105,26 @@ public class CombatSceneUIManager : MonoBehaviour
         } while (newBgmIndex == currentBgmIndex);
 
         currentBgmIndex = newBgmIndex;
+        
+        bgmPlayer.SetAudioClip(battleBgms[currentBgmIndex]);
+        bgmPlayer.Play();
+        
+        /*
         combatAudioSource.clip = battleBgms[currentBgmIndex];
         combatAudioSource.loop = false;
         combatAudioSource.Play();
+        */
     }
     private void PlayBgmOneShot()
     {
+        bgmPlayer.SetAudioClip(battleBgms[0]);
+        bgmPlayer.Play();
+        
+        /*
         combatAudioSource.clip=battleBgms[0];
         combatAudioSource.loop = false;
         combatAudioSource.Play();
-
+        */
     }
     
     private void SetHpUi()
