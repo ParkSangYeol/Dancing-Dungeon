@@ -71,7 +71,7 @@ public class NoteMove : MonoBehaviour
     }
     IEnumerator WaitSetActive()
     {
-        yield return new WaitForSeconds(0.10f);
+        yield return new WaitForSeconds(0.05f);
 
         if (gameObject.activeInHierarchy)
         {   

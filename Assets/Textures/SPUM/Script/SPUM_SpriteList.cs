@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System.Diagnostics;
+using System.Net;
 using Sirenix.OdinInspector;
+using Sirenix.Utilities;
 using UnityEngine.SceneManagement;
 using Debug = UnityEngine.Debug;
 
@@ -34,31 +36,78 @@ public class SPUM_SpriteList : MonoBehaviour
     public List<string> _backListString = new List<string>();
     
 
-    private string baseBodyString;
-    private string basePantsString;
-    private string baseHairString;
-    private string baseRaceString;
+    
     private string previewBodyString;
     private string previewHairString;
     private string previewPantsString;
     private string previewRaceString;
+    private string initialBodyString;
+    private string initialHairString;
+    private string initialPantsString;
+    private string initialRaceString;
 
     private string[] inventoryhairpath = new string[6];
     private string[] inventoryclothpath = new string[6];
     private string[] inventorypantspath = new string[5];
     private string[] inventoryracepath = new string[5];
 
-    private int currentInventoryindex=0;
-    private void Start() {
-        baseBodyString = PlayerPrefs.GetString("PlayerBody",null);
-        basePantsString = PlayerPrefs.GetString("PlayerPants",null);
-        baseHairString = PlayerPrefs.GetString("PlayerHair",null);
-        if (this.CompareTag("Player"))
-        {
-            LoadWear();
-        }
-        
+    
 
+    private int currentInventoryindex=0;
+  
+
+
+    private void Start()
+    {
+        Debug.Log("처음 인종 패스 : "+_bodyString);
+        
+        if (!PlayerPrefs.HasKey("WearingHair"))
+        {
+            initialHairString = _hairListString[0];
+            PlayerPrefs.SetString("WearingHair", initialHairString);
+        }
+
+        if (!PlayerPrefs.HasKey("WearingCloth"))
+        {
+            initialBodyString = _clothListString[0];
+            PlayerPrefs.SetString("WearingCloth", initialBodyString);
+        }
+
+        if (!PlayerPrefs.HasKey("WearingPants"))
+        {
+            initialPantsString = _pantListString[0];
+            PlayerPrefs.SetString("WearingPants",initialPantsString);
+        }
+
+        if (!PlayerPrefs.HasKey("WearingRace") /*|| _bodyString==null*/)
+        {
+            if (_bodyString == null)
+            {
+                _bodyString ="Assets/Resources/SPUM/SPUM_Sprites/BodySource/Species/0_Human/Human_1.png";
+            }
+            initialRaceString = _bodyString;
+            PlayerPrefs.SetString("WearingRace", initialRaceString);
+        }
+        PlayerPrefs.Save();
+
+        
+        if (CompareTag("Player"))
+        {
+            Debug.Log("처음 로드될때의 인종 패스 : " + PlayerPrefs.GetString("WearingRace"));
+            Debug.Log("2번 인종 패스 : "+_bodyString);
+            /*if (_bodyString.IsNullOrWhitespace())
+            {
+                Debug.Log(("넌 널이야"));
+                _bodyString = "Assets/Resources/SPUM/SPUM_Sprites/BodySource/Species/0_Human/Human_1.png";
+                PlayerPrefs.SetString("WearingRace",_bodyString);
+                PlayerPrefs.Save();
+            }*/
+            Debug.Log("3번 인종 패스 : "+_bodyString);
+            LoadWear();
+            
+        }
+
+        
     }
 
     public void Reset()
@@ -181,6 +230,8 @@ public class SPUM_SpriteList : MonoBehaviour
         }
         if (string.IsNullOrEmpty(_path))
         {
+            
+            Debug.LogError(_objList);
             Debug.LogError("_path is null or empty");
             return;
         }
@@ -307,7 +358,7 @@ public class SPUM_SpriteList : MonoBehaviour
         
     }
 
-    public void Wear(string type)
+    public void Wear(string type) //인벤에서 입어보기 
     {
         switch(type)
         {
@@ -315,33 +366,38 @@ public class SPUM_SpriteList : MonoBehaviour
                 Debug.Log(currentInventoryindex);
                 ReplacePathCloth_Pant(_clothListString, inventoryclothpath[currentInventoryindex-1]);
                 SyncPath(_clothList, _clothListString);
-                PlayerPrefs.GetString("WearingCloth", inventoryclothpath[currentInventoryindex - 1]);
-                PlayerPrefs.SetString("WearingCloth", inventoryclothpath[currentInventoryindex - 1]);
+                previewBodyString = inventoryclothpath[currentInventoryindex-1];
+                //PlayerPrefs.GetString("WearingCloth", inventoryclothpath[currentInventoryindex - 1]);
+                //PlayerPrefs.SetString("WearingCloth", inventoryclothpath[currentInventoryindex - 1]);
                 break;
             case "Hair":
                 Debug.Log("currentindex는 "+currentInventoryindex+"이고 들어간 path는"+inventoryhairpath[currentInventoryindex-1]);
                 _hairListString[0] = inventoryhairpath[currentInventoryindex-1];
                 Debug.Log(_hairListString[0]);
                 SyncPath(_hairList, _hairListString);
-                PlayerPrefs.GetString("WearingHair", inventoryhairpath[currentInventoryindex - 1]);
-                PlayerPrefs.SetString("WearingHair", inventoryhairpath[currentInventoryindex - 1]);
+                previewHairString = inventoryhairpath[currentInventoryindex-1];
+                //PlayerPrefs.GetString("WearingHair", inventoryhairpath[currentInventoryindex - 1]);
+                //PlayerPrefs.SetString("WearingHair", inventoryhairpath[currentInventoryindex - 1]);
                 break;
             case "Pants":
                 Debug.Log(currentInventoryindex);
                 ReplacePathCloth_Pant(_pantListString, inventorypantspath[currentInventoryindex-1]);
                 SyncPath(_pantList, _pantListString);
-                PlayerPrefs.GetString("WearingPants", inventorypantspath[currentInventoryindex - 1]);
-                PlayerPrefs.SetString("WearingPants", inventorypantspath[currentInventoryindex - 1]);
+                previewPantsString = inventorypantspath[currentInventoryindex - 1];
+                //PlayerPrefs.GetString("WearingPants", inventorypantspath[currentInventoryindex - 1]);
+                //PlayerPrefs.SetString("WearingPants", inventorypantspath[currentInventoryindex - 1]);
                 break;
             case "Race":
                 Debug.Log(currentInventoryindex);
                 _bodyString = inventoryracepath[currentInventoryindex - 1];
                 SyncPath_Race(_bodyList, _bodyString);
-                PlayerPrefs.GetString("WearingRace", inventoryracepath[currentInventoryindex - 1]);
-                PlayerPrefs.SetString("WearingRace", inventoryracepath[currentInventoryindex - 1]);
+                previewRaceString = inventoryracepath[currentInventoryindex - 1];
+                Debug.Log("선택하신 인종 path : " + previewRaceString);
+                //PlayerPrefs.GetString("WearingRace", inventoryracepath[currentInventoryindex - 1]);
+                //PlayerPrefs.SetString("WearingRace", inventoryracepath[currentInventoryindex - 1]);
                 break;
         }
-        PlayerPrefs.Save();
+        //PlayerPrefs.Save();
     }
     
     public void ReplacePathCloth_Pant(List<string> pahtlist, string mypath)
@@ -373,23 +429,8 @@ public class SPUM_SpriteList : MonoBehaviour
     public void ResetCostume()
     {
         LoadWear();
-
     }
-    private void InitializeToReset()
-    {
-        SetClothPath(baseBodyString);
-        ReplacePathCloth_Pant(_clothListString,previewBodyString);
-        SyncPath(_clothList,_clothListString);
-        
-        SetPantsPath(basePantsString);
-        ReplacePathCloth_Pant(_pantListString,previewPantsString);
-        SyncPath(_pantList,_pantListString);
-        
-        _hairListString[0] = previewHairString;
-        SyncPath(_hairList,_hairListString);
-        
-
-    }
+    
 
     public void InitializedPath(string type, string path, int index)
     {
@@ -461,14 +502,15 @@ public class SPUM_SpriteList : MonoBehaviour
         {
             string path = PlayerPrefs.GetString("WearingHair");
             _hairListString[0] = path;
+            Debug.Log("머리되돌리기버튼 시행 : "+path);
             SyncPath(_hairList, _hairListString);
-            
         }
 
         if (PlayerPrefs.HasKey("WearingCloth"))
         {
             string path = PlayerPrefs.GetString("WearingCloth");
             ReplacePathCloth_Pant(_clothListString, path);
+            Debug.Log("옷되돌리기버튼 시행 : "+path);
             SyncPath(_clothList, _clothListString);
         }
 
@@ -476,15 +518,76 @@ public class SPUM_SpriteList : MonoBehaviour
         {
             string path = PlayerPrefs.GetString("WearingPants");
             ReplacePathCloth_Pant(_pantListString, path);
+            Debug.Log("바지되돌리기버튼 시행 : "+path);
             SyncPath(_pantList, _pantListString);
         }
         if (PlayerPrefs.HasKey("WearingRace"))
         {
             string path = PlayerPrefs.GetString("WearingRace");
             _bodyString = path;
-            SyncPath_Race(_bodyList, _bodyString);
+            Debug.Log("몸되돌리기버튼 시행 : "+path);
+            SyncPath_Race(_bodyList, path);
         }
         
+        
     }
-    
+
+    public void SaveWearing()
+    {
+       
+        if (PlayerPrefs.HasKey("WearingHair"))
+        {
+            if (previewHairString == null)
+            {
+                previewHairString = _hairListString[0];
+            }
+            string path = previewHairString; 
+            PlayerPrefs.SetString("WearingHair",path);
+            _hairListString[0] = path;
+            SyncPath(_hairList, _hairListString);
+        }
+        if (PlayerPrefs.HasKey("WearingCloth"))
+        {
+            if (previewBodyString == null)
+            {
+                previewBodyString = _clothListString[0];
+            }
+            string path = previewBodyString;
+            PlayerPrefs.SetString("WearingCloth",path);
+            ReplacePathCloth_Pant(_clothListString, path);
+            SyncPath(_clothList, _clothListString);
+        }
+        if (PlayerPrefs.HasKey("WearingPants"))
+        {
+            if (previewPantsString == null)
+            {
+                previewPantsString = _pantListString[0];
+            }
+            string path = previewPantsString; 
+            PlayerPrefs.SetString("WearingPants",path);
+            ReplacePathCloth_Pant(_pantListString, path);
+            SyncPath(_pantList, _pantListString);
+        }
+        if (PlayerPrefs.HasKey("WearingRace"))
+        {
+            Debug.Log(_bodyString);
+            if (previewRaceString == null)
+            {
+                previewRaceString = _bodyString;
+            }
+            string path = previewRaceString;
+            PlayerPrefs.SetString("WearingRace",path);
+            _bodyString = path;
+            SyncPath_Race(_bodyList, _bodyString);
+            Debug.Log("저장된 인종 패스 플레이 프리펩 : "+PlayerPrefs.GetString("WearingRace"));
+        }
+        PlayerPrefs.Save();
+        
+    }
+
+
+    IEnumerator SaveWaiting()
+    {
+        yield return new WaitForSeconds(1.5f);
+    }
 }

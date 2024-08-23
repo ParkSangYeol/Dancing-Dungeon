@@ -28,8 +28,11 @@ public class HitScanByRay : MonoBehaviour
 
     private float lastInputTime = 0f;
     private float inputCooldown = 0.1f; // 0.1초 쿨다운
-    private float hitCooldown = 0.05f; // 0.05초 히트 쿨다운
+    private float hitCooldown = 0.1f; // 
     private float lastHitTime = 0f;
+
+    private bool isWaiting = false;
+    
     
     void Awake()
     {
@@ -85,25 +88,20 @@ public class HitScanByRay : MonoBehaviour
 
     void CheckNote(InputAction.CallbackContext context)
     {
-        if(missHapppen == false)
+        if(missHapppen == false && !isWaiting)
         {
-            // 현재 시간이 마지막 입력 시간 + 쿨다운 시간보다 작으면 리턴
-            if (Time.time < lastInputTime + inputCooldown)
-            {
-                return;
-            }
-
-            // 현재 게임 오브젝트가 유효한지 확인
+            Debug.Log("playerinput : "+ playerInput.enabled);
+            
             if (this == null || !gameObject.activeInHierarchy)
             {
                 Debug.LogWarning("HitScanByRay is not active or has been destroyed.");
                 return;
             }
-
-            lastInputTime = Time.time;
-
+            
+            
             Vector2 moveDir = context.ReadValue<Vector2>();
 
+            StartCoroutine(OnOffPlayerInput());
             RaycastHit2D lefthit = Physics2D.Raycast(transform.position + Vector3.right * 300, Vector2.left, Mathf.Infinity, 1 << LayerMask.NameToLayer("LeftNote"));
             RaycastHit2D righthit = Physics2D.Raycast(transform.position + Vector3.left * 300, Vector2.right, Mathf.Infinity, 1 << LayerMask.NameToLayer("RightNote"));
 
@@ -118,11 +116,7 @@ public class HitScanByRay : MonoBehaviour
                     float right_x = righthit.collider.transform.position.x;
                     float xDifference = right_x - left_x;
                     
-                    // 히트 쿨다운 체크
-                    if (Time.time < lastHitTime + hitCooldown)
-                    {
-                        return;
-                    }
+                    
 
                     if(xDifference >= -200 && xDifference <= 200)
                     {
@@ -144,6 +138,8 @@ public class HitScanByRay : MonoBehaviour
                         currentHit = "Miss";
                         ProcessHit(moveDir, left_x, right_x, xDifference, lefthit, righthit);
                     }
+
+                    
                 }
             }
         }
@@ -151,18 +147,20 @@ public class HitScanByRay : MonoBehaviour
 
     private void ProcessHit(Vector2 moveDir, float left_x, float right_x, float xDifference, RaycastHit2D lefthit, RaycastHit2D righthit)
     {
-        Debug.Log($"{currentHit} : Left X : {left_x} Right X : {right_x} Difference {xDifference}");
-        OnTimingHit?.Invoke(currentHit);
-        OnPressedKey?.Invoke(moveDir, currentHit);
         
-        if (currentHit == "Perfect" || currentHit == "Great")
-        {
-            lefthit.collider.gameObject.SetActive(false);
-            righthit.collider.gameObject.SetActive(false);
-            lastHitTime = Time.time;
-        }
+            Debug.Log($"{currentHit} : Left X : {left_x} Right X : {right_x} Difference {xDifference}");
+            OnTimingHit?.Invoke(currentHit);
+            OnPressedKey?.Invoke(moveDir, currentHit);
+
+            if (currentHit == "Perfect" || currentHit == "Great")
+            {
+                lefthit.collider.gameObject.SetActive(false);
+                righthit.collider.gameObject.SetActive(false);
+                
+            }
+
+            combatSceneUIManager.SetCombo(currentHit);
         
-        combatSceneUIManager.SetCombo(currentHit);
     }
 
     #region Odin 
@@ -182,6 +180,13 @@ public class HitScanByRay : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         Debug.Log("코루틴 실행됨");
         missHapppen = false;
+    }
+
+    IEnumerator OnOffPlayerInput()
+    { 
+        isWaiting = true;
+        yield return new WaitForSeconds(0.3f);
+        isWaiting = false;
     }
 
     #endregion

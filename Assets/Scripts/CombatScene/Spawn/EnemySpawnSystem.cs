@@ -266,7 +266,7 @@ public class EnemySpawnSystem : MonoBehaviour
     {
         if (enemyTypeMap.TryGetValue(enemy, out string enemyType))
         {
-            enemy.SetActive(false);
+            
             if (enemyPools.TryGetValue(enemyType, out Queue<GameObject> pool))
             {
                 pool.Enqueue(enemy);

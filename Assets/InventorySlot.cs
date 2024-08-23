@@ -84,7 +84,7 @@ public class inventorySlot : MonoBehaviour
 
     private IEnumerator WaitSetting()
     {
-        // 초기화가 완료될 때까지 대기하는 코루틴
+        
         yield return new WaitForSeconds(1.0f);
         Debug.Log("초기화 완료");
     }

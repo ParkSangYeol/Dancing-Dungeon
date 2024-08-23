@@ -20,8 +20,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Dev/GD/MainScene/Inventory.unity
     guid: 64294f79e4016e74abb31ccbf5cb3c36
+  - enabled: 1
+    path: Assets/Scenes/Build/MainScene.unity
+    guid: 6de64cd03f1284346898eac8c92838a4
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: a0e587d14c6ee6044a5863a71da8fe9b, type: 2}
+    com.unity.input.settings: {fileID: 11400000, guid: b800d4aa765b5dc458f1a1cb147b3d7c, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
     com.unity.localization.settings: {fileID: 11400000, guid: 24145948b16cd2a409b09274790e5061, type: 2}
   m_UseUCBPForAssetBundles: 0

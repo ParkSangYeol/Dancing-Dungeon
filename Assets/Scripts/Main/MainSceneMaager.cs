@@ -9,7 +9,11 @@ public class MainSceneMaager : MonoBehaviour
     
        [SerializeField] private GameObject mainPannel;
        [SerializeField]private GameObject optionPannel;
+       [SerializeField] private GameObject questPannel;
+       [SerializeField] private AudioSource mainAudioSource;
+
        [SerializeField] private BGMPlayer bgmPlayer;
+
        [SerializeField] private Slider slider;
         public string nextScene;
         public Image fadeImage; // 페이드 효과를 위한 이미지
@@ -72,6 +76,13 @@ public class MainSceneMaager : MonoBehaviour
     {
         optionPannel.SetActive(false);
         mainPannel.SetActive(true);
+    }
+
+    public void VisibleQuestPanel()
+    {
+        optionPannel.SetActive(false);
+        mainPannel.SetActive(false);
+        questPannel.SetActive(true);
     }
     /*
     public void SetVolume()
