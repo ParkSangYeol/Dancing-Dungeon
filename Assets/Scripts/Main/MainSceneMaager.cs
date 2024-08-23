@@ -9,6 +9,7 @@ public class MainSceneMaager : MonoBehaviour
     
        [SerializeField] private GameObject mainPannel;
        [SerializeField]private GameObject optionPannel;
+       [SerializeField] private GameObject questPannel;
        [SerializeField] private AudioSource mainAudioSource;
        [SerializeField] private Slider slider;
         public string nextScene;
@@ -71,6 +72,13 @@ public class MainSceneMaager : MonoBehaviour
     {
         optionPannel.SetActive(false);
         mainPannel.SetActive(true);
+    }
+
+    public void VisibleQuestPanel()
+    {
+        optionPannel.SetActive(false);
+        mainPannel.SetActive(false);
+        questPannel.SetActive(true);
     }
     public void SetVolume()
     {
