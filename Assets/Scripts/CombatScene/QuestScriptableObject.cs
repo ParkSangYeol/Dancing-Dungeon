@@ -128,6 +128,8 @@ public class Achievement : ScriptableObject
         int currentMoney = PlayerPrefs.GetInt("PlayerMoney", 0);
         PlayerPrefs.SetInt("PlayerMoney",currentMoney+increaseAmount_Gift);
         Debug.Log("보상!! "+PlayerPrefs.GetInt("PlayerMoney", 0));
+        int currnetEarnMoney = PlayerPrefs.GetInt("EarnMoney", 0);
+        PlayerPrefs.SetInt("EarnMoney",currnetEarnMoney+increaseAmount_Gift);
     }
 
     public Sprite GetSprite()

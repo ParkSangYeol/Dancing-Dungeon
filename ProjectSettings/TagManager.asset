@@ -17,6 +17,8 @@ TagManager:
   - LeftBad
   - DeleteZone
   - StreetLamps
+  - NegativeSFXUI
+  - Boss
   layers:
   - Default
   - TransparentFX
