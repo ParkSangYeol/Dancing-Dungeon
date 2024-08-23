@@ -42,6 +42,8 @@ public class CombatSceneUIManager : MonoBehaviour
     private int greatCombo=0;
     private int badCombo=0;
     private int missCombo=0;
+    private int enemyKill = 0;
+    private int bossKill = 0;
     
     void Awake()
     {
@@ -233,5 +235,31 @@ public class CombatSceneUIManager : MonoBehaviour
 
         splashText.text = attackDir + " " + splash;
     }
-    
+
+    public void DieEnemyCount()
+    {
+        enemyKill++;
+    }
+
+    public void DieBossCount()
+    {
+        bossKill++;
+        enemyKill++;
+    }
+
+    public int GetEnemyDie()
+    {
+        return enemyKill;
+    }
+
+    public int GetBoosDie()
+    {
+        return bossKill;
+    }
+
+    public int GetMaxCombo()
+    {
+        return maxCombo;
+    }
+
 }
