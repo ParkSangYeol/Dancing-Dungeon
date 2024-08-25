@@ -82,6 +82,22 @@ MonoBehaviour:
     m_Localized: Poder de ataque
     m_Metadata:
       m_Items: []
+  - m_Id: 15578287080095744
+    m_Localized: Muertes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15578397251878912
+    m_Localized: Jefes Eliminados
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15578935603380224
+    m_Localized: "Combo M\xE1ximo"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16240698332123136
+    m_Localized: Dinero Ganado
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

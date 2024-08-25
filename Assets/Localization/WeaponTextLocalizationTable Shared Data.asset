@@ -82,18 +82,19 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 15578287080095744
-    m_Key: OptionPannel/Canvas (Environment)/OptionPannel/VideoOption/Frames/Frames/Template/Viewport/Content/Item/Item
-      Label
+    m_Key: KilledEnemy
     m_Metadata:
       m_Items: []
   - m_Id: 15578397251878912
-    m_Key: OptionPannel/Canvas (Environment)/OptionPannel/VideoOption/Frames/Frames/Template/Viewport/Content/Item/Item
-      Label 1
+    m_Key: KilledBoss
     m_Metadata:
       m_Items: []
   - m_Id: 15578935603380224
-    m_Key: OptionPannel/Canvas (Environment)/OptionPannel/VideoOption/Frames/Frames/Template/Viewport/Content/Item/Item
-      Label 2
+    m_Key: MaxCombo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16240698332123136
+    m_Key: EarnGold
     m_Metadata:
       m_Items: []
   m_Metadata:
