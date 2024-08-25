@@ -314,6 +314,14 @@ PrefabInstance:
       propertyPath: combatManager
       value: 
       objectReference: {fileID: 227685354}
+    - target: {fileID: 1644155881558083250, guid: 29c79cbe7b6c7324fa2d7d82ceb7c0cb, type: 3}
+      propertyPath: m_SortingLayer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1644155881558083250, guid: 29c79cbe7b6c7324fa2d7d82ceb7c0cb, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1476915623
+      objectReference: {fileID: 0}
     - target: {fileID: 3555217069093943901, guid: 29c79cbe7b6c7324fa2d7d82ceb7c0cb, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -850,11 +858,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8607194572711208456, guid: 207250c0d03cd9f4a8ca3024afbc8744, type: 3}
       propertyPath: m_SortingLayer
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8607194572711208456, guid: 207250c0d03cd9f4a8ca3024afbc8744, type: 3}
       propertyPath: m_SortingLayerID
-      value: -1070698665
+      value: -1476915623
       objectReference: {fileID: 0}
     - target: {fileID: 9024452552076100356, guid: 207250c0d03cd9f4a8ca3024afbc8744, type: 3}
       propertyPath: mapHandler
@@ -945,6 +953,14 @@ PrefabInstance:
       propertyPath: combatManager
       value: 
       objectReference: {fileID: 227685354}
+    - target: {fileID: 1644155881558083250, guid: de5a0890a3db12e47865a13a9f6917ed, type: 3}
+      propertyPath: m_SortingLayer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1644155881558083250, guid: de5a0890a3db12e47865a13a9f6917ed, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1476915623
+      objectReference: {fileID: 0}
     - target: {fileID: 3555217069093943901, guid: de5a0890a3db12e47865a13a9f6917ed, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
