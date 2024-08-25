@@ -19,7 +19,6 @@ TagManager:
   - StreetLamps
   - NegativeSFXUI
   - Boss
-
   layers:
   - Default
   - TransparentFX
@@ -58,31 +57,31 @@ TagManager:
     uniqueID: 0
     locked: 0
   - name: Road1
-    uniqueID: 901594045
+    uniqueID: 610461011
     locked: 0
   - name: Road2
-    uniqueID: 589270699
+    uniqueID: 1506220915
     locked: 0
   - name: Building1
-    uniqueID: 2673901081
+    uniqueID: 4271700529
     locked: 0
   - name: Building2
-    uniqueID: 3926451173
+    uniqueID: 271990539
     locked: 0
   - name: Env1
-    uniqueID: 957609699
+    uniqueID: 906673605
     locked: 0
   - name: Env2
-    uniqueID: 980893537
+    uniqueID: 3494936621
     locked: 0
   - name: Item
-    uniqueID: 3310255271
+    uniqueID: 3088048091
     locked: 0
   - name: Character
-    uniqueID: 1865092107
+    uniqueID: 2818051673
     locked: 0
   - name: UpOfCharacter
-    uniqueID: 4117936235
+    uniqueID: 3224268631
     locked: 0
   m_RenderingLayers:
   - Default
