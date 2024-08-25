@@ -34,6 +34,14 @@ MonoBehaviour:
     m_Localized: Menu
     m_Metadata:
       m_Items: []
+  - m_Id: 11304257294336
+    m_Localized: Not enough money!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10953114357760
+    m_Localized: Cancel
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

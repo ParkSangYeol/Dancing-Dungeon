@@ -33,6 +33,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-zh-CN
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ae3a2a69cf11ae248a09b0f98914cdd9
+    m_Address: InventoryLocallizationTable_zh-CN
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-zh-CN
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 84ae68f6bec776f449ad886877488c84, type: 2}
   m_SchemaSet:

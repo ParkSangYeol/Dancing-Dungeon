@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5be51871efa6c3e4eae1703925c8f5ac, type: 3}
+  m_Name: InventoryLocallizationTable
+  m_EditorClassIdentifier: 
+  m_SharedTableData: {fileID: 11400000, guid: f855e12f193d31241ba768f72fa704e3, type: 2}
+  m_Tables:
+  - {fileID: 11400000, guid: ae3a2a69cf11ae248a09b0f98914cdd9, type: 2}
+  - {fileID: 11400000, guid: ca5b189588463a34ebf1fe54bf65b0c1, type: 2}
+  - {fileID: 11400000, guid: cc242210ef9b13e49b4d59ce86dba8ef, type: 2}
+  - {fileID: 11400000, guid: 6f8dfd6bc15d49f44917adc9bae07998, type: 2}
+  - {fileID: 11400000, guid: 29962d6b15cb3ed4194187c10c5fbe26, type: 2}
+  - {fileID: 11400000, guid: e684a00c32c764041aa988004a7905da, type: 2}
+  - {fileID: 11400000, guid: bb15111a6f5231c47bd3ab3363cf9a45, type: 2}
+  m_Extensions: []
+  m_Group: String Table
+  references:
+    version: 2
+    RefIds: []

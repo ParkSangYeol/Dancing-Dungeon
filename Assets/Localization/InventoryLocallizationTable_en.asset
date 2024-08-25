@@ -10,36 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
-  m_Name: StoreTextLocallizationTables_zh-CN
+  m_Name: InventoryLocallizationTable_en
   m_EditorClassIdentifier: 
   m_LocaleId:
-    m_Code: zh-CN
-  m_SharedData: {fileID: 11400000, guid: bdbe347e915d93748a1e7c2cd47bf5a5, type: 2}
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: f855e12f193d31241ba768f72fa704e3, type: 2}
   m_Metadata:
     m_Items: []
   m_TableData:
-  - m_Id: 12230430720
-    m_Localized: "\u5C5E\u6027"
+  - m_Id: 5897031680
+    m_Localized: Apply
     m_Metadata:
       m_Items: []
-  - m_Id: 435972575232
-    m_Localized: "\u88C5\u9970"
+  - m_Id: 8860932608000
+    m_Localized: Would you like to apply the items you are currently equipped with?
     m_Metadata:
       m_Items: []
-  - m_Id: 1101541511168
-    m_Localized: "\u8D2D\u4E70"
+  - m_Id: 9477352689664
+    m_Localized: Do not apply
     m_Metadata:
       m_Items: []
-  - m_Id: 1924971466752
-    m_Localized: "\u83DC\u5355"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 11304257294336
-    m_Localized: "\u91D1\u5E01\u4E0D\u8DB3\uFF01"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 10953114357760
-    m_Localized: "\u53D6\u6D88"
+  - m_Id: 9726397878272
+    m_Localized: Menu
     m_Metadata:
       m_Items: []
   references:

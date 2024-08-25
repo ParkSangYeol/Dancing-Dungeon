@@ -10,43 +10,35 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
-  m_Name: StoreTextLocallizationTables Shared Data
+  m_Name: InventoryLocallizationTable Shared Data
   m_EditorClassIdentifier: 
-  m_TableCollectionName: StoreTextLocallizationTables
-  m_TableCollectionNameGuidString: bdbe347e915d93748a1e7c2cd47bf5a5
+  m_TableCollectionName: InventoryLocallizationTable
+  m_TableCollectionNameGuidString: f855e12f193d31241ba768f72fa704e3
   m_Entries:
-  - m_Id: 12230430720
-    m_Key: Stat
+  - m_Id: 5897031680
+    m_Key: Apply
     m_Metadata:
       m_Items: []
-  - m_Id: 435972575232
-    m_Key: Decoration
+  - m_Id: 8860932608000
+    m_Key: Apply?
     m_Metadata:
       m_Items: []
-  - m_Id: 1101541511168
-    m_Key: Purchase
+  - m_Id: 9477352689664
+    m_Key: DontApply
     m_Metadata:
       m_Items: []
-  - m_Id: 1924971466752
+  - m_Id: 9726397878272
     m_Key: Menu
-    m_Metadata:
-      m_Items: []
-  - m_Id: 10953114357760
-    m_Key: Cancel
-    m_Metadata:
-      m_Items: []
-  - m_Id: 11304257294336
-    m_Key: NotEnough
     m_Metadata:
       m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
-    rid: 1853098776986648670
+    rid: 1853098776986648673
   references:
     version: 2
     RefIds:
-    - rid: 1853098776986648670
+    - rid: 1853098776986648673
       type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
       data:
-        m_CustomEpoch: 1724567245287
+        m_CustomEpoch: 1724570272552
