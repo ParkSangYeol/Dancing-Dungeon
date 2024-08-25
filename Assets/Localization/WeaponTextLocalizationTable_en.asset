@@ -83,15 +83,19 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 15578287080095744
-    m_Localized: 
+    m_Localized: Kill
     m_Metadata:
       m_Items: []
   - m_Id: 15578397251878912
-    m_Localized: 
+    m_Localized: Boss kill
     m_Metadata:
       m_Items: []
   - m_Id: 15578935603380224
-    m_Localized: 
+    m_Localized: Max Combo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16240698332123136
+    m_Localized: Money Earned
     m_Metadata:
       m_Items: []
   references:
