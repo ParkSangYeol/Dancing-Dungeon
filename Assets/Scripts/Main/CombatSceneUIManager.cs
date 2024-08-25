@@ -8,6 +8,8 @@ using UnityEngine.UIElements;
 using Image = UnityEngine.UI.Image;
 using CombatScene;
 using Unity.VisualScripting;
+using UnityEngine.Localization.Components;
+using UnityEngine.Localization.Settings;
 
 
 public class CombatSceneUIManager : MonoBehaviour
@@ -27,9 +29,10 @@ public class CombatSceneUIManager : MonoBehaviour
 
 
     private Image weaponimage;
-    private TextMeshProUGUI weaponName;
-    private TextMeshProUGUI range;
+    // private TextMeshProUGUI weaponName;
+    private TextMeshProUGUI rangeText;
     private TextMeshProUGUI splashText;
+    private LocalizeStringEvent weaponNameText;
     private TextMeshProUGUI hpText;
     private TextMeshProUGUI shieldText;
     private TextMeshProUGUI powerText;
@@ -59,8 +62,8 @@ public class CombatSceneUIManager : MonoBehaviour
         
         // 초기 변수 설정
         weaponimage=weaponPannel.transform.Find("WeaponImage").GetComponent<Image>();
-        weaponName= weaponPannel.transform.Find("WeaponName").GetComponent<TextMeshProUGUI>();
-        range = weaponPannel.transform.Find("Range").GetComponent<TextMeshProUGUI>();
+        weaponNameText= weaponPannel.transform.Find("WeaponName").GetComponent<LocalizeStringEvent>();
+        rangeText = weaponPannel.transform.Find("Range").GetComponent<TextMeshProUGUI>();
         splashText =weaponPannel.transform.Find("Splash & Direction").GetComponent<TextMeshProUGUI>();
         hpText = hpPannel.GetComponentInChildren<TextMeshProUGUI>();
         shieldText = shieldPannel.GetComponentInChildren<TextMeshProUGUI>();
@@ -222,16 +225,21 @@ public class CombatSceneUIManager : MonoBehaviour
             weaponScriptableObject= playerController.GetEquippedWeapon();
         }
         weaponimage.sprite=weaponScriptableObject.thumbnail;
-        weaponName.text = weaponScriptableObject.name; 
-        range.text ="Range : "+ weaponScriptableObject.range;
+        weaponNameText.SetEntry(weaponScriptableObject.key);
+        string range = LocalizationSettings.StringDatabase.GetLocalizedString("WeaponTextLocalizationTable", "Range");
+        rangeText.text = range + ": " + weaponScriptableObject.range;
         
-        string splash = weaponScriptableObject.isSplash ? "다중 공격" : "단일 공격";
+        string splash = weaponScriptableObject.isSplash ? 
+            LocalizationSettings.StringDatabase.GetLocalizedString("WeaponTextLocalizationTable", "SplashAttack")
+            : LocalizationSettings.StringDatabase.GetLocalizedString("WeaponTextLocalizationTable", "SingleAttack");
         string attackDir = weaponScriptableObject.attackDirection switch
         {
-            AttackDirection.DIR_8 => "8방향",
-            AttackDirection.DIR_4 => "4방향",
+            AttackDirection.DIR_8 => "8",
+            AttackDirection.DIR_4 => "4",
             _ => "에러"
         };
+        attackDir +=
+            LocalizationSettings.StringDatabase.GetLocalizedString("WeaponTextLocalizationTable", "Direction");
 
         splashText.text = attackDir + " " + splash;
     }

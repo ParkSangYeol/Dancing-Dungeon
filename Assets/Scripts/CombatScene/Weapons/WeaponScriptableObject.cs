@@ -10,6 +10,7 @@ namespace CombatScene
         public Sprite thumbnail;
         [Title("무기 정보")] 
         [PreviewField(70, ObjectFieldAlignment.Right)]
+        public string key;
         public Sprite weaponSprite;
         public string name;
         [Range(1, 3)]

@@ -127,7 +127,7 @@ MonoBehaviour:
     m_FamilyName: Fyodor
     m_StyleName: Bold Expanded
     m_PointSize: 45
-    m_Scale: 1
+    m_Scale: 0.75
     m_UnitsPerEM: 1024
     m_LineHeight: 54.00879
     m_AscentLine: 37.79297

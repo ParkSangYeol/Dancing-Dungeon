@@ -13,10 +13,14 @@ MonoBehaviour:
   m_Name: Surf
   m_EditorClassIdentifier: 
   thumbnail: {fileID: 21300000, guid: 7e577ba971e285644badc5e07ede7463, type: 3}
+  key: Surf
   weaponSprite: {fileID: 21300000, guid: 7e577ba971e285644badc5e07ede7463, type: 3}
   name: "\uC11C\uD551\uBCF4\uB4DC"
   range: 1
   power: 1
   attackDirection: 1
+  attackDelay: 0
+  isDelayedAttack: 0
+  delayedAttackDelay: 0
   isSplash: 0
   VFX: {fileID: 198012786351023796, guid: 0e45442b051a8cb44ba03b12b56f9405, type: 3}
