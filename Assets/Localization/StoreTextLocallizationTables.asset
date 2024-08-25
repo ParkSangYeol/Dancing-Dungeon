@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5be51871efa6c3e4eae1703925c8f5ac, type: 3}
+  m_Name: StoreTextLocallizationTables
+  m_EditorClassIdentifier: 
+  m_SharedTableData: {fileID: 11400000, guid: bdbe347e915d93748a1e7c2cd47bf5a5, type: 2}
+  m_Tables:
+  - {fileID: 11400000, guid: 07fb9ee2cbf74404790a1776275b426b, type: 2}
+  - {fileID: 11400000, guid: 948e22218f8fee84890eea82b31e1352, type: 2}
+  - {fileID: 11400000, guid: 0df92d824163ecd4293062274365e335, type: 2}
+  - {fileID: 11400000, guid: b7b770d031141bd4e8891d3914d3727c, type: 2}
+  - {fileID: 11400000, guid: e635243a33c4b9a4b9f6de95d2b6908d, type: 2}
+  - {fileID: 11400000, guid: 7e650d911b890b14cbcaa1dd26bd2df1, type: 2}
+  - {fileID: 11400000, guid: 653dad4b118b8fa45be263c45e998694, type: 2}
+  m_Extensions: []
+  m_Group: String Table
+  references:
+    version: 2
+    RefIds: []
