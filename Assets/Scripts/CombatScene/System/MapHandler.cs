@@ -27,7 +27,7 @@ namespace CombatScene
             startPosition.x += ConstVariables.tileSizeX / 2;
             startPosition.y += ConstVariables.tileSizeY / 2;
             
-            if (forceUpdateMap)
+            if (forceUpdateMap || (PlayerPrefs.HasKey("MapLoad") && PlayerPrefs.GetString("MapLoad").Equals("False")))
             {
                 Debug.Log(GetType().Name + " Force Update Detected. Generating Map");
                 GenerateMapData();
