@@ -41,7 +41,24 @@ public class LightHandler : MonoBehaviour
         }
 
         directionalLight.intensity = maxLight;
-        InvokeRepeating("SetLight", 2, 2);
+        if (PlayerPrefs.HasKey("MapLight") && PlayerPrefs.GetString("MapLight").Equals("False"))
+        {
+            // 조명 비활성화.
+            for (int i =0; i < transform.childCount; i++)
+            {
+                GameObject childObj = transform.GetChild(i).gameObject;
+                if (childObj.Equals(directionalLight.gameObject))
+                {
+                    continue;
+                }
+                childObj.SetActive(false);
+            }
+        }
+        else
+        {
+            InvokeRepeating("SetLight", 2, 2);
+        }
+
     }
     
 

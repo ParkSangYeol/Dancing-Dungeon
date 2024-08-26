@@ -79,6 +79,11 @@ public class CombatSceneUIManager : MonoBehaviour
         
         // 초기 BGM 실행
         PlayBgmOneShot();
+
+        if (PlayerPrefs.HasKey("WeaponUI") && PlayerPrefs.GetString("WeaponUI").Equals("False"))
+        {
+            weaponPannel.SetActive(false);
+        }
     }
 
     // Update is called once per frame
