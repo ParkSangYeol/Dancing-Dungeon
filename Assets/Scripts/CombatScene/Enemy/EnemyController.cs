@@ -27,6 +27,9 @@ namespace CombatScene.Enemy
         [SerializeField] 
         private SpriteRenderer weaponSpriteRenderer;
 
+        [SerializeField] 
+        private HPBarHandler hpBarHandler;
+        
         [Title("Data")] 
         [InfoBox("character data는 반드시 추가해야합니다!", InfoMessageType.Error, "IsCharacterDataNotSetup")]
         [SerializeField]
@@ -143,9 +146,9 @@ namespace CombatScene.Enemy
             {
                 // 캐릭터가 아직 생존 중.
                 // animator.SetTrigger("Hit");
-                onHitEvent.Invoke(hp);
             }
             Debug.Log(gameObject.name + "'s hp is " + hp);
+            onHitEvent.Invoke(hp);
            
         }
 
@@ -325,6 +328,11 @@ namespace CombatScene.Enemy
             {
                 animator = transform.GetChild(0).GetComponent<Animator>();
             }
+            
+            if (hpBarHandler == null)
+            {
+                hpBarHandler = GetComponentInChildren<HPBarHandler>();
+            }
         }
         public void SetCombatManager(CombatManager combatmanager)
         {
@@ -367,6 +375,14 @@ namespace CombatScene.Enemy
         }
         private void SetEvent()
         {
+            if (hpBarHandler != null)
+            {
+                onHitEvent.AddListener((currnetHP) =>
+                {
+                    hpBarHandler.SetHPUI(currnetHP, characterData.hp);
+                });
+            }
+            
             OnEnemyDead.AddListener((enemyTransform) =>
             {
                 animator.SetTrigger("Dead");

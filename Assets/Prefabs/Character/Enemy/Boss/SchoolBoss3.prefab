@@ -4013,6 +4013,7 @@ MonoBehaviour:
   animator: {fileID: 2777716492069531356}
   unitRoot: {fileID: 4799138903739954941}
   weaponSpriteRenderer: {fileID: 3201651427924513806}
+  hpBarHandler: {fileID: 4391643733327532304}
   characterData: {fileID: 11400000, guid: 844069d65110c4742a1748ccb639a4a7, type: 2}
   defaultWeapon: {fileID: 11400000, guid: 4c62440f15cfac641aee9d45f5d3d32c, type: 2}
   OnEnemyDead:
@@ -4023,7 +4024,6 @@ MonoBehaviour:
       m_Calls: []
   bossArea: {fileID: 0}
   defaultPosition: {x: 0, y: 0}
-  hpBarHandler: {fileID: 4391643733327532304}
 --- !u!1 &9117921895101837780
 GameObject:
   m_ObjectHideFlags: 0
@@ -4105,6 +4105,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas-HP
       objectReference: {fileID: 0}
+    - target: {fileID: 5003540503488457059, guid: d7108797f668636428e2529232d39bfa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5277292518596316513, guid: d7108797f668636428e2529232d39bfa, type: 3}
       propertyPath: m_Material
       value: 
@@ -4139,11 +4143,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7104453488181763115, guid: d7108797f668636428e2529232d39bfa, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7104453488181763115, guid: d7108797f668636428e2529232d39bfa, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7104453488181763115, guid: d7108797f668636428e2529232d39bfa, type: 3}
       propertyPath: m_LocalPosition.x

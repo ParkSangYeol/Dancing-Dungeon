@@ -13,27 +13,12 @@ namespace CombatScene.Enemy
         
         [SerializeField]
         private Vector2 defaultPosition;
-
-        [SerializeField] 
-        private HPBarHandler hpBarHandler;
         
         private void Start()
         {
             base.Start();
             defaultPosition = this.transform.position;
             combatManager.AddBoss(this.transform.position, this);
-            if (hpBarHandler == null)
-            {
-                hpBarHandler = GetComponentInChildren<HPBarHandler>();
-            }
-
-            if (hpBarHandler != null)
-            {
-                onHitEvent.AddListener((currnetHP) =>
-                {
-                    hpBarHandler.SetHPUI(currnetHP, characterData.hp);
-                });
-            }
         }
         
         
