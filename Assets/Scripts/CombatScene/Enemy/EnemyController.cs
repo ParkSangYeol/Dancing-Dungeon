@@ -30,10 +30,10 @@ namespace CombatScene.Enemy
         [Title("Data")] 
         [InfoBox("character data는 반드시 추가해야합니다!", InfoMessageType.Error, "IsCharacterDataNotSetup")]
         [SerializeField]
-        private EnemyCharacterScriptableObject characterData;
+        protected EnemyCharacterScriptableObject characterData;
         [InfoBox("default weapon은 반드시 추가해야합니다!", InfoMessageType.Error, "IsDefaultWeaponDataNotSetup")]
         [SerializeField]
-        private WeaponScriptableObject defaultWeapon;
+        protected WeaponScriptableObject defaultWeapon;
         [InfoBox("WeaponScriptableObject은 반드시 추가해야합니다!", InfoMessageType.Error, "WeaponScriptableObject")]
             
         
@@ -45,6 +45,7 @@ namespace CombatScene.Enemy
         private int currentDelayedAttackDelay;
         private bool isDelayedAttackActive;
         private List<Vector2> delayedAttackPositions;
+        public UnityEvent<float> onHitEvent;
         public ObjectType tileObjectType { get; private set; }
         
         [ShowInInspector]
@@ -142,6 +143,7 @@ namespace CombatScene.Enemy
             {
                 // 캐릭터가 아직 생존 중.
                 // animator.SetTrigger("Hit");
+                onHitEvent.Invoke(hp);
             }
             Debug.Log(gameObject.name + "'s hp is " + hp);
            
