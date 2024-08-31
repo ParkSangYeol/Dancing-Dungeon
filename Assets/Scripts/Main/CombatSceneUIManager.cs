@@ -247,6 +247,8 @@ public class CombatSceneUIManager : MonoBehaviour
             LocalizationSettings.StringDatabase.GetLocalizedString("WeaponTextLocalizationTable", "Direction");
 
         splashText.text = attackDir + " " + splash;
+        
+        SetPower(weaponScriptableObject);
     }
 
     public void DieEnemyCount()

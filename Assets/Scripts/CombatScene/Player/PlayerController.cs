@@ -284,7 +284,7 @@ namespace  CombatScene.Player
 
         public float GetPower()
         {
-            return equipWeapon.power + playerCharacterData.defaultPower;
+            return equipWeapon.power + this.power;
         }
         public float GetPlayerPower()
         {
