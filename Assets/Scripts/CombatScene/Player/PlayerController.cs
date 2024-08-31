@@ -62,7 +62,7 @@ namespace  CombatScene.Player
             set
             {
                 _hp = value;
-                if (_hp < 0)
+                if (_hp <= 0)
                 {
                     OnPlayerDead.Invoke();
                 }

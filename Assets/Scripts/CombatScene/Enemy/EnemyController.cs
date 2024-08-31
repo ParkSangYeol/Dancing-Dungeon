@@ -49,6 +49,7 @@ namespace CombatScene.Enemy
         private bool isDelayedAttackActive;
         private List<Vector2> delayedAttackPositions;
         public UnityEvent<float> onHitEvent;
+        
         public ObjectType tileObjectType { get; private set; }
         
         [ShowInInspector]
@@ -58,7 +59,7 @@ namespace CombatScene.Enemy
             set
             {
                 _hp = value;
-                if (_hp < 0)
+                if (_hp <= 0)
                 {
                     OnEnemyDead.Invoke(this.transform.position);
                     
@@ -149,7 +150,6 @@ namespace CombatScene.Enemy
             }
             Debug.Log(gameObject.name + "'s hp is " + hp);
             onHitEvent.Invoke(hp);
-           
         }
 
         public void EquipWeapon(WeaponScriptableObject weapon)
@@ -360,6 +360,8 @@ namespace CombatScene.Enemy
             this.currentAttackDelay = 0;
             this.isDelayedAttackActive = false;
             this.delayedAttackPositions = new List<Vector2>();
+            
+            hpBarHandler.SetDefault(hp);
         }
         public void SetVariabePowerup(int upCapcity)// 스폰때마다 일정 조건마다 강해지도록함.
         {
@@ -372,15 +374,14 @@ namespace CombatScene.Enemy
             this.currentAttackDelay = 0;
             this.isDelayedAttackActive = false;
             this.delayedAttackPositions = new List<Vector2>();
+            
+            hpBarHandler.SetDefault(hp);
         }
         private void SetEvent()
         {
             if (hpBarHandler != null)
             {
-                onHitEvent.AddListener((currnetHP) =>
-                {
-                    hpBarHandler.SetHPUI(currnetHP, characterData.hp);
-                });
+                onHitEvent.AddListener(hpBarHandler.SetHPUI);
             }
             
             OnEnemyDead.AddListener((enemyTransform) =>

@@ -18,7 +18,8 @@ namespace CombatScene.Enemy
         private float moveDuration = 0.5f;
         [SerializeField]
         private Ease moveEase = Ease.Linear;
-
+        private float maxHP;
+        
         private void Start()
         {
             if (fillImageInner == null)
@@ -41,7 +42,13 @@ namespace CombatScene.Enemy
             fillImageInner.DOLocalMoveX(x, moveDuration).SetEase(moveEase).SetId("InnerMove");
         }
 
-        public void SetHPUI(float currentHP, float maxHP)
+        public void SetDefault(float maxHP)
+        {
+            this.maxHP = maxHP;
+            fillImageInner.localPosition = fillImageOuter.localPosition = Vector3.zero;
+        }
+        
+        public void SetHPUI(float currentHP)
         {
             float decreaseHP = maxHP - currentHP;
             float moveX = -decreaseHP / maxHP * fillImageInner.rect.width;
