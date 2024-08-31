@@ -17,7 +17,7 @@ public class CombatSceneUIManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] GameObject overPannel;
     [SerializeField] GameObject hpPannel;
-    [SerializeField] GameObject comboPannel;
+    [SerializeField] TMP_Text comboPannel;
     private List<AudioClip> battleBgms;
     private int currentBgmIndex;
     [SerializeField]private GameObject player;
@@ -197,7 +197,7 @@ public class CombatSceneUIManager : MonoBehaviour
         }
 
         // 콤보 패널 업데이트
-        comboPannel.GetComponentInChildren<TextMeshProUGUI>().text = "Combo : " + combo;
+        comboPannel.text = "Combo : " + combo;
     }
      public int GetPerfectCombo
     {
