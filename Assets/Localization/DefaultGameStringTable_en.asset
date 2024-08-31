@@ -130,6 +130,42 @@ MonoBehaviour:
     m_Localized: SFX
     m_Metadata:
       m_Items: []
+  - m_Id: 18438732172333056
+    m_Localized: Quest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18440137943650304
+    m_Localized: Success
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18440465896280064
+    m_Localized: Failure
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18440728371630080
+    m_Localized: Eliminate the enemy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18441363687051264
+    m_Localized: Eliminate the boss
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18442419607277568
+    m_Localized: ' Let''s make money'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18443036941717504
+    m_Localized: Number of plays
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18479315385421824
+    m_Localized: Return to menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18479714817380352
+    m_Localized: Undo
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

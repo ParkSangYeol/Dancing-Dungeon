@@ -127,6 +127,42 @@ MonoBehaviour:
     m_Key: SFX
     m_Metadata:
       m_Items: []
+  - m_Id: 18438732172333056
+    m_Key: Quest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18440137943650304
+    m_Key: Success
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18440465896280064
+    m_Key: Fail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18440728371630080
+    m_Key: Enemy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18441363687051264
+    m_Key: Boss
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18442419607277568
+    m_Key: Earn
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18443036941717504
+    m_Key: PlayTime
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18479315385421824
+    m_Key: GoMenu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18479714817380352
+    m_Key: Reset
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

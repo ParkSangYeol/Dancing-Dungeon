@@ -130,6 +130,42 @@ MonoBehaviour:
     m_Localized: Efectos
     m_Metadata:
       m_Items: []
+  - m_Id: 18438732172333056
+    m_Localized: "Desaf\xEDo"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18440137943650304
+    m_Localized: "\xC9xito"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18440465896280064
+    m_Localized: Fracaso
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18440728371630080
+    m_Localized: Elimina al enemigo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18441363687051264
+    m_Localized: Derrota al jefe
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18442419607277568
+    m_Localized: Ganemos dinero
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18443036941717504
+    m_Localized: "N\xFAmero de partidas"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18479315385421824
+    m_Localized: "Volver al men\xFA"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18479714817380352
+    m_Localized: Deshacer
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

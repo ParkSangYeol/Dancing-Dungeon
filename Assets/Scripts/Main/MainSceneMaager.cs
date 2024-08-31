@@ -84,6 +84,12 @@ public class MainSceneMaager : MonoBehaviour
         mainPannel.SetActive(false);
         questPannel.SetActive(true);
     }
+
+    public void UnVisivleQuestPanel()
+    {
+        questPannel.SetActive(false);
+        mainPannel.SetActive(true);
+    }
     /*
     public void SetVolume()
     {
