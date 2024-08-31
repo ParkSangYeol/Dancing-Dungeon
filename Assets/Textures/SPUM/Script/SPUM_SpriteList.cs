@@ -81,7 +81,7 @@ public class SPUM_SpriteList : MonoBehaviour
 
         if (!PlayerPrefs.HasKey("WearingRace") /*|| _bodyString==null*/)
         {
-            if (_bodyString == null)
+            if (string.IsNullOrEmpty(_bodyString))
             {
                 _bodyString ="Assets/Resources/SPUM/SPUM_Sprites/BodySource/Species/0_Human/Human_1.png";
             }

@@ -83,15 +83,19 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 15578287080095744
-    m_Localized: DefaultGameStringTable
+    m_Localized: "\u51FB\u6740\u6570"
     m_Metadata:
       m_Items: []
   - m_Id: 15578397251878912
-    m_Localized: NoLimit
+    m_Localized: "\u51FB\u6740\u7684\u9996\u9886"
     m_Metadata:
       m_Items: []
   - m_Id: 15578935603380224
-    m_Localized: "\uC81C\uD55C \uC5C6\uC74C"
+    m_Localized: "\u6700\u5927\u8FDE\u51FB"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16240698332123136
+    m_Localized: "\u83B7\u5F97\u7684\u94B1"
     m_Metadata:
       m_Items: []
   references:
