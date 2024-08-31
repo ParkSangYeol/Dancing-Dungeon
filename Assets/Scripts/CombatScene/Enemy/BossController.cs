@@ -13,7 +13,7 @@ namespace CombatScene.Enemy
         
         [SerializeField]
         private Vector2 defaultPosition;
-
+        
         private void Start()
         {
             base.Start();

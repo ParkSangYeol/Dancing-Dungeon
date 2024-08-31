@@ -27,13 +27,16 @@ namespace CombatScene.Enemy
         [SerializeField] 
         private SpriteRenderer weaponSpriteRenderer;
 
+        [SerializeField] 
+        private HPBarHandler hpBarHandler;
+        
         [Title("Data")] 
         [InfoBox("character data는 반드시 추가해야합니다!", InfoMessageType.Error, "IsCharacterDataNotSetup")]
         [SerializeField]
-        private EnemyCharacterScriptableObject characterData;
+        protected EnemyCharacterScriptableObject characterData;
         [InfoBox("default weapon은 반드시 추가해야합니다!", InfoMessageType.Error, "IsDefaultWeaponDataNotSetup")]
         [SerializeField]
-        private WeaponScriptableObject defaultWeapon;
+        protected WeaponScriptableObject defaultWeapon;
         [InfoBox("WeaponScriptableObject은 반드시 추가해야합니다!", InfoMessageType.Error, "WeaponScriptableObject")]
             
         
@@ -45,6 +48,7 @@ namespace CombatScene.Enemy
         private int currentDelayedAttackDelay;
         private bool isDelayedAttackActive;
         private List<Vector2> delayedAttackPositions;
+        public UnityEvent<float> onHitEvent;
         public ObjectType tileObjectType { get; private set; }
         
         [ShowInInspector]
@@ -144,6 +148,7 @@ namespace CombatScene.Enemy
                 // animator.SetTrigger("Hit");
             }
             Debug.Log(gameObject.name + "'s hp is " + hp);
+            onHitEvent.Invoke(hp);
            
         }
 
@@ -323,6 +328,11 @@ namespace CombatScene.Enemy
             {
                 animator = transform.GetChild(0).GetComponent<Animator>();
             }
+            
+            if (hpBarHandler == null)
+            {
+                hpBarHandler = GetComponentInChildren<HPBarHandler>();
+            }
         }
         public void SetCombatManager(CombatManager combatmanager)
         {
@@ -365,6 +375,14 @@ namespace CombatScene.Enemy
         }
         private void SetEvent()
         {
+            if (hpBarHandler != null)
+            {
+                onHitEvent.AddListener((currnetHP) =>
+                {
+                    hpBarHandler.SetHPUI(currnetHP, characterData.hp);
+                });
+            }
+            
             OnEnemyDead.AddListener((enemyTransform) =>
             {
                 animator.SetTrigger("Dead");
