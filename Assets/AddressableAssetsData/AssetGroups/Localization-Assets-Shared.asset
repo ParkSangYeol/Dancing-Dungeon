@@ -35,6 +35,21 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6392d436cf5e0ef46b0cbf8b03be6a7b
+    m_Address: Chinese-ZCOOL SDF
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-zh-CN
+    - Locale-en
+    - Locale-zh-TW
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bec5d447d6700ef48a9e97c40ae3e664
+    m_Address: Korean-Jua SDF
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ko
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 84ae68f6bec776f449ad886877488c84, type: 2}
   m_SchemaSet:

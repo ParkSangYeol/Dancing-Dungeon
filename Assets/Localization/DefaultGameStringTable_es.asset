@@ -166,6 +166,14 @@ MonoBehaviour:
     m_Localized: Deshacer
     m_Metadata:
       m_Items: []
+  - m_Id: 18491738779652096
+    m_Localized: Aplicar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18491945282015232
+    m_Localized: No aplicar
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

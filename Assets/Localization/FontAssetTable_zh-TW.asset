@@ -26,6 +26,14 @@ MonoBehaviour:
     m_Localized: '66743d67ac929b2418bd8261d95148c7[Taiwan-TaipeiSansTCBeta SDF Material]'
     m_Metadata:
       m_Items: []
+  - m_Id: 2935154330669056
+    m_Localized: 6392d436cf5e0ef46b0cbf8b03be6a7b
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2935154360029184
+    m_Localized: '6392d436cf5e0ef46b0cbf8b03be6a7b[Chinese-ZCOOL SDF Material]'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -2,6 +2,8 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem.HID;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Components;
 using UnityEngine.UI;
 
 public class QuestController : MonoBehaviour
@@ -11,7 +13,7 @@ public class QuestController : MonoBehaviour
 
     private int test = 0;
     private Button button;
-
+    
     private void Awake()
     {
         
@@ -37,13 +39,13 @@ public class QuestController : MonoBehaviour
         if (quest.CheckState())
         {
             button.interactable = true;
-            button.GetComponentInChildren<TextMeshProUGUI>().text = "success";
+            button.GetComponentInChildren<LocalizeStringEvent>().SetEntry("Success");
                
         }
         else
         {
             button.interactable = false;
-            button.GetComponentInChildren<TextMeshProUGUI>().text = "fail";
+            button.GetComponentInChildren<LocalizeStringEvent>().SetEntry("Fail");
         }
     }
     

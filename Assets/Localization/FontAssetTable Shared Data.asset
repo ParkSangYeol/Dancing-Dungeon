@@ -23,6 +23,123 @@ MonoBehaviour:
     m_Key: FontMaterial
     m_Metadata:
       m_Items: []
+  - m_Id: 2926132101746688
+    m_Key: ShopScene1/Canvas/PreviewCharacterPanel/Reset/Text (TMP)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2926132235964416
+    m_Key: ShopScene1/Canvas/PreviewCharacterPanel/Reset/Text (TMP) 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2927198423846912
+    m_Key: ShopScene1/Canvas/ShopList/StateButton/Text (TMP)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2927198595813376
+    m_Key: ShopScene1/Canvas/ShopList/StateButton/Text (TMP) 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2928548280897536
+    m_Key: ShopScene1/Canvas/ShopList/CustomButton/Text (TMP)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2928548415115264
+    m_Key: ShopScene1/Canvas/ShopList/CustomButton/Text (TMP) 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2930973217755136
+    m_Key: ShopScene1/Canvas/BackButton/Text (TMP)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2930973343584256
+    m_Key: ShopScene1/Canvas/BackButton/Text (TMP) 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2933173935509504
+    m_Key: Inventory/InventoryCanvas/PreviewCharacterPanel/Reset/Text (TMP)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2933174073921536
+    m_Key: Inventory/InventoryCanvas/PreviewCharacterPanel/Reset/Text (TMP) 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2933692888354816
+    m_Key: Inventory/InventoryCanvas/BackButton/Text (TMP)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2933692905132032
+    m_Key: Inventory/InventoryCanvas/BackButton/Text (TMP) 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2934308117254144
+    m_Key: Inventory/InventoryCanvas/ApplyPanel/ApplyButton/Text (TMP)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2934554440339456
+    m_Key: Inventory/InventoryCanvas/ApplyPanel/ApplyButton/Text (TMP) 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2934768807022592
+    m_Key: Inventory/InventoryCanvas/ApplyPanel/ApplyButton/Text (TMP) 2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2935154330669056
+    m_Key: Inventory/InventoryCanvas/ApplyPanel/ApplyButton/Text (TMP) 3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2935154360029184
+    m_Key: Inventory/InventoryCanvas/ApplyPanel/ApplyButton/Text (TMP) 4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2936400819097600
+    m_Key: Inventory/InventoryCanvas/ApplyPanel/Don'tApplyButton/Text (TMP)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2936400953315328
+    m_Key: Inventory/InventoryCanvas/ApplyPanel/Don'tApplyButton/Text (TMP) 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2936738447986688
+    m_Key: Inventory/InventoryCanvas/ApplyPanel/Don'tApplyButton/Text (TMP) 2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2936738481541120
+    m_Key: Inventory/InventoryCanvas/ApplyPanel/Don'tApplyButton/Text (TMP) 3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4254805874544640
+    m_Key: MainScene/Canvas/QuestPanel/Panel/Quest/Button/Text (TMP)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4254806142980096
+    m_Key: MainScene/Canvas/QuestPanel/Panel/Quest/Button/Text (TMP) 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4256764635484160
+    m_Key: MainScene/Canvas/QuestPanel/Panel (1)/Quest/Button/Text (TMP)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4256764778090496
+    m_Key: MainScene/Canvas/QuestPanel/Panel (1)/Quest/Button/Text (TMP) 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4256953932812288
+    m_Key: MainScene/Canvas/QuestPanel/Panel (2)/Quest/Button/Text (TMP)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4256953953783808
+    m_Key: MainScene/Canvas/QuestPanel/Panel (2)/Quest/Button/Text (TMP) 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4257149865529344
+    m_Key: MainScene/Canvas/QuestPanel/Panel (3)/PlayTimeQuest/Button/Text (TMP)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4257149882306560
+    m_Key: MainScene/Canvas/QuestPanel/Panel (3)/PlayTimeQuest/Button/Text (TMP)
+      1
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items:
     - rid: 6076924329342009453
@@ -49,6 +166,72 @@ MonoBehaviour:
           - ko
           - ru
           - es
+        - m_KeyId: 2926132101746688
+          m_TableCodes:
+          - en
+          - ko
+        - m_KeyId: 2927198423846912
+          m_TableCodes:
+          - en
+          - ko
+        - m_KeyId: 2928548280897536
+          m_TableCodes:
+          - en
+          - ko
+        - m_KeyId: 2930973217755136
+          m_TableCodes:
+          - en
+          - ko
+        - m_KeyId: 2933173935509504
+          m_TableCodes:
+          - en
+          - ko
+        - m_KeyId: 2933692888354816
+          m_TableCodes:
+          - en
+          - ko
+        - m_KeyId: 2934308117254144
+          m_TableCodes:
+          - en
+          - ko
+          - zh-CN
+        - m_KeyId: 2934554440339456
+          m_TableCodes:
+          - en
+          - ko
+          - ja
+        - m_KeyId: 2934768807022592
+          m_TableCodes:
+          - en
+          - ko
+        - m_KeyId: 2935154330669056
+          m_TableCodes:
+          - en
+          - zh-TW
+        - m_KeyId: 2936400819097600
+          m_TableCodes:
+          - en
+          - ko
+        - m_KeyId: 2936738447986688
+          m_TableCodes:
+          - en
+          - ko
+        - m_KeyId: 4254805874544640
+          m_TableCodes:
+          - en
+          - ko
+        - m_KeyId: 4256764635484160
+          m_TableCodes:
+          - en
+          - ko
+        - m_KeyId: 4256953932812288
+          m_TableCodes:
+          - en
+          - ko
+        - m_KeyId: 4257149865529344
+          m_TableCodes:
+          - en
+          - ko
         m_TypeString: TMPro.TMP_FontAsset, Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral,
           PublicKeyToken=null
     - rid: 6076924329342009454
@@ -64,5 +247,57 @@ MonoBehaviour:
           - ko
           - ru
           - es
+        - m_KeyId: 2926132235964416
+          m_TableCodes:
+          - en
+          - ko
+        - m_KeyId: 2927198595813376
+          m_TableCodes:
+          - en
+          - ko
+        - m_KeyId: 2928548415115264
+          m_TableCodes:
+          - en
+          - ko
+        - m_KeyId: 2930973343584256
+          m_TableCodes:
+          - en
+          - ko
+        - m_KeyId: 2933174073921536
+          m_TableCodes:
+          - en
+          - ko
+        - m_KeyId: 2933692905132032
+          m_TableCodes:
+          - en
+          - ko
+        - m_KeyId: 2935154360029184
+          m_TableCodes:
+          - en
+          - zh-TW
+        - m_KeyId: 2936400953315328
+          m_TableCodes:
+          - en
+          - ko
+        - m_KeyId: 2936738481541120
+          m_TableCodes:
+          - en
+          - ko
+        - m_KeyId: 4254806142980096
+          m_TableCodes:
+          - en
+          - ko
+        - m_KeyId: 4256764778090496
+          m_TableCodes:
+          - en
+          - ko
+        - m_KeyId: 4256953953783808
+          m_TableCodes:
+          - en
+          - ko
+        - m_KeyId: 4257149882306560
+          m_TableCodes:
+          - en
+          - ko
         m_TypeString: UnityEngine.Material, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null

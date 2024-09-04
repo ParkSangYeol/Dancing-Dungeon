@@ -163,6 +163,14 @@ MonoBehaviour:
     m_Key: Reset
     m_Metadata:
       m_Items: []
+  - m_Id: 18491738779652096
+    m_Key: Apply
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18491945282015232
+    m_Key: DontApply
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

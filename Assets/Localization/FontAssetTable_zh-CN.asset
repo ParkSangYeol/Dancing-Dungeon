@@ -26,6 +26,10 @@ MonoBehaviour:
     m_Localized: '6392d436cf5e0ef46b0cbf8b03be6a7b[Chinese-ZCOOL SDF Material]'
     m_Metadata:
       m_Items: []
+  - m_Id: 2934308117254144
+    m_Localized: 6392d436cf5e0ef46b0cbf8b03be6a7b
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

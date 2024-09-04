@@ -26,6 +26,10 @@ MonoBehaviour:
     m_Localized: '2ac4bebfba3f06844bc3d58da47e088b[Japanese-MochiyPopOne SDF Material]'
     m_Metadata:
       m_Items: []
+  - m_Id: 2934554440339456
+    m_Localized: 2ac4bebfba3f06844bc3d58da47e088b
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
