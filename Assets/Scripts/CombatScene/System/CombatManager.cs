@@ -472,7 +472,7 @@ namespace CombatScene
         public void SearchTiles()
         {
             Debug.Log("Call Search Tiles");
-            dpClass dp = new dpClass(ConstVariables.maxDetactRange, playerPosition);
+            VisitClass visit = new VisitClass(ConstVariables.maxDetactRange, playerPosition);
             Queue<TileInfo> queue = new Queue<TileInfo>();
             queue.Enqueue(new TileInfo(playerPosition, 0));
 
@@ -490,98 +490,96 @@ namespace CombatScene
                     int nX = (int)tileInfo.position.x + ConstVariables.dX[i];
                     int nY = (int)tileInfo.position.y + ConstVariables.dY[i];
 
-                    if (dp[nX, nY] < tileInfo.depth + 1)
+                    if (visit[nX, nY] < tileInfo.depth + 1)
                     {
                         continue;
                     }
                 
                     if (mapHandler.IsInsideMap(nX, nY))
                     {
-                        ObjectType tileObject = mapHandler.GetPoint(nX, nY);
-                        switch (tileObject)
-                        {
-                            case ObjectType.Block:
-                                continue;
-                                break;
-                            case ObjectType.Load:
-                                if (dp[nX, nY] > tileInfo.depth + 1)
-                                {
-                                    dp[nX, nY] = tileInfo.depth + 1;
-                                    queue.Enqueue(new TileInfo(new Vector2(nX, nY), tileInfo.depth + 1));
-                                }
-                                break;
-                            case ObjectType.Boss:
-                                if (dp[nX, nY] <= tileInfo.depth + 1)
-                                {
-                                    break;
-                                }
-                                if (BossBehavior(new Vector2(nX, nY)))
-                                {
-                                    bool isAttack;
-                                    if (EnemyBehavior(new Vector2((int)tileInfo.position.x, (int)tileInfo.position.y),
-                                            new Vector2(nX, nY), out isAttack))
-                                    {
-                                        dp[nX, nY] = tileInfo.depth + 1;
-                                        queue.Enqueue(new TileInfo(new Vector2(nX, nY), tileInfo.depth + 1));
-                                    }
-                                    else if (isAttack)
-                                    {
-                                        dp[nX, nY] = tileInfo.depth + 1;
-                                    }
-                                }
-                                else
-                                {
-                                    dp[nX, nY] = 0;
-                                    for (int j = 0; j < 4; j++)
-                                    {
-                                        int nnX = nX + ConstVariables.dX[j];
-                                        int nnY = nY + ConstVariables.dY[j];
-                                        
-                                        ObjectType nextTileObject = mapHandler.GetPoint(nnX, nnY);
-                                        if (nextTileObject.Equals(ObjectType.Boss))
-                                        {
-                                            dp[nnX, nnY] = 0;
-                                        }
-                                    }
-                                }
-                                break;
-                            case ObjectType.Enemy:
-                                if (dp[nX, nY] > tileInfo.depth + 1)
-                                {
-                                    bool isAttack;
-                                    if (EnemyBehavior(new Vector2((int)tileInfo.position.x, (int)tileInfo.position.y),
-                                            new Vector2(nX, nY), out isAttack))
-                                    {
-                                        dp[nX, nY] = tileInfo.depth + 1;
-                                        queue.Enqueue(new TileInfo(new Vector2(nX, nY), tileInfo.depth + 1));
-                                    }
-                                    else if (isAttack)
-                                    {
-                                        dp[nX, nY] = tileInfo.depth + 1;
-                                    }
-                                }
-                                break;
-                        }
+                        HandleNextTile(nX, nY, tileInfo, visit, ref queue);
                     }
                 }
             }
-            
-            
         }
 
-       
+        private void HandleNextTile(int x, int y, TileInfo tileInfo, in VisitClass visit, ref Queue<TileInfo> queue)
+        {
+            ObjectType tileObject = mapHandler.GetPoint(x, y);
+            switch (tileObject)
+            {
+                case ObjectType.Load:
+                    if (visit[x, y] > tileInfo.depth + 1)
+                    {
+                        visit[x, y] = tileInfo.depth + 1;
+                        queue.Enqueue(new TileInfo(new Vector2(x, y), tileInfo.depth + 1));
+                    }
+                    break;
+                case ObjectType.Boss:
+                    if (visit[x, y] <= tileInfo.depth + 1)
+                    {
+                        break;
+                    }
+                    if (BossBehavior(new Vector2(x, y)))
+                    {
+                        bool isAttack;
+                        if (EnemyBehavior(new Vector2((int)tileInfo.position.x, (int)tileInfo.position.y),
+                                new Vector2(x, y), out isAttack))
+                        {
+                            visit[x, y] = tileInfo.depth + 1;
+                            queue.Enqueue(new TileInfo(new Vector2(x, y), tileInfo.depth + 1));
+                        }
+                        else if (isAttack)
+                        {
+                            visit[x, y] = tileInfo.depth + 1;
+                        }
+                    }
+                    else
+                    {
+                        visit[x, y] = 0;
+                        for (int j = 0; j < 4; j++)
+                        {
+                            int nX = x + ConstVariables.dX[j];
+                            int nY = y + ConstVariables.dY[j];
+                            
+                            ObjectType nextTileObject = mapHandler.GetPoint(nX, nY);
+                            if (nextTileObject.Equals(ObjectType.Boss))
+                            {
+                                visit[nX, nY] = 0;
+                            }
+                        }
+                    }
+                    break;
+                case ObjectType.Enemy:
+                    if (visit[x, y] > tileInfo.depth + 1)
+                    {
+                        bool isAttack;
+                        if (EnemyBehavior(new Vector2((int)tileInfo.position.x, (int)tileInfo.position.y),
+                                new Vector2(x, y), out isAttack))
+                        {
+                            visit[x, y] = tileInfo.depth + 1;
+                            queue.Enqueue(new TileInfo(new Vector2(x, y), tileInfo.depth + 1));
+                        }
+                        else if (isAttack)
+                        {
+                            visit[x, y] = tileInfo.depth + 1;
+                        }
+                    }
+                    break;
+            }
+        }
         
         #region Inner Class
         
-        private class dpClass
+        private class VisitClass
         {
-            private int[,] dp;
+            private int[,] visit;
             private int offsetX;
             private int offsetY;
 
-            public dpClass(int width, int height, int offsetX, int offsetY)
+            public VisitClass(int width, int height, int offsetX, int offsetY)
             {
-                dp = new int[width * 2 + 1, height * 2 + 1];
+                visit = new int[width * 2 + 1, height * 2 + 1];
                 this.offsetX = offsetX;
                 this.offsetY = offsetY;
 
@@ -590,14 +588,14 @@ namespace CombatScene
                 {
                     for (int j = 0; j < height * 2 + 1; j++)
                     {
-                        dp[i,j] = int.MaxValue;
+                        visit[i,j] = int.MaxValue;
                     }
                 }
             }
 
-            public dpClass(int detectRange, Vector2 playerPos)
+            public VisitClass(int detectRange, Vector2 playerPos)
             {
-                dp = new int [detectRange * 2 + 3, detectRange * 2 + 3];
+                visit = new int [detectRange * 2 + 3, detectRange * 2 + 3];
                 this.offsetX = (int)playerPos.x - detectRange - 1;
                 this.offsetY = (int)playerPos.y - detectRange - 1;
                 
@@ -607,21 +605,21 @@ namespace CombatScene
                 {
                     for (int j = 0; j < detectRange * 2 + 1; j++)
                     {
-                        dp[i,j] = int.MaxValue;
+                        visit[i,j] = int.MaxValue;
                     }
                 }
-                dp[detectRange, detectRange] = 0;
+                visit[detectRange, detectRange] = 0;
             }
             
             public int this[int row, int column]
             {
                 get
                 {
-                    return dp[row - offsetX, column - offsetY];
+                    return visit[row - offsetX, column - offsetY];
                 }
                 set
                 {
-                    dp[row - offsetX, column - offsetY] = value;
+                    visit[row - offsetX, column - offsetY] = value;
                 }
             }
         }
